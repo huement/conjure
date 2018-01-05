@@ -1,0 +1,40 @@
+#
+# Morgan Le Fay Approved
+#
+
+# Library Folders
+# composer, npm, vagrant
+node_modules
+vendor
+.vagrant
+
+# Vagrant log files
+log/*.log
+
+# Unique Config Files
+.conjure.json
+.env
+
+
+#
+# Homestead.yaml
+
+
+# MacOS Garbage Files
+Icon
+.DS_Store
+/**/*/.DS_Store
+/**/*/Icon
+
+# Database Backups
+database/backups/*.sql
+database/backups/*.zip
+database/data/*.sql
+database/data/*.zip
+
+# Active Websites
+www
+
+# Dumping ground for maybes and might use
+_spellbook/SORT
+testcomp.json

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{SITE_NAME}}</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
+        <style>
+            html, body {
+                height: 100%;
+                background-color: {{BG_COLOR}};
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                display: table;
+                font-weight: 100;
+                font-family: 'Lato';
+                color: {{FONT_COLOR}};
+            }
+
+            .container {
+                display: table-row;
+                width: 100%;
+                height: 90%;
+                text-align: center;
+            }
+
+            .footer {
+                width: 100%;
+                text-align: center;
+                display: table-row;              
+            }
+
+            .content {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .title {
+                font-size: {{TITLE_SIZE}}px;
+            }
+
+            .sub-title {
+                font-size: {{SUB_TITLE_SIZE}}px;
+            }
+
+            .credit {
+                font-size: 16px;
+                display: table-cell;
+                vertical-align: bottom;
+                padding-bottom: 10px;
+            }
+
+            .credit a {
+                color: {{FONT_COLOR}};
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                <div class="title">{{TITLE}}</div>
+                <div class="sub-title">{{SUB_TITLE}}</div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="credit"></div>
+        </div>
+    </body>
+</html>

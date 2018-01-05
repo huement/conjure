@@ -1,0 +1,45 @@
+---
+# @file    UtilitySites.yml
+# @brief   System level items rather than sites, helpful dev apps.
+# @details These items are focues solely around Developer tools and/or packages
+#          Depending on your use case for items such as PHPMyAdmin, you may or
+#          may not want to install these in production.
+# @alert   Unless you want a custom utility, you shouldnt need to change this file.
+#
+
+folders:
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/provision/scripts
+      to: /home/vagrant/scripts
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/provision/config/homebin
+      to: /home/vagrant/bin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/dashboard
+      to: /home/vagrant/utilities/dashboard
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/database-admin
+      to: /home/vagrant/utilities/dbadmin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/memcached-admin
+      to: /home/vagrant/utilities/memadmin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/opcache-status
+      to: /home/vagrant/utilities/opadmin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/webgrind
+      to: /home/vagrant/utilities/webgrind
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/status
+      to: /home/vagrant/utilities/status
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/log
+      to: /home/vagrant/log
+
+sites:
+    - map: magic.app
+      to: /home/vagrant/utilities/dashboard
+    - map: opcache.magic.app
+      to: /home/vagrant/utilities/opadmin
+    - map: wg.magic.app
+      to: /home/vagrant/utilities/webgrind
+    - map: memcache.magic.app
+      to: /home/vagrant/utilities/memadmin
+    - map: db.magic.app
+      to: /home/vagrant/utilities/dbadmin
+    - map: status.magic.app
+      to: /home/vagrant/utilities/status
+
+databases:
+    - utilities

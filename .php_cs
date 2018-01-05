@@ -1,0 +1,33 @@
+{
+  "rules": {
+    "@PSR2":true,
+    "blank_line_before_statement":true,
+    "strict_comparisob":true,
+    "show-progress":"estimating-max"
+    "header_comment":"PHPDoc"
+    "line_ending":true,
+    "lowercase_constants":true,
+    "no_empty_comment":true,
+    "no_empty_statement":true,
+    "no_extra_consecutive_blank_lines":true,
+    "no_mixed_echo_print":"print":true,
+    "no_multiline_whitespace_around_double_arrow":true,
+    "no_multiline_whitespace_before_semicolons":true,
+    "no_short_echo_tag":true,
+    "no_trailing_whitespace_in_comment":true,
+    "phpdoc_align":true,
+    "phpdoc_indent":true,
+    "linebreak_after_opening_tag":true,
+    "align_multiline_comment":"all_multiline":true,
+    "position_after_functions_and_oop_constructs":"next,":true,
+    "combine_consecutive_issets":true,
+    "elseif":true,
+    "explicit_string_variable":true,
+    "full_opening_tag":true,
+    "single_line_comment_style":true,
+    "function_declaration":true
+  },
+  "using-cache":false.
+  "format":"json"
+}
+

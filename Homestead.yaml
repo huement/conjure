@@ -1,0 +1,29 @@
+---
+ip: "192.168.23.13"
+memory: 2048
+cpus: 2
+provider: virtualbox
+mariadb: true
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/wordpress-default
+      to: /home/vagrant/code/wordpress-default
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/wordplate
+      to: /home/vagrant/code/wordplate
+
+sites:
+    - map: wpdev.app
+      to: /home/vagrant/code/wordpress-default/public_html
+      php: "7.1"
+    - map: wordplate.app
+      to: /home/vagrant/code/wordplate/public
+      php: "7.0"
+
+databases:
+    - wordpress_default
+    - wordplate

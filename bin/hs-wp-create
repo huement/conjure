@@ -1,0 +1,350 @@
+#!/bin/bash
+
+#
+# You can find defaults.ini with all the defaults from the scripts root dir
+#
+
+echo
+echo "Simple way to add nginx Wordpress Projects to Homestead"
+echo
+
+# Functions
+function cfg_parser
+{
+    ini="$(<$1)"                # read the file
+    ini="${ini//[/\[}"          # escape [
+    ini="${ini//]/\]}"          # escape ]
+    IFS=$'\n' && ini=( ${ini} ) # convert to line-array
+    ini=( ${ini[*]//;*/} )      # remove comments with ;
+    ini=( ${ini[*]/\    =/=} )  # remove tabs before =
+    ini=( ${ini[*]/=\   /=} )   # remove tabs be =
+    ini=( ${ini[*]/\ =\ /=} )   # remove anything with a space around =
+    ini=( ${ini[*]/#\\[/\}$'\n'cfg.section.} ) # set section prefix
+    ini=( ${ini[*]/%\\]/ \(} )    # convert text2function (1)
+    ini=( ${ini[*]/=/=\( } )    # convert item to array
+    ini=( ${ini[*]/%/ \)} )     # close array parenthesis
+    ini=( ${ini[*]/%\\ \)/ \\} ) # the multiline trick
+    ini=( ${ini[*]/%\( \)/\(\) \{} ) # convert text2function (2)
+    ini=( ${ini[*]/%\} \)/\}} ) # remove extra parenthesis
+    ini[0]="" # remove first element
+    ini[${#ini[*]} + 1]='}'    # add the last brace
+    eval "$(echo "${ini[*]}")" # eval the result
+}
+
+function random-string()
+{
+    cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
+}
+
+# Load defaults
+source <(grep = $(dirname "$0")"/../defaults.ini")
+
+# Get Options
+# A POSIX variable
+OPTIND=1 # Reset in case getopts has been used previously in the shell.
+
+# Initialize our own variables:
+nogitclone="0"
+domain="0"
+folder="0"
+homesteadip="0"
+homesteadfolder="0"
+gitrepo="0"
+nojenkins="0"
+prefix="0"
+noproject="0"
+homesteaddefaults="0"
+
+while getopts "h?d:?o:?f:?i:?p:?e?r:?c?v?n?" opt; do
+    case "$opt" in
+    h|\?)
+        #show_help
+        exit 0
+        ;;
+    d)  domain=$OPTARG
+        ;;
+    o)  prefix=$OPTARG
+        ;;
+    f)  folder=$OPTARG
+        ;;
+    i)  homesteadip=$OPTARG
+        ;;
+    p)  homesteadfolder=$OPTARG
+        ;;
+    e)  homesteaddefaults=1
+        ;;
+    r)  gitrepo=$OPTARG
+        ;;
+    c)  nogitclone=1
+        ;;
+    v)  nojenkins=1
+        ;;
+    n)  noproject=1
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+#
+# Script itself
+#
+
+[ "$1" = "--" ] && shift
+
+if [ $domain = 0 ]
+    then
+        echo -n "Please enter site's local domain (for example project1.app): "
+        read answer
+    else
+        answer="$domain"
+fi
+devDomain="$answer"
+
+if [ $prefix != 0 ]
+    then
+        project_prefix="$prefix"
+fi
+
+if [ $folder = 0 ]
+    then
+        echo
+        echo "Path to site's public directory on host machine. "
+        echo "Path will be prefixed with your $project_prefix"
+        echo -n "Folder to use: "
+        read answer
+    else
+        answer="$folder"
+fi
+
+vSiteFolder="/home/vagrant/$answer"
+siteFolder="$project_prefix/$answer"
+siteFolderWithoutHomeDir="$answer"
+
+if [ $homesteadip = 0 ] && [ $homesteaddefaults = 0 ]
+    then
+        echo
+        echo "Homestead's IP address "
+        echo -n "(leave blank for $homestead_ip): "
+        read answer
+
+        if [ -z "$answer" ]
+            then
+                answer="$homestead_ip"
+        fi
+
+    elif [ $homesteaddefaults -ne "0" ]
+        then
+            answer="$homestead_ip"
+    else
+        answer="$homesteadip"
+fi
+vagrantIp="$answer"
+
+if [ $homesteadfolder = 0 ] && [ $homesteaddefaults = 0 ]
+    then
+        echo "Homestead's folder path "
+        echo -n "(leave blank for $homestead_folder): "
+        read answer
+
+        if [ -z "$answer" ]
+            then
+                answer=$homestead_folder
+        fi
+    elif [ $homesteaddefaults -ne "0" ]
+        then
+            answer="$homestead_folder"
+    else
+        answer="$homesteadfolder"
+fi
+homesteadFolder="$answer"
+
+# create folder if project doesn't exist
+if [ $nogitclone != 0 ]
+    then
+        mkdir $siteFolder
+    else
+        if [ $gitrepo = 0 ]
+            then
+                echo "Insert the projects Git repo "
+                echo -n "(leave blank for default: $wordpress_repo): "
+                read answer
+
+                if [ -z "$answer" ]
+                    then
+                        answer=$wordpress_repo
+                fi
+            else
+                answer="$gitrepo"
+        fi
+        gitRepo=$answer
+
+        echo
+        echo "Creating folder $siteFolder ..."
+        git clone $gitRepo $siteFolder
+fi
+
+echo "Connecting to Homestead ..."
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no vagrant@127.0.0.1 -p 2222 "sudo bash /vagrant/scripts/serve.sh $devDomain $vSiteFolder"
+
+echo "Editing hosts file (You might be asked to provide your user's password for host machine)..."
+# edit hosts file
+echo -e "\n$vagrantIp $devDomain" | sudo tee -a $hosts_file
+
+siteFolderLength=${#siteFolder}
+endLength=$[$siteFolderLength-7]
+sFolder="$siteFolder"
+
+if [ ${siteFolder:(-7)}  == "/web" ]
+    then
+        sFolder=${siteFolder:0:$endLength}
+        affix="/web"
+
+        vSiteFolderLength=${#vSiteFolder}
+        vEndLength=$[$vSiteFolderLength-7]
+        vSiteFolderShort=${vSiteFolder:0:$vEndLength}
+fi
+
+if [ "$noproject" = "0" ]
+    then
+        echo "Making a new development .env file"
+        cp $sFolder/.env.example $sFolder/.env
+        sed -i '' -e s/^DB_NAME=.*/DB_NAME=$siteFolderWithoutHomeDir/ $sFolder/.env
+        sed -i '' -e s/^DB_USER=.*/DB_USER=homestead/ $sFolder/.env
+        sed -i '' -e s/^DB_PASSWORD=.*/DB_PASSWORD=secret/ $sFolder/.env
+        sed -i '' -e 's,^WP_HOME=.*,WP_HOME=http://'"$devDomain"',g' $sFolder/.env
+        sed -i '' -e s/^AUTH_KEY=.*/AUTH_KEY=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^SECURE_AUTH_KEY=.*/SECURE_AUTH_KEY=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^LOGGED_IN_KEY=.*/LOGGED_IN_KEY=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^NONCE_KEY=.*/NONCE_KEY=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^AUTH_SALT=.*/AUTH_SALT=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^SECURE_AUTH_SALT=.*/SECURE_AUTH_SALT=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^LOGGED_IN_SALT=.*/LOGGED_IN_SALT=`random-string`/ $sFolder/.env
+        sed -i '' -e s/^NONCE_SALT=.*/NONCE_SALT=`random-string`/ $sFolder/.env
+
+        echo "Installing default plugins..."
+        (cd $sFolder/web/app/plugins/
+
+        # Go through the plugins and get them to the correct folder
+        for P in $wordpress_plugins; do
+            curl -sS https://downloads.wordpress.org/plugin/$P > $P
+            unzip -o $P
+            rm $P
+        done)
+fi
+
+echo "Editing Homestead.yaml file ..."
+# edit Homestead.yaml
+if [ -e "$homesteadFolder/Homestead.yaml" ]
+    then
+        file="$homesteadFolder/Homestead.yaml"
+    else
+        echo "Homestead's folder path was incorrect, Homestead.yaml not found in folder"
+        exit 1
+fi
+
+awk -v from="folders:.*$" -v to="folders:\n    - map: $sFolder\n      to: /home/vagrant/$siteFolderWithoutHomeDir" '{gsub(from,to,$0); print $0}' $file > ${file}.tmp
+awk -v from="sites:.*$" -v to="sites:\n    - map: $devDomain\n      to: $vSiteFolder/web" '{gsub(from,to,$0); print $0}' ${file}.tmp > ${file}2.tmp
+awk -v from="databases:.*$" -v to="databases:\n    - $siteFolderWithoutHomeDir" '{gsub(from,to,$0); print $0}' ${file}2.tmp > ${file}3.tmp
+
+echo "Removing temp files ..."
+rm -f ${file}.tmp
+rm -f ${file}2.tmp
+mv ${file}3.tmp $file
+
+echo "Restarting your Homestead VM..."
+(cd $homesteadFolder && vagrant destroy --force && vagrant up)
+
+if [ "$noproject" = "0" ]
+    then
+        echo "Running Yarn install & Composer install inside Vagrant"
+        echo "If ssh asks for password, its usually 'vagrant'"
+        (cd $homesteadFolder && vagrant ssh -- -t 'cd /home/vagrant/$siteFolderWithoutHomeDir && yarn install && composer install')
+fi
+
+if [ "$nojenkins" = "0" ]
+    then
+        read -r -p "Want to create a local Jenkins Job? [y/N] " response
+        case "$response" in
+            [yY][eE][sS]|[yY])
+                echo "Insert the local Jenkins Server url "
+                echo -n "(leave blank for default: $local_jenkins_url): "
+                read jenkinsServerUrl
+
+                if [ -z "$jenkinsServerUrl" ]
+                    then
+                        jenkinsServerUrl=$local_jenkins_default_url
+                fi
+
+                echo "Insert the local Jenkins Server username "
+                echo -n "(leave blank for default: $local_jenkins_username): "
+                read jenkinsServerUsername
+
+                if [ -z "$jenkinsServerUsername" ]
+                    then
+                        jenkinsServerUsername=$local_jenkins_username
+                fi
+
+                scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+                configDir="$scriptDir/.."
+
+                echo -n "Enter current computers local ip address: "
+                read currentIp
+
+                sed -e '/<hudson.plugins.git.UserRemoteConfig>/,/<\/hudson.plugins.git.UserRemoteConfig>/ s|<url>[0-9a-z.]\{1,\}</url>|<url>'$USER'@'$currentIp':'$siteFolder'</url>|g' $configDir'/jenkinsConfigFile.xml' >> $configDir'/jenkinsConfigFile.xml.temp'
+
+                (create-jenkins-job -s $jenkinsServerUrl -j $siteFolderWithoutHomeDir -u $jenkinsServerUsername -c $configDir'/jenkinsConfigFile.xml.temp')
+                rm $configDir'/jenkinsConfigFile.xml.temp'
+
+                echo "You need to change the credentials manually on the Job to get the Jenkins up and running."
+                ;;
+            *)
+                ;;
+        esac
+
+        read -r -p "Want to create a deployment Jenkins Job? [y/N] " response
+        case "$response" in
+            [yY][eE][sS]|[yY])
+                echo -n "Insert the deployment Jenkins Server url: "
+                read jenkinsServerUrl
+
+                echo "Insert the deployment Jenkins Server username "
+                echo -n "(leave blank for default: $deploy_jenkins_username): "
+                read jenkinsServerUsername
+
+                if [ -z "$jenkinsServerUsername" ]
+                    then
+                        jenkinsServerUsername=$deploy_jenkins_username
+                fi
+
+                scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+                configDir="$scriptDir/.."
+
+                sed -e '/<hudson.plugins.git.UserRemoteConfig>/,/<\/hudson.plugins.git.UserRemoteConfig>/ s|<url>[0-9a-z.]\{1,\}</url>|<url>'$gitRepo'</url>|g' $configDir'/jenkinsConfigFile.xml' >> $configDir'/jenkinsConfigFile.xml.temp'
+
+                (create-jenkins-job -s $jenkinsServerUrl -j $siteFolderWithoutHomeDir -u $jenkinsServerUsername -c $configDir'/jenkinsConfigFile.xml.temp')
+                rm $configDir'/jenkinsConfigFile.xml.temp'
+
+                echo "You need to change the credentials manually on the Job to get the Jenkins up and running."
+                ;;
+            *)
+                ;;
+        esac
+fi
+
+echo "Project info:"
+echo " Database name:       $siteFolderWithoutHomeDir"
+echo " Database username:   homestead"
+echo " Database password:   secret"
+echo "Project's folder structure:"
+echo " Root folder:         $vSiteFolder"
+echo " Theme folder:        /web/app/themes/default/"
+echo " Styling's folder:    /web/app/themes/default/scss/"
+echo " JavaScript's folder: /web/app/themes/default/js/"
+echo "All assets can be built by running yarn dev or yarn prod"
+echo "Use yarn hot, if you want your assets to be built automatically on changes"
+echo
+echo "You can now access your project from the browser: $devDomain"
+echo
+echo "All done! Thank you!"
+echo
