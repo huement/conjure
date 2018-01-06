@@ -16,7 +16,7 @@
 if @show_logo then
   splash = <<-HEREDOC
 #{@BLU}          ,
-#{@BLU}         /|  #{@GRN} _               #{@DGY}MYRIAD MOBILE PRESENTS
+#{@BLU}         /|  #{@GRN} _               #{@DGY}W O R D  P R E S S
 #{@BLU}       _/_\\_ #{@GRN}>_<  #{@CYN} _______              __
 #{@BLU}      .-#{@SKN}\\-/#{@BLU}.  #{@BRN}|   #{@CYN}|       |-----.-----.|__|.--.--.----.-----.
 #{@BLU}     /  |#{@WHT}∨#{@BLU}| \\_#{@BRN}|   #{@CYN}|   ----|  _  |      |  |   |  |   _|  -__|

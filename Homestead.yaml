@@ -1,29 +1,25 @@
 ---
 ip: "192.168.23.13"
 memory: 2048
-cpus: 2
+cpus: 1
 provider: virtualbox
-mariadb: true
+name: dark-harbor
+#mariadb: true
 
-authorize: ~/.ssh/id_rsa.pub
+authorize: /Users/derekscott/.ssh/id_rsa.pub
 
 keys:
-    - ~/.ssh/id_rsa
+    - /Users/derekscott/.ssh/id_rsa
 
 folders:
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/wordpress-default
-      to: /home/vagrant/code/wordpress-default
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/wordplate
-      to: /home/vagrant/code/wordplate
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/wp_dev
+      to: /home/vagrant/code/wp_dev
 
 sites:
     - map: wpdev.app
-      to: /home/vagrant/code/wordpress-default/public_html
-      php: "7.1"
-    - map: wordplate.app
-      to: /home/vagrant/code/wordplate/public
-      php: "7.0"
+      to: /home/vagrant/code/wp_dev
 
 databases:
     - wordpress_default
-    - wordplate
+    - wordpress
+    - myriadmobile

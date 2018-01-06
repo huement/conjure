@@ -8,23 +8,25 @@
 #
 
 folders:
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/provision/scripts
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/provision/scripts
       to: /home/vagrant/scripts
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/provision/config/homebin
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/provision/config/homebin
       to: /home/vagrant/bin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/dashboard
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/dashboard
       to: /home/vagrant/utilities/dashboard
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/database-admin
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/database-admin
       to: /home/vagrant/utilities/dbadmin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/memcached-admin
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/memcached-admin
       to: /home/vagrant/utilities/memadmin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/opcache-status
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/opcache-status
       to: /home/vagrant/utilities/opadmin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/webgrind
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/webgrind
       to: /home/vagrant/utilities/webgrind
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/www/utilities/status
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/status
       to: /home/vagrant/utilities/status
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/log
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/files
+      to: /home/vagrant/utilities/files
+    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/log
       to: /home/vagrant/log
 
 sites:
@@ -38,6 +40,8 @@ sites:
       to: /home/vagrant/utilities/memadmin
     - map: db.magic.app
       to: /home/vagrant/utilities/dbadmin
+    - map: files.magic.app
+      to: /home/vagrant/utilities/files
     - map: status.magic.app
       to: /home/vagrant/utilities/status
 

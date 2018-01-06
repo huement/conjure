@@ -3,25 +3,11 @@
   "description": "Wordpress build a box",
   "type": "project",
   "require": {
-    "wp-cli/wp-cli" : "~0.22",
-    "psy/psysh" : "~0.6",
-    "johnpbloch/wordpress-core": "*",
-    "paulgibbs/behat-wordpress-extension": "^0.9.2",
     "phpmetrics/phpmetrics": "^2.3",
-    "wordpress/phpdoc-parser": "dev-master",
-    "inpsyde/wp-tests-starter": "^1.0",
+    "mnsami/composer-custom-directory-installer": "^1.1",
     "composer/installers": "^1.0@dev",
-    "phpbenchmark/phpbenchmark": "dev-master",
     "amnuts/phperror-gui": "dev-master",
-    "amnuts/opcache-gui": "dev-master",
-    "solsoft/wordpress-boilerplate": "4.x-dev",
-    "lkwdwrd/wp-muplugin-loader": "~1.0.0",
-    "wpackagist-plugin/rest-api": "*"
-  },
-  "require-dev": {
-    "drupal-composer/preserve-paths": "^0.1.4",
-    "danielbachhuber/fetch-wpcom-command": "dev-master",
-    "matt/wp-installer": "dev-master",
+    "drupal-composer/preserve-paths": "dev-master",
     "sinebridge/wp-cli-about": "dev-master",
     "wp-cli/profile-command": "dev-master",
     "jaywood/jw-wpcli-random-posts": "dev-master",
@@ -29,32 +15,38 @@
     "wp-cli/widget-command": "dev-master",
     "aaemnnosttv/wp-cli-dotenv-command": "dev-master"
   },
+  "require-dev": {
+    "johnpbloch/wordpress"            : ">=3.9",
+    "rarst/fragment-cache"            : "~1.0",
+    "wpackagist-plugin/wp-super-cache": "*",
+    "rarst/laps"                                  : "~1.2",
+    "rarst/toolbar-theme-switcher"                : "~1.2",
+    "wpackagist-plugin/a-fresher-cache"           : "*",
+    "wpackagist-plugin/core-control"              : "*",
+    "wpackagist-plugin/monster-widget"            : "*",
+    "wpackagist-plugin/theme-check"               : "*",
+    "wpackagist-plugin/user-switching"            : "*",
+    "wpackagist-plugin/wcm-user-language-switcher": "*"
+  },
   "repositories": {
-      "wp-cli": {
-          "type": "composer",
-          "url": "https://wp-cli.org/package-index/"
-      },
-      "danielbachhuber/fetch-wpcom-command": {
-          "type": "vcs",
-          "url": "git@github.com:danielbachhuber/fetch-wpcom-command.git"
-      },
-      "wp-cli/profile-command": {
-          "type": "vcs",
-          "url": "git@github.com:wp-cli/profile-command.git"
-      },
-      "wp-cli/package-command": {
-          "type": "vcs",
-          "url": "git@github.com:wp-cli/package-command.git"
-      },
-      "wp-cli/widget-command": {
-          "type": "vcs",
-          "url": "git@github.com:wp-cli/widget-command.git"
-      }
+    "wp-cli": {
+      "type": "composer",
+      "url": "https://wp-cli.org/package-index/"
+    },
+    "wpackagist": {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    "rarst": {
+      "type": "composer",
+      "url": "https://rarst.net"
+    },
+    "danielbachhuber/fetch-wpcom-command": {
+      "type": "vcs",
+      "url": "git@github.com:danielbachhuber/fetch-wpcom-command.git"
+    }
   },
   "license": "MIT",
-  "bin": [
-    "bin/sage"
-  ],
   "authors": [
     {
       "name": "DEREK SCOTT",
@@ -64,30 +56,19 @@
   "minimum-stability": "dev",
   "secure-http": true,
   "extra": {
-    "force-mu": [
-    	"rest-api"
-    ],
-    "installer-paths": {
-  		"www/wp_dev/wp-content/themes/{$name}": [
-  			"type:wordpress-theme"
-  		],
-  		"www/wp_dev/wp-content/plugins/{$name}": [
-  			"type:wordpress-plugin"
-  		],
-  		"www/wp_dev/wp-content/mu-plugins/{$name}": [
-  			"type:wordpress-muplugin"
-  		]
-  	},
     "wordpress-install-dir": {
-    		"johnpbloch/wordpress-core": "www/wp_dev"
-    	}
-  },
-  "scripts" : {
-      "post-update-cmd" : [
-          "/bin/bash -c \"[[ -f /usr/local/bin/wp ]] || sudo ln -s /var/www/vendor/wp-cli/wp-cli/bin/wp /usr/bin/wp\"",
-          "/bin/bash -c \"source /var/www/vendor/wp-cli/wp-cli/utils/wp-completion.bash\"",
-      "/bin/bash -c \"[[ -f ~/.bash_profile ]] || touch ~/.bash_profile\"",
-          "/bin/bash -c \"source ~/.bash_profile\""
-      ]
+  		"johnpbloch/wordpress-core": "www/wp_dev"
+  	},
+    "installer-paths": {
+      "www/wp_dev/wp-content/themes/{$name}": ["type:wordpress-theme"],
+      "www/wp_dev/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
+      "www/wp_dev/wp-content/mu-plugins/{$name}": ["type:wordpress-muplugin"]
+    },
+    "preserve-paths": [
+      "www/wp_dev/wp-content/mu-plugins/",
+      "www/wp_dev/wp-content/plugins/",
+      "www/wp_dev/wp-content/themes/",
+      "www/wp_dev/wp-config.php"
+    ]
   }
 }

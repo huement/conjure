@@ -73,7 +73,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Require files
     #
     config.vm.provision "file", source: "provision/config", destination: "/home/vagrant/config"
-    config.vm.synced_folder "config/wp-cli", "/home/vagrant/.wp-cli"
+    config.vm.synced_folder "provision/config/wp-cli", "/home/vagrant/.wp-cli"
     config.vm.synced_folder "database/", "/home/vagrant/database"
 
     if File.exists?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then

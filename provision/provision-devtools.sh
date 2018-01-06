@@ -33,10 +33,12 @@ apt_package_check_list=(
   # Our base packages for php7.0. As long as php7.0-fpm and php7.0-cli are
   # installed, there is no need to install the general php7.0 package, which
   # can sometimes install apache as a requirement.
-  # php7.0-fpm
-  # php7.0-cli
-  # php7.1-fpm
-  # php7.1-cli
+  php7.0-fpm
+  php7.0-cli
+  php7.1-fpm
+  php7.1-cli
+  php7.2-fpm
+  php7.2-cli
 
   # Common and dev packages for php
   # php7.0-common
@@ -70,7 +72,7 @@ apt_package_check_list=(
   make
   vim
   colordiff
-  #postfix
+  postfix
   python-pip
 
   # ntp service to keep clock current
@@ -348,7 +350,7 @@ services_restart() {
   #phpdismod xdebug
 
   # Enable PHP mcrypt module by default
-  phpenmod mcrypt
+  #phpenmod mcrypt
 
   # Restart all php-fpm versions
   #find /etc/init.d/ -name "php*-fpm" -exec bash -c 'sudo service "$(basename "$0")" restart' {} \;

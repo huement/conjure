@@ -12,6 +12,13 @@ echo "|| STAGE 4 | COMPOSER, Various Utilities, Finalizations                   
 echo "---------------------------------------------------------------------------------"
 echo ""
 
+sh /home/vagrant/bin/xdebug_on
+# sudo a2enmod proxy_fcgi setenvif
+# sudo a2enconf php7.0-fpm
+# sudo a2enconf php7.1-fpm
+sudo phpenmod mcrypt
+sudo service nginx restart
+
  # make tab complete case insensitive
 echo set completion-ignore-case on | tee -a /etc/inputrc
 
@@ -80,41 +87,41 @@ fi
 # - `vvoyage site:migrate` - Pushes or pulls a site from a specified environment
 
 
-echo "------ [ PHPMyAdmin ] ------"
-if [ ! -f "/home/vagrant/utilities/dbadmin/config.inc.php" ]; then
-  echo "Downloading phpMyAdmin..."
-  sudo mv "/home/vagrant/config/pma.config.inc.php" "home/vagrant/utilities/dbadmin/config.inc.php"
-  sudo chmod 755 /home/vagrant/utilities/dbadmin
-  echo "Finished phpMyAdmin..."
-else
-  echo "phpMyAdmin already configured"
-fi
+# echo "------ [ PHPMyAdmin ] ------"
+# if [ ! -f "/home/vagrant/utilities/dbadmin/config.inc.php" ]; then
+#   echo "Downloading phpMyAdmin..."
+#   sudo mv "/home/vagrant/config/pma.config.inc.php" "home/vagrant/utilities/dbadmin/config.inc.php"
+#   sudo chmod 755 /home/vagrant/utilities/dbadmin
+#   echo "Finished phpMyAdmin..."
+# else
+#   echo "phpMyAdmin already configured"
+# fi
 
 
 echo "------ [ GruntJS ] ------"
-sudo chown -R vagrant:vagrant /usr/lib/node_modules/
-echo "@TODO GRUNT-SASS INSTALLER...."
-function program_is_installed {
-  # set to 1 initially
-  local return_=1
-  # set to 0 if not found
-  type $1 >/dev/null 2>&1 || { local return_=0; }
-  # return value
-  echo "$return_"
-}
+# sudo chown -R vagrant:vagrant /usr/lib/node_modules/
+# echo "@TODO GRUNT-SASS INSTALLER...."
+# function program_is_installed {
+#   # set to 1 initially
+#   local return_=1
+#   # set to 0 if not found
+#   type $1 >/dev/null 2>&1 || { local return_=0; }
+#   # return value
+#   echo "$return_"
+# }
 
 if [ "$(program_is_installed grunt)" == 1 ]; then
   echo "Updating Grunt CLI"
-  sudo npm update -g grunt-cli
-  #npm update -g grunt-sass --no-bin-links
-  sudo npm update -g grunt-cssjanus
-  sudo npm update -g grunt-rtlcss
+  # sudo npm update -g grunt-cli
+#   #npm update -g grunt-sass --no-bin-links
+#   sudo npm update -g grunt-cssjanus
+#   sudo npm update -g grunt-rtlcss
 else
   echo "Installing Grunt CLI"
-  sudo npm install -g grunt-cli
-  #npm install -g grunt-sass --no-bin-links
-  sudo npm install -g grunt-cssjanus
-  sudo npm install -g grunt-rtlcss
+  # sudo npm install -g grunt-cli
+#   #npm install -g grunt-sass --no-bin-links
+#   sudo npm install -g grunt-cssjanus
+#   sudo npm install -g grunt-rtlcss
 fi
 
 
@@ -136,12 +143,7 @@ pip install shyaml
 
 
 echo "------ [ Finishing Moves ] ------"
-sh /home/vagrant/bin/xdebug_on
-# sudo a2enmod proxy_fcgi setenvif
-# sudo a2enconf php7.0-fpm
-# sudo a2enconf php7.1-fpm
-sudo phpenmod mcrypt
-sudo service nginx restart
+
 # Remove unnecessary packages
 echo "Removing unnecessary packages..."
 sudo apt-get autoremove -y &>/dev/null
