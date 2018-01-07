@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__.'/../../autoload.php')) {
+    require __DIR__.'/../../autoload.php';
+} else {
+    require __DIR__.'/vendor/autoload.php';
+}
+
+use Symfony\Component\Console\Application;
+use VVoyage\CreateSiteCommand;
+use VVoyage\DeleteSiteCommand;
+use VVoyage\CreateEnvCommand;
+use VVoyage\DeleteEnvCommand;
+use VVoyage\MigrateSiteCommand;
+
+$app = new Application('VVoyage', '1.0.10');
+
+$app->add(new CreateSiteCommand());
+$app->add(new DeleteSiteCommand());
+$app->add(new CreateEnvCommand());
+$app->add(new DeleteEnvCommand());
+$app->add(new MigrateSiteCommand());
+
+$app->run();

@@ -1,0 +1,24 @@
+{
+    "name": "aprivette/vvoyage",
+    "description": "A WordPress and Wordmove management CLI for VVV 2.",
+    "keywords": ["vvoyage"],
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Privette",
+            "email": "aprivette@gmail.com",
+            "homepage": "https://github.com/aprivette"
+        }
+    ],
+    "require": {
+        "symfony/console": "^3.3",
+        "symfony/yaml": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {"VVoyage\\": "src/"}
+    },
+    "bin": [
+        "vvoyage"
+    ]
+}
