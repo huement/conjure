@@ -8,25 +8,25 @@
 #
 
 folders:
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/provision/scripts
+    - map: ~/Conjure/provision/scripts
       to: /home/vagrant/scripts
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/provision/config/homebin
+    - map: ~/Conjure/provision/config/homebin
       to: /home/vagrant/bin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/dashboard
+    - map: ~/Conjure/www/utilities/dashboard
       to: /home/vagrant/utilities/dashboard
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/database-admin
+    - map: ~/Conjure/www/utilities/database-admin
       to: /home/vagrant/utilities/dbadmin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/memcached-admin
+    - map: ~/Conjure/www/utilities/memcached-admin
       to: /home/vagrant/utilities/memadmin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/opcache-status
+    - map: ~/Conjure/www/utilities/opcache-status
       to: /home/vagrant/utilities/opadmin
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/webgrind
+    - map: ~/Conjure/www/utilities/webgrind
       to: /home/vagrant/utilities/webgrind
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/status
+    - map: ~/Conjure/www/utilities/status
       to: /home/vagrant/utilities/status
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/files
+    - map: ~/Conjure/www/utilities/files
       to: /home/vagrant/utilities/files
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/log
+    - map: ~/Conjure/log
       to: /home/vagrant/log
 
 sites:

@@ -16,7 +16,7 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/wp_dev
+    - map: ~/Conjure/www/wp_dev
       to: /home/vagrant/code/wp_dev
 
 sites:
