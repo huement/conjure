@@ -234,9 +234,9 @@ args+=("$@")
 mainInitScript $@
 
 
-function info { echo " ${BOLD}${WHT}${B_BLU}[INFO]${NORMAL}${BLU} ➜${NORMAL} $@" }
-function warning { echo " ${BOLD}${WHT}${B_GRN}[ OK ]${NORMAL}${GRN} ✔${NORMAL} $@" }
-function warning { echo " ${BOLD}${WHT}${B_YLW}[WARN]${NORMAL}${YLW} ➜${NORMAL} $@" }
-function error { echo " ${BOLD}${WHT}${B_RED}[FAIL]${NORMAL}${RED} ✖${NORMAL} $@" }
-function fatal { echo " ${BOLD}${WHT}${B_RED}[EXIT]${NORMAL}${RED} ✖${NORMAL} $@" && exit 0 }
-function die { echo " ${BOLD}${WHT}${B_RED}[DIE!]${NORMAL}${RED} ✖${NORMAL} $@" && exit 1 }
+function info { echo "${BOLD}${WHT}${B_BLU}[INFO]${NORMAL}${BLU} ➜${NORMAL} $@" }
+function warning { echo "${BOLD}${WHT}${B_GRN}[ OK ]${NORMAL}${GRN} ✔${NORMAL} $@" }
+function warning { echo "${BOLD}${WHT}${B_YLW}[WARN]${NORMAL}${YLW} ➜${NORMAL} $@" }
+function error { echo "${BOLD}${WHT}${B_RED}[FAIL]${NORMAL}${RED} ✖${NORMAL} $@" }
+function fatal { echo "${BOLD}${WHT}${B_RED}[EXIT]${NORMAL}${RED} ✖${NORMAL} $@" && exit 0 }
+function die { echo "${BOLD}${WHT}${B_RED}[DIE!]${NORMAL}${RED} ✖${NORMAL} $@" && exit 1 }
