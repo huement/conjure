@@ -52,8 +52,8 @@ VAGRANTFILE_API_VERSION ||= "2"
 
 require File.expand_path(File.dirname(__FILE__) + '/provision/scripts/_conjure_menu.rb')
 require File.expand_path(File.dirname(__FILE__) + '/provision/scripts/_conjure.rb')
-utilSiteConfigs = vagrant_dir + "/provision/utilities.yaml"
-devSiteConfigs = vagrant_dir + "/Homestead.yaml"
+utilSiteConfigs = File.expand_path(File.dirname(__FILE__) + "/provision/utilities.yaml")
+devSiteConfigs = File.expand_path(File.dirname(__FILE__) + "/Homestead.yaml")
 
 
 # --------------[CONFIG VAGRANT]----------------------------------------

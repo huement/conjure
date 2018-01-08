@@ -3,8 +3,11 @@
 PROJECT="bedrock"
   THEME="myriad_sage"
 
+#source "./conjure_"
+
+
 echo ''
-cd ../../www
+cd $SCRIPT/www
 echo 'Installing modern WordPress stack [12-Factor App]'
 echo 'More info here: https://github.com/roots/bedrock'
 composer create-project roots/bedrock $PROJECT
@@ -26,9 +29,6 @@ echo '  * Add Font Awesome'
 echo '  * Configure Browsersync'
 echo ''
 composer create-project roots/sage $THEME dev-master
-echo ''
-echo ''
-echo ''
 echo ''
 echo '----- ALL DONE -----'
 echo ''

@@ -101,7 +101,8 @@ function set_wpenv () {
 rightprompt()
 {
   tput setaf 5
-  fileDate=$(date "+%H:%M %D")
+  fileDate=$(date "+%H:%M__%D")
+  #MODCOL=`expr $COLUMNS - 9`
   printf "%*s" $COLUMNS $fileDate
   tput sgr0
   #printf "$STARTCOLOR%b$ENDCOLOR" "$1";

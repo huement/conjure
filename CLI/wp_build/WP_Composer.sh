@@ -3,10 +3,10 @@
 local PROJECT="wordpress-default"
 
 echo ''
-cd ../www
-echo 'Installing Composer backed WordPress stack'
+cd ../../www
+echo 'Installing WP_Vanilla. A Composer backed WordPress stack'
 echo 'More info here: http://composer.rarst.net/recipe/site-stack'
-composer create-project rarst/install-test $PROJECT dev-master --repository-url=http://rarst.net --prefer-dist
+composer create-project WP_Vanilla $PROJECT dev-master --repository-url=https://rarst.net --dev
 echo ''
 cd $PROJECT
 echo ''

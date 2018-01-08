@@ -112,16 +112,10 @@ echo "------ [ GruntJS ] ------"
 
 if [ "$(program_is_installed grunt)" == 1 ]; then
   echo "Updating Grunt CLI"
-  # sudo npm update -g grunt-cli
-#   #npm update -g grunt-sass --no-bin-links
-#   sudo npm update -g grunt-cssjanus
-#   sudo npm update -g grunt-rtlcss
+  yarn global update grunt-cli node-sass
 else
   echo "Installing Grunt CLI"
-  # sudo npm install -g grunt-cli
-#   #npm install -g grunt-sass --no-bin-links
-#   sudo npm install -g grunt-cssjanus
-#   sudo npm install -g grunt-rtlcss
+  yarn global add grunt-cli node-sass
 fi
 
 

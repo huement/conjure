@@ -12,7 +12,8 @@ echo
 function cfg_parser
 {
     ini="$(<$1)"                # read the file
-    ini="${ini//[/\[}"          # escape [
+    
+		ini="${ini//[/\[}"          # escape [
     ini="${ini//]/\]}"          # escape ]
     IFS=$'\n' && ini=( ${ini} ) # convert to line-array
     ini=( ${ini[*]//;*/} )      # remove comments with ;
@@ -37,7 +38,8 @@ function random-string()
 }
 
 # Load defaults
-source <(grep = $(dirname "$0")"/../defaults.ini")
+#source <(grep = "hs-wp-create.ini")
+cfg_parser
 
 # Get Options
 # A POSIX variable
@@ -48,7 +50,7 @@ nogitclone="0"
 domain="0"
 folder="0"
 homesteadip="0"
-homesteadfolder="0"
+homestead_folder="0"
 gitrepo="0"
 nojenkins="0"
 prefix="0"
@@ -69,11 +71,13 @@ while getopts "h?d:?o:?f:?i:?p:?e?r:?c?v?n?" opt; do
         ;;
     i)  homesteadip=$OPTARG
         ;;
-    p)  homesteadfolder=$OPTARG
+    p)  homestead_folder=$OPTARG
         ;;
     e)  homesteaddefaults=1
         ;;
     r)  gitrepo=$OPTARG
+        ;;
+    s)  vagrantSSHPORT=$OPTARG
         ;;
     c)  nogitclone=1
         ;;
@@ -110,100 +114,125 @@ if [ $folder = 0 ]
     then
         echo
         echo "Path to site's public directory on host machine. "
-        echo "Path will be prefixed with your $project_prefix"
         echo -n "Folder to use: "
         read answer
     else
         answer="$folder"
 fi
+siteFolder="${answer}"
+siteFolderWithoutHomeDir="${answer}"
 
-vSiteFolder="/home/vagrant/$answer"
-siteFolder="$project_prefix/$answer"
-siteFolderWithoutHomeDir="$answer"
 
-if [ $homesteadip = 0 ] && [ $homesteaddefaults = 0 ]
+if [ $folder = 0 ]
     then
         echo
-        echo "Homestead's IP address "
-        echo -n "(leave blank for $homestead_ip): "
+        echo "SSH PORT. "
+        echo -n "ssh.com -p <123>......"
         read answer
-
-        if [ -z "$answer" ]
-            then
-                answer="$homestead_ip"
-        fi
-
-    elif [ $homesteaddefaults -ne "0" ]
-        then
-            answer="$homestead_ip"
     else
-        answer="$homesteadip"
+        answer="$folder"
+fi
+homesteadDefaultSSHPORT=$answer 
+# @TODO homesteadDefaultSSHPORT
+
+
+if [ $folder = 0 ]
+    then
+        echo
+        echo "SSH USER"
+        echo -n "<ssh user>@127.... "
+        read answer
+    else
+        answer="$folder"
+fi
+homesteadDefaultSSHUSER=$answer
+
+if [ $folder = 0 ]
+    then
+        echo
+        echo "SSH IP"
+        echo -n "username@<default ssh ip>......"
+        read answer
+    else
+        answer="$folder"
+fi
+homestead_ip=$answer
+
+if [ $folder = 0 ]
+    then
+        echo
+        echo "Vagrant IP"
+        echo -n "Default: 192.168.23.13"
+        read answer
+    else
+        answer="$folder"
 fi
 vagrantIp="$answer"
 
-if [ $homesteadfolder = 0 ] && [ $homesteaddefaults = 0 ]
+if [ $homesteadfolder = 0 ]
     then
-        echo "Homestead's folder path "
-        echo -n "(leave blank for $homestead_folder): "
+        echo
+        echo "Homestead Source Dir"
+        echo -n "Default: ~/Homestead"
         read answer
-
-        if [ -z "$answer" ]
-            then
-                answer=$homestead_folder
-        fi
-    elif [ $homesteaddefaults -ne "0" ]
-        then
-            answer="$homestead_folder"
     else
         answer="$homesteadfolder"
 fi
-homesteadFolder="$answer"
+vagrantIp="$answer"
+
+
+   -----     -----   ----- -----  -----   -----    -----
+   # # #     # # #   # # # # # #  # # #   # # #	   # # #
+   #   #     #   #   #         #  #   #   #   #	   #   #
+   # # #     # # #   # # # # # #  # # #   # # #	   # # #
+   -----     -----   ----- -----  -----   -----    -----
+
 
 # create folder if project doesn't exist
 if [ $nogitclone != 0 ]
-    then
-        mkdir $siteFolder
-    else
-        if [ $gitrepo = 0 ]
-            then
-                echo "Insert the projects Git repo "
-                echo -n "(leave blank for default: $wordpress_repo): "
-                read answer
+then
+    mkdir $siteFolder
+else
+  if [ $gitrepo = 0 ]
+      then
+          echo "Insert the projects Git repo "
+          echo -n "(leave blank for default: $wordpress_repo): "
+          read answer
 
-                if [ -z "$answer" ]
-                    then
-                        answer=$wordpress_repo
-                fi
-            else
-                answer="$gitrepo"
-        fi
-        gitRepo=$answer
+          if [ -z "$answer" ]
+              then
+                  answer=$wordpress_repo
+          fi
+      else
+          answer="$gitrepo"
+  fi
+  gitRepo=$answer
 
-        echo
-        echo "Creating folder $siteFolder ..."
-        git clone $gitRepo $siteFolder
+  echo
+  echo "Creating folder $siteFolder ..."
+  git clone $gitRepo $siteFolder
 fi
 
+
 echo "Connecting to Homestead ..."
-ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no vagrant@127.0.0.1 -p 2222 "sudo bash /vagrant/scripts/serve.sh $devDomain $vSiteFolder"
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no vagrant@$vagrantIp -p $vagrantSSHPORT "sudo bash /vagrant/scripts/serve.sh $devDomain $vSiteFolder"
+
 
 echo "Editing hosts file (You might be asked to provide your user's password for host machine)..."
-# edit hosts file
 echo -e "\n$vagrantIp $devDomain" | sudo tee -a $hosts_file
 
 siteFolderLength=${#siteFolder}
-endLength=$[$siteFolderLength-7]
-sFolder="$siteFolder"
+       endLength=$[$siteFolderLength-7]
+          sFolder="$siteFolder"
 
-if [ ${siteFolder:(-7)}  == "/web" ]
-    then
-        sFolder=${siteFolder:0:$endLength}
-        affix="/web"
+sFolder=${siteFolder:0:$endLength}
+affix="/web"
 
-        vSiteFolderLength=${#vSiteFolder}
-        vEndLength=$[$vSiteFolderLength-7]
-        vSiteFolderShort=${vSiteFolder:0:$vEndLength}
-fi
+vSiteFolderLength=${#vSiteFolder}
+vEndLength=$[$vSiteFolderLength-7]
+vSiteFolderShort=${vSiteFolder:0:$vEndLength}
+
+
 
 if [ "$noproject" = "0" ]
     then

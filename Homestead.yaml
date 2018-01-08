@@ -3,16 +3,20 @@ ip: "192.168.23.13"
 memory: 2048
 cpus: 1
 provider: virtualbox
-name: dark-harbor
-#mariadb: true
+mariadb: true
 
-authorize: /Users/derekscott/.ssh/id_rsa.pub
+authorize: ~/.ssh/id_rsa.pub
 
 keys:
-    - /Users/derekscott/.ssh/id_rsa
+    - ~/.ssh/id_rsa
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
 
 folders:
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/wp_dev
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/wp_dev
       to: /home/vagrant/code/wp_dev
 
 sites:
@@ -20,6 +24,21 @@ sites:
       to: /home/vagrant/code/wp_dev
 
 databases:
-    - wordpress_default
+    - wpdev
     - wordpress
     - myriadmobile
+    - hswp
+    - homestead
+    - wordpress
+
+
+#
+#
+# @ALERT WP_Conjure has a Wordpress auto updated dev site. It requires the following 3 options. If you remove them it will break
+#        the Wordpress dev site installer and updater functions. So don't remove these entries from this file.
+#
+#        1. 'wpdev' option from databases,
+#        2. 'wpdev.app' section from sites
+#        3. 'www/wp_dev' from folders
+#
+#

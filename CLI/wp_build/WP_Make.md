@@ -5,7 +5,7 @@
 ```diff
 - WARNING
 
-- WP-Make is currently undergoing a rewrite, heading towards version 1. The
+- WP-Make is currently undergoing a rewrite, heading towards version 1\. The
 - stable version of WP Make is available as the 'master' branch, but the default
 - branch for this repo is 'develop'. This contains the work on the v1 rewrite.
 - Please note that these two branches are NOT COMPATIBLE with each other.
@@ -47,7 +47,7 @@ WP-Make is a [Yeoman generator](http://yeoman.io) for quickly creating new WordP
 
 Briefly, WP-Make can be used to create a new theme, child theme, plugin, or library project - complete with unit tests - in seconds!
 
-<a href="http://10up.com/contact/"><img src="https://10updotcom-wpengine.s3.amazonaws.com/uploads/2016/10/10up-Github-Banner.png" width="850"></a>
+[![](https://10updotcom-wpengine.s3.amazonaws.com/uploads/2016/10/10up-Github-Banner.png)](http://10up.com/contact/)
 
 ## Getting Started
 
@@ -71,6 +71,8 @@ $ yo wp-make
 ```
 
 ## Project Types
+
+yo wp-make
 
 WP-Make ships with four default project types, each invoked with a subgenerator.
 
@@ -110,9 +112,9 @@ This subgenerator scaffolds out a WordPress library. Libraries are a bit differe
 
 To run tests, execute the below command.
 
-````
+```
 $ npm test
-````
+```
 
 ## License
 

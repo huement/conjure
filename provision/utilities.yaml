@@ -8,25 +8,25 @@
 #
 
 folders:
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/provision/scripts
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/provision/scripts
       to: /home/vagrant/scripts
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/provision/config/homebin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/provision/config/homebin
       to: /home/vagrant/bin
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/dashboard
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/dashboard
       to: /home/vagrant/utilities/dashboard
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/database-admin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/database-admin
       to: /home/vagrant/utilities/dbadmin
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/memcached-admin
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/memcached-admin
       to: /home/vagrant/utilities/memadmin
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/opcache-status
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/opcache-status
       to: /home/vagrant/utilities/opadmin
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/webgrind
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/webgrind
       to: /home/vagrant/utilities/webgrind
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/status
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/status
       to: /home/vagrant/utilities/status
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/www/utilities/files
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/www/utilities/files
       to: /home/vagrant/utilities/files
-    - map: /Users/derekscott/Code/WP_Conjure/book_of_spells/log
+    - map: /Volumes/FloppyDisk/Code/WP_Conjure/book_of_spells/log
       to: /home/vagrant/log
 
 sites:
