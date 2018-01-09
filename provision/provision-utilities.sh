@@ -2,7 +2,7 @@
 #
 #
 #
-sh /home/vagrant/bin/xdebug_off
+#sh /home/vagrant/bin/xdebug_off
 start_seconds="$(date +%s)"
 sudo -s
 
@@ -12,10 +12,10 @@ echo "|| STAGE 4 | COMPOSER, Various Utilities, Finalizations                   
 echo "---------------------------------------------------------------------------------"
 echo ""
 
-sh /home/vagrant/bin/xdebug_on
-# sudo a2enmod proxy_fcgi setenvif
-# sudo a2enconf php7.0-fpm
-# sudo a2enconf php7.1-fpm
+#sh /home/vagrant/bin/xdebug_on
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php7.0-fpm
+sudo a2enconf php7.1-fpm
 sudo phpenmod mcrypt
 sudo service nginx restart
 
@@ -36,6 +36,7 @@ echo " ------ [ COMPOSER PACKAGES ] ------ "
 # Update both Composer and any global packages. Updates to Composer are direct from
 # the master branch on its GitHub repository
 echo "Composer updates are always run on provision...."
+COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction pyrech/composer-changelogs:*
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi self-update --no-progress --no-interaction
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction phpunit/phpunit:6.*
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction phpunit/php-invoker:1.1.*
@@ -46,6 +47,9 @@ COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-upd
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction kilroyweb/homeboy:*
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction aprivette/vvoyage:*
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction inpsyde/Wonolog:*
+
+
+
 #COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction 10up/wpsnapshots:*
 
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global config bin-dir /usr/local/bin
@@ -98,34 +102,13 @@ fi
 # fi
 
 
-echo "------ [ GruntJS ] ------"
-# sudo chown -R vagrant:vagrant /usr/lib/node_modules/
-# echo "@TODO GRUNT-SASS INSTALLER...."
-# function program_is_installed {
-#   # set to 1 initially
-#   local return_=1
-#   # set to 0 if not found
-#   type $1 >/dev/null 2>&1 || { local return_=0; }
-#   # return value
-#   echo "$return_"
-# }
-
-if [ "$(program_is_installed grunt)" == 1 ]; then
-  echo "Updating Grunt CLI"
-  yarn global update grunt-cli node-sass
-else
-  echo "Installing Grunt CLI"
-  yarn global add grunt-cli node-sass
-fi
-
-
 #
 # Graphviz
 #
 # Set up a symlink between the Graphviz path defined in the default Webgrind
 # config and actual path.
 echo "Adding graphviz symlink for Webgrind..."
-ln -sf "/usr/bin/dot" "/usr/local/bin/dot"
+sudo ln -sf "/usr/bin/dot" "/usr/local/bin/dot"
 
 #
 # Shyaml
@@ -143,7 +126,28 @@ echo "Removing unnecessary packages..."
 sudo apt-get autoremove -y &>/dev/null
 
 # Clean up apt caches
-sudo apt-get clean &>/dev/null
+sudo apt-get clean -y &>/dev/null
+
+echo "------ [ GruntJS ] ------"
+# sudo chown -R vagrant:vagrant /usr/lib/node_modules/
+# echo "@TODO GRUNT-SASS INSTALLER...."
+function program_is_installed {
+  # set to 1 initially
+  local return_=1
+  # set to 0 if not found
+  type $1 >/dev/null 2>&1 || { local return_=0; }
+  # return value
+  echo "$return_"
+}
+
+$TESTVAR="$(program_is_installed grunt)"
+if [ "$TESTVAR" == 1 ]; then
+  echo "Updating Grunt CLI"
+  yarn global update grunt-cli node-sass
+else
+  echo "Installing Grunt CLI"
+  yarn global add grunt-cli node-sass
+fi
 
 end_seconds="$(date +%s)"
 echo " "
@@ -152,15 +156,3 @@ echo "|| STAGE 4 | Completed in "$(( end_seconds - start_seconds ))" seconds.   
 echo "|| Provisioning has finished. Ready to Develop!                                ||"
 echo "---------------------------------------------------------------------------------"
 echo " "
-
-echo -e "\n\n"
-#cat "/home/vagrant/config/mage.txt"
-echo "${WHT}   _______${CYN}_______       ";
-echo "${WHT}  |${BLK}${B_BLU}       ${NORMAL}${CYN}       |${YLW}   ||  ";
-echo "${WHT}  |${BLK}${B_BLU}     / ${NORMAL}${CYN} \  .  |${YLW}   ||  ";
-echo "${WHT}  |${BLK}${B_BLU}  |\/  ${NORMAL}${CYN}  \/|  |${YLW}   ||   ${WHT}${B_BLU} WP_CONJURE ${NORMAL} ";
-echo "${WHT}  |${BLK}${B_BLU}  |____${NORMAL}${CYN}____|  |${YLW}   ||   ${WHT}${B_BLU} ver. ${vVPress} ${NORMAL}";
-echo "${WHT}   \\${BLK}${B_BLU}      ${NORMAL}${CYN}      /${YLW}    ||    ";
-echo "${WHT}    \\${B_BLU}_____${NORMAL}${CYN}_____/${YLW}     ||  ${NORMAL}";
-echo ""
-echo -e "\n\n      RUN: 'vagrant ssh' to connect \n       or visit https://magic.app\n\n"

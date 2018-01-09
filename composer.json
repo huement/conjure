@@ -1,5 +1,6 @@
 {
   "name": "myriadmobile/wp_conjure",
+  "version": "0.9.0",
   "description": "Wordpress build a box",
   "type": "project",
   "require": {

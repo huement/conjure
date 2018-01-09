@@ -24,15 +24,17 @@ function ENDTHISPARTYSTARTED {
 }
 
 function GETTHISPARTYSTARTED {
-  echo "
-      ${BLU}    /|
-      ${BLU}  _/_\\_                ${BBLK}W O R D  P R E S S
-  ${BPUR}. _ .${WHT}  '-'    ${BGRN} ______               __
-  ${BPUR}-( )-${BLU}/_ ${WHT}V${BLU}_\\   ${BGRN}|      |.-----.-----.|__|.--.--.----.-----.
-   ${YLW} |  ${BLU}\\_()_/   ${BGRN}|   ---||  _  |     ||  ||  |  |   _|  -__|
-  ${YLW}  |  ${BLU} | ${WHT}.${BLU} \\   ${BGRN}|______||_____|__|__||  ||_____|__| |_____|
-  ${YLW}  |  ${BLU} | ${WHT}.${BLU}  \\  ${CYN}====================${BGRN}|___|${CYN}==================
-  ${YLW}  |  ${BLU},\\_____'."
+  GITDEETS="$(git log --pretty=format:'%h' -n 1)"
+  echo "        .
+           .        _______              __
+        o          |       |-----.-----.|__|.--.--.----.-----.
+      o   .        |   ----|  _  |      |  |   |  |   _|  -__|
+    _________      |_______|_____|___|__|  |______|__| |_____|
+  c(\`       ')o                     |______|
+    \.     ,/       ver ${CONJUREVersion}                      git ${GITDEETS}
+   _//^---^\\\\_
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  "
 }
 
 function mageHatLogo {
@@ -40,7 +42,7 @@ function mageHatLogo {
 }
 
 function setupalready {
-	echo "             ${WHT}${B_BLU} WP_CONJURE ver. ${vVPress} ${NORMAL}"
+	echo "             ${WHT}${B_BLU} WP_CONJURE ver. ${CONJUREVersion} ${NORMAL}"
   echo ""
 }
 

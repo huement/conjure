@@ -3,7 +3,7 @@ ip: "192.168.23.13"
 memory: 2048
 cpus: 1
 provider: virtualbox
-mariadb: true
+mariadb: false
 
 authorize: ~/.ssh/id_rsa.pub
 
@@ -22,6 +22,7 @@ folders:
 sites:
     - map: wpdev.app
       to: /home/vagrant/code/wp_dev
+      php: "7.1"
 
 databases:
     - wpdev

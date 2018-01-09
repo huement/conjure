@@ -3,7 +3,7 @@
 # By storing the date now, we can calculate the duration of provisioning at the
 # end of this script.
 start_seconds="$(date +%s)"
-sh /home/vagrant/bin/xdebug_off
+#sh /home/vagrant/bin/xdebug_off
 sudo -s
 
 echo ""
@@ -41,16 +41,18 @@ apt_package_check_list=(
   php7.2-cli
 
   # Common and dev packages for php
-  # php7.0-common
-  # php7.0-dev
-  # php7.1-common
-  # php7.1-dev
+  php7.0-common
+  php7.0-dev
+  php7.1-common
+  php7.1-dev
+
+  libpcre3
 
   # Extra PHP modules that we find useful
   #php-pear
   php-imagick
   php-ssh2
-  php-xdebug
+  #php-xdebug
 
   php7.0-bcmath
   php7.0-gd
@@ -72,7 +74,6 @@ apt_package_check_list=(
   make
   vim
   colordiff
-  postfix
   python-pip
 
   # ntp service to keep clock current
@@ -91,7 +92,7 @@ apt_package_check_list=(
 
   # nodejs for use by grunt
   g++
-  nodejs
+  #nodejs
 
   # Mailcatcher requirement
   libsqlite3-dev
@@ -198,7 +199,7 @@ package_install() {
 
     # Install required packages
     echo "Installing apt-get packages..."
-    apt-get -y install ${apt_package_install_list[@]}
+    apt-get -y --force-yes install ${apt_package_install_list[@]}
 
   fi
 }
@@ -206,7 +207,7 @@ package_install() {
 # NODE TOOLS
 tools_install() {
   # Disable xdebug before any composer provisioning.
-  sh /home/vagrant/bin/xdebug_off
+  #sh /home/vagrant/bin/xdebug_off
 
   # nvm
   if [[ ! -d "/srv/config/nvm" ]]; then
@@ -265,20 +266,20 @@ phpfpm_setup() {
   cp "/home/vagrant/config/php-config/php7.2-custom.ini" "/etc/php/7.2/fpm/conf.d/php-custom.ini"
 
   cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.0/fpm/conf.d/opcache.ini"
-  cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.0/mods-available/xdebug.ini"
+  #cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.0/mods-available/xdebug.ini"
 
   cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.1/fpm/conf.d/opcache.ini"
-  cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.1/mods-available/xdebug.ini"
+  #cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.1/mods-available/xdebug.ini"
 
   cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.2/fpm/conf.d/opcache.ini"
-  cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.2/mods-available/xdebug.ini"
+  #cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.2/mods-available/xdebug.ini"
 
   echo " * PHP 7 [ 7.0 , 7.1 , 7.2 ] Configurations ---------------------------------------------------------"
   echo " * Copied /home/vagrant/config/php-config/php7.X-fpm.conf   to /etc/php/7.X/fpm/php-fpm.conf"
   echo " * Copied /home/vagrant/config/php-config/php7.X-www.conf   to /etc/php/7.X/fpm/pool.d/www.conf"
   echo " * Copied /home/vagrant/config/php-config/php7.X-custom.ini to /etc/php/7.X/fpm/conf.d/php-custom.ini"
   echo " * Copied /home/vagrant/config/php-config/opcache.ini       to /etc/php/7.X/fpm/conf.d/opcache.ini"
-  echo " * Copied /home/vagrant/config/php-config/xdebug.ini        to /etc/php/7.X/mods-available/xdebug.ini"
+  #echo " * Copied /home/vagrant/config/php-config/xdebug.ini        to /etc/php/7.X/mods-available/xdebug.ini"
 
   # Copy memcached configuration from local
   cp "/home/vagrant/config/memcached-config/memcached.conf" "/etc/memcached.conf"

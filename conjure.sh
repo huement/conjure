@@ -26,7 +26,6 @@
 #+    ->   web  . . . . . . . .  Webpress  | **   | https://bitbucket.org/derekscott_mm/webpress"
 #+    -> plain  . . . . . . . .  Wordpress |      | https://github.com/johnpbloch/wordpress-core-installer"
 #+
-#+
 #%
 #% INFO
 #%    -h, --help                    Print this help
@@ -36,10 +35,10 @@
 ## TITLE:    init.sh
 ## DETAILS:  Fortified Wordpress development environment
 ## AUTHOR:   dscott@myriadmobile.com
-## VERSION:  0.0.1
+## VERSION:  0.9.0
 ## DATE:     12.21.2017
 # ------------------ ---------  ------   ----    ---     --      -
-
+CONJUREVersion="0.9.0"
 # ------------------ ---------  ------   ----    ---     --      -
 #   BASE VARIABLES
 # ------------------ ---------  ------   ----    ---     --      -
@@ -161,8 +160,7 @@ function mainInitScript() {
   while [[ $1 = -?* ]]; do
     case $1 in
       -h|--help) usagefull >&2; safeExit ;;
-      --version) echo "WP_Conjure | version ${version}"; safeExit ;;
-      -v|--version) scriptinfo >&2; safeExit ;;
+      -v|--version) echo "WP_Conjure | version ${CONJUREVersion}"; safeExit ;;
       -l|--log) printLog=1 ;;
       -d|--debug) debug=1;;
       --force) force=1 ;;

@@ -1,0 +1,10 @@
+#
+# Syncing your Uploads folder from LocalDev to Live is the worst. Don't do it.
+# Instead, use this to 'proxy' upload URLS when you're doing local dev
+#
+# To use, set this as: /wp-­‐content/uploads/.htaccess	  
+#
+RewriteEngine	 on	 	  
+RewriteCond	 %{REQUEST_FILENAME}	 !-­‐d	 	  
+RewriteCond	 %{REQUEST_FILENAME}	 !-­‐f	 	  #	 Production	 site	 lives	 at	 http://example.com	 	  
+RewriteRule	 (.*)	 http://example.com/wp-­‐content/uploads/$1

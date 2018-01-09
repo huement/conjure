@@ -12,19 +12,19 @@ folders:
       to: /home/vagrant/scripts
     - map: ~/Conjure/provision/config/homebin
       to: /home/vagrant/bin
-    - map: ~/Conjure/www/utilities/dashboard
+    - map: ~/Conjure/utilities/dashboard
       to: /home/vagrant/utilities/dashboard
-    - map: ~/Conjure/www/utilities/database-admin
+    - map: ~/Conjure/utilities/database-admin
       to: /home/vagrant/utilities/dbadmin
-    - map: ~/Conjure/www/utilities/memcached-admin
+    - map: ~/Conjure/utilities/memcached-admin
       to: /home/vagrant/utilities/memadmin
-    - map: ~/Conjure/www/utilities/opcache-status
+    - map: ~/Conjure/utilities/opcache-status
       to: /home/vagrant/utilities/opadmin
-    - map: ~/Conjure/www/utilities/webgrind
+    - map: ~/Conjure/utilities/webgrind
       to: /home/vagrant/utilities/webgrind
-    - map: ~/Conjure/www/utilities/status
+    - map: ~/Conjure/utilities/status
       to: /home/vagrant/utilities/status
-    - map: ~/Conjure/www/utilities/files
+    - map: ~/Conjure/utilities/files
       to: /home/vagrant/utilities/files
     - map: ~/Conjure/log
       to: /home/vagrant/log
@@ -32,18 +32,25 @@ folders:
 sites:
     - map: magic.app
       to: /home/vagrant/utilities/dashboard
+      php: "7.0"
     - map: opcache.magic.app
       to: /home/vagrant/utilities/opadmin
+      php: "7.0"
     - map: wg.magic.app
       to: /home/vagrant/utilities/webgrind
+      php: "7.0"
     - map: memcache.magic.app
       to: /home/vagrant/utilities/memadmin
+      php: "7.0"
     - map: db.magic.app
       to: /home/vagrant/utilities/dbadmin
+      php: "7.0"
     - map: files.magic.app
       to: /home/vagrant/utilities/files
+      php: "7.0"
     - map: status.magic.app
       to: /home/vagrant/utilities/status
+      php: "7.0"
 
 databases:
     - utilities

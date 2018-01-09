@@ -42,7 +42,7 @@ class Homestead
             end
         end
 
-        config.vm.post_up_message = "Conjure Provision Finished. For details and more info, visit https://magic.app or https://magic.app/docs. Otherwise your local sites should be available at the URLs you entered."
+        #config.vm.post_up_message = "Conjure Provision Finished. For details and more info, visit https://magic.app or https://magic.app/docs. Otherwise your local sites should be available at the URLs you entered."
 
         # Override Default SSH port on the host
         if (settings.has_key?("default_ssh_port"))

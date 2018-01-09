@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh /home/vagrant/bin/xdebug_off
+#sh /home/vagrant/bin/xdebug_off
 start_seconds="$(date +%s)"
 sudo -s
 
@@ -12,7 +12,7 @@ echo ""
 
 # Update all of the package references before installing anything
 echo "Running apt-get update..."
-sudo apt-get -y update &>/dev/null
+sudo apt-get -y --force-yes update &>/dev/null
 
 # VVoyage | https://github.com/aprivette/vvoyage
 # - `vvoyage env:create` - Creates a new Wordmove environment in the site's Movefile.
@@ -73,6 +73,7 @@ function install_rvm() {
   curl -sSL https://get.rvm.io | bash -s stable --ruby;
 
   source /home/vagrant/.rvm/scripts/rvm;
+
   rvm requirements;
 }
 

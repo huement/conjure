@@ -9,9 +9,9 @@ vagrant_dir = File.expand_path(File.dirname(__FILE__))
 
 #@branch = `if [ -f #{vagrant_dir}/.git/HEAD ]; then git rev-parse --abbrev-ref HEAD; else echo 'novcs'; fi`
 #@branch = @branch.chomp("\n"); # remove trailing newline so it doesnt break the ascii art
-@branch = "TODO"
+@branch = `git log --pretty=format:'%h' -n 1`
 @show_logo = false
-@verCONJURE="0.7.0"
+@verCONJURE="0.9.0"
 
 # whitelist when we show the logo, else it'll show on global Vagrant commands
 if [ 'up', 'halt', 'resume', 'suspend', 'status', 'provision', 'reload' ].include? ARGV[0] then
