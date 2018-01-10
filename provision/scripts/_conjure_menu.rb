@@ -24,7 +24,7 @@ if @show_logo then
 #{@BLU}     /#{@SKN}(`#{@GRY}______#{@BRN}|#{@GRY}_  #{@CYN}                 |______|
 #{@BLU}    /#{@DGY} o(-- #{@YLW},#{@DGY}- --)o                                 #{@GRN}ver #{@verCONJURE}
 #{@BLU} _.'_v,#{@DGY} \\#{@RED} .  #{@RED}, #{@DGY}/
-#{@GRY}-------#{@BRN}_#{@YLW}//#{@RED}^^--^#{@YLW}\\\\#{@BRN}_#{@GRY} -------------------------------------------
+#{@GRY}------#{@BRN}_#{@YLW}//#{@RED}^^--^#{@YLW}\\\\#{@BRN}__#{@GRY} -------------------------------------------
 #{@CYN}    REPO: #{@CLR}#{@branch}                 #{@CYN}DASH: #{@CLR}https://#{@configuredHost}
 #{@CYN}     IP : #{@CLR}#{@configuredIP}           #{@CYN}NAME: #{@CLR}#{@configuredName}
 #{@GRY}--------------------------------------------------------------

@@ -11,38 +11,26 @@ if [ "$(tput cols)" -lt "120" ]; then
   COLS=120
 fi
 
-# Main Menu
-function ENDTHISPARTYSTARTED {
-  echo ""
-  echo "${WHT}   _______${CYN}_______       "
-  echo "${WHT}  |${BLK}${B_BLU}       ${NORMAL}${CYN}       |${YLW}   ||  "
-  echo "${WHT}  |${BLK}${B_BLU}     / ${NORMAL}${CYN} \  .  |${YLW}   ||  "
-  echo "${WHT}  |${BLK}${B_BLU}  |\/  ${NORMAL}${CYN}  \/|  |${YLW}   ||   ${WHT}${B_BLU} MYRIAD MOBILE ${NORMAL} "
-  echo "${WHT}  |${BLK}${B_BLU}  |____${NORMAL}${CYN}____|  |${YLW}   ||   ${WHT}${B_BLU} VPress v${fortressVersion} ${NORMAL}"
-  echo "${WHT}   \\${BLK}${B_BLU}      ${NORMAL}${CYN}      /${YLW}    ||    "
-  echo "${WHT}    \\${B_BLU}_____${NORMAL}${CYN}_____/${YLW}     ||  ${NORMAL}"
-}
-
-function GETTHISPARTYSTARTED {
+function GETTHISPARTYSTARTED() {
   GITDEETS="$(git log --pretty=format:'%h' -n 1)"
-  echo "        .
-           .        _______              __
-        o          |       |-----.-----.|__|.--.--.----.-----.
-      o   .        |   ----|  _  |      |  |   |  |   _|  -__|
-    _________      |_______|_____|___|__|  |______|__| |_____|
-  c(\`       ')o                     |______|
-    \.     ,/       ver ${CONJUREVersion}                      git ${GITDEETS}
-   _//^---^\\\\_
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  GRAY="$(tput setaf 244)"
+  echo "           ${BGRN}        .
+             ${BGRN}         .      ${BGRN}  _______              __
+             ${BGRN}      o         ${BGRN} |       |-----.-----.|__|.--.--.----.-----.
+             ${BGRN}    o   .       ${BGRN} |   ${BYLW}----${BGRN}|  ${BYLW}_${BGRN}  |      |  |   ${BYLW}|${BGRN}  |   _|  ${BYLW}-${BGRN}__|
+             ${GRAY}  _________     ${BGRN} |_______|_____|___${BYLW}|${BGRN}__|  |______|__| |_____|
+             ${GRAY}c(${WHT}\` ${GRAY}    ${BGRN}'${GRAY} )o       ${PUR}---------------${BGRN}|______|${PUR}----------------
+             ${GRAY}  \ ${BYLW}  \` ,${GRAY}/      ${BGRN}    ${CYN}ver${WHT} ${CONJUREVersion}                 ${CYN}git${WHT} ${GITDEETS}
+             ${YLW} _//${BRED}^${GRAY}---${BRED}^${YLW}\\\\_    ${NORMAL}
   "
 }
 
-function mageHatLogo {
+function mageHatLogo() {
   cat ./CLI/conjure/mage.txt
 }
 
-function setupalready {
-	echo "             ${WHT}${B_BLU} WP_CONJURE ver. ${CONJUREVersion} ${NORMAL}"
+function setupalready() {
+  echo "             ${WHT}${B_BLU} WP_CONJURE ver. ${CONJUREVersion} ${NORMAL}"
   echo ""
 }
 
@@ -144,8 +132,6 @@ function WHATEVS() {
   echo "${BOLD}${WHT}${B_BLU}[ OK ]${NORMAL}${BLU}  $@${NORMAL}"
 }
 
-
-
 function e_header() {
   printf "\n${BYLW}==========  %s  ==========${NORMAL}\n" "$@"
 }
@@ -203,8 +189,11 @@ scriptinfo() { head -${SCRIPT_HEADSIZE:-99} ${0} | grep -e "^##" | sed -e "s/^##
 #   LOGIC FUNCTIONS
 # ------------------ ---------  ------   ----    ---     --      -
 # @param $1 length integer how long the returned string will be
-function randomString {
-  command -v openssl >/dev/null 2>&1 || { echo "I require foo but it's not installed.  Aborting." >&2; exit 1; }
+function randomString() {
+  command -v openssl >/dev/null 2>&1 || {
+    echo "I require foo but it's not installed.  Aborting." >&2
+    exit 1
+  }
   SSLBASE="$(openssl rand -base64 $1)"
   VVAR=$(echo $VVVAR | sed 's/[^a-zA-Z]//g')
   VAR=$(echo "$VVAR" | tr '[:upper:]' '[:lower:]')
@@ -410,7 +399,6 @@ function safeExit() {
   exit 0
 }
 
-
 # Run Script as Root
 # -----------------------------------
 # DESC: Run the requested command as root (via sudo if requested)
@@ -446,7 +434,7 @@ if tput setaf 1 &>/dev/null; then
   PUR="$(tput setaf 125)"
   CYN="$(tput setaf 37)"
   WHT="$(tput setaf 15)"
-  BBLK="$(tput setaf 8)"
+  BLK="$(tput setaf 8)"
   BRED="$(tput setaf 9)"
   BGRN="$(tput setaf 10)"
   BYLW="$(tput setaf 11)"
@@ -484,7 +472,7 @@ else
   PUR="\e[1;35m"
   CYN="\e[1;36m"
   WHT="\e[1;37m"
-  BBLK="\e[1;30m"
+  BLK="\e[1;30m"
   BRED="\e[1;31m"
   BGRN="\e[1;32m"
   BYLW="\e[1;33m"

@@ -19,45 +19,44 @@ DIRNAME=""
 INSTALLDIR=""
 repoToGet=""
 
-function conjureFileRoll {
+function conjureFileRoll() {
   if [ ! -f "./.conjure.json" ]; then
     #Roll a dice using bash
-    for i in {1..5}
-    do
-    	MSG="You rolled a..."
-    	FATE=$(($RANDOM % 6 + 1))
+    for i in {1..5}; do
+      MSG="You rolled a..."
+      FATE=$(($RANDOM % 6 + 1))
     done
 
     declare -a titles=('King_of' 'Lord_of' 'Lady_of' 'Daemon_of' 'Knights_of' 'Queen_of')
-    index=$( jot -r 1  0 $((${#titles[@]} - 1)) )
+    index=$(jot -r 1 0 $((${#titles[@]} - 1)))
     rsN=${titles[index]}
     declare -a suffixes=('Oak-Island' 'Black-Marsh' 'Dark-Harbor' 'Devils-Canyon' 'Frozen-Flats' 'Shakey-Graves')
-    index=$( jot -r 1  0 $((${#suffixes[@]} - 1)) )
+    index=$(jot -r 1 0 $((${#suffixes[@]} - 1)))
     rsS=${suffixes[index]}
-  	hostName=$(echo ${rsS} | tr '[:upper:]' '[:lower:]')
+    hostName=$(echo ${rsS} | tr '[:upper:]' '[:lower:]')
 
     fileDate=$(date "+%H:%M %D")
-  	jsonData="{\"wizard_title\":\"${rsN}_${rsS}\",\"wizard_ip\":\"192.168.23.13\",\"wizard_host\":\"${hostName}\",\"created_on\":\"${fileDate}\"}"
+    jsonData="{\"wizard_title\":\"${rsN}_${rsS}\",\"wizard_ip\":\"192.168.23.13\",\"wizard_host\":\"${hostName}.dash\",\"created_on\":\"${fileDate}\"}"
     fileName="./.conjure.json"
-    echo $jsonData > $fileName
+    echo $jsonData >$fileName
 
     #sys_check
 
-  	echo " "
-    echo -e "\t     NEW CONJURE SETUP  "
-    echo -e "\t         ---------      "
-    echo -e "\t   ID : ${rsN}_${rsS}"
-    echo -e "\t   IP : 192.168.23.13"
-    echo -e "\t  HOST: ${hostName}"
     echo " "
-    echo -e "\t   RUN: vagrant up --provision"
+    echo -e "\t\t     NEW CONJURE SETUP  "
+    echo -e "\t\t         ---------      "
+    echo -e "\t\t   ID : ${rsN}_${rsS}"
+    echo -e "\t\t   IP : 192.168.23.13"
+    echo -e "\t\t  HOST: ${hostName}.dash"
+    echo " "
+    echo -e "\t\t   RUN: vagrant up --provision"
     echo ""
     setupalready
     echo ""
   else
-  	setupalready
+    setupalready
     echo -e "            CONJURE CONFIGURED ALREADY "
-  	echo -e "           see ${CYN}.conjure.json${NORMAL} for details   "
+    echo -e "           see ${CYN}.conjure.json${NORMAL} for details   "
     echo " "
     echo -e "          ------ADDITIONAL COMMANDS------"
     echo -e "             ${GRN}SSH: ${NORMAL}vagrant ssh"
@@ -72,37 +71,35 @@ function conjureFileRoll {
   fi
 }
 
-
 # Grab git repos
 # ----------------------------------------------------------------------
-function cleanLiftGit {
+function cleanLiftGit() {
   rm -R ./tmp_*/.git*
   cp -R ./tmp_* ./
   rm -R ./tmp_*
 }
 
-function downloadGit {
+function downloadGit() {
   repoToGet=$1
-  tmpName=`$(randomString 3)`
+  tmpName=$($(randomString 3))
   # your real command here, instead of sleep
   fetchURL &
   PID=$!
   i=1
   sp="/-\|"
   echo -n ' '
-  while [ -d /proc/$PID ]
-  do
+  while [ -d /proc/$PID ]; do
     printf "\b${sp:i++%${#sp}:1}"
   done
 }
 
-function fetchURL {
+function fetchURL() {
   git clone -q -n $CONJUREBASE "tmp_${tmpName}"
 }
 
 # System Requirements [ brew, vagrant, virtualbox ]
 # ----------------------------------------------------------------------
-function insallRequirements {
+function insallRequirements() {
   echo ""
   rulemsg "Homebrew"
   if ! type "brew" >/dev/null; then
@@ -139,28 +136,34 @@ function insallRequirements {
     echo -e "\t VAGRANT:    http://www.vagrantup.com/ \n"
   fi
 }
-function sys_check {
-  if ! type "brew" > /dev/null; then
-    WHATEVS "Installing Homebrew . . .";
-    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)";
+function sys_check() {
+  if ! type "brew" >/dev/null; then
+    WHATEVS "Installing Homebrew . . ."
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
   else
-    GOOD "Homebrew already installed";
+    GOOD "Homebrew already installed"
   fi
 
   # Check for Vagrant + Virtualbox
-  if command -v vagrant >/dev/null 2>&1 && command -v virtualbox >/dev/null 2>&1 ; then
-    GOOD "Vagrant + Virtualbox installed";
+  if command -v vagrant >/dev/null 2>&1 && command -v virtualbox >/dev/null 2>&1; then
+    GOOD "Vagrant + Virtualbox installed"
     echo ""
   else
-    brew tap phinze/homebrew-cask && brew install brew-cask;
+    brew tap phinze/homebrew-cask && brew install brew-cask
     # Vagrant
-    command -v vagrant >/dev/null 2>&1 || { WHATEVS "Brewing Vagrant . . ."; brew cask install vagrant; }
+    command -v vagrant >/dev/null 2>&1 || {
+      WHATEVS "Brewing Vagrant . . ."
+      brew cask install vagrant
+    }
     # Virtualbox
-    command -v virtualbox >/dev/null 2>&1 || { WHATEVS "Brewing Virtualbox . . ."; brew cask install virtualbox; }
+    command -v virtualbox >/dev/null 2>&1 || {
+      WHATEVS "Brewing Virtualbox . . ."
+      brew cask install virtualbox
+    }
   fi
 
-  if [! command -v vagrant >/dev/null 2>&1 ] || [ ! command -v virtualbox >/dev/null 2>&1 ] ; then
-    BAD "Something went wrong. Vagrant and/or Virtualbox were not installed.";
+  if [! command -v vagrant ] >/dev/null 2>&1 || [ ! command -v virtualbox ] >/dev/null 2>&1; then
+    BAD "Something went wrong. Vagrant and/or Virtualbox were not installed."
     echo -e "\n\n\t You will need to manually correct this error and rerun the script again.\n"
     echo -e "\t VIRTUALBOX: https://www.virtualbox.org/ \n"
     echo -e "\t VAGRANT:    http://www.vagrantup.com/ \n"
@@ -174,12 +177,11 @@ function sys_check {
     vagrant plugin install vagrant-hostsupdater
   fi
 
-
 }
 
 # Setup Vagrant to manage Virtual Hosts
 # ----------------------------------------------------------------------
-function setupVagrant {
+function setupVagrant() {
   # Default to No if the user presses enter without giving an answer:
   echo ""
   rulemsg "Vagrant Recommended Plugins"
@@ -217,7 +219,6 @@ function setupVagrant {
     # @TODO add the required install commands
   fi
 
-
   WHATEVS "Downloading Vagrant Box - ${BOXNAME} . . ."
   echo "${RED}-----------------------------------------${NORMAL}"
   vagrant box add $BOXNAME
@@ -227,7 +228,7 @@ function setupVagrant {
   echo ""
 }
 
-function vanillaWordpress {
+function vanillaWordpress() {
   if ask "Install/Update Wordpress DevBox to latest version?" Y; then
     GETNEWWP
     GOOD "Wordpress DevBox Install [ OK ]"
@@ -236,17 +237,17 @@ function vanillaWordpress {
 
 # Setup VV tool [NOT USED]
 # @todo make this command work w/ WP_Conjure
-function setup_vv {
+function setup_vv() {
   if [ ! -f "/usr/local/bin/vv" ]; then
-    cd ~/;
-    sudo mkdir -p ./.wp-cli;
-    sudo mkdir -p ./.wp-cli/source;
-    sudo chmod 777 ./.wp-cli/source;
-    cd ./.wp-cli/source;
-    git clone https://github.com/bradp/vv.git;
-    cd vv;
-    sudo cp vv /usr/local/bin;
-    sudo cp vv-completions /usr/local/bin;
+    cd ~/
+    sudo mkdir -p ./.wp-cli
+    sudo mkdir -p ./.wp-cli/source
+    sudo chmod 777 ./.wp-cli/source
+    cd ./.wp-cli/source
+    git clone https://github.com/bradp/vv.git
+    cd vv
+    sudo cp vv /usr/local/bin
+    sudo cp vv-completions /usr/local/bin
   else
     if [ -d "~/.wp-cli/source/vv" ]; then
       echo "WP VV UPDATE CHECK..."
@@ -256,10 +257,9 @@ function setup_vv {
   fi
 }
 
-
 # Final Touches. Where do we go from here?
 # ----------------------------------------------------------------------
-function askBootVagrant {
+function askBootVagrant() {
 
   # Default to No if the user presses enter without giving an answer:
 
@@ -280,7 +280,7 @@ function askBootVagrant {
   exit 0
 }
 
-function RUNINSTALLER {
+function RUNINSTALLER() {
 
   echo ""
 
@@ -324,24 +324,26 @@ function RUNINSTALLER {
   fi
 }
 
-
 # Install new Vanilla Wordpress Site
 # ----------------------------------------------------------------------
 SLUG=""
 function askSlug() {
   local prompt default reply
 
-    read reply</dev/tty
-    if [ -z "$reply" ]; then reply=$default; fi
+  read reply</dev/tty
+  if [ -z "$reply" ]; then reply=$default; fi
 
-    RAW=$(echo $reply | sed 's/[^a-zA-Z]//g')
+  RAW=$(echo $reply | sed 's/[^a-zA-Z]//g')
 
-    SLUG=$(echo "$RAW" | tr '[:upper:]' '[:lower:]')
+  SLUG=$(echo "$RAW" | tr '[:upper:]' '[:lower:]')
 }
 
 RSVAR=""
-function randomSString {
-  command -v openssl >/dev/null 2>&1 || { echo "I require foo but it's not installed.  Aborting." >&2; exit 1; }
+function randomSString() {
+  command -v openssl >/dev/null 2>&1 || {
+    echo "I require foo but it's not installed.  Aborting." >&2
+    exit 1
+  }
   SSLBASE="$(openssl rand -base64 $1)"
   VVAR=$(echo $VVVAR | sed 's/[^a-zA-Z]//g')
   RSVAR=$(echo "$VVAR" | tr '[:upper:]' '[:lower:]')
@@ -357,13 +359,13 @@ function GETNEWWP() {
 
   echo "Creating: ${SCRIPT}/www/${SLUG}"
   mkdir -p $SCRIPT/www/$SLUG
-  if is_not_dir "${SCRIPT}/www/${SLUG}" ; then
+  if is_not_dir "${SCRIPT}/www/${SLUG}"; then
     die "Could not create install directory: ${SCRIPT}/www/${SLUG}"
   fi
 
   cd $SCRIPT/www/$SLUG
 
-  dbpreS=`$(randomSString 3)`
+  dbpreS=$($(randomSString 3))
   dbpref="${RSVAR}_"
   dbname="wpdev"
   dbuser="homestead"
@@ -406,7 +408,7 @@ function GETNEWWP() {
 
 }
 
-function updateWP {
+function updateWP() {
   cp wp-config-sample.php wp-config.php
 
   #set database details with perl find and replace
@@ -425,7 +427,7 @@ function updateWP {
   ' wp-config.php
 }
 
-function new_bedrock {
+function new_bedrock() {
   echo ''
   cd $SCRIPT/www
   echo 'Installing modern WordPress stack [12-Factor App]'
@@ -454,7 +456,7 @@ function new_bedrock {
   echo ''
 }
 
-function new_plate {
+function new_plate() {
   echo ''
   echo 'Installing A modern WordPress stack (non standard folders).'
   echo 'It simplifies the fuzziness around WordPress development.'
@@ -470,7 +472,7 @@ function new_plate {
   echo ''
 }
 
-function new_webpress {
+function new_webpress() {
   echo ''
   echo 'Install WebPress......'
   cd $SCRIPT/www
@@ -485,6 +487,6 @@ function new_webpress {
   echo ''
 }
 
-function newMoveFile {
+function newMoveFile() {
   echo "TODO!!!!!!!!"
 }
