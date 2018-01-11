@@ -1,0 +1,3 @@
+* Fixes #50 default path issues with the VVV 2.0
+* Removed local.wordpress-trunk.dev as per https://github.com/Varying-Vagrant-Vagrants/VVV/issues/1096
+* Removed @ error suppression someone put in the host list instead of proper isset() check
