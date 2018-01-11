@@ -1,0 +1,26 @@
+core install:
+  url: prairiegrit.dev:8888
+  admin_user: admin
+  admin_password: admin
+  admin_email: dscott@myriadmobile.com
+  title: WordPress Development
+core config:
+  dbuser: root
+  dbpass: parad3
+  dbhost: localhost
+  extra-php: |
+        define( 'WP_DEBUG', true );
+        define( 'WP_POST_REVISIONS', 0 );
+
+@mmboth:
+  - @mmstage
+  - @mmlive
+  
+@mmstage:
+  ssh: myriadmobile@35.184.184.103:51840/www/myriadmobile_606/public
+
+@mmlive:
+  ssh: myriadmobile@35.184.184.103:49142/www/myriadmobile_606/public
+  
+@workstage_rsync:
+  - rsync -avz myriadmobile@35.184.184.103:51840/www/myriadmobile_606/public/*

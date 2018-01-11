@@ -32,7 +32,9 @@ databases:
     - homestead
     - wordpress
 
-
+variables:
+    - key: APP_ENV
+      value: local
 #
 #
 # @ALERT WP_Conjure has a Wordpress auto updated dev site. It requires the following 3 options. If you remove them it will break

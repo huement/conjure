@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bffb185247778d17b9e0769cf2ab6af5",
+    "content-hash": "b2ab2c33b42de70e3f4ae2d9598d35fb",
     "packages": [
         {
             "name": "JayWood/jw-wpcli-random-posts",

@@ -48,8 +48,6 @@ COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-upd
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction aprivette/vvoyage:*
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction inpsyde/Wonolog:*
 
-
-
 #COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global require --no-update --no-progress --no-interaction 10up/wpsnapshots:*
 
 COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global config bin-dir /usr/local/bin
@@ -128,26 +126,26 @@ sudo apt-get autoremove -y &>/dev/null
 # Clean up apt caches
 sudo apt-get clean -y &>/dev/null
 
-echo "------ [ GruntJS ] ------"
-# sudo chown -R vagrant:vagrant /usr/lib/node_modules/
-# echo "@TODO GRUNT-SASS INSTALLER...."
-function program_is_installed {
-  # set to 1 initially
-  local return_=1
-  # set to 0 if not found
-  type $1 >/dev/null 2>&1 || { local return_=0; }
-  # return value
-  echo "$return_"
-}
-
-$TESTVAR="$(program_is_installed grunt)"
-if [ "$TESTVAR" == 1 ]; then
-  echo "Updating Grunt CLI"
-  yarn global update grunt-cli node-sass
-else
-  echo "Installing Grunt CLI"
-  yarn global add grunt-cli node-sass
-fi
+# echo "------ [ GruntJS ] ------"
+# # sudo chown -R vagrant:vagrant /usr/lib/node_modules/
+# # echo "@TODO GRUNT-SASS INSTALLER...."
+# function program_is_installed {
+#   # set to 1 initially
+#   local return_=1
+#   # set to 0 if not found
+#   type $1 >/dev/null 2>&1 || { local return_=0; }
+#   # return value
+#   echo "$return_"
+# }
+#
+# $TESTVAR="$(program_is_installed grunt)"
+# if [ "$TESTVAR" == 1 ]; then
+#   echo "Updating Grunt CLI"
+#   yarn global update grunt-cli node-sass
+# else
+#   echo "Installing Grunt CLI"
+#   yarn global add grunt-cli node-sass
+# fi
 
 end_seconds="$(date +%s)"
 echo " "

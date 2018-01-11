@@ -381,7 +381,7 @@ wp_cli() {
     # Install bash completions
     curl -s https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash -o /home/vagrant/config/wp-cli/wp-completion.bash
 
-    /usr/local/bin/wp package install aaemnnosttv/wp-cli-dotenv-command:1.0.*
+    #/usr/local/bin/wp package install aaemnnosttv/wp-cli-dotenv-command:1.0.*
 
   else
     echo -e "\nUpdating wp-cli..."
