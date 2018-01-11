@@ -1,0 +1,77 @@
+/* FONT */
+
+@font-face {
+	font-family: 'Cutouts';
+	src: url('cutouts.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* GENERAL */
+
+body {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 18px;
+	background-color: #0a0a0a;
+	color: #fff;
+	vertical-align: middle;
+	height: 100%;
+	text-shadow: rgb(0,0,0) 0px 0px 0.2em;		
+	-webkit-text-stroke: 1px transparent; 
+}
+
+#board {
+	margin: 0 auto;
+}
+
+.icon {
+	color: #ded00b;
+	font-style: normal;
+	font-family: 'Cutouts';
+}
+
+.module {
+	float: left;
+	text-align: center;
+	margin: 10px;
+}
+
+.mini {
+	background-color: #1c2020;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#454f4f), to(#0a0a0a));		
+}
+
+.bluegradient {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4c5660), to(#091b31));		
+}
+
+.jumbo {
+	font-size: 28px;
+}
+
+.vertical-center {
+	top: 50%;
+	position: relative;
+	margin-top: -0.5em;
+	height: 1em;	
+}
+
+.padding {
+	padding: 1.5em;
+}
+
+.mega {
+	font-size: 40px;
+}
+
+.middle {
+	/* .middle centers vertically with javascript */
+}
+
+.center {
+	color: #fff;
+	font-style: normal;
+	font-family: 'Cutouts';
+}
