@@ -20,7 +20,8 @@
 }
 
 .stat-amount {
-  margin-bottom: -90px;
+  margin-bottom: -72px;
+  font-size: 35px;
   z-index: 99;
   display: block;
   position: relative;
@@ -28,6 +29,9 @@
   color:#FFFFFF;
 }
 
+.stat-icon {
+      margin-right: 45px;
+}
 
 /*
   Docs at http://http://simpleweatherjs.com

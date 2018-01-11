@@ -12,3 +12,6 @@
 
 <!--  CSS for like, whatever and junk                         -->
 <link href="assets/css/paper-dash-extras.css" rel="stylesheet" />
+
+<!-- ICON FONT -->
+<link href="assets/css/themify-icons.css" rel="stylesheet">

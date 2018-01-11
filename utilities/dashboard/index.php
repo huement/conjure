@@ -9,10 +9,10 @@
 	<title>Paper Dashboard by Creative Tim</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width" />
 
-    <!--  Fonts and icons     -->
-    <?php include "./parts/core_css.php"; ?>
+  <!--  Fonts and icons     -->
+  <?php include "./parts/core_css.php"; ?>
 </head>
 <body>
 
@@ -199,9 +199,6 @@
 
   <!--  Notifications Plugin    -->
   <script src="assets/js/bootstrap-notify.js"></script>
-
-  <!--  Google Maps Plugin    -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
   <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
   <script src="assets/js/paper-dashboard.js"></script>

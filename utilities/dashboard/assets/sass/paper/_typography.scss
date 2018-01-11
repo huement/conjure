@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'blood_crow';
+    src: url('assets/fonts/bloodcrowl-wf.eot');
+    src: url('assets/fonts/bloodcrowl-wf.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/bloodcrowl-wf.woff2') format('woff2'),
+         url('assets/fonts/bloodcrowl-wf.woff') format('woff'),
+         url('assets/fonts/bloodcrowl-wf.svg#blood_crow_leftalicitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td-name, td{
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
