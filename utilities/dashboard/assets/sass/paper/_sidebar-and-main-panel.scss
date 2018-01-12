@@ -13,7 +13,7 @@
         overflow: hidden;
         width: 260px;
         z-index: 4;
-        box-shadow: inset -1px 0px 0px 0px $medium-gray;
+        box-shadow: inset -1px 0px 0px 0px #FFBC05;
     }
     .sidebar-background{
         position: absolute;
@@ -46,13 +46,13 @@
         }
 
         .simple-text{
-            text-transform: uppercase;
             padding: $padding-small-vertical $padding-zero;
             display: block;
-            font-size: $font-size-large;
+            font-size: 42px;
             text-align: center;
             font-weight: $font-weight-normal;
             line-height: 30px;
+            font-family:'knightsquest';
         }
     }
 
@@ -77,7 +77,7 @@
                 opacity: 1;
 
                 &:before{
-                    border-right: 17px solid $medium-gray;
+                    border-right: 17px solid #FFBC05;
                     border-top: 17px solid transparent;
                     border-bottom: 17px solid transparent;
                     content: "";
@@ -112,6 +112,7 @@
             font-size: 24px;
             float: left;
             margin-right: 15px;
+            margin-left: 20px;
             line-height: 30px;
             width: 30px;
             text-align: center;
@@ -166,7 +167,7 @@
     min-height: 100%;
 
     > .content{
-        padding: 30px 15px;
+        padding: 15px 15px;
         min-height: calc(100% - 123px);
     }
 

@@ -15,8 +15,11 @@
     .navbar-brand{
         font-weight: $font-weight-bold;
         margin: $navbar-margin-brand;
+        margin-top:3px;
         padding: $navbar-padding-brand;
-        font-size: $font-size-large-navbar;
+            font-size: 42px;
+            line-height:30px;
+        font-family: "knights_quest";
     }
     .navbar-nav{
          > li > a {
@@ -55,7 +58,7 @@
 
 .navbar-default {
     background-color: $bg-nude;
-    border-bottom: 1px solid $medium-gray;
+    border-bottom: 1px solid #000;
 
     .brand{
         color: $font-color !important;

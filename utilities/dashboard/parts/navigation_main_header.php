@@ -12,12 +12,9 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="ti-panel"></i>
-                        <p>Stats</p>
-                    </a>
+                    <div id="weather"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/loader.gif" alt="Loading..." class="loading"><br />Loading...</div>
                 </li>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="ti-bell"></i>
                             <p class="notification">5</p>
@@ -37,7 +34,7 @@
                       <i class="ti-settings"></i>
                       <p>Settings</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

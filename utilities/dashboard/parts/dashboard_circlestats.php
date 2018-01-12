@@ -6,19 +6,19 @@
             <div class="row">
                 <div class="col-xs-5">
                   <h2 class="stat-amount">15%</h2>
-                  <svg height="100" width="100">
-                    <circle cx="50" cy="50" r="50" stroke-width="0" fill="#4CDD4F" />
+                  <svg width="120" height="100">
+                    <rect width="120" height="100" stroke-width="0" fill="#367BA5" />
                   </svg>
                 </div>
                 <div class="col-xs-7">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
-                              <i class="ti-server"></i>
+                              <i class="ti-pulse" style="color:#367BA5"></i>
                           </span>
 
                         <p>CPU AVG LOAD</p>
-                        <p class="stats"><i class="ti-reload"></i> Updated now</p>
+                        <p class="stats"><a href="#"><i class="ti-link"></i> Details</a></p>
                     </div>
                 </div>
             </div>
@@ -26,33 +26,78 @@
     </div>
   </div>
   <div class="col-6 col-sm-3 placeholder">
-    <h2 class="stat-amount">85%</h2>
+    <div class="card">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-5">
+                  <h2 class="stat-amount">85%</h2>
+                  <svg width="120" height="100">
+                    <rect width="120" height="100" stroke-width="0" fill="#E1BA46" />
+                  </svg>
+                </div>
+                <div class="col-xs-7">
+                    <div class="numbers">
+                          <!-- #1F556E -->
+                          <span class="icon stat-icon icon-warning text-center">
+                              <i class="ti-dashboard" style="color:#E1BA46"></i>
+                          </span>
 
-    <svg height="140" width="140">
-      <circle cx="70" cy="70" r="70" stroke-width="0" fill="#2D99DA" />
-    </svg>
-
-    <h4 class="stat-label">AVAILABLE RAM</h4>
-
+                        <p>AVAILABLE RAM</p>
+                        <p class="stats"><a href="#"><i class="ti-link"></i> Sys Info</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
   <div class="col-6 col-sm-3 placeholder">
-    <h2 class="stat-amount">257<small style="color:#FEFEFE">MB</small></h2>
+    <div class="card">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-5">
+                  <h2 class="stat-amount">57<small style="color:#FEFEFE">MB</small></h2>
+                  <svg width="120" height="100">
+                    <rect width="120" height="100" stroke-width="0" fill="#94C859" />
+                  </svg>
+                </div>
+                <div class="col-xs-7">
+                    <div class="numbers">
 
-    <svg height="140" width="140">
-      <circle cx="70" cy="70" r="70" stroke-width="0" fill="#2EC5C4" />
-    </svg>
+                          <span class="icon stat-icon icon-warning text-center">
+                              <i class="ti-layout-grid2-alt" style="color:#94C859"></i>
+                          </span>
 
-    <h4 class="stat-label">HDD USAGE</h4>
-
+                        <p>HDD USAGE</p>
+                        <p class="stats"><a href="#"><i class="ti-link"></i> Files</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
   <div class="col-6 col-sm-3 placeholder">
-    <h2 class="stat-amount">43</h2>
+    <div class="card">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-5">
+                  <h2 class="stat-amount">43</h2>
+                  <svg width="120" height="100">
+                    <rect width="120" height="100" stroke-width="0" fill="#C34B35" />
+                  </svg>
+                </div>
+                <div class="col-xs-7">
+                    <div class="numbers">
 
-    <svg height="140" width="140">
-      <circle cx="70" cy="70" r="70" stroke-width="0" fill="#D73A2C" />
-    </svg>
+                          <span class="icon stat-icon icon-warning text-center">
+                              <i class="ti-receipt" style="color:#C34B35"></i>
+                          </span>
 
-    <h4 class="stat-label">UNREAD ERRORS</h4>
-
+                        <p>UNREAD ERRORS</p>
+                        <p class="stats"><a href="#"><i class="ti-link"></i> Full Log</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 </section>
