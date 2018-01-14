@@ -4,13 +4,13 @@
     <div class="card">
         <div class="content">
             <div class="row">
-                <div class="col-xs-5">
+                <div class="col-sm-5 col-xs-12">
                   <h2 class="stat-amount">15%</h2>
                   <svg width="120" height="100">
                     <rect width="120" height="100" stroke-width="0" fill="#367BA5" />
                   </svg>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-sm-7 col-xs-12">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
@@ -29,13 +29,13 @@
     <div class="card">
         <div class="content">
             <div class="row">
-                <div class="col-xs-5">
+                <div class="col-sm-5 col-xs-12">
                   <h2 class="stat-amount">85%</h2>
                   <svg width="120" height="100">
                     <rect width="120" height="100" stroke-width="0" fill="#E1BA46" />
                   </svg>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-sm-7 col-xs-12">
                     <div class="numbers">
                           <!-- #1F556E -->
                           <span class="icon stat-icon icon-warning text-center">

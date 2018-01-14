@@ -13,7 +13,7 @@
         overflow: hidden;
         width: 260px;
         z-index: 4;
-        box-shadow: inset -1px 0px 0px 0px #FFBC05;
+        box-shadow: inset -1px 0px 0px 0px #000;
     }
     .sidebar-background{
         position: absolute;
@@ -77,7 +77,7 @@
                 opacity: 1;
 
                 &:before{
-                    border-right: 17px solid #FFBC05;
+                    border-right: 17px solid #000;
                     border-top: 17px solid transparent;
                     border-bottom: 17px solid transparent;
                     content: "";

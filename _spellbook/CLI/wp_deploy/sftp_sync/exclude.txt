@@ -1,0 +1,12 @@
+# Exclude files listed here from being synced.
+#
+# Target Theme something like: /wp-content/themes/tenth-magnitude
+# Target all plugins like: /wp-content/plugins
+#
+node_modules*
+.git*
+*.DS_Store
+themes/*/twenty*
+#
+# Dont sync uploads. Use the proxy method!
+uploads*

@@ -1,0 +1,69 @@
+global:
+  sql_adapter: "default"
+  
+local:
+  vhost: "https://mmwp.app"
+  wordpress_path: "/home/vagrant/code/myriad"
+
+  database:
+    name: "myriadmobile"
+    user: "homestead"
+    password: "secret"
+    host: "192.168.23.13"
+    charset: "utf8"
+
+
+production:
+  vhost: "https://myriadmobile.com"
+  wordpress_path: "/www/myriadmobile_606"
+
+  database:
+    name: "myriadmobile"
+    user: "myriadmobile"
+    password: "bDutHA7wkHH5Ivg"
+    host: "127.0.0.1"
+    port: "3306"
+
+  exclude:
+    - ".git/"
+    - ".gitignore"
+    - ".sass-cache/"
+    - "tmp/*"
+    - "wp-content/themes/myriad/node_modules/*"
+    - "wp-config.php"
+    - "wp-content/*.sql"
+
+  ssh:
+    host: "35.184.184.103"
+    user: "myriadmobile"
+    port: 49142
+    password: "ejbjnOmFyyjJx3i"
+    rsync_options: --verbose
+    
+    
+staging:
+  vhost: "https://staging-myriadmobile.kinsta.com"
+  wordpress_path: "/www/myriadmobile_606"
+
+  database:
+    name: "myriadmobile"
+    user: "myriadmobile"
+    password: "bDutHA7wkHH5Ivg"
+    host: "127.0.0.1"
+    port: "3306" 
+
+  exclude:
+    - ".git/"
+    - ".gitignore"
+    - ".sass-cache/"
+    - "tmp/*"
+    - "wp-content/themes/myriad/node_modules/*"
+    - "wp-config.php"
+    - "wp-content/*.sql"
+
+  ssh:
+    host: "35.184.184.103"
+    user: "myriadmobile"
+    port: 51840
+    password: "ejbjnOmFyyjJx3i"
+    rsync_options: --verbose

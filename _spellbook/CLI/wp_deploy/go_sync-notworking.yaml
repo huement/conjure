@@ -1,0 +1,17 @@
+connection:
+  username: "tenthmagnitude-dscott"
+  password: "BL$CKparad3"
+  hostname: "tenthmagnitude.sftp.wpengine.com"
+  port: 2222
+backup:
+  to: "/Users/derekscott/Code/10th_stage/wp-content/themes/tenth-magnitude"
+  from:
+    - "/wp-content/themes/tenth-magnitude"
+download:
+  - local: "/Users/derekscott/Code/10th_stage/wp-content/themes/tenth-magnitude"
+    remote: "/wp-content/themes/tenth-magnitude"
+upload:
+  - local: "/Users/derekscott/Code/10th_stage/wp-content/themes"
+    remote: "/wp-content/themes"
+  - local: "/Users/derekscott/Code/10th_stage/wp-content/plugins"
+    remote: "/wp-content/plugins"

@@ -1,0 +1,17 @@
+{
+  "name": "wp_deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js_sync.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sftp-sync-deploy": "^0.6.2"
+  },
+  "dependencies": {
+    "node-sftp-deploy": "^1.0.3"
+  }
+}
