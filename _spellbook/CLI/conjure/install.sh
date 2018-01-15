@@ -19,7 +19,7 @@ DIRNAME=""
 INSTALLDIR=""
 repoToGet=""
 
-function conjureFileRoll() {
+function conjureFileRoll {
   if [ ! -f "./.conjure.json" ]; then
     #Roll a dice using bash
     for i in {1..5}; do
@@ -73,13 +73,13 @@ function conjureFileRoll() {
 
 # Grab git repos
 # ----------------------------------------------------------------------
-function cleanLiftGit() {
+function cleanLiftGit {
   rm -R ./tmp_*/.git*
   cp -R ./tmp_* ./
   rm -R ./tmp_*
 }
 
-function downloadGit() {
+function downloadGit {
   repoToGet=$1
   tmpName=$($(randomString 3))
   # your real command here, instead of sleep
@@ -93,13 +93,13 @@ function downloadGit() {
   done
 }
 
-function fetchURL() {
+function fetchURL {
   git clone -q -n $CONJUREBASE "tmp_${tmpName}"
 }
 
 # System Requirements [ brew, vagrant, virtualbox ]
 # ----------------------------------------------------------------------
-function insallRequirements() {
+function insallRequirements {
   echo ""
   rulemsg "Homebrew"
   if ! type "brew" >/dev/null; then
@@ -136,7 +136,7 @@ function insallRequirements() {
     echo -e "\t VAGRANT:    http://www.vagrantup.com/ \n"
   fi
 }
-function sys_check() {
+function sys_check {
   if ! type "brew" >/dev/null; then
     WHATEVS "Installing Homebrew . . ."
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
@@ -181,7 +181,7 @@ function sys_check() {
 
 # Setup Vagrant to manage Virtual Hosts
 # ----------------------------------------------------------------------
-function setupVagrant() {
+function setupVagrant {
   # Default to No if the user presses enter without giving an answer:
   echo ""
   rulemsg "Vagrant Recommended Plugins"
@@ -228,7 +228,7 @@ function setupVagrant() {
   echo ""
 }
 
-function vanillaWordpress() {
+function vanillaWordpress {
   if ask "Install/Update Wordpress DevBox to latest version?" Y; then
     GETNEWWP
     GOOD "Wordpress DevBox Install [ OK ]"
@@ -237,7 +237,7 @@ function vanillaWordpress() {
 
 # Setup VV tool [NOT USED]
 # @todo make this command work w/ WP_Conjure
-function setup_vv() {
+function setup_vv {
   if [ ! -f "/usr/local/bin/vv" ]; then
     cd ~/
     sudo mkdir -p ./.wp-cli
@@ -259,7 +259,7 @@ function setup_vv() {
 
 # Final Touches. Where do we go from here?
 # ----------------------------------------------------------------------
-function askBootVagrant() {
+function askBootVagrant {
 
   # Default to No if the user presses enter without giving an answer:
 
@@ -280,7 +280,7 @@ function askBootVagrant() {
   exit 0
 }
 
-function RUNINSTALLER() {
+function RUNINSTALLER {
 
   echo ""
 
@@ -327,8 +327,11 @@ function RUNINSTALLER() {
 # Install new Vanilla Wordpress Site
 # ----------------------------------------------------------------------
 SLUG=""
-function askSlug() {
+function askSlug {
   local prompt default reply
+
+  echo ""
+  echo "What name should we give the new site?"
 
   read reply</dev/tty
   if [ -z "$reply" ]; then reply=$default; fi
@@ -339,7 +342,7 @@ function askSlug() {
 }
 
 RSVAR=""
-function randomSString() {
+function randomSString {
   command -v openssl >/dev/null 2>&1 || {
     echo "I require foo but it's not installed.  Aborting." >&2
     exit 1
@@ -349,14 +352,104 @@ function randomSString() {
   RSVAR=$(echo "$VVAR" | tr '[:upper:]' '[:lower:]')
 }
 
-function GETNEWWP() {
-  clear
+function updateWP {
+  cp $SCRIPT/provision/wp-config-sample.php $SCRIPT/www/$1/wp-config.php
 
-  rulemsg "A totally chill WordPress Install Script."
-  echo ""
-  echo "What name should we give the new site?"
+  #set database details with perl find and replace
+  perl -pi -e "s/database_name_here/$dbname/g" wp-config.php
+  perl -pi -e "s/username_here/$dbuser/g" wp-config.php
+  perl -pi -e "s/password_here/$dbpass/g" wp-config.php
+  sed -i -e "s/wp_/$dbpref/g" wp-config.php
+  #set WP salts
+  perl -i -pe'
+    BEGIN {
+      @chars = ("a" .. "z", "A" .. "Z", 0 .. 9);
+      push @chars, split //, "!@#$%^&*()-_ []{}<>~\`+=,.;:/?|";
+      sub salt { join "", map $chars[ rand @chars ], 1 .. 64 }
+    }
+    s/put your unique phrase here/salt()/ge
+  ' wp-config.php
+}
+
+function checkwp {
+  echo 'More info here: https://github.com/aaemnnosttv/wp-cli-dotenv-command'
+  wp package install aaemnnosttv/wp-cli-dotenv-command
+}
+
+function new_bedrock {
+  echo ''
   askSlug
+  echo ''
+  cd $SCRIPT/www
+  echo 'Installing modern WordPress stack [12-Factor App]'
+  echo 'More info here: https://github.com/roots/bedrock'
+  composer create-project roots/bedrock $SLUG
+  echo ''
+  cd $SLUG
+  echo 'Updating wp-config.php SALT'
+  wp dotenv salts regenerate
+  echo ''
+  echo 'Installing SAGE Theme'
+  echo 'More info here: https://github.com/roots/sage'
+  echo ''
+  echo 'During theme installation you will have the options to:'
+  echo '  * Update theme name, description, author, etc.'
+  echo '  * Select a CSS framework (Bootstrap, Bulma, Foundation, Tachyons, none)'
+  echo '  * Add Font Awesome'
+  echo '  * Configure Browsersync'
+  echo ''
+  cd $SCRIPT/www/$SLUG/web/app/themes
+  composer create-project roots/sage
+  echo ''
+  echo '----- ALL DONE -----'
+  echo ''
+}
 
+function new_plate {
+  echo ''
+  askSlug
+  echo ''
+  WHATEVS 'Install WordPlate......'
+  echo 'WordPlate simplifies the fuzziness around WordPress development.'
+  echo 'More info here: https://wordplate.github.io/'
+  echo ''
+  cd $SCRIPT/www
+  composer create-project wordplate/wordplate $SLUG
+  cd $SLUG
+  updateWP
+  npm install
+  composer install
+  echo ''
+  echo '----- ALL DONE -----'
+  echo ''
+}
+
+function new_webpress {
+  echo ''
+  askSlug
+  echo ''
+  WHATEVS 'Install WebPress......'
+  echo "WebPress is a Morgan Le Fay endorsed, composer / npm backed, drop dead sexy stack"
+  echo "More info here: https://bitbucket.org/derekscott_mm/WebPress"
+  cd $SCRIPT/www
+  git clone -q $WEBPRESSBASE $SLUG
+  cd $SLUG
+  updateWP
+  npm install
+  composer install
+  rm -R ./.git
+  echo ''
+  echo '----- ALL DONE -----'
+  echo ''
+}
+
+function new_vanilla {
+  #clear
+
+  #rulemsg "A totally chill WordPress Install Script."
+  echo ''
+  askSlug
+  echo ''
   echo "Creating: ${SCRIPT}/www/${SLUG}"
   mkdir -p $SCRIPT/www/$SLUG
   if is_not_dir "${SCRIPT}/www/${SLUG}"; then
@@ -408,85 +501,7 @@ function GETNEWWP() {
 
 }
 
-function updateWP() {
-  cp wp-config-sample.php wp-config.php
-
-  #set database details with perl find and replace
-  perl -pi -e "s/database_name_here/$dbname/g" wp-config.php
-  perl -pi -e "s/username_here/$dbuser/g" wp-config.php
-  perl -pi -e "s/password_here/$dbpass/g" wp-config.php
-  sed -i -e "s/wp_/$dbpref/g" wp-config.php
-  #set WP salts
-  perl -i -pe'
-    BEGIN {
-      @chars = ("a" .. "z", "A" .. "Z", 0 .. 9);
-      push @chars, split //, "!@#$%^&*()-_ []{}<>~\`+=,.;:/?|";
-      sub salt { join "", map $chars[ rand @chars ], 1 .. 64 }
-    }
-    s/put your unique phrase here/salt()/ge
-  ' wp-config.php
-}
-
-function new_bedrock() {
-  echo ''
-  cd $SCRIPT/www
-  echo 'Installing modern WordPress stack [12-Factor App]'
-  echo 'More info here: https://github.com/roots/bedrock'
-  composer create-project roots/bedrock $PROJECT
-  echo ''
-  cd $PROJECT
-  echo 'Environment Variables'
-  echo 'More info here: https://github.com/aaemnnosttv/wp-cli-dotenv-command'
-  wp package install aaemnnosttv/wp-cli-dotenv-command
-  echo ''
-  wp dotenv salts regenerate
-  echo ''
-  echo 'Installing SAGE Theme'
-  echo 'More info here: https://github.com/roots/sage'
-  echo ''
-  echo 'During theme installation you will have the options to:'
-  echo '  * Update theme name, description, author, etc.'
-  echo '  * Select a CSS framework (Bootstrap, Bulma, Foundation, Tachyons, none)'
-  echo '  * Add Font Awesome'
-  echo '  * Configure Browsersync'
-  echo ''
-  composer create-project roots/sage $THEME dev-master
-  echo ''
-  echo '----- ALL DONE -----'
-  echo ''
-}
-
-function new_plate() {
-  echo ''
-  echo 'Installing A modern WordPress stack (non standard folders).'
-  echo 'It simplifies the fuzziness around WordPress development.'
-  echo 'More info here: https://wordplate.github.io/'
-  echo ''
-  cd ../../www
-  composer create-project wordplate/wordplate
-  cd wordplate
-  npm install
-  updateWP
-  echo ''
-  echo '----- ALL DONE -----'
-  echo ''
-}
-
-function new_webpress() {
-  echo ''
-  echo 'Install WebPress......'
-  cd $SCRIPT/www
-  git clone -q $WEBPRESSBASE "webpress"
-  cd webpress
-  updateWP
-  npm install
-  composer install
-  rm -R ./.git
-  echo ''
-  echo '----- ALL DONE -----'
-  echo ''
-}
-
-function newMoveFile() {
-  echo "TODO!!!!!!!!"
+function newMoveFile {
+  cp $SCRIPT/provision/MOVEFILE.yaml $SCRIPT/www/$1
+  open $SCRIPT/www/$1/MOVEFILE.yaml
 }

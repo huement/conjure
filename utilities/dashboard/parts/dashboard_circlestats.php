@@ -79,23 +79,9 @@
     <div class="card">
         <div class="content">
             <div class="row">
-                <div class="col-xs-5">
-                  <h2 class="stat-amount">43</h2>
-                  <svg width="120" height="100">
-                    <rect width="120" height="100" stroke-width="0" fill="#C34B35" />
-                  </svg>
-                </div>
-                <div class="col-xs-7">
-                    <div class="numbers">
 
-                          <span class="icon stat-icon icon-warning text-center">
-                              <i class="ti-receipt" style="color:#C34B35"></i>
-                          </span>
+                <div id="weather"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/loader.gif" alt="Loading..." class="loading"><br />Loading...</div>
 
-                        <p>UNREAD ERRORS</p>
-                        <p class="stats"><a href="#"><i class="ti-link"></i> Full Log</a></p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

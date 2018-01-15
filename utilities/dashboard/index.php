@@ -55,8 +55,8 @@
                     <div class="col-sm-7 col-md-8">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
+                                <h4 class="title">Error Logs</h4>
+                                <p class="category">/home/vagrant/logs</p>
                             </div>
                             <div class="content">
 
@@ -64,7 +64,7 @@
                                 <div class="footer">
                                     <hr>
                                     <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
+                                        <i class="ti-timer"></i> Clear all Error Logs
                                     </div>
                                 </div>
                             </div>

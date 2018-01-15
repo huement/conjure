@@ -5,14 +5,18 @@
 #
 
 echo
-echo "Simple way to add nginx Wordpress Projects to Homestead"
+echo "  ${CYN}============================================================[0.9.0]====="
+echo -e "\t\t     ${BPUR}P R E S S C R A F T ${WHT}- ${BGRN}N E W  S I T E${NORMAL}"
+echo -e "           --| Add ${BBLUE}(new stack/existing repo) Wordpress Project |-- "
+echo "  ${CYN}========================================================================"
 echo
+exit;
 
 # Functions
 function cfg_parser
 {
     ini="$(<$1)"                # read the file
-    
+
 		ini="${ini//[/\[}"          # escape [
     ini="${ini//]/\]}"          # escape ]
     IFS=$'\n' && ini=( ${ini} ) # convert to line-array
@@ -32,7 +36,7 @@ function cfg_parser
     eval "$(echo "${ini[*]}")" # eval the result
 }
 
-function random-string()
+function random-string
 {
     cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
 }
@@ -132,7 +136,7 @@ if [ $folder = 0 ]
     else
         answer="$folder"
 fi
-homesteadDefaultSSHPORT=$answer 
+homesteadDefaultSSHPORT=$answer
 # @TODO homesteadDefaultSSHPORT
 
 
@@ -180,14 +184,6 @@ if [ $homesteadfolder = 0 ]
 fi
 vagrantIp="$answer"
 
-
-   -----     -----   ----- -----  -----   -----    -----
-   # # #     # # #   # # # # # #  # # #   # # #	   # # #
-   #   #     #   #   #         #  #   #   #   #	   #   #
-   # # #     # # #   # # # # # #  # # #   # # #	   # # #
-   -----     -----   ----- -----  -----   -----    -----
-
-
 # create folder if project doesn't exist
 if [ $nogitclone != 0 ]
 then
@@ -218,8 +214,8 @@ echo "Connecting to Homestead ..."
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no vagrant@$vagrantIp -p $vagrantSSHPORT "sudo bash /vagrant/scripts/serve.sh $devDomain $vSiteFolder"
 
 
-echo "Editing hosts file (You might be asked to provide your user's password for host machine)..."
-echo -e "\n$vagrantIp $devDomain" | sudo tee -a $hosts_file
+# echo "Editing hosts file (You might be asked to provide your user's password for host machine)..."
+# echo -e "\n$vagrantIp $devDomain" | sudo tee -a $hosts_file
 
 siteFolderLength=${#siteFolder}
        endLength=$[$siteFolderLength-7]
@@ -281,84 +277,14 @@ rm -f ${file}.tmp
 rm -f ${file}2.tmp
 mv ${file}3.tmp $file
 
-echo "Restarting your Homestead VM..."
-(cd $homesteadFolder && vagrant destroy --force && vagrant up)
+echo "Reprovisioning your Homestead VM..."
+(cd $homesteadFolder && vagrant reload --provision)
 
 if [ "$noproject" = "0" ]
     then
         echo "Running Yarn install & Composer install inside Vagrant"
-        echo "If ssh asks for password, its usually 'vagrant'"
+        echo "If ssh asks for password, its 'vagrant'"
         (cd $homesteadFolder && vagrant ssh -- -t 'cd /home/vagrant/$siteFolderWithoutHomeDir && yarn install && composer install')
-fi
-
-if [ "$nojenkins" = "0" ]
-    then
-        read -r -p "Want to create a local Jenkins Job? [y/N] " response
-        case "$response" in
-            [yY][eE][sS]|[yY])
-                echo "Insert the local Jenkins Server url "
-                echo -n "(leave blank for default: $local_jenkins_url): "
-                read jenkinsServerUrl
-
-                if [ -z "$jenkinsServerUrl" ]
-                    then
-                        jenkinsServerUrl=$local_jenkins_default_url
-                fi
-
-                echo "Insert the local Jenkins Server username "
-                echo -n "(leave blank for default: $local_jenkins_username): "
-                read jenkinsServerUsername
-
-                if [ -z "$jenkinsServerUsername" ]
-                    then
-                        jenkinsServerUsername=$local_jenkins_username
-                fi
-
-                scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-                configDir="$scriptDir/.."
-
-                echo -n "Enter current computers local ip address: "
-                read currentIp
-
-                sed -e '/<hudson.plugins.git.UserRemoteConfig>/,/<\/hudson.plugins.git.UserRemoteConfig>/ s|<url>[0-9a-z.]\{1,\}</url>|<url>'$USER'@'$currentIp':'$siteFolder'</url>|g' $configDir'/jenkinsConfigFile.xml' >> $configDir'/jenkinsConfigFile.xml.temp'
-
-                (create-jenkins-job -s $jenkinsServerUrl -j $siteFolderWithoutHomeDir -u $jenkinsServerUsername -c $configDir'/jenkinsConfigFile.xml.temp')
-                rm $configDir'/jenkinsConfigFile.xml.temp'
-
-                echo "You need to change the credentials manually on the Job to get the Jenkins up and running."
-                ;;
-            *)
-                ;;
-        esac
-
-        read -r -p "Want to create a deployment Jenkins Job? [y/N] " response
-        case "$response" in
-            [yY][eE][sS]|[yY])
-                echo -n "Insert the deployment Jenkins Server url: "
-                read jenkinsServerUrl
-
-                echo "Insert the deployment Jenkins Server username "
-                echo -n "(leave blank for default: $deploy_jenkins_username): "
-                read jenkinsServerUsername
-
-                if [ -z "$jenkinsServerUsername" ]
-                    then
-                        jenkinsServerUsername=$deploy_jenkins_username
-                fi
-
-                scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-                configDir="$scriptDir/.."
-
-                sed -e '/<hudson.plugins.git.UserRemoteConfig>/,/<\/hudson.plugins.git.UserRemoteConfig>/ s|<url>[0-9a-z.]\{1,\}</url>|<url>'$gitRepo'</url>|g' $configDir'/jenkinsConfigFile.xml' >> $configDir'/jenkinsConfigFile.xml.temp'
-
-                (create-jenkins-job -s $jenkinsServerUrl -j $siteFolderWithoutHomeDir -u $jenkinsServerUsername -c $configDir'/jenkinsConfigFile.xml.temp')
-                rm $configDir'/jenkinsConfigFile.xml.temp'
-
-                echo "You need to change the credentials manually on the Job to get the Jenkins up and running."
-                ;;
-            *)
-                ;;
-        esac
 fi
 
 echo "Project info:"

@@ -14,7 +14,8 @@
     "jaywood/jw-wpcli-random-posts": "dev-master",
     "wp-cli/package-command": "dev-master",
     "wp-cli/widget-command": "dev-master",
-    "aaemnnosttv/wp-cli-dotenv-command": "dev-master"
+    "aaemnnosttv/wp-cli-dotenv-command": "dev-master",
+    "whatthejeff/nyancat-phpunit-resultprinter": "^2.0@dev"
   },
   "require-dev": {
     "johnpbloch/wordpress"            : ">=3.9",

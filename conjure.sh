@@ -9,16 +9,24 @@
 #%    Magical Wordpress development environment, Based on Laravel Homestead!
 #%    Modified to include plenty of Wordpress tools and optimizations
 #%
-#+ COMMANDS
+#+
+#+ GENERAL CMDS
 #+ ===========
 #+    setup     . . . . . . . .  Installs WP_Conjure core system files
-#+    wpnew     . . . . . . . .  Installs new Wordpress site into WP_Conjure directory: www
-#+
-#+    vagrant   . . . . . . . .  Run WP_Conjure vagrant commands when outside WP_Conjure directory.
 #+    wordmove  . . . . . . . .  Create a new MOVEFILE for a wordpress deployement. Smarter than wordmove init
 #+
+#+
+#+ SITE CMDS
+#+ ===========
+#+    wpnew     . . . . . . . .  Installs new Wordpress site + reloads vagrant environment
+#+                                 <stack name> Required. Use supported WordPress stack for the new install
+#+    wpver     . . . . . . . .  Create basic WordPress install from a specific version.
+#+                                 <version> Required. IE conjure.sh wpver 3.4.1
+#+    wpgit     . . . . . . . .  Use a Git repo for your new site install
+#+                                 <git url> Required. IE: conjure.sh wpgit https://github.com/me/site.git
 #+    stacks    . . . . . . . .  Display a list of alternative Wordpress stacks to try out
-#+    stackadd  . . . . . . . .  Downloads a new Wordpress for a given webstack. [plate,rock,web]
+#+    update    . . . . . . . .  Requires <site slug> for whatever you want updated. IE conjure.sh update mydevsite
+#+
 #+
 #% INFO
 #% ===========
@@ -26,16 +34,19 @@
 #%    -v, --version . . . . . .  Print script information
 #%
 # ------------------ ---------  ------   ----    ---     --      -
-## TITLE:    init.sh
-## DETAILS:  Fortified Wordpress development environment
+## TITLE:    conjure.sh
+## DETAILS:  WP_Conjure main CLI script
 ## AUTHOR:   dscott@myriadmobile.com
 ## VERSION:  0.9.0
 ## DATE:     12.21.2017
 # ------------------ ---------  ------   ----    ---     --      -
-CONJUREVersion="0.9.0"
-# ------------------ ---------  ------   ----    ---     --      -
+
+
+
+
 #   BASE VARIABLES
-# ------------------ ---------  ------   ----    ---     --      -
+# ----------------------------------------------------------------
+CONJUREVersion="0.9.0"
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # PATH
 SCRIPTNAME=$(basename $0)
 SCRIPTBASENAME="$(basename ${SCRIPTNAME} .sh)"
@@ -47,12 +58,12 @@ scriptName=$(basename $0)                      # Set Script Name variable
 scriptBasename="$(basename ${scriptName} .sh)" # Strips '.sh' from scriptName
 args=()
 
-installScript="${SCRIPT}/CLI/conjure/install.sh"
-libraryScript="${SCRIPT}/CLI/conjure/library.sh"
+installScript="${SCRIPT}/_spellbook/CLI/conjure/install.sh"
+libraryScript="${SCRIPT}/_spellbook/CLI/conjure/library.sh"
 
 if [[ ! -f "${libraryScript}" ]]; then
   echo ""
-  echo "conjure_library.sh not found. Cannot start."
+  echo "${libraryScript} not found. Cannot start."
   echo ""
   exit 1
 fi
@@ -60,12 +71,12 @@ source $libraryScript
 source $installScript
 
 # Core Functions
-# ----------------------------------------------------------------------
+# ----------------------------------------------------------------
 # Main Menu
 # mageHatLogo
 
 function installhs() {
-  echo "Running Install script..."
+  WHATEVS "Running Install script..."
 
   if [ -f "./.conjure.json" ]; then
     mv ./.conjure.json ./conjure-old.json
@@ -89,48 +100,58 @@ function listStacks() {
  Wordpress Stacks
  ==========="
   echo ""
-  echo "${BGRN}  Slug                   Fullname   DIF    URL "
+  echo "${BYLW}  Slug                   Fullname   DIF    URL "
   echo "${GRAY}  -----------------------------------------------------------"
-  echo "${BBLU}  plate ${NORMAL}. . . . . . . .  ${BBLU}Wordplate ${GRAY}| ${YLW}xxx  ${GRAY}| ${CYN}https://wordplate.github.io/"
-  echo "${BBLU}  rock  ${NORMAL}. . . . . . . .  ${BBLU}Bedrock   ${GRAY}| ${YLW}xxxx ${GRAY}| ${CYN}https://roots.io/bedrock/"
-  echo "${BBLU}  web   ${NORMAL}. . . . . . . .  ${BBLU}Webpress  ${GRAY}| ${YLW}xx   ${GRAY}| ${CYN}https://bitbucket.org/derekscott_mm/webpress"
-  echo "${BBLU}  plain ${NORMAL}. . . . . . . .  ${BBLU}Wordpress ${GRAY}|      ${GRAY}| ${CYN}https://github.com/johnpbloch/wordpress-core-installer"
+  echo "${BGRN}  word  ${NORMAL}. . . . . . . .  ${BBLU}Wordpress ${GRAY}| ${YLW}     ${GRAY}| ${BCYN}https://github.com/johnpbloch/wordpress-core-installer"
+  echo "${BGRN}  plate ${NORMAL}. . . . . . . .  ${BBLU}Wordplate ${GRAY}| ${YLW}xxx  ${GRAY}| ${BCYN}https://wordplate.github.io/"
+  echo "${BGRN}  rock  ${NORMAL}. . . . . . . .  ${BBLU}Bedrock   ${GRAY}| ${YLW}xxxx ${GRAY}| ${BCYN}https://roots.io/bedrock/"
+  echo "${BGRN}  web   ${NORMAL}. . . . . . . .  ${BBLU}Webpress  ${GRAY}| ${YLW}xx   ${GRAY}| ${BCYN}https://bitbucket.org/derekscott_mm/webpress"
+  echo "${BGRN}  cubi  ${NORMAL}. . . . . . . .  ${BBLU}WP_Cubi   ${GRAY}| ${YLW}xxx  ${GRAY}| ${BCYN}https://github.com/globalis-ms/wp-cubi"
   echo ""
   echo ""
-  echo "${YLW}  * [DIF]FERENTIATE = How different that stack is compared to default Wordpress"
+  echo "${YLW}  x = [DIF]FERENCE compared to default Wordpress install"
   echo "${NORMAL}"
   safeExit
 }
 
 function newStack() {
+
+  askSlug
+
   local item
   item="${args[1]}"
   case $item in
   plate) addStackPlate ;;
   rock) addStackRock ;;
   web) addStackWeb ;;
-  plain) addStackOrig ;;
+  word) addStackOrig ;;
+  cubi) addStackCubi ;;
   esac
 }
 
 function addStackPlate() {
-  echo "Adding Wordplate site..."
-  cd ./CLI/wp_build && bash Wordplate.sh
+  WHATEVS "Adding WordPlate site..."
+  new_plate
 }
 
 function addStackRock() {
-  echo "Adding Bedrock site..."
+  WHATEVS "Adding Bedrock site..."
   new_bedrock
 }
 
 function addStackOrig() {
-  echo "Adding Wordpress site..."
-  GETNEWWP
+  WHATEVS "Adding Wordpress site..."
+  new_vanilla
 }
 
 function addStackWeb() {
-  echo "Adding WebPress site..."
+  WHATEVS "Adding WebPress site..."
   new_webpress
+}
+
+function addStackCubi() {
+  BAD "---- TODO ----"
+  #new_cubi
 }
 
 function vagrantCMD() {
@@ -150,19 +171,17 @@ force=0
 function mainInitScript() {
   ############## Begin Script Here ###################
   ####################################################
-
-  GETTHISPARTYSTARTED
-
   # Read the options and set stuff
   while [[ $1 == -?* ]]; do
     case $1 in
     -h | --help)
-      echo "${NORMAL}" && usagefull && listStacks >&2
-      safeExit
+      echo "${NORMAL}" && GETTHISPARTYSTARTED && usagefull >&2
+      exit 0
       ;;
     -v | --version)
-      echo "WP_Conjure | version ${CONJUREVersion}"
-      safeExit
+      mageHatLogo
+      echo -e "               WP_Conjure | v${CONJUREVersion} \n"
+      exit 0
       ;;
     -l | --log) printLog=1 ;;
     -d | --debug) debug=1 ;;
@@ -177,18 +196,16 @@ function mainInitScript() {
 
   case $1 in
   setup) installhs ;;
-  wpnew) GETNEWWP ;;
-  vagrant) vagrantCMD $args ;;
+  wpnew) newStack $args ;;
   wordmove) newMoveFile ;;
   stacks) listStacks ;;
-  stackadd) newStack $args ;;
   esac
 
   # If no params (argument array 0 is null)
   if [ -z ${args[0]} ]; then
     echo
-    echo "${BGRN}Try harder next time.${NORMAL}. You didnt provide any arguments, so I'm doing nothing..."
-    echo "${NORMAL}"
+    echo "${BRED} NO ARGUMENTS. EXITING."
+    echo -e "${NORMAL} Try ${BGRN}conjure.sh -h${NORMAL} for options + information\n"
     #usage
     safeExit
   fi

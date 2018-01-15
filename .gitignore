@@ -38,3 +38,9 @@ www
 # Dumping ground for maybes and might use
 _spellbook/SORT
 testcomp.json
+
+_taskrunner/node_modules
+_taskrunner/
+_taskrunner/config/Iconr
+Iconr
+/**/*/Iconr

@@ -14,19 +14,20 @@ fi
 function GETTHISPARTYSTARTED() {
   GITDEETS="$(git log --pretty=format:'%h' -n 1)"
   GRAY="$(tput setaf 244)"
-  echo "           ${BGRN}        .
-             ${BGRN}         .      ${BGRN}  _______              __
-             ${BGRN}      o         ${BGRN} |       |-----.-----.|__|.--.--.----.-----.
-             ${BGRN}    o   .       ${BGRN} |   ${BYLW}----${BGRN}|  ${BYLW}_${BGRN}  |      |  |   ${BYLW}|${BGRN}  |   _|  ${BYLW}-${BGRN}__|
-             ${GRAY}  _________     ${BGRN} |_______|_____|___${BYLW}|${BGRN}__|  |______|__| |_____|
-             ${GRAY}c(${WHT}\` ${GRAY}    ${BGRN}'${GRAY} )o       ${PUR}---------------${BGRN}|______|${PUR}----------------
-             ${GRAY}  \ ${BYLW}  \` ,${GRAY}/      ${BGRN}    ${CYN}ver${WHT} ${CONJUREVersion}                 ${CYN}git${WHT} ${GITDEETS}
-             ${YLW} _//${BRED}^${GRAY}---${BRED}^${YLW}\\\\_    ${NORMAL}
-  "
+  echo ""
+  echo "${BGRN}          o       ${BGRN}  _______              __
+  ${BGRN}    o   .       ${BGRN} |       |-----.-----.|__|.--.--.----.-----.
+  ${GRAY}  _________     ${BGRN} |   ${BYLW}----${BGRN}|  ${BYLW}_${BGRN}  |      |  |   ${BYLW}|${BGRN}  |   _|  ${BYLW}-${BGRN}__|
+  ${GRAY}c(${WHT}\` ${GRAY}    ${BGRN}'${GRAY} )o    ${BGRN} |_______|_____|___${BYLW}|${BGRN}__|  |______|__| |_____|
+  ${GRAY}  \ ${BYLW}  \` ,${GRAY}/         ${PUR}---------------${BGRN}|______|${PUR}----------------
+  ${YLW} _//${BRED}^${RED}---${BRED}^${YLW}\\\\_    ${BGRN}    ${CYN}ver${WHT} ${CONJUREVersion}                 ${CYN}git${WHT} ${GITDEETS}${NORMAL}"
 }
 
 function mageHatLogo() {
-  cat ./CLI/conjure/mage.txt
+  clear
+  echo ""
+  echo ""
+  cat $SCRIPT/_spellbook/CLI/conjure/mage.txt
 }
 
 function setupalready() {
@@ -124,12 +125,12 @@ function GOOD() {
 }
 function BAD() {
   echo ""
-  echo "${BOLD}${WHT}${B_RED}[ OK ]${NORMAL}${RED}  $@${NORMAL}"
+  echo "${BOLD}${WHT}${B_RED}[FAIL]${NORMAL}${RED}  $@${NORMAL}"
   return 0
 }
 function WHATEVS() {
   echo ""
-  echo "${BOLD}${WHT}${B_BLU}[ OK ]${NORMAL}${BLU}  $@${NORMAL}"
+  echo "${BOLD}${WHT}${B_BLU}[INFO]${NORMAL}${BLU}  $@${NORMAL}"
 }
 
 function e_header() {
