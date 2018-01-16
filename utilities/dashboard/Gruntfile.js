@@ -18,12 +18,20 @@ module.exports = function (grunt) {
                 src: ['assets/js/presscraft-dashboard.js'],
                 dest: 'dist/presscraft-dashboard.js'
             },
+            widgets: {
+                src: ['assets/js/weather-widget.js'],
+                dest: 'dist/widgets.js'
+            },
             jsdist: {
-                src: ['assets/js/weather-widget.js','assets/js/chartist.min.js','assets/js/bootstrap-checkbox-radio.js','assets/js/bootstrap-notify.js'],
+                src: ['assets/js/tether.js','assets/js/chartist.min.js'],
                 dest: 'dist/dash-libs.js'
             },
+            bslibs: {
+                src: ['assets/js/bootstrap-checkbox-radio.js','assets/js/bootstrap-notify.js'],
+                dest: 'dist/bs-libs.js'
+            },
             cssdist: {
-                src: ['assets/css/bootstrap.min.css','assets/css/animate.min.css','assets/css/themify-icons.css','assets/css/bloodcrowl.css','assets/css/knightsquest.css'],
+                src: ['assets/css/animate.min.css','assets/css/themify-icons.css','assets/css/font-awesome.css'],
                 dest: 'dist/dash-libs.css'
             }
         },
@@ -45,7 +53,7 @@ module.exports = function (grunt) {
                 node: true,
                 curly: true,
                 eqeqeq: true,
-                immed: true,
+                immed: true,  
                 latedef: true,
                 newcap: true,
                 noarg: true,
@@ -79,9 +87,9 @@ module.exports = function (grunt) {
                 files: '<%= jshint.gruntfile.src %>',
                 tasks: ['jshint:gruntfile']
             },
-            lib_test: {
-                files: '<%= jshint.lib_test.src %>',
-                tasks: ['jshint:lib_test', 'qunit']
+            dashboard: {
+                files: [ "Gruntfile.js", "assets/js/*.js", "assets/css/*.css", "assets/sass/paper/*.scss", "assets/sass/paper/mixins/*.scss" ],
+                tasks: ['uglify', 'sass', 'concat']
             }
         }
     });

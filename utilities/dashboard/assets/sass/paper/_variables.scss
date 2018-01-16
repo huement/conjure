@@ -1,3 +1,13 @@
+$purple:                     rgb(51,51,153);
+$purple_light:               rgb(82,20,176);
+$red:                        #C34B35;
+$yellow:                     #E1BA46;
+$green:                      #94C859;
+$teal:                       #1F556E;
+$black:                      #3f3f3f;
+$blue:                       #0091c2;
+
+
 $font-color:                 #66615b !default;
 $fill-font-color:            rgba(255, 255, 255, 0.7);
 
@@ -20,8 +30,8 @@ $black-bg:                   rgba(30,30,30,.97) !default;
 $black-color:                #333333 !default;
 $black-hr:                   #444444 !default;
 
-$white-background-color:        #FFFFFF !default;
-$black-background-color:        #212120 !default;
+$white-background-color:     #FFFFFF !default;
+$black-background-color:     #212120 !default;
 
 $light-gray:                 #E3E3E3 !default;
 $medium-gray:                #DDDDDD !default;
@@ -33,9 +43,9 @@ $success-input-bg:           #ABF3CB !default;
 $other-medium-gray:          #A49E93 !default;
 $transparent-bg:             transparent !default;
 
-$default-color:              #66615B !default;
-$default-bg:                 #66615B !default;
-$default-states-color:       #403D39 !default;
+$default-color:              #777777 !default;
+$default-bg:                 #707070 !default;
+$default-states-color:       #404040 !default;
 
 $primary-color:              #7A9E9F !default;
 $primary-bg:                 #7A9E9F !default;
@@ -47,7 +57,7 @@ $success-states-color:       #42A084 !default;
 
 $info-color:                 #68B3C8 !default;
 $info-bg:                    #68B3C8 !default;
-$info-states-color:          #3091B2 !default;
+$info-states-color:          #0091c2 !default;
 
 $warning-color:              #F3BB45 !default;
 $warning-bg:                 #F3BB45 !default;
@@ -102,9 +112,9 @@ $margin-large-vertical:        30px !default;
 $margin-base-vertical:         15px !default;
 
 // border radius for buttons
-$border-radius-btn-small:      26px !default;
-$border-radius-btn-base:       20px !default;
-$border-radius-btn-large:      50px !default;
+$border-radius-btn-small:      2px !default;
+$border-radius-btn-base:       3px !default;
+$border-radius-btn-large:      5px !default;
 
 
 // Cristina: am schimbat aici si s-au modificat inputurile
@@ -166,8 +176,13 @@ $transition-linear:                                   linear !default;
 $transition-bezier:         cubic-bezier(0.34, 1.61, 0.7, 1) !default;
 $transition-ease:           ease 0s;
 
-$navbar-padding-a:               10px 15px;
-$navbar-margin-a:                15px  0px;
+$navbar-padding-a:               10px 10px 5px 10px;
+$navbar-padding-y:               10px 10px 5px 10px;
+$navbar-padding-x:               10px 10px 5px 10px;
+$navbar-brand-padding-y:               10px 10px 5px 10px;
+$navbar-brand-padding-x:               10px 10px 5px 10px;
+$navbar-brand-font-size:               10px;
+$navbar-margin-a:                5px  0px;
 
 $padding-social-a:               10px  5px;
 
@@ -195,7 +210,7 @@ $green-navbar:              rgba(#4CD964, .98);
 $orange-navbar:             rgba(#FF9500, .98);
 $red-navbar:                rgba(#FF4C40, .98);
 
-$bg-nude:               #313131 !default;
+$bg-nude:               #3E3E3E !default;
 $bg-primary:            #8ECFD5 !default;
 $bg-info:               #7CE4FE !default;
 $bg-success:            #8EF3C5 !default;

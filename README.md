@@ -1,11 +1,55 @@
-# WP_Conjure
-## A magical gateway into the Dark Arts
+```    
+                                                                                                         _____   
+            _____        ____   _____    _____            _____ ______   _____   ___________        _____\    \  
+       _____\    \_  ____\_  \_|\    \   \    \          |\    \\     \  \    \  \          \      /    / |    | 
+      /     /|     |/     /     \\    \   |    |         \ \     \    |  |    |   \    /\    \    /    /  /___/| 
+     /     / /____//     /\      \\    \  |    |          \|      |   |  |    |    |   \_\    |  |    |__ |___|/ 
+    |     | |____||     |  |     |\|    \ |    |           |      |    \_/   /|    |      ___/   |       \       
+    |     |  _____|     |  |     | |     \|    |   ______  |      |\         \|    |      \  ____|     __/ __    
+    |\     \|\    |     | /     /|/     /\      \ /     / /      /| \         \__ /     /\ \/    |\    \  /  \   
+    | \_____\|    |\     \_____/ /_____/ /______/|      |/______/ |\ \_____/\    /_____/ |\______| \____\/    |  
+    | |     /____/| \_____\   | |      | |     | |\_____\      | /  \ |    |/___/|     | | |     | |    |____/|  
+     \|_____|    ||\ |    |___|/|______|/|_____|/| |     |_____|/    \|____|   | |_____|/ \|_____|\|____|   | |  
+            |____|/ \|____|                       \|_____|                 |___|/                       |___|/   
+```
+
+## Magical Wordpress development environment
 
 > I hate good wizards in fairy tales — they always turn out to be _him_.
 >     -- River Song
 
 
-### Recomended Magic
+### Table Of Contents
+===============================
+
+#### _docs
+The projects documentation, as well as, any info regarding specific plugins, functions, or other relevant wordpress details.
+
+#### _spellbook
+Here you can find zipped up versions of important plugins, templates and design files.
+
+#### _taskrunner
+Any and all **Conjure** automation, docs building, or other random tasks are kept locked inside.
+
+#### database
+This is a portal between the Vagrant virtual machine and your local dev box. When vagrant goes down, all DB tables are backed up and sync'd back to the host.
+Reason being, you can then run `vagrant destroy` on the VM, without having to start all over with your Wordpress customizations.
+
+#### log
+Another portal from virtauls box to dev box. Here all the PHP error logs are symlinked. So if any of your apps is having an issue, you can easily grab the logs and see whats up.
+
+#### provision
+These scripts and bits are used when you run `vagrant up --provision` or initially create the box. They install all the server side code, such as Ruby, Node (NVM), Composer packages etc etc.
+
+#### utilities
+This is a folder full of helper websites and the main **Conjure** Dashboard. Very helpful when you're developing. You can easy see your memcache status, opcache, and much more! Flush WP Caches etc.
+
+#### www
+This is a very important folder, and should be where you put all your development sites, cloned customer sites, etc. Basically anything you want to work on.
+
+
+### Conjure Tools
+===============================
 
 #### Homeshed
 A small CLI application for updating your Laravel Homestead configuration file, allows you to quickly update your Homestead.yaml file using simple commands. The tool is especially useful for creating development shortcuts and workflows.

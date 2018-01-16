@@ -1,37 +1,58 @@
-.dropdown-menu{
+.navbar .dropdown-menu,
+.navbar .dropdown-menu.dropdown-menu-right.dropdown {
+  min-width:180px;
+}
+
+.navbar .dropdown-menu-form,
+.dropdown-menu-form {
+  min-width:300px;
+}
+
+.navbar .dropdown-menu.dropdown-wide,
+.navbar .dropdown-menu.dropdown-menu-right.dropdown-wide {
+  min-width:230px;
+}
+
+.navbar .dropdown-menu .dropdown-header,
+.navbar .dropdown-menu.dropdown-menu-right .dropdown-header{
+  padding: 5px 20px 12px 20px;
+  margin-bottom: 10px;
+  color: $purple;
+  border-bottom: 1px solid #eee;
+}
+
+.feedback-drop {
     background-color: $pale-bg;
     border: 0 none;
     border-radius: $border-radius-extreme;
     display: block;
-    margin-top: 10px;
+    bottom: 10px;
     padding: 0px;
     position: absolute;
-    visibility: hidden;
-    z-index: 9000;  
-    
-    @include opacity(0); 
+    z-index: 9000;
+
     @include box-shadow($dropdown-shadow);
-        
-//     the style for opening dropdowns on mobile devices; for the desktop version check the _responsive.scss file    
-    .open &{
+
+//     the style for opening dropdowns on mobile devices; for the desktop version check the _responsive.scss file
+    .show &{
         @include opacity(1);
         visibility: visible;
-    }    
-    
+    }
+
     .divider{
         background-color: $medium-pale-bg;
         margin: 0px;
     }
-    
+
     .dropdown-header{
         color: $dark-gray;
         font-size: $font-size-small;
         padding: $padding-dropdown-vertical $padding-dropdown-horizontal;
     }
-    
+
 //     the style for the dropdown menu that appears under select, it is different from the default one
     .select &{
-       border-radius: $border-radius-bottom; 
+       border-radius: $border-radius-bottom;
        @include box-shadow(none);
        @include transform-origin($select-coordinates);
        @include transform-scale(1);
@@ -41,13 +62,13 @@
     .select.open &{
         margin-top: -1px;
     }
-    
+
     > li > a {
        color: $font-color;
        font-size: $font-size-base;
        padding: $padding-dropdown-vertical $padding-dropdown-horizontal;
        @include transition-none();
-       
+
        img{
            margin-top: -3px;
        }
@@ -59,22 +80,22 @@
     .btn-group.select &{
         min-width: 100%;
     }
-    
+
     > li:first-child > a{
        border-top-left-radius: $border-radius-extreme;
        border-top-right-radius: $border-radius-extreme;
     }
-    
+
     > li:last-child > a{
         border-bottom-left-radius: $border-radius-extreme;
         border-bottom-right-radius: $border-radius-extreme;
     }
-    
+
     .select & > li:first-child > a{
         border-radius: 0;
         border-bottom: 0 none;
     }
-    
+
     > li > a:hover,
     > li > a:focus {
         background-color: $default-color;
@@ -82,7 +103,7 @@
         opacity: 1;
         text-decoration: none;
     }
-    
+
     &.dropdown-primary > li > a:hover,
     &.dropdown-primary > li > a:focus{
         background-color: $primary-color;
@@ -106,7 +127,8 @@
 
 }
 
-//fix bug for the select items in btn-group 
+//fix bug for the select items in btn-group
+.feedback .btn-group {background-color:#212120}
 .btn-group.select{
     overflow: hidden;
 }
