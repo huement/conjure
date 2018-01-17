@@ -46,19 +46,19 @@ define('AUTH_SALT',        '73axU2n{$_a@o-,Idg_.mX>|@:Pg68`ntS6T!N(os`F/^N<_gBLd
 define('SECURE_AUTH_SALT', ' {n+<Ga~w/QNP(e9+#+V;xgn3=V~sf(4~?F;g(]Z)u*HF[K),Dh9EKa-?3%*7}Q.');
 define('LOGGED_IN_SALT',   'aoic6)Ea2*PHzO)k|J$#VPY{X+Xd_9d|6mNK2;+;EMa@psoF4O8PyXp,iyL-4YH>');
 define('NONCE_SALT',       '4ikbMi(Ln%~#6+xZX&EN+vvv8%{cyCWmOEA&;og,1+0.D5L]6+bE{$ND+3Y|1(Fe');
-  
+
 /**
  * WordPress Database Table prefix.
  *
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
+$table_prefix  = 'wpmm_';
 
 /**
  * Advanced Options
  */
-define('WP_POST_REVISIONS', 3);
+define( 'WP_POST_REVISIONS', 3 );
 
 
 /**
@@ -74,20 +74,21 @@ define('WP_POST_REVISIONS', 3);
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 
-define( 'FORCE_SSL_ADMIN', false);
+define( 'FORCE_SSL_ADMIN', false );
 
-define( 'JETPACK_DEV_DEBUG', true);
-define( 'WP_DEBUG', true);
+define( 'JETPACK_DEV_DEBUG', true );
+define( 'WP_DEBUG', true );
 
 // Don't use this. Instead...
 // define( 'WP_DEBUG_LOG', true);
 // Use This
-@ini_set('log_errors','On');
-@ini_set('display_errors','On');
-@ini_set('error_log','/home/vagrant/log/debug.log' );
+@ini_set( 'log_errors','On' );
+@ini_set( 'display_errors','On' );
+@ini_set( 'error_log','/home/vagrant/log/debug.log' );
 
-define( 'WP_DEBUG_DISPLAY', true);
-define( 'SAVEQUERIES', true);
+define( 'WP_DEBUG_DISPLAY', true );
+define( 'SAVEQUERIES', true );
+define( 'SCRIPT_DEBUG', true );
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

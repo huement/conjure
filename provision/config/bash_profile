@@ -37,10 +37,6 @@ if [ -f "/home/vagrant/phpcs/bin/phpcs" ]; then
   CSPATH="/home/vagrant/phpcs/bin"
 fi
 
-# VV
-if [ -f "/usr/local/bin/vv" ]; then
-  source $( echo $(which vv)-completions)
-fi
 
 # Set the WP_TESTS_DIR path directory so that we can use phpunit inside
 # plugins almost immediately.
@@ -55,7 +51,7 @@ eval "$(grunt --completion=bash)"
 . /home/vagrant/.wp-cli/wp-completion.bash
 
 # PHPCS path
-export PATH="node_modules/.bin:vendor/bin:$HOME/.composer/vendor/bin:$HOME/scripts:/home/vagrant/bin:$CSPATH:$PATH"
+export PATH="/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:$HOME/.composer/vendor/bin:$HOME/scripts:/home/vagrant/bin:$CSPATH:$PATH"
 
 # nvm path
 export NVM_DIR="/home/vagrant/config/nvm"

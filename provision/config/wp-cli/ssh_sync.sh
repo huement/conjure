@@ -4,11 +4,11 @@
 # SSH SYNC SCRIPT
 #
 # QUICKLY MOVE BETWEEN DEV/STAGE/PROD
-# REQUIRES SSH ON REMOTE 
+# REQUIRES SSH ON REMOTE
 #
 
-DEVDIR="web/app/uploads/"
-DEVSITE="https://example.dev"
+DEVDIR="/home/vagrant/code/wpdev/"
+DEVSITE="https://wpdev.app"
 
 PRODDIR="myriadmobile@35.184.184.103:49142/www/myriadmobile_606/public"
 PRODSITE="https://myriadmobile.com/"

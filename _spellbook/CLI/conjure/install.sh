@@ -19,6 +19,52 @@ DIRNAME=""
 INSTALLDIR=""
 repoToGet=""
 
+# WP_Conjure Install / Update commands
+# ----------------------------------------------------------------------
+function RUNINSTALLER {
+
+  echo ""
+
+  if ask "Download latest Conjure repository? (initial setup / hard reset)" N; then
+    #
+    #
+    # Grab Main Git repository
+    # Grab Spellbook Git repository
+    # Remove .conjure.json (if exists)
+    # Create new .conjure.json
+    # Run composer install
+    # Run yarn install
+    # Setup Utilities Folder
+    # Setup www
+    #
+    #
+    WHATEVS "Cloning Repositories"
+
+    downloadGit $CONJUREBASE
+    cleanLiftGit
+
+    downloadGit $WEBPRESSBASE
+    cleanLiftGit
+
+    mv ./env.eample.txt ./.env
+
+    WHATEVS "System Requirements"
+
+    insallRequirements
+    setupVagrant
+    vanillaWordpress
+
+    conjureFileRoll
+
+    askBootVagrant
+    #downloadGit $SPELLBOOKBASE
+    #cleanLiftGit
+  else
+    fatal "nothing to do. . ."
+    exit 0
+  fi
+}
+
 function conjureFileRoll {
   if [ ! -f "./.conjure.json" ]; then
     #Roll a dice using bash
@@ -71,7 +117,7 @@ function conjureFileRoll {
   fi
 }
 
-# Grab git repos
+# Grab git repos [ Remove .git dir ]
 # ----------------------------------------------------------------------
 function cleanLiftGit {
   rm -R ./tmp_*/.git*
@@ -228,37 +274,6 @@ function setupVagrant {
   echo ""
 }
 
-function vanillaWordpress {
-  if ask "Install/Update Wordpress DevBox to latest version?" Y; then
-    GETNEWWP
-    GOOD "Wordpress DevBox Install [ OK ]"
-  fi
-}
-
-# Setup VV tool [NOT USED]
-# @todo make this command work w/ WP_Conjure
-function setup_vv {
-  if [ ! -f "/usr/local/bin/vv" ]; then
-    cd ~/
-    sudo mkdir -p ./.wp-cli
-    sudo mkdir -p ./.wp-cli/source
-    sudo chmod 777 ./.wp-cli/source
-    cd ./.wp-cli/source
-    git clone https://github.com/bradp/vv.git
-    cd vv
-    sudo cp vv /usr/local/bin
-    sudo cp vv-completions /usr/local/bin
-  else
-    if [ -d "~/.wp-cli/source/vv" ]; then
-      echo "WP VV UPDATE CHECK..."
-      cd ~/.wp-cli/source/vv
-      vv --update
-    fi
-  fi
-}
-
-# Final Touches. Where do we go from here?
-# ----------------------------------------------------------------------
 function askBootVagrant {
 
   # Default to No if the user presses enter without giving an answer:
@@ -280,51 +295,8 @@ function askBootVagrant {
   exit 0
 }
 
-function RUNINSTALLER {
 
-  echo ""
-
-  if ask "Download latest WP_Conjure repository? (initial setup / hard reset)" N; then
-    #
-    #
-    # Grab Main Git repository
-    # Grab Spellbook Git repository
-    # Remove .conjure.json (if exists)
-    # Create new .conjure.json
-    # Run composer install
-    # Run yarn install
-    # Setup Utilities Folder
-    # Setup www
-    #
-    #
-    WHATEVS "Cloning Repositories"
-
-    downloadGit $CONJUREBASE
-    cleanLiftGit
-
-    downloadGit $WEBPRESSBASE
-    cleanLiftGit
-
-    mv ./env.eample.txt ./.env
-
-    WHATEVS "System Requirements"
-
-    insallRequirements
-    setupVagrant
-    vanillaWordpress
-
-    conjureFileRoll
-
-    askBootVagrant
-    #downloadGit $SPELLBOOKBASE
-    #cleanLiftGit
-  else
-    fatal "nothing to do. . ."
-    exit 0
-  fi
-}
-
-# Install new Vanilla Wordpress Site
+# Install helper functions
 # ----------------------------------------------------------------------
 SLUG=""
 function askSlug {
@@ -353,7 +325,7 @@ function randomSString {
 }
 
 function updateWP {
-  cp $SCRIPT/provision/wp-config-sample.php $SCRIPT/www/$1/wp-config.php
+  cp $SCRIPT/config/wordpress-config/wp-config-default.php /home/vagrant/code/$1/wp-config.php
 
   #set database details with perl find and replace
   perl -pi -e "s/database_name_here/$dbname/g" wp-config.php
@@ -371,11 +343,30 @@ function updateWP {
   ' wp-config.php
 }
 
-function checkwp {
-  echo 'More info here: https://github.com/aaemnnosttv/wp-cli-dotenv-command'
+function wpdotenv {
+  echo -e 'Install wp-cli-dotenv-command...\nMore info available here: https://github.com/aaemnnosttv/wp-cli-dotenv-command\n'
   wp package install aaemnnosttv/wp-cli-dotenv-command
 }
 
+function newMoveFile {
+  cp $SCRIPT/config/wordpress-config/MOVEFILE.yaml /home/vagrant/code/$1
+  echo "New MOVEFILE.yaml template now available!"
+  #open /home/vagrant/code/$1/MOVEFILE.yaml
+}
+
+function join_by { local IFS="$1"; shift; echo "$*"; }
+
+function defaultPlugins {
+  STRINGPLUG=""
+  mapfile -t wpArray < "/home/vagrant/config/wordpress-config/default_packages.json"
+  # for i in "${wpArray[@]}"
+  # do
+  #    STRINGPLUG=" "
+  # done
+}
+
+# Install new Wordpress Site from Stack
+# ----------------------------------------------------------------------
 function new_bedrock {
   echo ''
   askSlug
@@ -386,6 +377,8 @@ function new_bedrock {
   composer create-project roots/bedrock $SLUG
   echo ''
   cd $SLUG
+  echo 'Updating wp-config...'
+  updateWP $SLUG
   echo 'Updating wp-config.php SALT'
   wp dotenv salts regenerate
   echo ''
@@ -398,7 +391,7 @@ function new_bedrock {
   echo '  * Add Font Awesome'
   echo '  * Configure Browsersync'
   echo ''
-  cd $SCRIPT/www/$SLUG/web/app/themes
+  cd /home/vagrant/code/$SLUG/web/app/themes
   composer create-project roots/sage
   echo ''
   echo '----- ALL DONE -----'
@@ -416,7 +409,10 @@ function new_plate {
   cd $SCRIPT/www
   composer create-project wordplate/wordplate $SLUG
   cd $SLUG
-  updateWP
+  echo 'Updating wp-config...'
+  updateWP $SLUG
+  echo 'Updating wp-config.php SALT'
+  wp dotenv salts regenerate
   npm install
   composer install
   echo ''
@@ -434,7 +430,10 @@ function new_webpress {
   cd $SCRIPT/www
   git clone -q $WEBPRESSBASE $SLUG
   cd $SLUG
-  updateWP
+  echo 'Updating wp-config...'
+  updateWP $SLUG
+  echo 'Updating wp-config.php SALT'
+  wp dotenv salts regenerate
   npm install
   composer install
   rm -R ./.git
@@ -450,13 +449,14 @@ function new_vanilla {
   echo ''
   askSlug
   echo ''
-  echo "Creating: ${SCRIPT}/www/${SLUG}"
-  mkdir -p $SCRIPT/www/$SLUG
-  if is_not_dir "${SCRIPT}/www/${SLUG}"; then
-    die "Could not create install directory: ${SCRIPT}/www/${SLUG}"
+  WHATEVS "Installing standard Wordpress..."
+  echo "Creating in: /home/vagrant/code/${SLUG}"
+  mkdir -p /home/vagrant/code/$SLUG
+  if is_not_dir "/home/vagrant/code/${SLUG}"; then
+    die "Could not create install directory: /home/vagrant/code/${SLUG}"
   fi
 
-  cd $SCRIPT/www/$SLUG
+  cd /home/vagrant/code/$SLUG
 
   dbpreS=$($(randomSString 3))
   dbpref="${RSVAR}_"
@@ -475,33 +475,41 @@ function new_vanilla {
   echo ""
   echo ""
 
-  WHATEVS "Installing new WordPress site into: ${GRN}${SCRIPT}/www/${SLUG}${NORMAL}"
-  #download wordpress
-  curl -O https://wordpress.org/latest.tar.gz
+  wp core download
   #unzip wordpress
-  tar -zxf latest.tar.gz
-  #change dir to wordpress
-  cd wordpress
-  #copy file to parent dir
-  cp -rf . ..
-  #move back to parent dir
-  cd ..
-  #remove files from wordpress folder
-  rm -R wordpress
-  #create wp config
-  updateWP
+
+  echo 'Updating wp-config...'
+  updateWP $SLUG
+  echo 'Updating wp-config.php SALT'
+  wp dotenv salts regenerate
 
   #create uploads folder and set permissions
-  cd $SCRIPT/www/$SLUG
-  mkdir $SCRIPT/www/$SLUG/wp-content/uploads
-  chmod 775 $SCRIPT/www/$SLUG/wp-content/uploads
-  #remove zip file
-  cd $SCRIPT/www/$SLUG
-  rm latest.tar.gz
-
+  mkdir -p /home/vagrant/code/$SLUG/wp-content/uploads
+  chmod 775 /home/vagrant/code/$SLUG/wp-content/uploads
+  echo ''
+  echo '----- ALL DONE -----'
+  echo ''
 }
 
-function newMoveFile {
-  cp $SCRIPT/provision/MOVEFILE.yaml $SCRIPT/www/$1
-  open $SCRIPT/www/$1/MOVEFILE.yaml
+function new_cubi {
+  echo ''
+  askSlug
+  echo ''
+  WHATEVS 'Install wp-cubi......'
+  echo -e 'Modern stack for developers. \nNote: wp-cubi is under active development \nand is not a final product yet. You should not use it if you dont know PHP development and WordPress basics.\n'
+  echo 'More info here: https://github.com/globalis-ms/wp-cubi'
+  echo ''
+  cd $SCRIPT/www
+  composer create-project globalis/wp-cubi $SLUG && cd $SLUG
+  cd $SLUG
+  echo 'WP_Cubi Installation command....'
+  ./vendor/bin/robo install
+  echo 'Setup WordPress database'
+  ./vendor/bin/robo wp:init
+  echo ''
+  echo '----- ALL DONE -----'
+  echo ''
+  echo 'Access your site admin at ./web/wp/wp-admin'
+  echo 'Use wp-cli commands with ./vendor/bin/wp'
+  echo ''
 }

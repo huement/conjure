@@ -11,14 +11,14 @@ function grabStats(){
       setTimeout("grabStats()",10000);
       cpuCalc(data.cpu);
 
-      var memfree = data.mem_free * 100;
-      memfree = memfree + '<small style="color:#FEFEFE">%</span>';
-      var memtotal = data.mem_total * 1000;
-      memtotal = memtotal + '<small style="color:#FEFEFE">MB</span>';
-      $("#mem_free").text(memfree);
-      $("#mem_total").text(memtotal);
-      $("#hdd_used").text(data.hdd);
-      $("#uptime").text(data.upt);
+      var memfree = parseInt(data.mem_free * 100).toFixed(0);
+      var memfr = memfree + '<small style="color:#FEFEFE">%</span>';
+      var memtotal = parseInt(data.mem_total * 1000).toFixed(0);
+      var memtot = memtotal + ' <small>GB</span>';
+      $("#mem_free").html(memfr);
+      $("#mem_total").html(memtot);
+      $("#hdd_used").html(data.hdd+ '<small style="color:#FEFEFE">%</span>');
+      $("#uptime").html(data.upt);
     },
     error: function (data){
       failCount++;
@@ -29,8 +29,12 @@ function grabStats(){
 }
 
 function cpuCalc(arr){
-  var total = $.parseInt(arr[0] + arr[1] + arr[2] / 3);
-  $("#cpu_target").text(total);
+  var avgCPU = arr[0] + arr[1] + arr[2];
+  var percentCPU = avgCPU * 100;
+  console.log(avgCPU);
+  console.log(percentCPU);
+  var total = parseFloat(percentCPU).toFixed(0);
+  $("#cpu_target").html(total+'<small style="color:#FEFEFE">%</span>');
 }
 
 // Docs at http://simpleweatherjs.com
@@ -60,7 +64,7 @@ $(document).ready(function() {
       $("#weather_icon").addClass("icon-"+weather.code).addClass(tempClass);
       $("#weather_city").text(weather.city+', '+weather.region);
       $("#weather_color").attr("fill",tempColor);
-      $("#weather_temp").text(weather.temp+"°");
+      $("#weather_temp").html(weather.temp+'<sup><small style="color:#FEFEFE">°F</small></sup>');
       $("#weather_cond").text(weather.currently);
       //$("#weather").html(html);
     },

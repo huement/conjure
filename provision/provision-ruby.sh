@@ -23,16 +23,16 @@ sudo apt-get -y --force-yes update &>/dev/null
 
 
 print_pkg_info() {
-  local pkg="$1"
-  local pkg_version="$2"
-  local space_count
-  local pack_space_count
-  local real_space
+	local pkg="$1"
+	local pkg_version="$2"
+	local space_count
+	local pack_space_count
+	local real_space
 
-  space_count="$(( 20 - ${#pkg} ))" #11
-  pack_space_count="$(( 30 - ${#pkg_version} ))"
-  real_space="$(( space_count + pack_space_count + ${#pkg_version} ))"
-  printf " * $pkg %${real_space}.${#pkg_version}s ${pkg_version}\n"
+	space_count="$(( 20 - ${#pkg} ))" #11
+	pack_space_count="$(( 30 - ${#pkg_version} ))"
+	real_space="$(( space_count + pack_space_count + ${#pkg_version} ))"
+	printf " * $pkg %${real_space}.${#pkg_version}s ${pkg_version}\n"
 }
 
 
@@ -42,39 +42,39 @@ echo " ------ [ RUBY + GEMS ] ------ "
 
 
 function check_rvm() {
-  local result=$(type rvm >/dev/null 2>&1 || echo 'nope');
+	local result=$(type rvm >/dev/null 2>&1 || echo 'nope');
 
-  printf "Checking %s...\n" "RVM";
+	printf "Checking %s...\n" "RVM";
 
-  if [[ ${result} = 'nope' ]]; then
-    printf "\n";
-    install_rvm;
-  else
-    printf " * RVM is installed\n";
-  fi
+	if [[ ${result} = 'nope' ]]; then
+		printf "\n";
+		install_rvm;
+	else
+		printf " * RVM is installed\n";
+	fi
 
-  if [ -f "/etc/profile.d/rvm.sh" ]; then
-    source /etc/profile.d/rvm.sh
-  fi
-  if [ -f "/usr/local/rvm/scripts/rvm" ]; then
-    source /usr/local/rvm/scripts/rvm
-  fi
-  if [ -f "/home/vagrant/.rvm/scripts/rvm" ]; then
-    source /home/vagrant/.rvm/scripts/rvm
-  fi
+	if [ -f "/etc/profile.d/rvm.sh" ]; then
+		source /etc/profile.d/rvm.sh
+	fi
+	if [ -f "/usr/local/rvm/scripts/rvm" ]; then
+		source /usr/local/rvm/scripts/rvm
+	fi
+	if [ -f "/home/vagrant/.rvm/scripts/rvm" ]; then
+		source /home/vagrant/.rvm/scripts/rvm
+	fi
 }
 
 function install_rvm() {
-  # @url https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma
-  # @url https://rvm.io/rvm/install
+	# @url https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma
+	# @url https://rvm.io/rvm/install
 
-  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3;
+	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3;
 
-  curl -sSL https://get.rvm.io | bash -s stable --ruby;
+	curl -sSL https://get.rvm.io | bash -s stable --ruby;
 
-  source /home/vagrant/.rvm/scripts/rvm;
+	source /home/vagrant/.rvm/scripts/rvm;
 
-  rvm requirements;
+	rvm requirements;
 }
 
 check_rvm
@@ -95,17 +95,17 @@ gem install wordpress_tools
 echo "W O R D  M O V E....................."
 wordmove_install="$(gem list wordmove -i)"
 if [ "$wordmove_install" = true ]; then
-  echo "Wordmove already installed"
+	echo "Wordmove already installed"
 else
-  echo "Installing Wordmove"
-  gem install wordmove --pre
-  wordmove_path="$(gem which wordmove | sed -s 's/.rb/\/deployer\/base.rb/')"
-  if [  "$(grep yaml $wordmove_path)" ]; then
-    echo "gtg on require yaml"
-  else
-    sed -i "7i require\ \'yaml\'" $wordmove_path
-    echo "can now require yaml"
-  fi
+	echo "Installing Wordmove"
+	gem install wordmove --pre
+	wordmove_path="$(gem which wordmove | sed -s 's/.rb/\/deployer\/base.rb/')"
+	if [  "$(grep yaml $wordmove_path)" ]; then
+		echo "gtg on require yaml"
+	else
+		sed -i "7i require\ \'yaml\'" $wordmove_path
+		echo "can now require yaml"
+	fi
 fi
 
 

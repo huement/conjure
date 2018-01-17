@@ -43,7 +43,7 @@
                           </span>
 
                         <p>USED RAM</p>
-                        <p class="stats">TOTAL RAM <span id="mem_total"></span></p>
+                        <p class="stats" id="mem_total"></p>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-5 col-xs-12">
-                  <h2 class="stat-amount"><span id="hdd_used"></span><small style="color:#FEFEFE">MB</small></h2>
+                  <h2 class="stat-amount" id="hdd_used">...</h2>
                   <svg width="120" height="100">
                     <rect width="120" height="100" stroke-width="0" fill="#94C859" />
                   </svg>
@@ -68,7 +68,7 @@
                           </span>
 
                         <p>HDD USAGE</p>
-                        <p class="stats"><a href="#"><i class="ti-link"></i> View Files</a></p>
+                        <p class="stats"><a href="#">View Files</a></p>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
         <div class="content">
             <div class="row">
               <div class="col-sm-5 col-xs-12">
-                <h2 class="stat-amount" id="weather_temp"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/loader.gif" alt="Loading..." class="loading"></h2>
+                <h2 class="stat-amount" id="weather_temp">...</h2>
                 <svg width="120" height="100">
                   <rect width="120" height="100" stroke-width="0" fill="#666666" id="weather_color"/>
                 </svg>

@@ -60,7 +60,7 @@
 
                   $defaultPage   = "./pages/dashboard.php";
 
-                  $pages         = array("unit_test","wp_plugs","docs","wp_design","performance");
+                  $pages         = array("unit_test","wp_plugs","docs","wp_design","web_performance");
                   $result        = false;
                   $result_back   = false;
                   $page_active   = "dashboard";

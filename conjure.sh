@@ -78,6 +78,8 @@ source $installScript
 function installhs() {
   WHATEVS "Running Install script..."
 
+  cd /home/vagrant/code
+
   if [ -f "./.conjure.json" ]; then
     mv ./.conjure.json ./conjure-old.json
   fi
@@ -150,8 +152,8 @@ function addStackWeb() {
 }
 
 function addStackCubi() {
-  BAD "---- TODO ----"
-  #new_cubi
+  WHATEVS "Adding WebPress site..."
+  new_cubi
 }
 
 function vagrantCMD() {

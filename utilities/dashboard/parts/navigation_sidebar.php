@@ -52,7 +52,7 @@ Tip 2: you can change the color of the active button using the data-active-color
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#web_perf" id="web_perf-nav" aria-controls="v-pills-perf" aria-selected="false">
+                <a class="nav-link" href="?web_performance" id="web_performance-nav" aria-controls="v-pills-perf" aria-selected="false">
                     <i class="ti-bell"></i>
                     <p>Web Performance</p>
                 </a>

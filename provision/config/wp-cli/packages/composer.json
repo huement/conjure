@@ -1,0 +1,78 @@
+{
+    "name": "myriadmobile/wp_conjure",
+    "version": "0.9.0",
+    "description": "Wordpress build a box",
+    "authors": [
+      {
+        "name": "DEREK SCOTT",
+        "email": "dscott@myriadmobile.com"
+      }
+    ],
+    "homepage": "https://wp-cli.org/package-index/",
+    "require": {
+      "aaemnnosttv/wp-cli-dotenv-command": "^1.0",
+      "anhskohbo/wp-cli-themecheck": "dev-master",
+      "ryanshoover/wpe-cli": "*",
+      "matt/wp-installer": "dev-master",
+      "trepmal/wp-revisions-cli": "dev-master",
+      "wp-cli/scaffold-package-command": "dev-master",
+      "vccw/wp-cli-scaffold-movefile": "@stable",
+      "rxnlabs/wp-composer-dependencies": "dev-master",
+      "sebastiaandegeus/wp-cli-salts-command": "dev-master",
+      "ivankruchkoff/wp-hammer": "dev-master",
+      "wp-cli/doctor-command": "dev-master",
+      "wp-sync-db/wp-sync-db-cli": "dev-master",
+      "jaywood/jw-wpcli-random-posts": "dev-master",
+      "iandunn/wp-cli-rename-db-prefix": "dev-master",
+      "geekpress/wp-rocket-cli": "dev-master",
+      "humanmade/wp-remote-cli": "dev-master",
+      "michaloo/wp-cli-environmentalize": "dev-master",
+      "growella/update-check": "dev-master",
+      "wp-cli/server-command": "dev-master",
+      "10up/wp-vulnerability-scanner": "dev-master"
+    },
+    "require-dev": {},
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "repositories": {
+        "wp-cli": {
+            "type": "composer",
+            "url": "https://wp-cli.org/package-index/"
+        },
+        "wpackagist": {
+          "type": "composer",
+          "url": "https://wpackagist.org"
+        },
+        "rarst": {
+          "type": "composer",
+          "url": "https://rarst.net"
+        },
+        "ryanshoover/wpe-cli": {
+            "type": "vcs",
+            "url": "https://github.com/ryanshoover/wpe-cli"
+        },
+        "wp-cli/scaffold-package-command": {
+            "type": "vcs",
+            "url": "https://github.com/wp-cli/scaffold-package-command"
+        },
+        "wp-cli/doctor-command": {
+            "type": "vcs",
+            "url": "https://github.com/wp-cli/doctor-command"
+        },
+        "wp-sync-db/wp-sync-db-cli": {
+            "type": "vcs",
+            "url": "https://github.com/wp-sync-db/wp-sync-db-cli"
+        },
+        "growella/update-check": {
+            "type": "vcs",
+            "url": "https://github.com/growella/update-check"
+        },
+        "10up/wp-vulnerability-scanner": {
+            "type": "vcs",
+            "url": "https://github.com/10up/wp-vulnerability-scanner"
+        }
+    },
+    "config": {
+        "secure-http": true
+    }
+}

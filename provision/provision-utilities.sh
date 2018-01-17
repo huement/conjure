@@ -24,11 +24,11 @@ echo set completion-ignore-case on | tee -a /etc/inputrc
 
 # set up global gitignore
 if [ -f ~/.gitignore_global ]; then
-  echo "Global Gitignore found!";
+	echo "Global Gitignore found!";
 else
-  echo "Gitignore setup happening.  .   .";
-  git config --global core.excludesfile ~/.gitignore_global
-  echo ".DS_Store" > ~/.gitignore_global;
+	echo "Gitignore setup happening.  .   .";
+	git config --global core.excludesfile ~/.gitignore_global
+	echo ".DS_Store" > ~/.gitignore_global;
 fi
 
 
@@ -57,27 +57,27 @@ COMPOSER_HOME=/usr/local/src/composer composer --no-ansi global update --no-prog
 WPCS="/home/vagrant/wpcs"
 if [ ! -d "$WPCS" ]; then
 
-  echo "------ [ PHP_CodeSniffer ] ------"
+	echo "------ [ PHP_CodeSniffer ] ------"
 
-  # Control will enter here if $DIRECTORY doesn't exist.
-  mkdir $WPCS
-  cd $WPCS
-  git clone https://github.com/squizlabs/PHP_CodeSniffer.git phpcs
-  git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git wpcs
-  cd phpcs
+	# Control will enter here if $DIRECTORY doesn't exist.
+	mkdir $WPCS
+	cd $WPCS
+	git clone https://github.com/squizlabs/PHP_CodeSniffer.git phpcs
+	git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git wpcs
+	cd phpcs
 
-  #PHPCS 2.x
-  if [ -f "./scripts/phpcs" ]; then
-    ./scripts/phpcs --config-set installed_paths ../wpcs
-  fi
+	#PHPCS 2.x
+	if [ -f "./scripts/phpcs" ]; then
+		./scripts/phpcs --config-set installed_paths ../wpcs
+	fi
 
-  #PHPCS 3.x
-  if [ -f "./bin/phpcs" ]; then
-    ./bin/phpcs --config-set installed_paths ../wpcs
-  fi
+	#PHPCS 3.x
+	if [ -f "./bin/phpcs" ]; then
+		./bin/phpcs --config-set installed_paths ../wpcs
+	fi
 
 else
-  echo "PHP_CodeSniffer already setup and configured!"
+	echo "PHP_CodeSniffer already setup and configured!"
 fi
 
 
@@ -121,31 +121,63 @@ echo "------ [ Finishing Moves ] ------"
 
 # Remove unnecessary packages
 echo "Removing unnecessary packages..."
-sudo apt-get autoremove -y &>/dev/null
+sudo apt-get autoremove -y
 
 # Clean up apt caches
-sudo apt-get clean -y &>/dev/null
+sudo apt-get clean -y
+
+echo " "
+echo " ------ [ WP CLI ] ------ "
+wp_cli() {
+	# WP-CLI Install
+	local exists_wpcli
+
+	# Remove old wp-cli symlink, if it exists.
+	if [[ -L "/usr/local/bin/wp" ]]; then
+		echo "\nRemoving old wp-cli"
+		rm -f /usr/local/bin/wp
+	fi
+
+	exists_wpcli="$(which wp)"
+	if [[ "/usr/local/bin/wp" != "${exists_wpcli}" ]]; then
+		echo -e "\nDownloading wp-cli, see http://wp-cli.org"
+		curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar
+		chmod +x wp-cli-nightly.phar
+		sudo mv wp-cli-nightly.phar /usr/local/bin/wp
+
+		# Install bash completions
+		curl -s https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash -o /home/vagrant/config/wp-cli/wp-completion.bash
+
+		#/usr/local/bin/wp package install aaemnnosttv/wp-cli-dotenv-command:1.0.*
+
+	else
+		echo -e "\nUpdating wp-cli..."
+		cd /home/vagrant/.wp-cli/packages
+		composer install
+	fi
+}
+wp_cli
 
 # echo "------ [ GruntJS ] ------"
 # # sudo chown -R vagrant:vagrant /usr/lib/node_modules/
 # # echo "@TODO GRUNT-SASS INSTALLER...."
-# function program_is_installed {
-#   # set to 1 initially
-#   local return_=1
-#   # set to 0 if not found
-#   type $1 >/dev/null 2>&1 || { local return_=0; }
-#   # return value
-#   echo "$return_"
-# }
-#
-# $TESTVAR="$(program_is_installed grunt)"
-# if [ "$TESTVAR" == 1 ]; then
-#   echo "Updating Grunt CLI"
-#   yarn global update grunt-cli node-sass
-# else
-#   echo "Installing Grunt CLI"
-#   yarn global add grunt-cli node-sass
-# fi
+function program_is_installed {
+	# set to 1 initially
+	local return_=1
+	# set to 0 if not found
+	type $1 >/dev/null 2>&1 || { local return_=0; }
+	# return value
+	echo "$return_"
+}
+
+$TESTVAR="$(program_is_installed grunt)"
+if [ "$TESTVAR" == 1 ]; then
+	echo "Updating Grunt CLI"
+	npm update grunt-cli
+else
+	echo "Installing Grunt CLI"
+	npm i -G grunt-cli
+fi
 
 end_seconds="$(date +%s)"
 echo " "

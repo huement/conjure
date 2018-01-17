@@ -16,6 +16,8 @@ log/*.log
 .env
 
 
+provision/config/wp-cli/packages/cache/*
+
 #
 # Homestead.yaml
 
