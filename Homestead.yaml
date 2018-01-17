@@ -18,12 +18,17 @@ keys:
 folders:
     - map: ~/Conjure/www/wp_dev
       to: /home/vagrant/code/wp_dev
-
+    - map: ~/Conjure/www/myriad
+      to: /home/vagrant/code/myriad
+      
 sites:
     - map: wpdev.app
       to: /home/vagrant/code/wp_dev
       php: "7.1"
-
+    - map: myriad.app
+      to: /home/vagrant/code/myriad
+      php: "7.1"
+    
 databases:
     - wpdev
     - wordpress
@@ -35,6 +40,7 @@ databases:
 variables:
     - key: APP_ENV
       value: local
+      
 #
 #
 # @ALERT WP_Conjure has a Wordpress auto updated dev site. It requires the following 3 options. If you remove them it will break

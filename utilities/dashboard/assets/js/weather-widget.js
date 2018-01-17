@@ -1,3 +1,35 @@
+var failCount = 0;
+function grabStats(){
+  $.ajax({
+    dataType:"json",
+    url: "widgets/sys_stats.php",
+    success: function(data){
+      console.log(data);
+      setTimeout("grabStats()",10000);
+      cpuCalc(data.cpu);
+
+      var memfree = data.mem_free * 100;
+      memfree = memfree + '<small style="color:#FEFEFE">%</span>';
+      var memtotal = data.mem_total * 1000;
+      memtotal = memtotal + '<small style="color:#FEFEFE">MB</span>';
+      $("#mem_free").text(memfree);
+      $("#mem_total").text(memtotal);
+      $("#hdd_used").text(data.hdd);
+      $("#uptime").text(data.upt);
+    },
+    error: function (data){
+      failCount++;
+      console.log("system stats could not be fetched");
+      if(failCount<5){ setTimeout("grabStats()",10000); }
+    }
+  });
+}
+
+function cpuCalc(arr){
+  var total = $.parseInt(arr[0] + arr[1] + arr[2] / 3);
+  $("#cpu_target").text(total);
+}
+
 // Docs at http://simpleweatherjs.com
 $(document).ready(function() {
   var tempColor, tempClass = '';
@@ -31,7 +63,7 @@ $(document).ready(function() {
     },
     error: function(error) {
       $("#weather").html('<p>'+error+'</p>');
-    } 
+    }
   });
 
   if($("#unitTestActivity").html() !== undefined){
@@ -48,4 +80,6 @@ $(document).ready(function() {
       }
     });
   }
+
+  setTimeout("grabStats()",500);
 });

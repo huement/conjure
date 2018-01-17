@@ -56,6 +56,12 @@ define('NONCE_SALT',       '4ikbMi(Ln%~#6+xZX&EN+vvv8%{cyCWmOEA&;og,1+0.D5L]6+bE
 $table_prefix  = 'wp_';
 
 /**
+ * Advanced Options
+ */
+define('WP_POST_REVISIONS', 3);
+
+
+/**
  * For developers: WordPress debugging mode.
  *
  * Change this to true to enable the display of notices during development.
@@ -67,11 +73,21 @@ $table_prefix  = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', true);
-define( 'JETPACK_DEV_DEBUG', {{ vccw.wp_debug }} );
-define( 'WP_DEBUG', {{ vccw.wp_debug }} );
-define( 'FORCE_SSL_ADMIN', {{ vccw.force_ssl_admin }} );
-define( 'SAVEQUERIES', {{ vccw.savequeries }} );
+
+define( 'FORCE_SSL_ADMIN', false);
+
+define( 'JETPACK_DEV_DEBUG', true);
+define( 'WP_DEBUG', true);
+
+// Don't use this. Instead...
+// define( 'WP_DEBUG_LOG', true);
+// Use This
+@ini_set('log_errors','On');
+@ini_set('display_errors','On');
+@ini_set('error_log','/home/vagrant/log/debug.log' );
+
+define( 'WP_DEBUG_DISPLAY', true);
+define( 'SAVEQUERIES', true);
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */
