@@ -1,16 +1,13 @@
 
 <section class="row text-center placeholders circle_stat_rows" style="margin-top:10px;">
-  <div class="col-6 col-sm-3 placeholder">
+  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
     <div class="card">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-5 col-xs-12">
+        <div class="container">
+            <div class="row stat_card">
+                <div class="col-md-5 col-sm-12" style="background-color:#C34B35">
                   <h2 class="stat-amount" id="cpu_target">...</h2>
-                  <svg width="120" height="100">
-                    <rect width="120" height="100" stroke-width="0" fill="#C34B35" />
-                  </svg>
                 </div>
-                <div class="col-sm-7 col-xs-12">
+                <div class="col-md-7 col-sm-12">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
@@ -18,24 +15,21 @@
                           </span>
 
                         <p>CPU AVG LOAD</p>
-                        <p class="stats"><a href="#"><i class="ti-link"></i> Details</a></p>
+                        <p class="stats"><a href="#">More Info</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
   </div>
-  <div class="col-6 col-sm-3 placeholder">
+  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
     <div class="card">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-5 col-xs-12">
+        <div class="container">
+            <div class="row stat_card">
+                <div class="col-sm-12 col-md-5" style="background-color:#E1BA46">
                   <h2 class="stat-amount" id="mem_free">...</h2>
-                  <svg width="120" height="100">
-                    <rect width="120" height="100" stroke-width="0" fill="#E1BA46" />
-                  </svg>
                 </div>
-                <div class="col-sm-7 col-xs-12">
+                <div class="col-sm-12 col-md-7">
                     <div class="numbers">
                           <!-- #1F556E -->
                           <span class="icon stat-icon icon-warning text-center">
@@ -43,24 +37,21 @@
                           </span>
 
                         <p>USED RAM</p>
-                        <p class="stats" id="mem_total"></p>
+                        <p class="stats"><a href="#"><span id="mem_total"></span>&nbsp;&nbsp;Total</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
   </div>
-  <div class="col-6 col-sm-3 placeholder">
+  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
     <div class="card">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-5 col-xs-12">
+        <div class="container">
+            <div class="row stat_card">
+                <div class="col-sm-12 col-md-5" style="background-color:#94C859">
                   <h2 class="stat-amount" id="hdd_used">...</h2>
-                  <svg width="120" height="100">
-                    <rect width="120" height="100" stroke-width="0" fill="#94C859" />
-                  </svg>
                 </div>
-                <div class="col-sm-7 col-xs-12">
+                <div class="col-sm-12 col-md-7">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
@@ -75,24 +66,21 @@
         </div>
     </div>
   </div>
-  <div class="col-6 col-sm-3 placeholder">
+  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
     <div class="card">
-        <div class="content">
-            <div class="row">
-              <div class="col-sm-5 col-xs-12">
+        <div class="container">
+            <div class="row stat_card">
+              <div class="col-md-5 col-sm-12" id="weather_color">
                 <h2 class="stat-amount" id="weather_temp">...</h2>
-                <svg width="120" height="100">
-                  <rect width="120" height="100" stroke-width="0" fill="#666666" id="weather_color"/>
-                </svg>
               </div>
-              <div class="col-sm-7 col-xs-12" id="weather">
+              <div class="col-md-7 col-sm-12" id="weather">
                   <div class="numbers">
 
                       <div class="icon stat-icon text-center" id="weather_icon_wrapper">
                           <div id="weather_icon"></div>
                       </div>
                       <p id="weather_cond">...</p>
-                      <p class="stats" id="weather_city">...</p>
+                      <p class="stats"><a href="#" id="weather_city">...</a></p>
                       <!-- <p ><a href="#"><i class="ti-link"></i> Files</a></p> -->
                   </div>
               </div>

@@ -16,7 +16,7 @@ $border-thin:                1px !default;
 $border-thick:               2px !default;
 
 $white-color:                #FFFFFF !default;
-$white-bg:                   #FFFFFF !default;
+$white-bg:                   #F0F0F0 !default;
 
 $smoke-bg:                   #F5F5F5 !default;
 $pale-bg:                    #FFFCF5 !default;
@@ -30,12 +30,13 @@ $black-bg:                   rgba(30,30,30,.97) !default;
 $black-color:                #333333 !default;
 $black-hr:                   #444444 !default;
 
-$white-background-color:     #FFFFFF !default;
+$white-background-color:     #EFEFEF !default;
 $black-background-color:     #212120 !default;
 
 $light-gray:                 #E3E3E3 !default;
 $medium-gray:                #DDDDDD !default;
 $dark-gray:                  #9A9A9A !default;
+$darker-gray:                #777777 !default;
 
 $gray-input-bg:              #fffcf5 !default;
 $danger-input-bg:            #FFC0A4 !default;

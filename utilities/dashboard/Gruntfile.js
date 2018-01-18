@@ -19,20 +19,24 @@ module.exports = function (grunt) {
                 dest: 'dist/presscraft-dashboard.js'
             },
             widgets: {
-                src: ['assets/js/weather-widget.js'],
+                src: ['assets/js/dashboard-widgets.js'],
                 dest: 'dist/widgets.js'
             },
             jsdist: {
-                src: ['assets/js/tether.js','assets/js/chartist.min.js'],
+                src: ['assets/js/tether.js', 'assets/js/chartist.min.js'],
                 dest: 'dist/dash-libs.js'
             },
             bslibs: {
-                src: ['assets/js/bootstrap-checkbox-radio.js','assets/js/bootstrap-notify.js'],
+                src: ['assets/js/bootstrap-checkbox-radio.js', 'assets/js/bootstrap-notify.js'],
                 dest: 'dist/bs-libs.js'
             },
             cssdist: {
-                src: ['assets/css/animate.min.css','assets/css/themify-icons.css','assets/css/font-awesome.css'],
-                dest: 'dist/dash-libs.css'
+                src: ['assets/css/bootstrap.css', 'assets/css/animate.min.css', 'assets/css/themify-icons.css', 'assets/css/font-awesome.css'],
+                dest: 'dist/libraries.css'
+            },
+            cssextra: {
+                src: ['assets/css/paper-dash-extras.css', 'assets/css/widgets.css'],
+                dest: 'dist/widgets.css'
             }
         },
         uglify: {
@@ -53,7 +57,7 @@ module.exports = function (grunt) {
                 node: true,
                 curly: true,
                 eqeqeq: true,
-                immed: true,  
+                immed: true,
                 latedef: true,
                 newcap: true,
                 noarg: true,
@@ -91,7 +95,8 @@ module.exports = function (grunt) {
                 files: [ "Gruntfile.js", "assets/js/*.js", "assets/css/*.css", "assets/sass/paper/*.scss", "assets/sass/paper/mixins/*.scss" ],
                 tasks: ['uglify', 'sass', 'concat']
             }
-        }
+        },
+
     });
 
     // These plugins provide necessary tasks
@@ -101,6 +106,34 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
+
+    // stylestats: {
+    //   options: {
+    //     "size": true,
+    //     "gzippedSize": false,
+    //     "simplicity": true,
+    //     "rules": true,
+    //     "selectors": true,
+    //     "lowestCohesion": true,
+    //     "lowestCohesionSelector": true,
+    //     "totalUniqueFontSizes": true,
+    //     "uniqueFontSize": true,
+    //     "totalUniqueColors": true,
+    //     "uniqueColor": true,
+    //     "idSelectors": true,
+    //     "universalSelectors": true,
+    //     "importantKeywords": true,
+    //     "mediaQueries": true,
+    //     "propertiesCount": 10,
+    //     "prettify": true
+    //   },
+    //   myriad: [
+    //     '/home/vagrant/code/myriad/wp-content/themes/myriad/mobile.css',
+    //     '/home/vagrant/code/myriad/wp-content/themes/myriad/style.css',
+    //     '/home/vagrant/code/myriad/wp-content/themes/myriad/mike.css'
+    //   ]
+    // }
+    //grunt.loadNpmTasks('grunt-stylestats');
 
     // Default task
     grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'sass']);

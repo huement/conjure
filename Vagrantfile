@@ -100,13 +100,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     wizardHash['hostname'] = @configuredHost
     wizardHash['ip'] = @configuredIP
 
+
+    #
     # RUBY WIZARDY
     # Combine our Utilities YAML with Homestead YAML
+    #
     settings['sites'].concat utilities['sites']
     settings['folders'].concat utilities['folders']
     settings['databases'].concat utilities['databases']
 
+    # If you set additional ports, use concat. If no ports. just assign.
+    #settings['ports'].concat utilities['ports']
+    settings['ports'] = utilities['ports']
+
+
+    #
     # RUN HOMESTEAD
+    #
     Homestead.configure(config, settings, wizardHash)
 
 

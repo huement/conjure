@@ -7,23 +7,23 @@
 
 <!-- CIRCLE STATS ROW -->
 <div class="row">
-  <div class="col-sm-6 col-md-6">
+  <div class="col-sm-12 col-md-6">
       <div class="card ">
           <div class="header">
               <h4 class="title">Wordpress Sites</h4>
               <p class="category">/home/vagrant/www</p>
           </div>
           <div class="content">
-
               <div class="panel-body">
                 <ul class="list-group list-group-header">
                     <li class="list-group-item list-group-body">
                         <div class="container">
 
                           <div class="row">
-                              <div class="col-sm-4 text-left">Name</div>
-                              <div class="col-sm-6 text-right">Modified</div>
-                              <div class="col-sm-2 text-right">Status</div>
+                              <div class="col-sm-6 col-md-4 text-left">Name</div>
+                              <div class="col-sm-6 col-md-4 text-right">Modified</div>
+                              <div class="col-sm-6 col-md-2 text-right">Reports</div>
+                              <div class="col-sm-6 col-md-2 text-right">Status</div>
                           </div>
 
                         </div>
@@ -34,13 +34,15 @@
                   $www_dir = "/home/vagrant/code";
                   $files = array_slice(scandir($www_dir), 2);
                   foreach($files as $key=>$file): ?>
-                    <li class="list-group-item">
+                    <?php if(is_file("/home/vagrant/utilities/dashboard/data/stylestats_".$file.".json")){ $report = true; } else { $report = false; } ?>
+                    <li class="list-group-item site-list-item" <?php if($report){ echo 'data-slug="'.$file.'"'; } ?> data-wpsite="true">
 
                         <div class="container">
                           <div class="row">
-                              <div class="col-sm-4 text-left" style=" "><span class="fa fa-wordpress text-primary" aria-hidden="true"></span> <?php echo $file; ?></div>
-                              <div class="col-sm-6 text-right" style=""><span class="text-success">01/01/01 2018</span></div>
-                              <div class="col-sm-2 text-right" style=""><span class="fa fa-check-circle text-success" aria-hidden="true"></span></div>
+                              <div class="col-sm-6 col-md-4 text-left" style=" "><span class="fa fa-wordpress text-primary" aria-hidden="true"></span><?php echo $file; ?></div>
+                              <div class="col-sm-6 col-md-4 text-right" style=""><span class="text-info">01/01/01 2018</span></div>
+                              <div class="col-sm-6 col-md-2 text-right" style=""><?php if($report){ echo '<span class="fa fa-file text-primary"></span>'; } ?></div>
+                              <div class="col-sm-6 col-md-2 text-right" style=""><span class="fa fa-check-circle text-success" aria-hidden="true"></span></div>
                           </div>
                         </div>
 
@@ -48,11 +50,34 @@
                 <?php endforeach; ?>
                 </ul>
               </div>
-
           </div>
       </div>
   </div>
-  <div class="col-md-6 col-sm-6">
+  <div class="col-sm-12 col-md-6">
+      <div class="card">
+          <div class="header">
+              <h4 class="title">Todo List</h4>
+              <p class="category">--- todo ---</p>
+          </div>
+          <div class="content">
+
+
+              <div class="footer">
+                  <hr>
+                  <div class="stats" style="width:100%;">
+                       <a href="#"><i class="fa fa-plus"></i> New List</a><a href="#" class="text-right" style="float:right;"><i class="fa fa-times"></i> Clear All</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
+<div class="row">
+
+  <div class="col-sm-12 col-md-6">
       <div class="card">
           <div class="header">
               <h4 class="title">Server Details</h4>
@@ -89,25 +114,5 @@
           </div>
       </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-6 col-md-6">
-      <div class="card">
-          <div class="header">
-              <h4 class="title">Todo List</h4>
-              <p class="category">--- todo ---</p>
-          </div>
-          <div class="content">
-
-
-              <div class="footer">
-                  <hr>
-                  <div class="stats" style="width:100%;">
-                       <a href="#"><i class="fa fa-plus"></i> New List</a><a href="#" class="text-right" style="float:right;"><i class="fa fa-times"></i> Clear All</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
 </div>

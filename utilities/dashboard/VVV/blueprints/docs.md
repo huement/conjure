@@ -1,3 +1,0 @@
-**Blueprints Documentation**
-
-Coming soon

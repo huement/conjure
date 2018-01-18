@@ -1,4 +1,4 @@
-/*! PressCraft-Dashboard - v1.0.0 - 2018-01-16
+/*! PressCraft-Dashboard - v1.0.0 - 2018-01-17
 * https://bitbucket.org/derekscott_mm/PressCraft-Dashboard
 * Copyright (c) 2018 Derek Scott; Licensed MIT */
 var failCount = 0;
@@ -37,6 +37,24 @@ function cpuCalc(arr){
   $("#cpu_target").html(total+'<small style="color:#FEFEFE">%</span>');
 }
 
+function stylestatus(site_slug){
+
+  var statURL = "data/stylestats_"+site_slug+".json";
+
+  $.ajax({
+    dataType:"json",
+    url: statURL,
+    success: function(data){
+      console.log(data);
+
+    },
+    error: function (data){
+      console.log("Need StyleStats for that Slug!");
+    }
+  });
+
+}
+
 // Docs at http://simpleweatherjs.com
 $(document).ready(function() {
   var tempColor, tempClass = '';
@@ -63,7 +81,7 @@ $(document).ready(function() {
       $("#weather_icon_wrapper").addClass(tempClass);
       $("#weather_icon").addClass("icon-"+weather.code).addClass(tempClass);
       $("#weather_city").text(weather.city+', '+weather.region);
-      $("#weather_color").attr("fill",tempColor);
+      $("#weather_color").css("backgroundColor",tempColor);
       $("#weather_temp").html(weather.temp+'<sup><small style="color:#FEFEFE">°F</small></sup>');
       $("#weather_cond").text(weather.currently);
       //$("#weather").html(html);
@@ -89,4 +107,12 @@ $(document).ready(function() {
   }
 
   setTimeout("grabStats()",500);
+
+  if( $(".site-list-item").length > 0 ){
+    $.each($(".site-list-item"), function(index){
+        var the_slug = $(this).data("slug");
+        stylestatus(the_slug);
+    });
+  }
+
 });

@@ -100,6 +100,8 @@ apt_package_check_list=(
 	# Mailcatcher requirement
 	libsqlite3-dev
 
+  # deployment tools
+  sshpass
 )
 
 ### FUNCTIONS

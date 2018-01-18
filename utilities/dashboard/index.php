@@ -1,3 +1,14 @@
+<?php
+
+/**
+ *  Conjure Dashboard
+ *  -- -- -- -- -- --
+ */
+
+ // Suppress DateTime warnings
+ date_default_timezone_set( @date_default_timezone_get() );
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -60,7 +71,15 @@
 
                   $defaultPage   = "./pages/dashboard.php";
 
-                  $pages         = array("unit_test","wp_plugs","docs","wp_design","web_performance");
+                  $files1        = scandir("./pages");
+                  $pages         = array();
+
+                  foreach($files1 as $k=>$f){
+                    if($f !== ".DS_Store" && $f !== "." && $f !== ".." && $f !== "dashboard" && $f !== "dashboard_general" && $f !== "dashboard_circlestats"){
+                      $pages[] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $f);
+                    }
+                  }
+
                   $result        = false;
                   $result_back   = false;
                   $page_active   = "dashboard";
@@ -68,7 +87,7 @@
                   if(isset($url["fragment"])) {
                     $result      = contains($url["fragment"], $pages);
                   } else if(isset($url["query"])){
-                    $result_back = contains($url["query"], $pages);
+                    $result = contains($url["query"], $pages);
                   }
 
                   if($result)
@@ -80,25 +99,14 @@
                       $page_active = $result;
                     }
 
-                  } else if($result_back) {
-
-                    $pageString = "./pages/".$result_back.".php";
-
-                    if (file_exists($pageString)) {
-                      include $pageString;
-                      $page_active = $result_back;
-                    }
-
-                  }
-
-                  if($page_active == "dashboard") {
+                  } else if($page_active == "dashboard") {
                     // Load Default Page
                     include $defaultPage;
                   }
 
                   $jsPage = "./pages/scripts/".$page_active.".php";
 
-                  echo "<div id='act_nav' style='display:none'>".$page_active."</div>'";
+                  echo "<div id='act_nav' style='display:none'>".$page_active."</div>";
                 ?>
             </div>
         </div>
@@ -156,20 +164,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-
-    	//demo.initChartist();
-
-    	// $.notify({
-      //   	icon: 'ti-gift',
-      //   	message: "Welcome to <b>PressCraft Dashboard</b> - a beautiful Bootstrap freebie for your next project."
-      //
-      //   },{
-      //       type: 'success',
-      //       timer: 4000
-      //   });
       var activeNav = $("#act_nav").text();
       activeNav += "-nav";
-      $("#"+activeNav).addClass("active");
+
+      $("#"+activeNav).addClass("active").parent("li").addClass("active");
 
       $("#dynpagename").html("<span class='red'>D</span>ash<span>B</span>oard");
 	});

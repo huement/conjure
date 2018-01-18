@@ -12,7 +12,7 @@ local:
     host: "{{ db_host }}"
     charset: "{{ db_charset }}"
 
-  # Using a modern wp stack? optionally set path(s): 
+  # Using a modern wp stack? optionally set path(s):
   # Customize wordpress internal paths (Bedrock, etc)
   #   wp_content: "wp-content"
   #   uploads: "wp-content/uploads"
@@ -35,7 +35,7 @@ staging:
     host: "{{ db_host }}"
     charset: "{{ db_charset }}"
     mysqldump_options: "--max_allowed_packet=50MB" # Only available if using SSH
-    
+
   exclude:
     - ".git/"
     - ".gitignore"
@@ -53,10 +53,17 @@ staging:
     user: "{{ ssh_user }}"
     port: {{ ssh_port }}
     rsync_options: --verbose
-   
+
+# ftp:
+#   user: "user"
+#   password: "password"
+#   host: "{{ ssh_url }}"
+#   passive: true
+#   scheme: "ftp" # default "ftps"
+
 #
 # PRODUCTION [REMOTE SERVER]
-# 
+#
 production:
   vhost: "{{ prod_url }}"
   wordpress_path: "{{ prod_path}}" # use an absolute path here

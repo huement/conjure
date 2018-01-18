@@ -1,9 +1,11 @@
 <?php
   /**
-   * @brief    Dashboard Main Page
-   * @details  Stats and general summary.
+   * @brief    Wordpress Plugin Information
+   * @details  Contains all the info and links for important plugins.
    */
 ?>
+<div class="push" style="height:15px"></div>
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">

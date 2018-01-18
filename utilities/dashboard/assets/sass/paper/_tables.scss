@@ -2,6 +2,8 @@
     thead,
     tbody,
     tfoot{
+        color: $black-color;
+        background-color: $pale-bg;
         tr > th,
         tr > td{
             border-top: 1px solid $table-line-color;
@@ -59,6 +61,32 @@
         position: relative;
     }
 }
+
+.table-drop-top.table-bordered {
+  margin-top:80px;
+  margin-bottom: 10px;
+  border-top: 2px solid #FFF;
+}
+
+.table-drop-top.table-bordered:first-of-type {
+  margin-top: 0px;
+}
+
+.table-spaced {
+  height:75px;
+  display: block;
+  position: relative;
+  width:100%;
+}
+
+.table caption {
+  background-color: $light-gray;
+  color:$darker-gray;
+  padding: 15px 30px 15px 10px;
+  text-transform:uppercase;
+  text-align:right;
+}
+
 .table-striped{
     tbody > tr:nth-of-type(2n+1) {
         background-color: #fff;
@@ -74,4 +102,9 @@
     > tfoot > tr > td{
         padding: 15px 8px;
     }
+}
+
+.table thead.table-dark {
+  background-color: $black;
+  color: $white-color;
 }

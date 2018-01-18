@@ -46,3 +46,9 @@ _taskrunner/
 _taskrunner/config/Iconr
 Iconr
 /**/*/Iconr
+
+/utilities/*bower_components/**/*
+utilities/**/*/bower_components
+*bower_components
+/**/*/bower_components
+utilities/dashboard/widgets/pa11y-dashboard/test
