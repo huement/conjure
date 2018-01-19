@@ -29,7 +29,7 @@ block="server {
     location = /robots.txt  { access_log off; log_not_found off; }
 
     access_log off;
-    error_log  /var/log/nginx/$1-error.log error;
+    error_log  /home/vagrant/log/nginx-stat-$1-error.log error;
 
     sendfile off;
 

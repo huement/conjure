@@ -25,7 +25,7 @@ apt-get autoremove -y
 apt-get autoclean
 
 rm -rf /var/lib/mysql
-rm -rf /var/log/mysql
+rm -rf /home/vagrant/log/mysql*
 rm -rf /etc/mysql
 
 # Add Maria PPA

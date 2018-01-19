@@ -102,6 +102,8 @@ apt_package_check_list=(
 
   # deployment tools
   sshpass
+
+  ftp
 )
 
 ### FUNCTIONS
@@ -204,7 +206,7 @@ package_install() {
 
 		# Install required packages
 		echo "Installing apt-get packages..."
-		apt-get -y --force-yes install ${apt_package_install_list[@]}
+		apt-get -y install ${apt_package_install_list[@]}
 
 	fi
 }
@@ -215,19 +217,19 @@ tools_install() {
 	#sh /home/vagrant/bin/xdebug_off
 
 	# nvm
-	if [[ ! -d "/srv/config/nvm" ]]; then
+	if [[ ! -d "/home/vagrant/config/nvm" ]]; then
 		echo -e "\nDownloading nvm, see https://github.com/creationix/nvm"
-		git clone "https://github.com/creationix/nvm.git" "/srv/config/nvm"
-		cd /srv/config/nvm
+		git clone "https://github.com/creationix/nvm.git" "/home/vagrant/config/nvm"
+		cd /home/vagrant/config/nvm
 		git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
 	else
 		echo -e "\nUpdating nvm..."
-		cd /srv/config/nvm
+		cd /home/vagrant/config/nvm
 		git fetch origin
 		git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin` -q
 	fi
 	# Activate nvm
-	source /srv/config/nvm/nvm.sh
+	source /home/vagrant/config/nvm/nvm.sh
 
 	# npm
 	#
@@ -323,7 +325,7 @@ mysql_setup() {
 		#
 		# Create the databases (unique to system) that will be imported with
 		# the mysqldump files located in database/backups/
-		if [[ -f "/srv/database/init-custom.sql" ]]; then
+		if [[ -f "/home/vagrant/database/init-custom.sql" ]]; then
 			mysql -u "homestead" -p "secret" < "/srv/database/init-custom.sql"
 			echo -e "\nInitial custom MySQL scripting..."
 		else
@@ -337,7 +339,7 @@ mysql_setup() {
 
 		# Process each mysqldump SQL file in database/backups to import
 		# an initial data set for MySQL.
-		"/srv/database/import-sql.sh"
+		"/home/vagrant/database/import-sql.sh"
 	else
 		echo -e "\nMySQL is not installed. No databases imported."
 	fi
@@ -395,7 +397,7 @@ services_restart
 end_seconds="$(date +%s)"
 echo " "
 echo "---------------------------------------------------------------------------------"
-echo "|| STAGE 3 | Completed in "$(( end_seconds - start_seconds ))" seconds.        ||"
-echo "|| Moving onto the final stage 4/4 provisioning.....                           ||"
+echo "   STAGE 3 / 4 "
+echo "   Completed in $(( end_seconds - start_seconds )) seconds "
 echo "---------------------------------------------------------------------------------"
 echo " "

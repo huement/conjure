@@ -16,7 +16,7 @@ block="server {
     }
 
     access_log off;
-    error_log  /var/log/nginx/$1-error.log error;
+    error_log  /home/vagrant/log/nginx-proxy-$1-error.log error;
 
     ssl_certificate     /etc/nginx/ssl/$1.crt;
     ssl_certificate_key /etc/nginx/ssl/$1.key;

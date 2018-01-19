@@ -62,6 +62,7 @@ module.exports = function(grunt) {
   // grunt.registerTask('test', ['clean', 'md2html', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['md2html']);
+  grunt.registerTask('default', ['asciify:banner']);
+  grunt.registerTask('docs', ['md2html']);
 
 };

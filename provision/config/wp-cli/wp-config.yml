@@ -1,7 +1,7 @@
 core config:
   dbuser: homestead
   dbpass: secret
-  dbhost: localhost
+  dbhost: 127.0.0.1
   extra-php: |
         define( 'WP_DEBUG', true );
         define( 'WP_POST_REVISIONS', 1 );

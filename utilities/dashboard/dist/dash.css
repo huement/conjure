@@ -227,7 +227,7 @@ hr {
     max-height: none;
     min-height: 100%;
     overflow: hidden;
-    width: 260px;
+    width: 200px;
     z-index: 4;
     box-shadow: inset -1px 0px 0px 0px #000; }
   .sidebar .sidebar-background {
@@ -243,7 +243,7 @@ hr {
 
 .sidebar,
 .off-canvas-sidebar {
-  width: 260px;
+  width: 200px;
   display: block;
   font-weight: 200; }
   .sidebar .logo,
@@ -299,12 +299,11 @@ hr {
       text-transform: uppercase; }
     .sidebar .nav i,
     .off-canvas-sidebar .nav i {
-      font-size: 24px;
+      font-size: 18px;
       float: left;
-      margin-right: 15px;
-      margin-left: 20px;
-      line-height: 30px;
-      width: 30px;
+      margin: 8px 20px 0 10px;
+      line-height: 15px;
+      width: 15px;
       text-align: center; }
   .sidebar:after, .sidebar:before,
   .off-canvas-sidebar:after,
@@ -389,7 +388,7 @@ hr {
   position: relative;
   z-index: 2;
   float: right;
-  width: calc(100% - 260px);
+  width: calc(100% - 200px);
   min-height: 100%; }
   .main-panel > .content {
     padding: 15px 15px;

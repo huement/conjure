@@ -13,9 +13,9 @@ echo "--------------------------------------------------------------------------
 echo ""
 
 #sh /home/vagrant/bin/xdebug_on
-sudo a2enmod proxy_fcgi setenvif
-sudo a2enconf php7.0-fpm
-sudo a2enconf php7.1-fpm
+# sudo a2enmod proxy_fcgi setenvif
+# sudo a2enconf php7.0-fpm
+# sudo a2enconf php7.1-fpm
 sudo phpenmod mcrypt
 sudo service nginx restart
 
@@ -126,26 +126,38 @@ sudo apt-get autoremove -y
 # Clean up apt caches
 sudo apt-get clean -y
 
+function program_is_installed {
+	# set to 1 initially
+	local return_=1
+	# set to 0 if not found
+	type $1 >/dev/null 2>&1 || { local return_=0; }
+	# return value
+	echo "$return_"
+}
+
+
 echo " "
 echo " ------ [ WP CLI ] ------ "
-wp_cli() {
+function wp_cli {
 	# WP-CLI Install
 	local exists_wpcli
 
 	# Remove old wp-cli symlink, if it exists.
-	if [[ -L "/usr/local/bin/wp" ]]; then
-		echo "\nRemoving old wp-cli"
-		rm -f /usr/local/bin/wp
-	fi
+	# if [ -L "/usr/local/bin/wp" ]; then
+	# 	echo "\nRemoving old wp-cli"
+	# 	rm -f /usr/local/bin/wp
+	# fi
+	#
+	TESTWVAR="$(program_is_installed wp)"
 
-	exists_wpcli="$(which wp)"
-	if [[ "/usr/local/bin/wp" != "${exists_wpcli}" ]]; then
+	if [ $TESTWVAR == 0]; then
 		echo -e "\nDownloading wp-cli, see http://wp-cli.org"
 		curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar
 		chmod +x wp-cli-nightly.phar
 		sudo mv wp-cli-nightly.phar /usr/local/bin/wp
 
 		# Install bash completions
+		sudo cp -R /home/vagrant/config/wp-cli /home/vagrant/.wp-cli
 		#curl -s https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash -o /home/vagrant/.wp-cli/wp-completion.bash
     sudo cp /home/vagrant/config/wp-cli/wp-completion.bash /home/vagrant/.wp-cli/wp-completion.bash
 
@@ -156,39 +168,29 @@ wp_cli() {
 		cd /home/vagrant/.wp-cli/packages
 		composer install
 	fi
-
-  # update template
-  sudo cp /home/vagrant/config/wp-cli/Movefile.mustache /home/vagrant/.wp-cli
-  sudo cp /home/vagrant/config/wp-cli/ssh_sync.sh /home/vagrant/.wp-cli
-  sudo cp /home/vagrant/config/wp-cli/config.yml /home/vagrant/.wp-cli
 }
+
 wp_cli
 
 # echo "------ [ GruntJS ] ------"
 # # sudo chown -R vagrant:vagrant /usr/lib/node_modules/
 # # echo "@TODO GRUNT-SASS INSTALLER...."
-function program_is_installed {
-	# set to 1 initially
-	local return_=1
-	# set to 0 if not found
-	type $1 >/dev/null 2>&1 || { local return_=0; }
-	# return value
-	echo "$return_"
-}
 
-$TESTVAR="$(program_is_installed grunt)"
+TESTVAR="$(program_is_installed grunt)"
 if [ "$TESTVAR" == 1 ]; then
 	echo "Updating Grunt CLI"
 	npm update grunt-cli
 else
 	echo "Installing Grunt CLI"
-	npm i -G grunt-cli
+	sudo npm i -g grunt-cli
 fi
 
 end_seconds="$(date +%s)"
 echo " "
 echo "---------------------------------------------------------------------------------"
-echo "|| STAGE 4 | Completed in "$(( end_seconds - start_seconds ))" seconds.        ||"
-echo "|| Provisioning has finished. Ready to Develop!                                ||"
+echo "   STAGE 4 / 4 "
+echo "   Completed in $(( end_seconds - start_seconds )) seconds "
+echo " "
+echo "   SUCCESS! PROVISIONING HAS FINSIHED!"
 echo "---------------------------------------------------------------------------------"
 echo " "

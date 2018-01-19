@@ -16,7 +16,7 @@
         max-height: none;
         min-height: 100%;
         overflow: hidden;
-        width: 260px;
+        width: 200px;
         z-index: 4;
         box-shadow: inset -1px 0px 0px 0px #000;
     }
@@ -35,7 +35,7 @@
 }
 .sidebar,
 .off-canvas-sidebar{
-    width: 260px;
+    width: 200px;
     display: block;
     font-weight: 200;
 
@@ -101,12 +101,11 @@
         }
 
         i{
-            font-size: 24px;
+            font-size: 18px;
             float: left;
-            margin-right: 15px;
-            margin-left: 20px;
-            line-height: 30px;
-            width: 30px;
+            margin:8px 20px 0 10px;
+            line-height: 15px;
+            width: 15px;
             text-align: center;
         }
     }

@@ -68,29 +68,40 @@
     </div>
     <ul class="navbar-nav ml-auto">
 
-      <li class="nav-item dropdown">
-        <a class="nav-link btn btn-dark dropdown-toggle" href="#WP_Stacks" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus"></i> <i class="fa fa-wordpress fa-lg fa-fw"></i>&nbsp;</a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-wide" aria-labelledby="dropdown01">
-          <h6 class="dropdown-header">Wordpress Stacks</h6>
-          <a href="#" class="dropdown-item">Standard  <span style="text-align:right;float:right"><i class="fa fa-motorcycle"></i></span></a>
-          <a href="#" class="dropdown-item">Wordplate <span style="text-align:right;float:right"><i class="fa fa-car"></i></span></a>
-          <a href="#" class="dropdown-item">Bedrock   <span style="text-align:right;float:right"><i class="fa fa-fighter-jet"></i></span></a>
-          <a href="#" class="dropdown-item">Webpress  <span style="text-align:right;float:right"><i class="fa fa-rocket"></i></span></a>
-          <a href="#" class="dropdown-item">WP Cubi   <span style="text-align:right;float:right"><i class="fa fa-question-circle"></i></span></a>
-        </div>
+      <li class="nav-item">
+          <a class="nav-link" name="phpMyAdmin" href="/database-admin/">
+          phpMyAdmin <i class="fa fa-external-link-square"></i>
+          </a>
       </li>
-
-      <li class="nav-item">&nbsp;&nbsp;&nbsp;</li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link btn btn-dark dropdown-toggle" href="#WP_Stacks" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus"></i> <i class="fa fa-globe fa-lg fa-fw"></i>&nbsp;</a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-wide" aria-labelledby="dropdown01">
-          <h6 class="dropdown-header">Web Frameworks</h6>
-          <a href="#" class="dropdown-item">Laravel <span style="text-align:right;float:right">[PHP]</span></a>
-          <a href="#" class="dropdown-item">Lumen <span style="text-align:right;float:right">[PHP]</span></a>
-          <a href="#" class="dropdown-item">React <span style="text-align:right;float:right">&nbsp;[JS]</span></a>
-          <a href="#" class="dropdown-item">Bootstrap 4 <span style="text-align:right;float:right">&nbsp;[JS]</span></a>
-        </div>
+      <li class="nav-item">
+          <a class="nav-link" name="phpMemcachedAdmin" href="/memcached-admin/">
+          phpMemcachedAdmin <i class="fa fa-cubes"></i>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" name="Opcache Status" href="/opcache-status/opcache.php">
+          Opcache Status <i class="fa fa-pie-chart"></i>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" name="Webgrind" href="/webgrind/">
+          Webgrind <i class="fa fa-cog"></i>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" name="PHP Info" href="/phpinfo/">
+          PHP <i class="fa fa-info-circle"></i>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" name="Mailcatcher" href="http://vvv.dev:1080/">
+          Mailcatcher <i class="fa fa-external-link-square"></i>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" name="Help" href="javascript:void(0);" onclick="javascript:introJs().start();">
+          Help <i class="fa fa-question-circle"></i>
+          </a>
       </li>
 
       <li class="nav-item">&nbsp;&nbsp;&nbsp;</li>

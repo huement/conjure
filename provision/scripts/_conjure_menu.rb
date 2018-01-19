@@ -25,20 +25,20 @@ if @show_logo then
 #{@BLU}    /#{@DGY} o(-- #{@YLW},#{@DGY}- --)o                                 #{@GRN}ver #{@verCONJURE}
 #{@BLU} _.'_v,#{@DGY} \\#{@RED} .  #{@RED}, #{@DGY}/
 #{@GRY}------#{@BRN}_#{@YLW}//#{@RED}^^--^#{@YLW}\\\\#{@BRN}__#{@GRY} -------------------------------------------
-#{@CYN}    REPO: #{@CLR}#{@branch}                 #{@CYN}DASH: #{@CLR}https://#{@configuredHost}
-#{@CYN}     IP : #{@CLR}#{@configuredIP}           #{@CYN}NAME: #{@CLR}#{@configuredName}
+#{@CYN}    REPO: #{@CLR}#{@branch}                 #{@CYN}DASH: #{@CLR}https://magic.app
+#{@CYN}     IP : #{@CLR}#{@configuredIP}           #{@CYN}IDEN: #{@CLR}#{@configuredName}
 #{@GRY}--------------------------------------------------------------
   HEREDOC
   puts splash
 end
 
 ## EXAMPLE WAY TO OUTPUT LONG STING
-@msg = <<MSG
-#{@BLU}------------------------------------------------------
-#{@GRN} WP_Conjure                             192.168.23.13
-
-   #{@CYN}URLS:
-     - magic.app   - magic.app   - magic.app/docs
-     - magic.app   - magic.app   - magic.app/target
-#{@BLU}------------------------------------------------------#{@CLR}
-MSG
+# @msg = <<MSG
+# #{@BLU}------------------------------------------------------
+# #{@GRN} WP_Conjure                             192.168.23.13
+#
+#    #{@CYN}URLS:
+#      - magic.app   - magic.app   - magic.app/docs
+#      - magic.app   - magic.app   - magic.app/target
+# #{@BLU}------------------------------------------------------#{@CLR}
+# MSG

@@ -3,7 +3,7 @@
 # SFTP_SYNC.sh [ v0.0.1 ]
 #
 # This script is perfect for managing Wordpress installs when you dont have WP_CLI or SSH access.
-# IE: WP Engine or other shared hosts. 
+# IE: WP Engine or other shared hosts.
 # Unlike most options this will allow for a 2 way pipe, not limiting you to just deployment from local to stage/prod.
 #
 
@@ -20,7 +20,7 @@ libraryScript="../../CLI/conjure/library.sh"
 
 args=()
 
-if [[ ! -f "${libraryScript}" ]]; then
+if [ ! -f "${libraryScript}" ]; then
   echo ""
   echo "conjure_library.sh not found. Cannot start."
   echo ""
@@ -66,13 +66,13 @@ function buildCMD {
   PORT=2222
   EXCLUDE_FILE="exclude.txt"
   LPATH="/Users/derekscott/Code/10th_stage"
-  
+
   SURL="tenthmagnitude.sftp.wpengine.com"
   USER="tenthmagnitude-dscott"
   PASS="BL\$CKparad3"
-  
+
   FTPURL="${USER}:${PASS}@${SURL}:${LPATH}"
-  
+
   echo "sftpclone -l WARNING -o -d -t -p $PORT -e $EXCLUDE_FILE -o -local-path $LPATH -sftp-url $FTPURL"
 }
 
@@ -129,7 +129,7 @@ function saveSite {
   askSiteURL
   echo "REMOTE WP-CONTENT PATH: (ie /public/wp/wp-content) "
   askSitePATH
-  
+
   echo $SITEUSER > "./saved_sites/${SITESLUG}.txt"
   echo $SITEPW >> "./saved_sites/${SITESLUG}.txt"
   echo $SITEURL >> "./saved_sites/${SITESLUG}.txt"
@@ -151,7 +151,7 @@ function askSiteSlug {
 function promptSite {
   echo "What site should we sync with?"
   askSiteSlug
-  
+
   if is_not_dir "./saved_sites/${SITESLUG}.txt"; then
     echo "Adding new site to saved sync list"
     saveSite

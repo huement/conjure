@@ -50,7 +50,8 @@ class SysInfo {
 	public function init_all_tests() {
 		$this->get_header();
 
-    $this->test_form_mail();
+    //$this->test_form_mail();
+    $this->action_block();
 
 		$this->test_versions();
 		$this->test_php_config();
@@ -522,10 +523,74 @@ class SysInfo {
 		return true;
 	}
 
-	public function test_form_mail() {
-		$this->html_table_open( 'Email Configuration', '', '', '' );
-		$this->html_form_email();
-		$this->html_table_close();
+	public function action_block() {
+		echo "<div class='container-fluid'>
+      <div class='row'>
+        ";
+        echo "
+        <div class='col-sm-12 col-md-7'>
+          ";
+          echo '<div class="card">
+              <div class="card-header primary-color white-text">
+                  <p class="category pull-right">/home/vagrant/logs</p>
+                  <h4 class="title">Email Tester</h4>
+              </div>
+              <div class="content">
+
+
+                  <div class="footer">
+                      <div class="chart-legend">
+
+                      </div>
+                      <hr>
+                      <div class="stats">
+                          <i class="ti-timer"></i> XDEBUG is [DEPRICATED]
+                      </div>
+                  </div>
+              </div>
+          </div>';
+
+
+    $this->html_table_open( 'Email Configuration', '', '', '' );
+    $this->html_form_email();
+    $this->html_table_close();
+
+    $g = "";
+    echo "</div>";
+
+    echo '<div class="col-sm-12 col-md-5">
+        <div class="card">
+            <div class="card-header primary-color white-text">
+                <p class="category pull-right">/home/vagrant/logs</p>
+                <h4 class="title">Server Details</h4>
+            </div>
+            <div class="content">
+                <p>
+                  <small>Note: To profile, <code>xdebug_on</code> must be set.</small>
+                </p>
+                <div>';
+
+                  $xdebug = ( extension_loaded("xdebug") ? true : false );
+                  if ( $xdebug ) {
+                    echo '  <span class="text-success">xDebug is currently <span class="badge badge-success">on</span></span> ';
+                  } else {
+                    echo ' <span class="text-danger">xDebug is currently <span class="badge badge-danger">off</span></span> ';
+                  }
+
+    echo '</div>
+
+                <div class="footer">
+                    <hr>
+                    <div class="stats">
+                    Send a test email to check that server is doing its job
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>';
+
+    echo "</div></div>";
 	}
 
 	/**

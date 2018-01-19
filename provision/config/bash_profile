@@ -5,6 +5,11 @@
 # turn loads the .bash_aliases file that we provide. Use this
 # bash_profile to set environment variables and such.
 
+if [[ -d "/home/vagrant/log" ]]; then
+  export APACHE_LOG_DIR="/home/vagrant/log";
+fi
+
+
 # if running bash
 # include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then
@@ -48,8 +53,9 @@ export WP_CORE_DIR=/home/vagrant/code/wordpress-default/public_html/src/
 eval "$(grunt --completion=bash)"
 
 # add autocomplete for wp-cli
-. /home/vagrant/.wp-cli/wp-completion.bash
-
+if [ -f "/home/vagrant/.wp-cli/wp-completion.bash" ]; then
+  . /home/vagrant/.wp-cli/wp-completion.bash
+fi
 # PHPCS path
 export PATH="/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:$HOME/.composer/vendor/bin:$HOME/scripts:/home/vagrant/bin:$CSPATH:$PATH"
 

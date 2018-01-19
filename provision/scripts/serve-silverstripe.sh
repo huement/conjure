@@ -33,7 +33,7 @@ block="server {
     error_page 500 /assets/error-500.html;
 
     access_log off;
-    error_log  /var/log/nginx/$1-error.log error;
+    error_log  /home/vagrant/log/nginx-silver-$1-error.log error;
 
     location ^~ /assets/ {
         location ~ /\. {

@@ -18,7 +18,7 @@ block="server {
     root $2;
     index index.php index.html index.htm;
 
-    error_log /var/log/nginx/$1-error.log error;
+    error_log /home/vagrant/log/nginx-$1-error.log error;
     access_log off;
 
     gzip on;

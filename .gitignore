@@ -15,12 +15,9 @@ log/*.log
 .conjure.json
 .env
 
+Homestead.yaml
 
 provision/config/wp-cli/packages/cache/*
-
-#
-# Homestead.yaml
-
 
 # MacOS Garbage Files
 Icon
@@ -29,9 +26,9 @@ Icon
 /**/*/Icon
 
 # Database Backups
-database/backups/*.sql
+database/backups/*.sql*
 database/backups/*.zip
-database/data/*.sql
+database/data/*.sql*
 database/data/*.zip
 
 # Active Websites

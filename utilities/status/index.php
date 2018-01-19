@@ -4,7 +4,7 @@ Version 1.3
 Copyright 2012-2016 - Amaury Balmer (amaury@beapi.fr)
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
+it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -92,7 +92,7 @@ class PHP_WP_Info {
 		$this->test_form_mail();
 
 		$this->get_footer();
-	}	
+	}
 
 	/**
 	 * Main test, check if php/mysql/git are installed and right version for WP
@@ -172,7 +172,7 @@ class PHP_WP_Info {
 
 		$this->html_table_row('Real remote IP via AJAX call', '', '', '... js loading ...', 'warning realip');
 	}
-		
+
 	public function test_php_extensions() {
 		$this->html_table_open( 'PHP Extensions', '', 'Required', 'Recommended','Current' );
 
@@ -218,7 +218,7 @@ class PHP_WP_Info {
 		} else {
 			$this->html_table_row( 'CURL', 'Yes*', 'Yes', 'Installed', 'success' );
 		}
-		
+
 		if ( is_callable( 'opcache_reset' ) ) {
 			$this->html_table_row( 'Opcode (Zend OPcache, APC, Xcache, eAccelerator or Zend Optimizer)', 'No', 'Yes', 'Zend OPcache Installed', 'success' );
 		} elseif ( is_callable( 'eaccelerator_put' ) ) {
@@ -238,7 +238,7 @@ class PHP_WP_Info {
 		} else {
 			$this->html_table_row( 'Memcache', 'No', 'Yes', 'Installed', 'success' );
 		}
-		
+
 		if ( ! class_exists( 'Memcached' ) ) {
 			$this->html_table_row( 'Memcached', 'No', 'Yes', 'Not installed', 'info' );
 		} else {
@@ -358,7 +358,7 @@ class PHP_WP_Info {
 			$status = (intval( $value ) >= $this->return_bytes('256M')) ? 'success' : 'warning';
 			$this->html_table_row( 'memory_limit', '64 MB', '256 MB', $this->_format_bytes($value), $status );
 		}
-		
+
 		$value = ini_get( 'max_input_vars' );
 		if ( intval( $value ) < 1000 ) {
 			$this->html_table_row( 'max_input_vars', '1000', '5000', $value, 'error' );
@@ -460,7 +460,7 @@ class PHP_WP_Info {
 	/**
 	 * Convert PHP variable (G/M/K) to bytes
 	 * Source: http://php.net/manual/fr/function.ini-get.php
-	 * 
+	 *
 	 */
 	public function return_bytes($val) {
 	    $val = trim($val);
@@ -796,7 +796,7 @@ class PHP_WP_Info {
 		$output .= '<form id="form-email" class="form-inline" method="post" action="#form-email">' . "\n";
 		$output .= '<i class="icon-envelope"></i> <input type="email" class="input-large" name="mail" placeholder="test@sample.com" value="">' . "\n";
 		$output .= '<button name="test-email" type="submit" class="btn">Send mail</button>' . "\n";
-		$output .= '<span class="help-inline">Send a test email to check that server is doing its job</span>' . "\n";
+		$output .= '<span class="help-inline">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>' . "\n";
 		$output .= '</form>' . "\n";
 		$output .= '</td>' . "\n";
 		$output .= '</tr>' . "\n";

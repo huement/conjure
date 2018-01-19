@@ -204,7 +204,7 @@ hr {
     max-height: none;
     min-height: 100%;
     overflow: hidden;
-    width: 260px;
+    width: 200px;
     z-index: 4;
     box-shadow: inset -1px 0px 0px 0px #DDDDDD; }
   .sidebar .sidebar-background {
@@ -220,7 +220,7 @@ hr {
 
 .sidebar,
 .off-canvas-sidebar {
-  width: 260px;
+  width: 200px;
   display: block;
   font-weight: 200; }
   .sidebar .logo,
@@ -376,7 +376,7 @@ hr {
   position: relative;
   z-index: 2;
   float: right;
-  width: calc(100% - 260px);
+  width: calc(100% - 200px);
   min-height: 100%; }
   .main-panel > .content {
     padding: 30px 15px;
@@ -1457,7 +1457,7 @@ textarea.form-control {
   .card .image {
     width: 100%;
     overflow: hidden;
-    height: 260px;
+    height: 200px;
     border-radius: 6px 6px 0 0;
     position: relative;
     -webkit-transform-style: preserve-3d;

@@ -60,6 +60,7 @@ args=()
 
 installScript="${SCRIPT}/_spellbook/CLI/conjure/install.sh"
 libraryScript="${SCRIPT}/_spellbook/CLI/conjure/library.sh"
+wp_newScript="${SCRIPT}/_spellbook/CLI/conjure/library.sh"
 
 if [[ ! -f "${libraryScript}" ]]; then
   echo ""
@@ -69,6 +70,8 @@ if [[ ! -f "${libraryScript}" ]]; then
 fi
 source $libraryScript
 source $installScript
+source $wp_newScript
+
 
 # Core Functions
 # ----------------------------------------------------------------

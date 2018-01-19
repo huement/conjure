@@ -12,7 +12,7 @@ echo ""
 
 # Update all of the package references before installing anything
 echo "Running apt-get update..."
-sudo apt-get -y --force-yes update &>/dev/null
+sudo apt-get -y update &>/dev/null
 
 # VVoyage | https://github.com/aprivette/vvoyage
 # - `vvoyage env:create` - Creates a new Wordmove environment in the site's Movefile.
@@ -112,7 +112,7 @@ fi
 end_seconds="$(date +%s)"
 echo " "
 echo "---------------------------------------------------------------------------------"
-echo "|| STAGE 2 | Completed in "$(( end_seconds - start_seconds ))" seconds.        ||"
-echo "|| Moving onto provisioning stage 3 of 4                                       ||"
+echo "   STAGE 2 / 4 "
+echo "   Completed in $(( end_seconds - start_seconds )) seconds "
 echo "---------------------------------------------------------------------------------"
 echo " "

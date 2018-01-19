@@ -10,11 +10,6 @@ authorize: ~/.ssh/id_rsa.pub
 keys:
     - ~/.ssh/id_rsa
 
-authorize: ~/.ssh/id_rsa.pub
-
-keys:
-    - ~/.ssh/id_rsa
-
 folders:
     - map: ~/Conjure/www/wp_dev
       to: /home/vagrant/code/wp_dev

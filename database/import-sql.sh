@@ -2,7 +2,7 @@
 #
 # Import provided SQL files in to MariaDB/MySQL.
 #
-# The files in the {vvv-dir}/database/backups/ directory should be created by
+# The files in the /home/vagrant/database/backups/ directory should be created by
 # mysqldump or some other export process that generates a full set of SQL commands
 # to create the necessary tables and data required by a database.
 #
@@ -20,7 +20,7 @@
 
 # Move into the newly mapped backups directory, where mysqldump(ed) SQL files are stored
 printf "\nStart MariaDB Database Import\n"
-cd /srv/database/backups/
+cd /home/vagrant/database/backups/
 
 # Parse through each file in the directory and use the file name to
 # import the SQL file into the database of the same name
