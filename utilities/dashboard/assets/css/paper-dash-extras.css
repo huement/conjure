@@ -123,6 +123,22 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333399', endColorstr='#5214B0',GradientType=0 );
 }
 
+.conjure-navbar .nav-item {
+  padding: 0px 10px 0 10px;
+}
+
+.widgetGraph_subtitle {
+  float: left;
+  width: 75%;
+  margin-left: 24px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.shakey-header { margin-top: 25px; }
+
+.action-buttons { margin-left:45%; }
+
 .sidebar-wrapper .nav-pills .nav-link {
 	border-radius: 0;
 	-o-transition: all 0.2s ease-in-out;
@@ -154,6 +170,10 @@
 
 .description {
 	padding: 10px;
+}
+
+.paper-list-heading {
+  border-bottom:none;border-radius:0px;color:#3f3f3f;background:#F1EAE0;
 }
 
 .push {

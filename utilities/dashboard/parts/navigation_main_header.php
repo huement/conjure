@@ -66,18 +66,8 @@
         &nbsp;
       </p>
     </div>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto conjure-navbar">
 
-      <li class="nav-item">
-          <a class="nav-link" name="phpMyAdmin" href="/database-admin/">
-          phpMyAdmin <i class="fa fa-external-link-square"></i>
-          </a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" name="phpMemcachedAdmin" href="/memcached-admin/">
-          phpMemcachedAdmin <i class="fa fa-cubes"></i>
-          </a>
-      </li>
       <li class="nav-item">
           <a class="nav-link" name="Opcache Status" href="/opcache-status/opcache.php">
           Opcache Status <i class="fa fa-pie-chart"></i>
@@ -105,6 +95,26 @@
       </li>
 
       <li class="nav-item">&nbsp;&nbsp;&nbsp;</li>
+
+      <!-- SITE LINKS -->
+      <div class="nav-item dropdown">
+        <button type="button" class="nav-link dropdown-toggle btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-bug fa-lg" title="Report Bug"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-form">
+          <li class="dropdown-item">
+            <a name="phpMyAdmin" href="/database-admin/">
+            phpMyAdmin <i class="fa fa-external-link-square"></i>
+            </a>
+          </li>
+          <li class="dropdown-item">
+              <a name="phpMemcachedAdmin" href="/memcached-admin/">
+              phpMemcachedAdmin <i class="fa fa-cubes"></i>
+              </a>
+          </li>
+        </ul>
+      </ul>
+    </div>
 
       <!-- FEEDBACK MODAL -->
       <div class="nav-item dropdown nav-right-first">
@@ -148,8 +158,6 @@
             </div>
           </li>
         </ul>
-
-    </ul>
-
-  </div>
+      </ul>
+    </div>
 </nav>

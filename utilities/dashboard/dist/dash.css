@@ -796,6 +796,10 @@ hr {
   background-color: #C34B35;
   color: #FFFFFF; }
 
+.alert-secondary {
+  background-color: #F1EAE0;
+  color: #3f3f3f; }
+
 .table thead,
 .table tbody,
 .table tfoot {

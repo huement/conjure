@@ -59,17 +59,17 @@ function statGraph(){
 
   $.fn.peity.defaults.line = {
     delimiter: ",",
-    fill: "#94C859",
-    height: 90,
+    fill: "#025aa5",
+    height: 80,
     max: null,
     min: 0,
-    stroke: "#3f3f3f",
+    stroke: "#31b0d5",
     strokeWidth: 1,
     width: 200
   }
 
 
-  var updatingChart = $(".line").peity("line", { width: 220 })
+  var updatingChart = $(".line").peity("line", { width: 250 })
 
   setInterval(function() {
     var random = Math.round(Math.random() * 10)
