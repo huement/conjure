@@ -150,6 +150,10 @@
 <!-- PressCraft Dashboard Core javascript and methods for Demo purpose -->
 <script src="dist/dash-libs.js"></script>
 
+<!--   Graph JS   -->
+<script src="assets/js/morris.js"></script>
+<script src="assets/js/jquery.peity.js"></script>
+
 <!-- Used for Weather Widget -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>

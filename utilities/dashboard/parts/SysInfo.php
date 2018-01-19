@@ -683,11 +683,11 @@ class SysInfo {
 			}
 		}
 
-		$output .= '<div style="padding:20px;"><form id="form-email" method="post" action="#form-email"><div class="form-group row"><div class="col-7">' . "\n";
+		$output .= '<div style="padding:20px 20px 0 20px;"><form id="form-email" method="post" action="#form-email"><div class="form-group row"><div class="col-7">' . "\n";
 		$output .= '<div class="input-group mb-2"><div class="input-group-prepend"><div class="input-group-addon form-control-lg"><i class="fa fa-envelope"></i></div></div> <input type="email" class="form-control form-control-lg" name="mail" placeholder="test@sample.com" value=""></div></div>' . "\n";
 		$output .= '<div class="col-5"><button name="test-email" type="submit" class="btn btn-primary btn-lg" style="height:50px;">Send mail</button></div>' . "\n";
 		$output .= '</div></form></div>' . "\n";
-    $output .= '<span class="help-inline" style="padding-left:20px;">Send a test email to check that server is doing its job</span>' . "\n";
+    $output .= '<span class="help-inline" style="padding: 0 10px 20px 20px;">Send a test email to check that server is doing its job</span>' . "\n";
 		$output .= '</td>' . "\n";
 		$output .= '</tr>' . "\n";
 

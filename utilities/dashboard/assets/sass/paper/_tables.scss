@@ -66,6 +66,7 @@
   margin-top:80px;
   margin-bottom: 10px;
   border-top: 2px solid #FFF;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
 }
 
 .table-drop-top.table-bordered:first-of-type {
@@ -80,11 +81,12 @@
 }
 
 .table caption {
-  background-color: $light-gray;
+  background-color: $medium-pale-bg;
   color:$darker-gray;
   padding: 15px 30px 15px 10px;
   text-transform:uppercase;
   text-align:right;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
 }
 
 .table-striped{

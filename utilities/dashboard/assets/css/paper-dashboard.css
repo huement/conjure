@@ -9,25 +9,7 @@
  * Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard/blob/master/LICENSE.md)
 
  =========================================================
- */
-
-
-
-/*      light colors - used for select dropdown         */
-.ct-blue {
-  stroke: #7A9E9F !important; }
-
-.ct-azure {
-  stroke: #68B3C8 !important; }
-
-.ct-green {
-  stroke: #7AC29A !important; }
-
-.ct-orange {
-  stroke: #F3BB45 !important; }
-
-.ct-red {
-  stroke: #EB5E28 !important; }
+*/
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td-name, td {
   -moz-osx-font-smoothing: grayscale;

@@ -146,7 +146,8 @@ wp_cli() {
 		sudo mv wp-cli-nightly.phar /usr/local/bin/wp
 
 		# Install bash completions
-		curl -s https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash -o /home/vagrant/.wp-cli/wp-completion.bash
+		#curl -s https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash -o /home/vagrant/.wp-cli/wp-completion.bash
+    sudo cp /home/vagrant/config/wp-cli/wp-completion.bash /home/vagrant/.wp-cli/wp-completion.bash
 
 		#/usr/local/bin/wp package install aaemnnosttv/wp-cli-dotenv-command:1.0.*
 

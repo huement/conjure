@@ -359,10 +359,13 @@ function join_by { local IFS="$1"; shift; echo "$*"; }
 function defaultPlugins {
   STRINGPLUG=""
   mapfile -t wpArray < "/home/vagrant/config/wordpress-config/default_packages.json"
-  # for i in "${wpArray[@]}"
-  # do
-  #    STRINGPLUG=" "
-  # done
+  for i in "${wpArray[@]}"
+  do
+     wp plugin install ${wpArray[$i-1]} --activate
+  done
+# Install/activate plugins
+  # For more plugins, check recommended_plugins.txt file
+  
 }
 
 # Install new Wordpress Site from Stack

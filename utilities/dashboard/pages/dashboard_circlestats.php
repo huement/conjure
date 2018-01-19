@@ -51,8 +51,8 @@
                 <div class="col-sm-12 col-md-5" style="background-color:#94C859">
                   <h2 class="stat-amount" id="hdd_used">...</h2>
                 </div>
-                <div class="col-sm-12 col-md-7">
-                    <div class="numbers">
+                <div class="col-sm-12 col-md-7" style="padding-left:0;padding-right:0;">
+                    <!-- <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
                               <i class="ti-layout-grid2-alt" style="color:#94C859"></i>
@@ -60,7 +60,13 @@
 
                         <p>HDD USAGE</p>
                         <p class="stats"><a href="#">View Files</a></p>
+                    </div> -->
+                    <div class="smallChart" style="margin-top:10px;margin-bottom:-10px;">
+                      <span class="line">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,7,3,5,2</span>
                     </div>
+
+
+
                 </div>
             </div>
         </div>

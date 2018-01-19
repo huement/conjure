@@ -1,155 +1,164 @@
 @font-face {
-  font-family : "weather";
-  font-style  : normal;
-  font-weight : normal;
-  src         : url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot");
-  src         : url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix") format("embedded-opentype"),
-                url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff") format("woff"),
-                url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf") format("truetype"),
-                url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg") format("svg");
+	font-family: "weather";
+	font-style: normal;
+	font-weight: normal;
+	src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot");
+	src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix") format("embedded-opentype"),
+	url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff") format("woff"),
+	url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf") format("truetype"),
+	url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg") format("svg");
 }
 
 .main-panel .row.stat_card {
-  min-height:95px;
-
+	min-height: 95px;
 }
 
-.custom-control.custom-checkbox .icons { display:none }
+#area-chart,
+#line-chart,
+#bar-chart,
+#stacked,
+#pie-chart {
+	min-height: 250px;
+}
+
+.custom-control.custom-checkbox .icons {
+	display: none;
+}
 
 .logo_logo {
-  width:100%;
-  max-width:100px;
-  display:block;
-  position: relative;
-  margin: 5px auto 5px auto;
-  padding:0px;
+	display: block;
+	margin: 5px auto 5px auto;
+	max-width: 100px;
+	padding: 0;
+	position: relative;
+	width: 100%;
 }
 
 #dynpagename {
-  font-size:28px;
-  line-height:28px;
-  margin-top:5px;
-  padding:5px 0px 0 25px;
-  color:#EEEEEE;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+	color: #eee;
+	font-family: "Open Sans", sans-serif;
+	font-size: 28px;
+	font-weight: 300;
+	line-height: 28px;
+	margin-top: 5px;
+	padding: 5px 0 0 25px;
 }
 
 #dynpagename span {
-  color : #FFFFFF;
+	color: #fff;
 }
 
 .rounded-circle {
-  border-radius : 50%;
+	border-radius: 50%;
 }
 
 .circle_stat_rows {
-  margin-bottom : 10px;
+	margin-bottom: 10px;
 }
 
 .circle_stat_rows .col-xs-5 {
-  overflow : hidden;
+	overflow: hidden;
 }
 
 .stat-label {
-  display       : block;
-  position      : relative;
-  width         : 100%;
-  max-width     : 145px;
-  margin        : -28px auto 50px auto;
-  padding       : 4px;
-  color         : #666;
-  border-radius : 2px;
-  background    : #D3D6D5;
-  font-size     : 14px;
+	background: #d3d6d5;
+	border-radius: 2px;
+	color: #666;
+	display: block;
+	font-size: 14px;
+	margin: -28px auto 50px auto;
+	max-width: 145px;
+	padding: 4px;
+	position: relative;
+	width: 100%;
 }
 
 .stat-amount {
-  z-index       : 99;
-  display       : block;
-  position      : relative;
-  margin-bottom : -68px;
-  color         : #FFFFFF;
-  font-size     : 35px;
-  font-weight   : bold;
+	color: #fff;
+	display: block;
+	font-size: 35px;
+	font-weight: bold;
+	margin-bottom: -68px;
+	position: relative;
+	z-index: 99;
 }
 
-.stat-icon {}
-
 .site_title {
-  margin      : 0;
-  padding     : 0;
-  font-size   : 24px;
-  line-height : 1;
+	font-size: 24px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
 }
 
 .jumbotron {
-  background:#FEFEFE;
-  background-color:#FFF;
-  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
-  color: #252422;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+	background: #fefefe;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+	box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+	color: #252422;
 }
 
 .cosmic_fusion {
-  background : -moz-linear-gradient(
-    top,
-    #333399 0%,
-    #333399 56%,
-    #5214B0 100%
-  );
-  background : -webkit-linear-gradient(
-    top,
-    rgb(51,51,153) 0%,
-    rgb(51,51,153) 56%,
-    rgb(82,20,176) 100%
-  );
-  background : linear-gradient(
-    to bottom,
-    rgb(51,51,153) 0%,
-    rgb(51,51,153) 56%,
-    rgb(82,20,176) 100%
-  );
-  background-color : rgb(51,51,153);
-  filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#333399', endColorstr='#5214B0',GradientType=0 );
+	background: -moz-linear-gradient(
+	top,
+	#339 0%,
+	#339 56%,
+	#5214b0 100%
+	);
+	background: -webkit-linear-gradient(
+	top,
+	rgb(51,51,153) 0%,
+	rgb(51,51,153) 56%,
+	rgb(82,20,176) 100%
+	);
+	background: linear-gradient(
+	to bottom,
+	rgb(51,51,153) 0%,
+	rgb(51,51,153) 56%,
+	rgb(82,20,176) 100%
+	);
+	background-color: rgb(51,51,153);
+
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333399', endColorstr='#5214B0',GradientType=0 );
 }
 
 .sidebar-wrapper .nav-pills .nav-link {
-  border-radius: 0px;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+	border-radius: 0;
+	-o-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
+
 .sidebar-wrapper .nav-pills .nav-link:hover {
-  text-indent:-5px;
+	text-indent: -5px;
 }
 
 .sidebar-wrapper .nav-pills .nav-link.active {
-  background-color : #333399;
-  color:#fff!important;
-  opacity: 1;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+	background-color: #5214b0;
+	color: #fff!important;
+	opacity: 1;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 .sidebar-wrapper .nav-pills .nav-link.active:hover {
-  background-color : #5214B0;
-  text-indent:-5px;
+	background-color: #339;
+	text-indent: -5px;
 }
 
 .table-inverse strong {
-  color:#FEFEFE;
+	color: #fefefe;
 }
 
 .description {
-  padding: 10px;
+	padding: 10px;
 }
 
 .push {
-  height:25px;
-  display: block;
-  position: relative;
-  width:100%;
+	display: block;
+	height: 25px;
+	position: relative;
+	width: 100%;
 }

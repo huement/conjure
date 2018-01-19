@@ -1,4 +1,4 @@
-/*! PressCraft-Dashboard - v1.0.0 - 2018-01-17
+/*! PressCraft-Dashboard - v1.0.0 - 2018-01-18
 * https://bitbucket.org/derekscott_mm/PressCraft-Dashboard
 * Copyright (c) 2018 Derek Scott; Licensed MIT */
 var failCount = 0;
@@ -30,9 +30,9 @@ function grabStats(){
 
 function cpuCalc(arr){
   var avgCPU = arr[0] + arr[1] + arr[2];
-  var percentCPU = avgCPU * 100;
+  var percentCPU = (avgCPU/3) * 100;
   console.log(avgCPU);
-  console.log(percentCPU);
+  // console.log(percentCPU);
   var total = parseFloat(percentCPU).toFixed(0);
   $("#cpu_target").html(total+'<small style="color:#FEFEFE">%</span>');
 }
@@ -55,6 +55,35 @@ function stylestatus(site_slug){
 
 }
 
+function statGraph(){
+
+  $.fn.peity.defaults.line = {
+    delimiter: ",",
+    fill: "#94C859",
+    height: 90,
+    max: null,
+    min: 0,
+    stroke: "#3f3f3f",
+    strokeWidth: 1,
+    width: 200
+  }
+
+
+  var updatingChart = $(".line").peity("line", { width: 220 })
+
+  setInterval(function() {
+    var random = Math.round(Math.random() * 10)
+    var values = updatingChart.text().split(",")
+    values.shift()
+    values.push(random)
+
+    updatingChart
+      .text(values.join(","))
+      .change()
+  }, 1000);
+
+}
+
 // Docs at http://simpleweatherjs.com
 $(document).ready(function() {
   var tempColor, tempClass = '';
@@ -74,17 +103,12 @@ $(document).ready(function() {
         tempClass='icon-info'
       }
 
-      //var timestamp = moment(weather.updated);
-
-      //$('body').animate({backgroundColor: tempColor}, 1500);
-
       $("#weather_icon_wrapper").addClass(tempClass);
       $("#weather_icon").addClass("icon-"+weather.code).addClass(tempClass);
       $("#weather_city").text(weather.city+', '+weather.region);
       $("#weather_color").css("backgroundColor",tempColor);
       $("#weather_temp").html(weather.temp+'<sup><small style="color:#FEFEFE">°F</small></sup>');
       $("#weather_cond").text(weather.currently);
-      //$("#weather").html(html);
     },
     error: function(error) {
       $("#weather").html('<p>'+error+'</p>');
@@ -114,5 +138,7 @@ $(document).ready(function() {
         stylestatus(the_slug);
     });
   }
+
+  statGraph();
 
 });
