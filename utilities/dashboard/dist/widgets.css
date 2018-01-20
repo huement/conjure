@@ -1,4 +1,4 @@
-/*! PressCraft-Dashboard - v1.0.0 - 2018-01-19
+/*! PressCraft-Dashboard - v1.0.0 - 2018-01-20
 * https://bitbucket.org/derekscott_mm/PressCraft-Dashboard
 * Copyright (c) 2018 Derek Scott; Licensed MIT */
 @font-face {
@@ -127,20 +127,24 @@
 }
 
 .conjure-navbar .nav-item {
-  padding: 0px 10px 0 10px;
+	padding: 0 10px 0 10px;
 }
 
 .widgetGraph_subtitle {
-  float: left;
-  width: 75%;
-  margin-left: 24px;
-  text-align: left;
-  text-transform: uppercase;
+	float: left;
+	margin-left: 24px;
+	text-align: left;
+	text-transform: uppercase;
+	width: 75%;
 }
 
-.shakey-header { margin-top: 25px; }
+.shakey-header {
+	margin-top: 25px;
+}
 
-.action-buttons { margin-left:45%; }
+.action-buttons {
+	margin-left: 45%;
+}
 
 .sidebar-wrapper .nav-pills .nav-link {
 	border-radius: 0;
@@ -176,7 +180,10 @@
 }
 
 .paper-list-heading {
-  border-bottom:none;border-radius:0px;color:#3f3f3f;background:#F1EAE0;
+	background: #f1eae0;
+	border-bottom: none;
+	border-radius: 0;
+	color: #3f3f3f;
 }
 
 .push {

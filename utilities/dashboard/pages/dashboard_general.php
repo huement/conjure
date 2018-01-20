@@ -9,7 +9,7 @@
   <div class="col-sm-12 col-md-12">
       <div class="card ">
           <div class="card-header primary-color white-text">
-              <p class="category pull-right">~/WP_Conjure/_spellbook</p>
+              <p class="category pull-right">/vagrant/_spellbook</p>
               <h4 class="title">Spellbook</h4>
           </div>
           <div class="content">
@@ -74,7 +74,7 @@
   <div class="col-sm-12 col-md-6">
       <div class="card ">
           <div class="card-header primary-color white-text">
-              <p class="category pull-right">/home/vagrant/www</p>
+              <p class="category pull-right">/home/vagrant/code/..</p>
               <h4 class="title">Wordpress Sites</h4>
           </div>
           <div class="content">

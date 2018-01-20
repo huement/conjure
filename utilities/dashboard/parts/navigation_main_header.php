@@ -61,67 +61,76 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <div class="navbar-nav mr-auto">
-      <p>
-        &nbsp;
-      </p>
-    </div>
+    <div class="navbar-nav mr-auto"></div>
+
     <ul class="navbar-nav ml-auto conjure-navbar">
 
-      <li class="nav-item">
-          <a class="nav-link" name="Opcache Status" href="/opcache-status/opcache.php">
-          Opcache Status <i class="fa fa-pie-chart"></i>
-          </a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" name="Webgrind" href="/webgrind/">
-          Webgrind <i class="fa fa-cog"></i>
-          </a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" name="PHP Info" href="/phpinfo/">
-          PHP <i class="fa fa-info-circle"></i>
-          </a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" name="Mailcatcher" href="http://vvv.dev:1080/">
-          Mailcatcher <i class="fa fa-external-link-square"></i>
-          </a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" name="Help" href="javascript:void(0);" onclick="javascript:introJs().start();">
-          Help <i class="fa fa-question-circle"></i>
-          </a>
+      <li class="nav-item dropdown dropdown-slide dropdown-hover">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Slide
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </li>
 
       <li class="nav-item">&nbsp;&nbsp;&nbsp;</li>
 
       <!-- SITE LINKS -->
-      <div class="nav-item dropdown">
-        <button type="button" class="nav-link dropdown-toggle btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-bug fa-lg" title="Report Bug"></i>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-form">
-          <li class="dropdown-item">
-            <a name="phpMyAdmin" href="/database-admin/">
-            phpMyAdmin <i class="fa fa-external-link-square"></i>
-            </a>
-          </li>
-          <li class="dropdown-item">
-              <a name="phpMemcachedAdmin" href="/memcached-admin/">
-              phpMemcachedAdmin <i class="fa fa-cubes"></i>
+      <li class="nav-item dropdown nav-linkage dropdown-slide dropdown-hover">
+
+          <button type="button" class="nav-link dropdown-toggle btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-internet-explorer fa-lg" title="Report Bug"></i>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-right dropdown-menu-links">
+            <li class="dropdown-item">
+              <a name="phpMyAdmin" href="/database-admin/">
+              phpMyAdmin <i class="fa fa-external-link-square"></i>
               </a>
-          </li>
-        </ul>
-      </ul>
-    </div>
+            </li>
+            <li class="dropdown-item">
+                <a name="phpMemcachedAdmin" href="/memcached-admin/">
+                phpMemcachedAdmin <i class="fa fa-cubes"></i>
+                </a>
+            </li>
+            <li class="dropdown-item">
+                <a name="Opcache Status" href="/opcache-status/opcache.php">
+                Opcache Status <i class="fa fa-pie-chart"></i>
+                </a>
+            </li>
+            <li class="dropdown-item">
+                <a name="Webgrind" href="/webgrind/">
+                Webgrind <i class="fa fa-cog"></i>
+                </a>
+            </li>
+            <li class="dropdown-item">
+                <a name="PHP Info" href="/phpinfo/">
+                PHP <i class="fa fa-info-circle"></i>
+                </a>
+            </li>
+            <li class="dropdown-item">
+                <a name="Mailcatcher" href="http://vvv.dev:1080/">
+                Mailcatcher <i class="fa fa-external-link-square"></i>
+                </a>
+            </li>
+            <li class="dropdown-item">
+                <a name="Help" href="javascript:void(0);" onclick="javascript:introJs().start();">
+                Help <i class="fa fa-question-circle"></i>
+                </a>
+            </li>
+          </ul>
+
+      </li>
 
       <!-- FEEDBACK MODAL -->
-      <div class="nav-item dropdown nav-right-first">
+      <li class="nav-item dropdown nav-right-first">
         <button type="button" class="nav-link dropdown-toggle btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-bug fa-lg" title="Report Bug"></i>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-form">
+        <ul class="dropdown-menu dropdown-menu-left dropdown-menu-form">
           <li class="dropdown-item">
             <div class="feedback">
               <div class="report">
@@ -158,6 +167,8 @@
             </div>
           </li>
         </ul>
-      </ul>
-    </div>
+      </li>
+
+    </ul>
+  </div>
 </nav>

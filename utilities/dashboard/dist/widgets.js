@@ -1,4 +1,4 @@
-/*! PressCraft-Dashboard - v1.0.0 - 2018-01-19
+/*! PressCraft-Dashboard - v1.0.0 - 2018-01-20
 * https://bitbucket.org/derekscott_mm/PressCraft-Dashboard
 * Copyright (c) 2018 Derek Scott; Licensed MIT */
 var failCount = 0;

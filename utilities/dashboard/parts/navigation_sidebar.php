@@ -46,7 +46,7 @@ Tip 2: you can change the color of the active button using the data-active-color
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#wp_design" id="wp_design-nav" aria-controls="v-pills-design" aria-selected="false">
+                <a class="nav-link" href="#design" id="design-nav" aria-controls="v-pills-design" aria-selected="false">
                     <i class="fa fa-diamond"></i>
                     <p>Design Tools</p>
                 </a>

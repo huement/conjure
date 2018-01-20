@@ -1,3 +1,25 @@
+/** */
+
+.dropdown-slide > .dropdown-menu {
+  opacity:.3;
+  display: block;
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-transform: scale(1, 0);
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+}
+
+.show.dropdown-slide > .dropdown-menu {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  opacity:1;
+}
+
+/** */
+
 .navbar .dropdown-menu,
 .navbar .dropdown-menu.dropdown-menu-right.dropdown {
   min-width:180px;

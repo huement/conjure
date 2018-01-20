@@ -22,24 +22,26 @@
         </div>
     </div>
   </div>
-  <div class="card text-white bg-primary">
-    <div class="card-body pb-0">
-      <div class="btn-group float-right" style="margin:10px 10px -10px -10px;border-color:#EEE!important">
-        <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-cog fa-lg"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
+    <div class="card text-white bg-primary">
+      <div class="card-body pb-0">
+        <div class="btn-group float-right" style="margin:10px 10px -10px -10px;border-color:#EEE!important">
+          <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-cog fa-lg"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
         </div>
+        <h4 class="mb-0" style="margin-top:10px;width:35%;float:left;font-size:2em" id="mem_free">...</h4>
+        <p class="widgetGraph_subtitle">AVAILABLE RAM</p>
       </div>
-      <h4 class="mb-0" style="margin-top:10px;width:35%;float:left;font-size:2em" id="mem_free">...</h4>
-      <p class="widgetGraph_subtitle">AVAILABLE RAM</p>
-    </div>
-    <div class="chart-wrapper px-3" style="height:70px;">
-      <div class="smallChart">
-        <span class="line">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,7,3,5,2</span>
+      <div class="chart-wrapper px-3" style="height:70px;">
+        <div class="smallChart">
+          <span class="line">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,7,3,5,2</span>
+        </div>
       </div>
     </div>
   </div>
