@@ -1,21 +1,35 @@
-/** */
+/** Custom Dropdown Animation */
 
 .dropdown-slide > .dropdown-menu {
-  opacity:.3;
-  display: block;
+  // opacity:.3;
+  // display: block;
   -webkit-transform-origin: top;
   transform-origin: top;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   -webkit-transform: scale(1, 0);
-  transition: all 0.2s linear;
-  -webkit-transition: all 0.2s linear;
+  transform: scale(1, 0);
+  //transition: all 0.2s linear;
+  -webkit-transition: all 0.3s linear;
+  display: block;
+  visibility: hidden; /* hides sub-menu */
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  //transform: translateY(-2em);
+  z-index: 100;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
 }
 
 .show.dropdown-slide > .dropdown-menu {
   -webkit-transform: scale(1, 1);
   transform: scale(1, 1);
-  opacity:1;
+  // opacity:1;
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 901;
+  //transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s;
 }
 
 /** */
@@ -27,7 +41,7 @@
 
 .navbar .dropdown-menu-form,
 .dropdown-menu-form {
-  min-width:300px;
+  min-width:280px;
 }
 
 .navbar .dropdown-menu.dropdown-wide,
@@ -43,12 +57,17 @@
   border-bottom: 1px solid #eee;
 }
 
+.dropdown-menu-form:hover,
+.dropdown-menu-form:focus {
+  background:$white-color!important;
+}
+
 .feedback-drop {
     background-color: $pale-bg;
     border: 0 none;
     border-radius: $border-radius-extreme;
     display: block;
-    bottom: 10px;
+    bottom: 15px;
     padding: 0px;
     position: absolute;
     z-index: 9000;
@@ -65,88 +84,6 @@
         background-color: $medium-pale-bg;
         margin: 0px;
     }
-
-    .dropdown-header{
-        color: $dark-gray;
-        font-size: $font-size-small;
-        padding: $padding-dropdown-vertical $padding-dropdown-horizontal;
-    }
-
-//     the style for the dropdown menu that appears under select, it is different from the default one
-    .select &{
-       border-radius: $border-radius-bottom;
-       @include box-shadow(none);
-       @include transform-origin($select-coordinates);
-       @include transform-scale(1);
-       @include transition($fast-transition-time, $transition-linear);
-       margin-top: -20px;
-    }
-    .select.open &{
-        margin-top: -1px;
-    }
-
-    > li > a {
-       color: $font-color;
-       font-size: $font-size-base;
-       padding: $padding-dropdown-vertical $padding-dropdown-horizontal;
-       @include transition-none();
-
-       img{
-           margin-top: -3px;
-       }
-    }
-    > li > a:focus{
-        outline: 0 !important;
-    }
-
-    .btn-group.select &{
-        min-width: 100%;
-    }
-
-    > li:first-child > a{
-       border-top-left-radius: $border-radius-extreme;
-       border-top-right-radius: $border-radius-extreme;
-    }
-
-    > li:last-child > a{
-        border-bottom-left-radius: $border-radius-extreme;
-        border-bottom-right-radius: $border-radius-extreme;
-    }
-
-    .select & > li:first-child > a{
-        border-radius: 0;
-        border-bottom: 0 none;
-    }
-
-    > li > a:hover,
-    > li > a:focus {
-        background-color: $default-color;
-        color: $fill-font-color;
-        opacity: 1;
-        text-decoration: none;
-    }
-
-    &.dropdown-primary > li > a:hover,
-    &.dropdown-primary > li > a:focus{
-        background-color: $primary-color;
-    }
-    &.dropdown-info > li > a:hover,
-    &.dropdown-info > li > a:focus{
-        background-color: $info-color;
-    }
-    &.dropdown-success > li > a:hover,
-    &.dropdown-success > li > a:focus{
-        background-color: $success-color;
-    }
-    &.dropdown-warning > li > a:hover,
-    &.dropdown-warning > li > a:focus{
-        background-color: $warning-color;
-    }
-    &.dropdown-danger > li > a:hover,
-    &.dropdown-danger > li > a:focus{
-        background-color: $danger-color;
-    }
-
 }
 
 //fix bug for the select items in btn-group

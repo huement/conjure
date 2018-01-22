@@ -1,0 +1,57 @@
+			                          ____ 
+		+-- composer.json			          |            
+		+-- conjure.sh			            |            
+		+-- Homestead.yaml			         >-- Command & Configure          
+		+-- package.json			          |            
+		+-- Vagrantfile			        ____|
+		│                           
+		+-- _docs/			            ____              
+		│   +-- WP_Code/			           |             
+		│   +-- WP_Build/			          >-- Documentation           
+		│   +-- WP_Stacks/			     ____|               
+		│
+		+-- _spellbook/			        ____             
+		│   +-- Backend/			           |           
+		│   +-- CLI/			               |           
+		│   +-- Design/			           |         
+		│   +-- Develop/			           |          
+		│   +-- Document/			         |           
+		│   +-- Enhance/			           |           
+		│   +-- Logging/			            >-- WP Plugins, Templates, Testing tools           
+		│   +-- NodeJS/			           |          
+		│   +-- Page_Builders/	         |          
+		│   +-- Performance/		         |          
+		│   +-- Security/			         |         
+		│   +-- Templates/			      ___|             
+		│
+		+-- _taskrunner/			       ___                      
+		│   +-- config/			           |                  
+		│   +-- tasks/			              >-- Task Automation                
+		│   +-- webpack/			        ___|                    
+		│
+		+-- database/			                          
+		│   +-- backups/			                       
+		│   +-- db_backup.sh		                     
+		│   +-- import-sql.sh		                   
+		│   +-- init.sql			                       
+		│
+		+-- provision/			                        
+		│   +-- config/			                       
+		│   +-- provision-*.sh	                     
+		│   +-- scripts/			                       
+		│   +-- utilities.yaml	                     
+		│
+		+-- utilities/			                        
+		│   +-- dashboard/			                     
+		│   +-- database-admin/			               
+		│   +-- files/			                         
+		│   +-- memcached-admin/		                 
+		│   +-- opcache-status/			               
+		│   +-- php-cache-dashboard/                
+		│   +-- status/			                       
+		│
+		+-- www/			                              
+		    +-- webpress/			                      
+		    +-- wp_dev/			                        
+					
+		

@@ -1,13 +1,13 @@
+<section class="row text-centers circle_stat_rows" style="margin-top:10px;">
 
-<section class="row text-center placeholders circle_stat_rows" style="margin-top:10px;">
-  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
+  <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
-        <div class="container">
-            <div class="row stat_card">
-                <div class="col-md-5 col-sm-12" style="background-color:#C34B35">
+        <div class="container-edge">
+            <div class="row no-gutters stat_card">
+                <div class="col-5" style="background-color:#C34B35">
                   <h2 class="stat-amount" id="cpu_target">...</h2>
                 </div>
-                <div class="col-md-7 col-sm-12">
+                <div class="col-7">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
@@ -22,7 +22,28 @@
         </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
+  <!-- <div class="col-md-6 col-sm-6 col-lg-3">
+    <div class="card text-white bg-primary">
+      <div class="card-body pb-0">
+        <div class="btn-group float-right">
+          <button type="button" class="btn btn-light dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="icon-settings"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <h4 class="mb-0" style="margin-top:10px;width:35%;float:left;font-size:2em" id="mem_free">9.823</h4>
+        <p class="widgetGraph_subtitle">AVAILABLE RAM</p>
+      </div>
+      <div class="chart-wrapper px-3" style="height:70px;">
+        <canvas id="card-chart1" class="chart" height="70"></canvas>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card text-white bg-primary">
       <div class="card-body pb-0">
         <div class="btn-group float-right" style="margin:10px 10px -10px -10px;border-color:#EEE!important">
@@ -44,18 +65,18 @@
         </div>
       </div>
     </div>
-  </div>
-  <!--
-  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
+  </div> -->
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
-        <div class="container">
-            <div class="row stat_card">
-                <div class="col-sm-12 col-md-5" style="background-color:#E1BA46">
+        <div class="container-edge">
+            <div class="row no-gutters stat_card">
+                <div class="col-5" style="background-color:#E1BA46">
                   <h2 class="stat-amount" id="mem_free">...</h2>
                 </div>
-                <div class="col-sm-12 col-md-7">
+                <div class="col-7">
                     <div class="numbers">
-                          < ! - - #1F556E  - - >
+                          
                           <span class="icon stat-icon icon-warning text-center">
                               <i class="ti-dashboard" style="color:#E1BA46"></i>
                           </span>
@@ -67,15 +88,16 @@
             </div>
         </div>
     </div>
-  </div> -->
-  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
-        <div class="container">
-            <div class="row stat_card">
-                <div class="col-sm-12 col-md-5" style="background-color:#94C859">
+        <div class="container-edge">
+            <div class="row no-gutters stat_card">
+                <div class="col-5" style="background-color:#94C859">
                   <h2 class="stat-amount" id="hdd_used">...</h2>
                 </div>
-                <div class="col-sm-12 col-md-7" style="padding-left:0;padding-right:0;">
+                <div class="col-7" style="padding-left:0;padding-right:0;">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
@@ -96,14 +118,14 @@
         </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-6 col-sm-6 placeholder">
+  <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
-        <div class="container">
-            <div class="row stat_card">
-              <div class="col-md-5 col-sm-12" id="weather_color">
+        <div class="container-edge">
+            <div class="row no-gutters stat_card">
+              <div class="col-5" id="weather_color">
                 <h2 class="stat-amount" id="weather_temp">...</h2>
               </div>
-              <div class="col-md-7 col-sm-12" id="weather">
+              <div class="col-7" id="weather">
                   <div class="numbers">
 
                       <div class="icon stat-icon text-center" id="weather_icon_wrapper">

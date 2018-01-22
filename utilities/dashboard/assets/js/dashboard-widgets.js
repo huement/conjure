@@ -53,31 +53,129 @@ function stylestatus(site_slug){
 }
 
 function statGraph(){
+  var labels = ['January','February','March','April','May','June','July'];
+  var data = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'My First dataset',
+        backgroundColor: $.brandPrimary,
+        borderColor: 'rgba(255,255,255,.55)',
+        data: [65, 59, 84, 84, 51, 55, 40]
+      },
+    ]
+  };
+  var options = {
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 2,
+          fontColor: 'transparent',
+        }
 
-  $.fn.peity.defaults.line = {
-    delimiter: ",",
-    fill: "#025aa5",
-    height: 80,
-    max: null,
-    min: 0,
-    stroke: "#31b0d5",
-    strokeWidth: 1,
-    width: 200
-  }
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+          min: Math.min.apply(Math, data.datasets[0].data) - 5,
+          max: Math.max.apply(Math, data.datasets[0].data) + 5,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    }
+  };
+  var ctx = $('#card-chart1');
+  var cardChart1 = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: options
+  });
 
+  var data = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'My First dataset',
+        backgroundColor: $.brandInfo,
+        borderColor: 'rgba(255,255,255,.55)',
+        data: [1, 18, 9, 17, 34, 22, 11]
+      },
+    ]
+  };
+  var options = {
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 2,
+          fontColor: 'transparent',
+        }
 
-  var updatingChart = $(".line").peity("line", { width: 250 })
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+          min: Math.min.apply(Math, data.datasets[0].data) - 5,
+          max: Math.max.apply(Math, data.datasets[0].data) + 5,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        tension: 0.00001,
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    }
+  };
 
-  setInterval(function() {
-    var random = Math.round(Math.random() * 10)
-    var values = updatingChart.text().split(",")
-    values.shift()
-    values.push(random)
+  // $.fn.peity.defaults.bar = {
+  //   delimiter: ",",
+  //   fill: "#31b0d5"
+  // }
 
-    updatingChart
-      .text(values.join(","))
-      .change()
-  }, 1000);
+  //var updatingChart = $(".line").peity("bar")
+
+  // setInterval(function() {
+  //   var random = Math.round(Math.random() * 10)
+  //   var values = updatingChart.text().split(",")
+  //   values.shift()
+  //   values.push(random)
+  //
+  //   updatingChart
+  //     .text(values.join(","))
+  //     .change()
+  // }, 1000);
 
 }
 

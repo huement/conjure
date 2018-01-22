@@ -65,24 +65,13 @@
 
     <ul class="navbar-nav ml-auto conjure-navbar">
 
-      <li class="nav-item dropdown dropdown-slide dropdown-hover">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Slide
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-
       <li class="nav-item">&nbsp;&nbsp;&nbsp;</li>
 
       <!-- SITE LINKS -->
       <li class="nav-item dropdown nav-linkage dropdown-slide dropdown-hover">
 
-          <button type="button" class="nav-link dropdown-toggle btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-internet-explorer fa-lg" title="Report Bug"></i>
+          <button type="button" class="nav-link dropdown-toggle btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            &nbsp;<i class="fa fa-clipboard fa-lg" title="Utility Links"></i>&nbsp;&nbsp;UTILITIES
           </button>
 
           <ul class="dropdown-menu dropdown-menu-right dropdown-menu-links">
@@ -125,12 +114,16 @@ Slide
 
       </li>
 
+      <li class="nav-item">
+        <a href="#" class="nav-link btn-dark">&nbsp;<i class="fa fa-question-circle fa-lg" title="Utility Links"></i>&nbsp;&nbsp;HELP</a>
+      </li>
+
       <!-- FEEDBACK MODAL -->
       <li class="nav-item dropdown nav-right-first">
-        <button type="button" class="nav-link dropdown-toggle btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-bug fa-lg" title="Report Bug"></i>
+        <button type="button" class="nav-link dropdown-toggle btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          &nbsp;<i class="fa fa-bug fa-lg" title="Report Bug"></i>&nbsp;&nbsp;BUG
         </button>
-        <ul class="dropdown-menu dropdown-menu-left dropdown-menu-form">
+        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-form">
           <li class="dropdown-item">
             <div class="feedback">
               <div class="report">

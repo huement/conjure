@@ -1,4 +1,4 @@
-/*! PressCraft-Dashboard - v1.0.0 - 2018-01-20
+/*! PressCraft-Dashboard - v1.0.0 - 2018-01-22
 * https://bitbucket.org/derekscott_mm/PressCraft-Dashboard
 * Copyright (c) 2018 Derek Scott; Licensed MIT */
 @font-face {
@@ -83,6 +83,7 @@
 	font-weight: bold;
 	margin-bottom: -68px;
 	position: relative;
+  text-align:center;
 	z-index: 99;
 }
 
@@ -182,8 +183,13 @@
 .paper-list-heading {
 	background: #f1eae0;
 	border-bottom: none;
-	border-radius: 0;
+	border-radius: 0px!important;
 	color: #3f3f3f;
+}
+
+.paper-list-heading.bh {
+  background:$medium-dark-gray;
+  border: 1px solid rgba(0, 0, 0, 0.125)!important
 }
 
 .push {
@@ -301,12 +307,6 @@
 	text-transform: uppercase;
 }
 
-.feedback .btn-primary:active,
-.feedback .btn-primary:hover {
-	background-color: #2f6da6;
-	border-color: #2f6da6;
-	color: #000;
-}
 
 /**
  *  WEATHER WIDGET

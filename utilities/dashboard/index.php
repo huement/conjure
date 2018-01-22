@@ -110,13 +110,9 @@
 
       $("#dynpagename").html("<span class='red'>D</span>ash<span>B</span>oard");
 
-      $('body').on('click','.nav-link.dropdown-toggle',function(e){
+      $('.nav-link.dropdown-toggle').on('click',function(e){
          let dropdown=$(e.target).closest('.nav-link.dropdown-toggle');
-          dropdown.addClass('show');
-
-        setTimeout(function(){
-              dropdown[dropdown.is(':hover')?'addClass':'removeClass']('show');
-          },300);
+          dropdown.toggleClass('show');
       });
 	});
 </script>

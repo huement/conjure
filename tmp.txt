@@ -1,5 +1,0 @@
-    location ~ ^/wp-content/uploads/(.*) {
-      if (!-f $request_filename) {
-        rewrite ^/wp-content/uploads/(.*)$ https://myriadmobile.com/wp-content/uploads/$1 red$
-      }
-    }

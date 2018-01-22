@@ -28,9 +28,13 @@
 
 .nav-item.show .dropdown-menu {
   opacity: 1;
-  top: 40px;
+  top: 45px;
   right: 10px;
   height: auto;
+}
+
+.nav-item.show .dropdown-menu-form.dropdown-menu-right {
+  left: -400px;
 }
 
 .dropdown-menu-links {

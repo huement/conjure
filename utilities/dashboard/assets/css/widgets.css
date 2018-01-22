@@ -110,12 +110,6 @@
 	text-transform: uppercase;
 }
 
-.feedback .btn-primary:active,
-.feedback .btn-primary:hover {
-	background-color: #2f6da6;
-	border-color: #2f6da6;
-	color: #000;
-}
 
 /**
  *  WEATHER WIDGET
