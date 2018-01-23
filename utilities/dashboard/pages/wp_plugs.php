@@ -4,76 +4,118 @@
    * @details  Contains all the info and links for important plugins.
    */
 ?>
-<div class="push" style="height:15px"></div>
+<div class="push" style="height:20px;"></div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Users Behavior</h4>
-                <p class="category">24 Hours performance</p>
-            </div>
-            <div class="content">
-                <div id="chartHours" class="ct-chart"></div>
-                <div class="footer">
-                    <div class="chart-legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Click
-                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="ti-reload"></i> Updated 3 minutes ago
-                    </div>
+<div class="row" >
+    <div class="col-lg-2 col-sm-6">
+        <div class="circle-tile">
+            <a href="#">
+                <div class="circle-tile-heading dark-blue">
+                    <i class="fa fa-users fa-fw fa-3x"></i>
                 </div>
+            </a>
+            <div class="circle-tile-content dark-blue">
+                <div class="circle-tile-description text-faded">
+                    Users
+                </div>
+                <div class="circle-tile-number text-faded">
+                    265
+                    <span id="sparklineA"></span>
+                </div>
+                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Email Statistics</h4>
-                <p class="category">Last Campaign Performance</p>
-            </div>
-            <div class="content">
-                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                <div class="footer">
-                    <div class="chart-legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Bounce
-                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="ti-timer"></i> Campaign sent 2 days ago
-                    </div>
+    <div class="col-lg-2 col-sm-6">
+        <div class="circle-tile">
+            <a href="#">
+                <div class="circle-tile-heading green">
+                    <i class="fa fa-money fa-fw fa-3x"></i>
                 </div>
+            </a>
+            <div class="circle-tile-content green">
+                <div class="circle-tile-description text-faded">
+                    Revenue
+                </div>
+                <div class="circle-tile-number text-faded">
+                    $32,384
+                </div>
+                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card ">
-            <div class="header">
-                <h4 class="title">2015 Sales</h4>
-                <p class="category">All products including Taxes</p>
-            </div>
-            <div class="content">
-                <div id="chartActivity" class="ct-chart"></div>
-
-                <div class="footer">
-                    <div class="chart-legend">
-                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="ti-check"></i> Data information certified
-                    </div>
+    <div class="col-lg-2 col-sm-6">
+        <div class="circle-tile">
+            <a href="#">
+                <div class="circle-tile-heading orange">
+                    <i class="fa fa-bell fa-fw fa-3x"></i>
                 </div>
+            </a>
+            <div class="circle-tile-content orange">
+                <div class="circle-tile-description text-faded">
+                    Alerts
+                </div>
+                <div class="circle-tile-number text-faded">
+                    9 New
+                </div>
+                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+        <div class="circle-tile">
+            <a href="#">
+                <div class="circle-tile-heading blue">
+                    <i class="fa fa-tasks fa-fw fa-3x"></i>
+                </div>
+            </a>
+            <div class="circle-tile-content blue">
+                <div class="circle-tile-description text-faded">
+                    Tasks
+                </div>
+                <div class="circle-tile-number text-faded">
+                    10
+                    <span id="sparklineB"></span>
+                </div>
+                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+        <div class="circle-tile">
+            <a href="#">
+                <div class="circle-tile-heading red">
+                    <i class="fa fa-shopping-cart fa-fw fa-3x"></i>
+                </div>
+            </a>
+            <div class="circle-tile-content red">
+                <div class="circle-tile-description text-faded">
+                    Orders
+                </div>
+                <div class="circle-tile-number text-faded">
+                    24
+                    <span id="sparklineC"></span>
+                </div>
+                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-sm-6">
+        <div class="circle-tile">
+            <a href="#">
+                <div class="circle-tile-heading purple">
+                    <i class="fa fa-comments fa-fw fa-3x"></i>
+                </div>
+            </a>
+            <div class="circle-tile-content purple">
+                <div class="circle-tile-description text-faded">
+                    Mentions
+                </div>
+                <div class="circle-tile-number text-faded">
+                    96
+                    <span id="sparklineD"></span>
+                </div>
+                <a href="#" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
             </div>
         </div>
     </div>

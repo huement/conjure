@@ -1,8 +1,8 @@
+
 <div class="container-fluid">
   <div class="row">
-
-    <div class="alert alert-info " role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <div class="alert alert-info alert-dismissible fade show dtopalert" role="alert" style="width:100%;">
+      <button type="button" class="close dtopclose" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
 
@@ -12,8 +12,9 @@
       <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
     </div>
   </div>
-
 </div>
+
+
 <section class="row text-centers circle_stat_rows" style="margin-top:10px;">
 
   <div class="col-lg-3 col-md-6 col-sm-6">

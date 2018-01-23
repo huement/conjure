@@ -31,16 +31,20 @@ if [ -f "/home/vagrant/.rvm/scripts/rvm" ]; then
   source /home/vagrant/.rvm/scripts/rvm
 fi
 
+export GEM_HOME=$HOME/.gem
+export GEM_PATH=$HOME/.gem
+
+
 CSPATH=""
 #PHPCS 2.x
 if [ -f "/home/vagrant/phpcs/scripts/phpcs" ]; then
-  CSPATH="/home/vagrant/phpcs/scripts"
+  CSPATH="#"
 fi
 
 #PHPCS 3.x
 if [ -f "/home/vagrant/phpcs/bin/phpcs" ]; then
-  CSPATH="/home/vagrant/phpcs/bin"
-fi
+  CSPATH="#
+4
 
 
 # Set the WP_TESTS_DIR path directory so that we can use phpunit inside
@@ -54,7 +58,7 @@ eval "$(grunt --completion=bash)"
 
 # add autocomplete for wp-cli
 if [ -f "/home/vagrant/.wp-cli/wp-completion.bash" ]; then
-  . /home/vagrant/.wp-cli/wp-completion.bash
+  source /home/vagrant/.wp-cli/wp-completion.bash
 fi
 # PHPCS path
 export PATH="/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:$HOME/.composer/vendor/bin:$HOME/scripts:/home/vagrant/bin:$CSPATH:$PATH"

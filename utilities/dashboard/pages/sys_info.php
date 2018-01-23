@@ -28,12 +28,14 @@ function phpwpinfo() {
 }
 ?>
 
-<div class="push"></div>
+<div class="push" style="height:20px;"></div>
 
-<div class="jumbotron" style="padding:10px 20px 10px 20px;margin-top:-10px;">
+<div class="jumbotron jumbo-sex">
   <div class="container-fluid">
-    <h2 class="display-4" style="margin-top:10px;">System Info</h2>
-    <p>Quick summary of the current development environment and how that plays with <strong>Wordpress</strong></p>
+    <h1 class="h1-reponsive mb-3 title" style="margin-top:10px;">System Info</h1>
+    <p class="lead summary">Quick summary of the current development environment and how that plays with <strong>Wordpress</strong></p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   </div>
 </div>
 

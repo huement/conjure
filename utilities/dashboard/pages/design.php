@@ -4,111 +4,18 @@
    * @details  Automatically generated from _spellbook/docs markdown files.
    */
 ?>
-<div class="push" style="height:15px"></div>
+<div class="push" style="height:20px;"></div>
 
-<div class="container-fluid">
-  <div class="animated fadeIn">
-    <div class="card">
-      <div class="card-header">
-        <i class="icon-drop"></i> Theme colors
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-primary">Primary</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-secondary">Secondary</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-success">Success</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-danger">Danger</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-warning">Warning</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-info">Info</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-light">Light</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-dark">Dark</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <i class="icon-drop"></i> Grays
-      </div>
-      <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <div class="p-3 bg-gray-100">100</div>
-            <div class="p-3 bg-gray-200">200</div>
-            <div class="p-3 bg-gray-300">300</div>
-            <div class="p-3 bg-gray-400">400</div>
-            <div class="p-3 bg-gray-500">500</div>
-            <div class="p-3 bg-gray-600">600</div>
-            <div class="p-3 bg-gray-700">700</div>
-            <div class="p-3 bg-gray-800">800</div>
-            <div class="p-3 bg-gray-900">900</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <i class="icon-drop"></i> Additional colors
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-blue">Blue</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-indigo">Indigo</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-purple">Purple</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-pink">Pink</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-red">Red</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-orange">Orange</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-yellow">Yellow</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-green">Green</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-teal">Teal</div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-cyan">Cyan</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-</div>
+<div class="color-swatch-row">
 
-<div class="content-row">
-  <h2 class="content-row-title">Color Swatches
-    <span>(<b>More Colors See</b>: <a href="colors.html">Flat UI Color Picker</a>)</span>
-  </h2>
   <div class="row">
+    <div class="col-12">
+      <h2 class="content-row-title">Color Swatches
+        <span>(<b>More Colors See</b>: <a href="colors.html">Flat UI Color Picker</a>)</span>
+      </h2>
+      <div class="push" style="height:20px;"></div>
+    </div>
     <div class="col-2">
       <div class="color-swatches">
         <div class="swatches">
@@ -276,6 +183,103 @@
             <h4>DARK GRAY</h4>
             <p>#656D78, #434A54</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="push"></div>
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <i class="icon-drop"></i> Theme colors
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-primary">Primary</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-secondary">Secondary</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-success">Success</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-danger">Danger</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-warning">Warning</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-info">Info</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-light">Light</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-dark">Dark</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <i class="icon-drop"></i> Grays
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="p-3 bg-gray-100">100</div>
+          <div class="p-3 bg-gray-200">200</div>
+          <div class="p-3 bg-gray-300">300</div>
+          <div class="p-3 bg-gray-400">400</div>
+          <div class="p-3 bg-gray-500">500</div>
+          <div class="p-3 bg-gray-600">600</div>
+          <div class="p-3 bg-gray-700">700</div>
+          <div class="p-3 bg-gray-800">800</div>
+          <div class="p-3 bg-gray-900">900</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <i class="icon-drop"></i> Additional colors
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-blue">Blue</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-indigo">Indigo</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-purple">Purple</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-pink">Pink</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-red">Red</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-orange">Orange</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-yellow">Yellow</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-green">Green</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-teal">Teal</div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 mb-3 bg-cyan">Cyan</div>
         </div>
       </div>
     </div>

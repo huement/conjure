@@ -56,8 +56,11 @@
 </div> -->
 
 <nav class="navbar navbar-toggleable-md navbar-purple bg-purple">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+
+  <button class="hamburger hamburger--squeezenavbar-toggler navbar-toggler-right" type="button" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">

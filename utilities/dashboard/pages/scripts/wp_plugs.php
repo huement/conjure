@@ -1,5 +1,5 @@
 
-<script src="assets/js/chartist.min.js"></script>
+<!-- <script src="assets/js/chartist.min.js"></script>
 <script src="assets/js/chart_demo.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -15,4 +15,4 @@
               timer: 400000
           });
     });
-</script>
+</script> -->

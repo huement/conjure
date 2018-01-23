@@ -99,10 +99,13 @@ apt_package_check_list=(
 
 	# Mailcatcher requirement
 	libsqlite3-dev
+  libssl-dev
+  libxslt1-dev
+  libxml2-dev
 
   # deployment tools
   sshpass
-
+  gpgv2
   ftp
 )
 
@@ -211,10 +214,17 @@ package_install() {
 	fi
 }
 
-# NODE TOOLS
+# WEB TOOLS
 tools_install() {
 	# Disable xdebug before any composer provisioning.
 	#sh /home/vagrant/bin/xdebug_off
+
+  echo "Prepping Ruby!"
+  sudo chmod -R 777 /usr/local/rvm/archives
+
+  echo "Prepping Ruby Keys!"
+  command curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
+
 
 	# nvm
 	if [[ ! -d "/home/vagrant/config/nvm" ]]; then

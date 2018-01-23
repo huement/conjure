@@ -182,13 +182,13 @@ function statGraph(){
 // Docs at http://simpleweatherjs.com
 $(document).ready(function() {
   var tempColor, tempClass = '';
-  console.log("fetching weather");
+  //console.log("fetching weather");
   $.simpleWeather({
     woeid: '2402292', //2357536
     location: '',
     unit: 'f',
     success: function(weather) {
-      console.log(weather);
+      //console.log(weather);
 
       if(weather.temp > 70) {
         tempColor='#F7AC57';
@@ -234,6 +234,13 @@ $(document).ready(function() {
     });
   }
 
-  statGraph();
+  if( $("#card-chart1").html() !== undefined && $("#card-chart1").html().length > 10 ){
+    console.log("statGraph");
+    statGraph();
+  }
+
+  $('.dtopclose').on('click',function(){
+    $('.dtopalert').alert('close');
+  });
 
 });

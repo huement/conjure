@@ -37,7 +37,7 @@ server {
     server_name  testserver.com;
 
     # Tells nginx which directory the files for this domain are located
-    root         /srv/www/wordpress-local;
+    root         /home/vagrant/code/wordpress-local;
 
     # Includes a basic WordPress configuration to help with the common
     # rules needed by a web server to deal with WordPress properly.

@@ -15,6 +15,7 @@
     "chart.js": "^2.7.1",
     "color": "^2.0.1",
     "color-string": "^1.5.2",
+    "pace": "0.0.4",
     "pace-progress": "^1.0.2"
   },
   "devDependencies": {

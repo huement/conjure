@@ -22,7 +22,7 @@ $funky_cat[] = array(
 
 ?>
 
-<div class="push"></div>
+<div class="push" style="height:20px;"></div>
 
 <div class="jumbotron" style="padding:10px 20px 10px 20px;margin-top:-10px;">
   <div class="container-fluid">

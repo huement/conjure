@@ -1,3 +1,7 @@
+.navbar-purple {
+  min-height:45px;
+}
+
 .navbar-purple,
 .navbar-purple a.nav-link {
   color: $white-color;
@@ -11,18 +15,19 @@
   margin-right:0px;
 }
 
-// .nav-linkage:focus .sub-menu,
-// .nav-linkage:focus-within .sub-menu,
-// .nav-linkage:hover .sub-menu {
-//   z-index: 1;
-//   transform: translateY(0%);
-//   transition-delay: 0s, 0s, 0.3s;
-// }
+#magic-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: #fe4902;
+}
 
 .nav-item .dropdown-menu {
   transition: all 0.9s ease-in-out 0.9s;
   opacity: 0;
-  height: 0px;
+  height: 0;
   top:-200px;
 }
 
@@ -39,8 +44,8 @@
 
 .dropdown-menu-links {
   width: 260px;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   background-color: $black-hr;
   top: 100px;
   transform: translateY(-2em);
@@ -49,8 +54,8 @@
 }
 
 .dropdown-menu-links .dropdown-item {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 .dropdown-menu-links .dropdown-item a {
@@ -70,3 +75,139 @@
   float:right;
   text-align:right;
 }
+
+/**
+ *  HAMBURGER MENU
+ */
+ // Settings
+ // ==================================================
+ $hamburger-padding-x                       : 5px !default;
+ $hamburger-padding-y                       : 5px !default;
+ $hamburger-layer-width                     : 30px !default;
+ $hamburger-layer-height                    : 4px !default;
+ $hamburger-layer-spacing                   : 6px !default;
+ $hamburger-layer-color                     : #FEFEFE !default;
+ $hamburger-layer-border-radius             : 4px !default;
+ $hamburger-hover-opacity                   : 0.7 !default;
+ $hamburger-hover-transition-duration       : 0.15s !default;
+ $hamburger-hover-transition-timing-function: linear !default;
+
+ // To use CSS filters as the hover effect instead of opacity,
+ // set $hamburger-hover-use-filter as true and
+ // change the value of $hamburger-hover-filter accordingly.
+ $hamburger-hover-use-filter: false !default;
+ $hamburger-hover-filter    : opacity(50%) !default;
+
+
+ // Hamburger
+ // ==================================================
+ .hamburger {
+   padding: $hamburger-padding-y $hamburger-padding-x;
+   display: inline-block;
+   cursor: pointer;
+
+   transition-property: opacity, filter;
+   transition-duration: $hamburger-hover-transition-duration;
+   transition-timing-function: $hamburger-hover-transition-timing-function;
+
+   // Normalize (<button>)
+   font: inherit;
+   color: $pale-bg;
+   text-transform: none;
+   background-color: transparent;
+   border: 0;
+   margin: -4px -10px 0 0;
+   overflow: visible;
+   z-index:999;
+
+   &:hover {
+     @if $hamburger-hover-use-filter == true {
+       filter: $hamburger-hover-filter;
+     }
+     @else {
+       opacity: $hamburger-hover-opacity;
+     }
+   }
+ }
+
+ .hamburger-box {
+   width: $hamburger-layer-width;
+   height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
+   display: inline-block;
+   position: relative;
+ }
+
+ .hamburger-inner {
+   display: block;
+   top: 50%;
+   margin-top: $hamburger-layer-height / -2;
+
+   &,
+   &::before,
+   &::after {
+     width: $hamburger-layer-width;
+     height: $hamburger-layer-height;
+     background-color: $hamburger-layer-color;
+     border-radius: $hamburger-layer-border-radius;
+     position: absolute;
+     transition-property: transform;
+     transition-duration: 0.15s;
+     transition-timing-function: ease;
+   }
+
+   &::before,
+   &::after {
+     content: "";
+     display: block;
+   }
+
+   &::before {
+     top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+   }
+
+   &::after {
+     bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+   }
+ }
+
+ /*
+  * Squeeze
+  */
+ .hamburger--squeeze {
+   .hamburger-inner {
+     transition-duration: 0.075s;
+     transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+     &::before {
+       transition: top 0.075s 0.12s ease,
+                   opacity 0.075s ease;
+     }
+
+     &::after {
+       transition: bottom 0.075s 0.12s ease,
+                   transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+     }
+   }
+
+   &.is-active {
+     .hamburger-inner {
+       transform: rotate(45deg);
+       transition-delay: 0.12s;
+       transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+       &::before {
+         top: 0;
+         opacity: 0;
+         transition: top 0.075s ease,
+                     opacity 0.075s 0.12s ease;
+       }
+
+       &::after {
+         bottom: 0;
+         transform: rotate(-90deg);
+         transition: bottom 0.075s ease,
+                     transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+       }
+     }
+   }
+ }

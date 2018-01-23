@@ -12747,3 +12747,609 @@ Copyright (c) 2015 Daniel Eden
   overflow: visible;
   clip: auto;
 }
+
+.btn-circle.btn-lg {
+	border-radius: 25px;
+	font-size: 12px;
+	height: 40px;
+	line-height: 1.33;
+	padding: 5px 8px;
+	width: 40px;
+}
+
+#bug_txt::-webkit-input-placeholder {
+	/* Chrome/Opera/Safari */
+	color: #1f556e;
+	opacity: 0.5;
+}
+
+#bug_txt::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #1f556e;
+	opacity: 0.5;
+}
+
+#bug_txt:-ms-input-placeholder {
+	/* IE 10+ */
+	color: #1f556e;
+}
+
+#bug_txt:-moz-placeholder {
+	/* Firefox 18- */
+	color: #1f556e;
+}
+
+.feedback {
+	z-index: 999;
+}
+
+.feedback textarea {
+	height: 211px;
+}
+
+.feedback .screenshot {
+	opacity: 0.6;
+	position: relative;
+	top: -24px;
+	right: 10px;
+}
+
+.feedback .screenshot:hover {
+	opacity: 1;
+}
+
+.feedback .failed p,
+.feedback .reported p {
+	height: 190px;
+}
+
+.feedback.left {
+	bottom: 15px;
+	left: 110px;
+}
+
+.feedback.right {
+	right: 5px;
+	bottom: 15px;
+}
+
+/* .feedback .dropdown-menu {
+   bottom        : 40px;
+   width         : 320px;
+   border-radius : 0px;
+ }
+
+ .feedback.left .dropdown-menu {
+   left               : 0px;
+   border             : 1px solid #3253B0;
+   -moz-box-shadow    : -10px 11px 5px -6px rgba(0,0,0,0.44);
+   -webkit-box-shadow : -10px 11px 5px -6px rgba(0,0,0,0.44);
+   box-shadow         : -10px 11px 5px -6px rgba(0,0,0,0.44);
+ }
+
+ .feedback.right .dropdown-menu {
+   right : 0px;
+ } */
+
+.feedback .text-center {
+	margin-top: 15px;
+}
+
+.feedback .hideme {
+	display: none;
+}
+
+.feedback .btn-primary {
+	background-color: #1f1f1f;
+	border-color: #1f1f1f;
+	color: #f0f0f0;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.dropdown-menu .feedback .btn-primary {
+	background-color: #3253b0;
+	border-color: #3253b0;
+	border-radius: 0;
+	color: #f0f0f0;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+
+/**
+ * COLOR SWATCHES
+ */
+
+ /* ----------------------------------
+  * color-swatches
+  * ---------------------------------- */
+
+ .color-swatches .swatches {
+     -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+     border-radius: 4px;
+     background-color: #FFF;
+     width: 100%;
+     box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+ }
+ .color-swatches .light, .color-swatches .dark {
+     width: 50%;
+     height: 50px;
+ }
+ .color-swatches .light {
+     -webkit-border-radius: 4px 0 0 0;
+     -moz-border-radius: 4px 0 0 0;
+     border-radius: 4px 0 0 0;
+ }
+ .color-swatches .dark {
+     -webkit-border-radius: 0 4px 0 0;
+     -moz-border-radius: 0 4px 0 0;
+     border-radius: 0 4px 0 0;
+ }
+ .color-swatches .infos {
+     padding: 5px 10px;
+ }
+ .color-swatches .infos h4, .color-swatches .infos p {
+     margin: 0;
+ }
+ .color-swatches .infos h4 {
+     margin-bottom: 3px;
+     font-weight: bold;
+     font-size: 14px;
+ }
+ .color-swatches .infos p {
+     font-size: 12px;
+ }
+
+/**
+ *  WEATHER WIDGET
+ */
+
+/**
+  * Docs at http://http://simpleweatherjs.com
+  *
+  * Weather icon font from http://fonts.artill.de/collection/artill-weather-icons
+  *
+  * DO NOT hotlink the assets/font included in this demo. If you wish to use the same font icon then download it to your local assets at the link above. If you use the links below
+  * odds are at some point they will be removed and your version will break.
+  */
+
+#weather_cond {
+	padding-top: 8px;
+	text-transform: uppercase;
+}
+
+#weather_icon {
+	font-family: weather;
+	font-size: 1.4em;
+	font-weight: normal;
+	line-height: 13px;
+	margin: 0 auto;
+	padding-top: 9px;
+}
+
+#weather_icon.icon-0:before {
+	content: ":";
+}
+
+#weather_icon.icon-1:before {
+	content: "p";
+}
+
+#weather_icon.icon-2:before {
+	content: "S";
+}
+
+#weather_icon.icon-3:before {
+	content: "Q";
+}
+
+#weather_icon.icon-4:before {
+	content: "S";
+}
+
+#weather_icon.icon-5:before {
+	content: "W";
+}
+
+#weather_icon.icon-6:before {
+	content: "W";
+}
+
+#weather_icon.icon-7:before {
+	content: "W";
+}
+
+#weather_icon.icon-8:before {
+	content: "W";
+}
+
+#weather_icon.icon-9:before {
+	content: "I";
+}
+
+#weather_icon.icon-10:before {
+	content: "W";
+}
+
+#weather_icon.icon-11:before {
+	content: "I";
+}
+
+#weather_icon.icon-12:before {
+	content: "I";
+}
+
+#weather_icon.icon-13:before {
+	content: "I";
+}
+
+#weather_icon.icon-14:before {
+	content: "I";
+}
+
+#weather_icon.icon-15:before {
+	content: "W";
+}
+
+#weather_icon.icon-16:before {
+	content: "I";
+}
+
+#weather_icon.icon-17:before {
+	content: "W";
+}
+
+#weather_icon.icon-18:before {
+	content: "U";
+}
+
+#weather_icon.icon-19:before {
+	content: "Z";
+}
+
+#weather_icon.icon-20:before {
+	content: "Z";
+}
+
+#weather_icon.icon-21:before {
+	content: "Z";
+}
+
+#weather_icon.icon-22:before {
+	content: "Z";
+}
+
+#weather_icon.icon-23:before {
+	content: "Z";
+}
+
+#weather_icon.icon-24:before {
+	content: "E";
+}
+
+#weather_icon.icon-25:before {
+	content: "E";
+}
+
+#weather_icon.icon-26:before {
+	content: "3";
+}
+
+#weather_icon.icon-27:before {
+	content: "a";
+}
+
+#weather_icon.icon-28:before {
+	content: "A";
+}
+
+#weather_icon.icon-29:before {
+	content: "a";
+}
+
+#weather_icon.icon-30:before {
+	content: "A";
+}
+
+#weather_icon.icon-31:before {
+	content: "6";
+}
+
+#weather_icon.icon-32:before {
+	content: "1";
+}
+
+#weather_icon.icon-33:before {
+	content: "6";
+}
+
+#weather_icon.icon-34:before {
+	content: "1";
+}
+
+#weather_icon.icon-35:before {
+	content: "W";
+}
+
+#weather_icon.icon-36:before {
+	content: "1";
+}
+
+#weather_icon.icon-37:before {
+	content: "S";
+}
+
+#weather_icon.icon-38:before {
+	content: "S";
+}
+
+#weather_icon.icon-39:before {
+	content: "S";
+}
+
+#weather_icon.icon-40:before {
+	content: "M";
+}
+
+#weather_icon.icon-41:before {
+	content: "W";
+}
+
+#weather_icon.icon-42:before {
+	content: "I";
+}
+
+#weather_icon.icon-43:before {
+	content: "W";
+}
+
+#weather_icon.icon-44:before {
+	content: "a";
+}
+
+#weather_icon.icon-45:before {
+	content: "S";
+}
+
+#weather_icon.icon-46:before {
+	content: "U";
+}
+
+#weather_icon.icon-47:before {
+	content: "S";
+}
+
+#weather h2 {
+	color: #252422;
+	float: left;
+	font-size: 30px;
+	font-weight: 300;
+	margin: 0 0 0 15px;
+	text-align: center;
+}
+
+#weather ul {
+	margin: 15px 20px 0 0;
+	padding: 0;
+	width: 285px;
+}
+
+#weather li {
+	color: #252422;
+	display: inline;
+	float: right;
+	margin: 0;
+	/* padding: 20px; */
+	/* border-radius: 5px; */
+}
+
+#weather li:first-child {
+	margin-left: 10px;
+	margin-right: 25px;
+}
+
+#weather .updated {
+	color: #252422;
+	float: right;
+	font-size: 12px;
+	margin-right: 20px;
+	opacity: 0.75;
+}
+
+@font-face {
+	font-family: "weather";
+	font-style: normal;
+	font-weight: normal;
+	src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot");
+	src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix") format("embedded-opentype"),
+	url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff") format("woff"),
+	url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf") format("truetype"),
+	url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg") format("svg");
+}
+
+.hm-gradient {
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+.darken-grey-text {
+    color: #2E2E2E;
+}
+
+.main-panel .row.stat_card {
+	min-height: 95px;
+}
+
+#area-chart,
+#line-chart,
+#bar-chart,
+#stacked,
+#pie-chart {
+	min-height: 250px;
+}
+
+.custom-control.custom-checkbox .icons {
+	display: none;
+}
+
+.logo_logo {
+	display: block;
+	margin: 5px auto 5px auto;
+	max-width: 100px;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+
+#dynpagename {
+	color: #eee;
+	font-family: "Open Sans", sans-serif;
+	font-size: 28px;
+	font-weight: 300;
+	line-height: 28px;
+	margin-top: 5px;
+	padding: 5px 0 0 25px;
+}
+
+#dynpagename span {
+	color: #fff;
+}
+
+.rounded-circle {
+	border-radius: 50%;
+}
+
+.circle_stat_rows {
+	margin-bottom: 10px;
+}
+
+.circle_stat_rows .col-xs-5 {
+	overflow: hidden;
+}
+
+.stat-label {
+	background: #d3d6d5;
+	border-radius: 2px;
+	color: #666;
+	display: block;
+	font-size: 14px;
+	margin: -28px auto 50px auto;
+	max-width: 145px;
+	padding: 4px;
+	position: relative;
+	width: 100%;
+}
+
+.stat-amount {
+	color: #fff;
+	display: block;
+	font-size: 35px;
+	font-weight: bold;
+	margin-top: 26px;
+	position: relative;
+  text-align:center;
+	z-index: 99;
+}
+
+.site_title {
+	font-size: 24px;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+.cosmic_fusion {
+	background: -moz-linear-gradient(
+	top,
+	#339 0%,
+	#339 56%,
+	#5214b0 100%
+	);
+	background: -webkit-linear-gradient(
+	top,
+	rgb(51,51,153) 0%,
+	rgb(51,51,153) 56%,
+	rgb(82,20,176) 100%
+	);
+	background: linear-gradient(
+	to bottom,
+	rgb(51,51,153) 0%,
+	rgb(51,51,153) 56%,
+	rgb(82,20,176) 100%
+	);
+	background-color: rgb(51,51,153);
+
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333399', endColorstr='#5214B0',GradientType=0 );
+}
+
+.conjure-navbar .nav-item {
+	padding: 0 10px 0 10px;
+}
+
+.widgetGraph_subtitle {
+	float: left;
+	margin-left: 24px;
+	text-align: left;
+	text-transform: uppercase;
+	width: 75%;
+}
+
+.shakey-header {
+	margin-top: 25px;
+}
+
+.action-buttons {
+	margin-left: 45%;
+}
+
+.sidebar-wrapper .nav-pills .nav-link {
+	border-radius: 0;
+	-o-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.sidebar-wrapper .nav-pills .nav-link:hover {
+	text-indent: -5px;
+}
+
+.sidebar-wrapper .nav-pills .nav-link.active {
+	background-color: #5214b0;
+	color: #fff!important;
+	opacity: 1;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.sidebar-wrapper .nav-pills .nav-link.active:hover {
+	background-color: #339;
+	text-indent: -5px;
+}
+
+.table-inverse strong {
+	color: #fefefe;
+}
+
+.description {
+	padding: 10px;
+}
+
+.paper-list-heading {
+	background: #f1eae0;
+	border-bottom: none;
+	border-radius: 0px!important;
+	color: #3f3f3f;
+}
+
+.paper-list-heading.bh {
+  background:$medium-dark-gray;
+  border: 1px solid rgba(0, 0, 0, 0.125)!important
+}
+
+.push {
+	display: block;
+	height: 25px;
+	position: relative;
+	width: 100%;
+}

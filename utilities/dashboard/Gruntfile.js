@@ -7,70 +7,49 @@ module.exports = function (grunt) {
         // Task configuration
         concat: {
           options: {
-              banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                  '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-                  '<%= pkg.repository ? "* " + pkg.repository + "\\n" : "" %>' +
-                  '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
-                  ' Licensed <%= pkg.license %> */\n',
+            banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+                '<%= pkg.repository ? "* " + pkg.repository + "\\n" : "" %>' +
+                '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
+                ' Licensed <%= pkg.license %> */\n',
             stripBanners: true
           },
-          dist: {
-              src: ['assets/js/presscraft-dashboard.js'],
-              dest: 'dist/presscraft-dashboard.js'
-          },
-          widgets: {
-              src: ['assets/js/dashboard-widgets.js'],
-              dest: 'dist/widgets.js'
-          },
-          jsdist: {
-              src: ['assets/js/tether.js', 'assets/js/chartist.min.js'],
-              dest: 'dist/dash-libs.js'
-          },
-          graphs: {
-              src: ['assets/js/morris.js'],
-              dest: 'dist/graph-libs.js'
-          },
-          bslibs: {
-              src: ['assets/js/bootstrap-checkbox-radio.js', 'assets/js/bootstrap-notify.js'],
-              dest: 'dist/bs-libs.js'
-          },
-          cssdist: {
-              src: ['assets/css/bootstrap.css', 'assets/css/animate.min.css', 'assets/css/themify-icons.css', 'assets/css/font-awesome.css'],
-              dest: 'dist/libraries.css'
-          },
-          cssextra: {
-              src: ['assets/css/paper-dash-extras.css', 'assets/css/widgets.css', 'morris.css'],
-              dest: 'dist/widgets.css'
+          dash: {
+            files: {
+              'dist/dash_orgy.js': ['assets/js/dashboard_core.js', 'assets/js/dashboard_widgets.js'],
+              'dist/bs4_orgy.js': ['assets/js/chartist.min.js', 'assets/js/tether.js', 'assets/js/bootstrap-checkbox-radio.js', 'assets/js/bootstrap-notify.js'],
+              'dist/ui_ux.css': ["assets/css/bootstrap.css" , "assets/css/animate.min.css" , "assets/css/themify-icons.css" , "assets/css/font-awesome.css" , "assets/css/widgets.css" , "assets/css/paper-dash-extras.css"],
+            } 
           }
         },
         jshint: {
             options: {
-                node: true,
-                curly: true,
-                eqeqeq: true,
-                immed: true,
-                latedef: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                undef: true,
-                unused: true,
-                eqnull: true,
-                browser: true,
-                globals: { jQuery: true },
-                boss: true
+              node: true,
+              curly: true,
+              eqeqeq: true,
+              immed: true,
+              latedef: true,
+              newcap: true,
+              noarg: true,
+              sub: true,
+              undef: true,
+              unused: true,
+              eqnull: true,
+              browser: true,
+              globals: { jQuery: true },
+              boss: true
             },
             gruntfile: {
                 src: 'Gruntfile.js'
             },
             lib_test: {
-                src: ['assets/js/chart_data.js','assets/js/dashboard-widgets.js']
+                src: ['assets/js/chart_data.js', 'assets/js/dashboard-widgets.js']
             }
         },
         sass: {                              // Task
           dist: {                            // Target
             files: {                         // Dictionary of files
-              'dist/dash.css': ['assets/sass/paper-dashboard.scss']
+              'dist/dash_orgy.css': ['assets/sass/paper-dashboard.scss']
             }
           }
         },
@@ -84,9 +63,8 @@ module.exports = function (grunt) {
                     config: 'alphabetical',  // Which CSSComb config to use for sorting properties.
                 },
                 files: {
-                  'assets/css/widgets.css' : ['assets/css/widgets.css'],
-                  'assets/css/paper-dash-extras.css' : ['assets/css/paper-dash-extras.css'],
-                  'assets/css/morris.css' : ['assets/css/morris.css']
+                  'dist/dash_orgy.css' : ['dist/dash_orgy.css'],
+                  'dist/ui_ux.css' : ['assets/css/ui_ux.css'],
                 }
             }
         },
@@ -96,17 +74,19 @@ module.exports = function (grunt) {
                 tasks: ['jshint:gruntfile']
             },
             dashboard: {
-                files: [ 'Gruntfile.js', 'assets/js/*.js', 'assets/css/*.css', 'assets/sass/paper/*.scss', 'assets/sass/paper/mixins/*.scss' ],
-                tasks: ['uglify', 'sass', 'concat']
+                files: [ 'Gruntfile.js', 'assets/js/*.js', 'assets/css/*.css', 'assets/sass/paper/*.scss', 'assets/sass/paper/mixins/*.scss', 'pages/*.php', 'parts/*.php' ],
+                tasks: ['sass', 'concat', 'wpcss', 'uglify']
             }
         },
         uglify: {
           options: {
             banner: "/*! <%= pkg.name %> - v<%= pkg.version %> */"
           },
-          dist: {
-            src: ["dist/widgets.js",],
-            dest: "dist/grunt.min.js"
+          dash: {
+             files: {
+               "dist/bs4.min.js": ["dist/bs4_orgy.js"],
+               "dist/dash.min.js": ["dist/dash_orgy.js"]
+             }
           }
         }
     });
@@ -149,5 +129,5 @@ module.exports = function (grunt) {
     //grunt.loadNpmTasks('grunt-stylestats');
 
     // Default task
-    grunt.registerTask('default', ['uglify', 'sass', 'wpcss', 'concat']);
+    grunt.registerTask('default', ['sass','concat','wpcss','uglify']);
 };
