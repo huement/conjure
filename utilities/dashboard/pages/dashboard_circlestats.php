@@ -1,3 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="alert alert-info " role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <h4 class="alert-heading" style="margin-top: 10px;">Well done!</h4>
+      <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+      <hr>
+      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    </div>
+  </div>
+
+</div>
 <section class="row text-centers circle_stat_rows" style="margin-top:10px;">
 
   <div class="col-lg-3 col-md-6 col-sm-6">
@@ -22,51 +38,6 @@
         </div>
     </div>
   </div>
-  <!-- <div class="col-md-6 col-sm-6 col-lg-3">
-    <div class="card text-white bg-primary">
-      <div class="card-body pb-0">
-        <div class="btn-group float-right">
-          <button type="button" class="btn btn-light dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="icon-settings"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-        <h4 class="mb-0" style="margin-top:10px;width:35%;float:left;font-size:2em" id="mem_free">9.823</h4>
-        <p class="widgetGraph_subtitle">AVAILABLE RAM</p>
-      </div>
-      <div class="chart-wrapper px-3" style="height:70px;">
-        <canvas id="card-chart1" class="chart" height="70"></canvas>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-    <div class="card text-white bg-primary">
-      <div class="card-body pb-0">
-        <div class="btn-group float-right" style="margin:10px 10px -10px -10px;border-color:#EEE!important">
-          <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-cog fa-lg"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-        <h4 class="mb-0" style="margin-top:10px;width:35%;float:left;font-size:2em" id="mem_free">...</h4>
-        <p class="widgetGraph_subtitle">AVAILABLE RAM</p>
-      </div>
-      <div class="chart-wrapper px-3" style="height:70px;">
-        <div class="smallChart">
-          <span class="line">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,7,3,5,2</span>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
         <div class="container-edge">
@@ -76,7 +47,7 @@
                 </div>
                 <div class="col-7">
                     <div class="numbers">
-                          
+
                           <span class="icon stat-icon icon-warning text-center">
                               <i class="ti-dashboard" style="color:#E1BA46"></i>
                           </span>

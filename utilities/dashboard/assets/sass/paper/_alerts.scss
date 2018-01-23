@@ -1,14 +1,14 @@
 .alert{
-    border: 0;
-    border-radius: 0;
-    color: #FFFFFF;
+    border: 2px;
+    border-left:5px;
+    border-right:5px;
+    border-color:transparent;
+    border-radius: 2px;
+    color: $black-bg;
+    background-color: $pale-bg;
     padding: 10px 15px;
     font-size: 14px;
 
-    .container &{
-        border-radius: 4px;
-
-    }
     .navbar &{
         border-radius: 0;
         left: 0;
@@ -34,6 +34,7 @@
     .close ~ span{
         display: block;
         max-width: 89%;
+        color:#ffffff;
     }
 
     &[data-notify="container"]{
@@ -45,23 +46,24 @@
         padding-left: 65px;
     }
 }
+
 .alert-info{
-    background-color: $blue;
+    border-color: $blue;
     color: $white-color;
 }
 .alert-success {
-    background-color: $green;
+    border-color: $green;
     color: $white-color;
 }
 .alert-warning {
-    background-color: $yellow;
+    border-color: $yellow;
     color: $white-color;
 }
 .alert-danger {
-    background-color: $red;
+    border-color: $red;
     color: $white-color;
 }
 .alert-secondary {
-    background-color: #F1EAE0;
+    border-color: #F1EAE0;
     color:#3f3f3f;
 }

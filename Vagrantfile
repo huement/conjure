@@ -84,6 +84,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "file", source: "provision/config", destination: "/home/vagrant/config"
     config.vm.synced_folder "provision/config/wp-cli", "/home/vagrant/.wp-cli", :mount_options => [ "dmode=777", "fmode=777" ]
     config.vm.synced_folder "database/", "/home/vagrant/database", :mount_options => [ "dmode=777", "fmode=777" ]
+    config.vm.synced_folder "_spellbook", "/home/vagrant/_spells", :mount_options => [ "dmode=777", "fmode=777" ]
+
 
     if File.exists?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then
       if vagrant_version >= "1.3.0"
@@ -154,15 +156,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
 
+    if File.exists?(File.join(vagrant_dir,'provision','provision-devtools.sh')) then
+      #config.vm.provision :shell, :privileged => true, :path => File.join( "provision", "provision-devtools.sh" )
+      config.vm.provision "default", type: "shell", path: File.join( "provision", "provision-devtools.sh" ), privileged: true, keep_color: true
+    end
+
     # RUN ANY PROVISIONING SCRIPTS
     if File.exists?(File.join(vagrant_dir,'provision','provision-ruby.sh')) then
       #config.vm.provision :shell, :privileged => true, :path => File.join( "provision", "provision-ruby.sh" )
       config.vm.provision "pre", type: "shell", path: File.join( "provision", "provision-ruby.sh" ), privileged: true, keep_color: true
-    end
-
-    if File.exists?(File.join(vagrant_dir,'provision','provision-devtools.sh')) then
-      #config.vm.provision :shell, :privileged => true, :path => File.join( "provision", "provision-devtools.sh" )
-      config.vm.provision "default", type: "shell", path: File.join( "provision", "provision-devtools.sh" ), privileged: true, keep_color: true
     end
 
     if File.exists?(File.join(vagrant_dir,'provision','provision-utilities.sh')) then

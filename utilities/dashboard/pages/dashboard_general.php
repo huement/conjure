@@ -5,54 +5,6 @@
    */
 ?>
 
-<div class="row">
-  <div class="col-sm-12 col-md-12">
-      <div class="card ">
-          <div class="card-header primary-color white-text">
-              <p class="category pull-right">/vagrant/_spellbook</p>
-              <h4 class="title">Spellbook</h4>
-          </div>
-          <div class="content">
-              <div class="panel-body">
-
-                <div class="123321">
-                  <div class="row" style="margin:8px auto 15px auto;">
-                    <div class="col-sm-12" style="margin-bottom:8px;">
-                      <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-
-                        <h4 class="alert-heading" style="margin-top: 10px;">Well done!</h4>
-                        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-                        <hr>
-                        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6 col-lr-3">
-
-
-                    </div>
-                    <div class="col-md-6 col-lr-3">
-                      <h6 class="shakey-header">Web Frameworks</h6>
-                      <div class="list-group">
-                        <li data-slug="laravel" data-cat="framework" class="list-group-item">Laravel <span style="text-align:right;float:right">[PHP]</span></li>
-                        <li data-slug="lumen" data-cat="framework" class="list-group-item">Lumen <span style="text-align:right;float:right">[PHP]</span></li>
-                        <li data-slug="react" data-cat="framework" class="list-group-item">React <span style="text-align:right;float:right">&nbsp;[JS]</span></li>
-                        <li data-slug="bootstrap4" data-cat="framework" class="list-group-item">Bootstrap 4 <span style="text-align:right;float:right">&nbsp;[JS]</span></li>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
 <!-- CIRCLE STATS ROW -->
 <div class="row">
   <div class="col-sm-12 col-md-6">
@@ -301,5 +253,26 @@
           </div>
       </div>
   </div>
+  <div class="col-sm-6 col-12">
+    <div class="col-md-6">
+      <!-- Nav tabs --><div class="card">
+      <ul class="nav nav-tabs" role="tablist">
+         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+         <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+         <div role="tabpanel" class="tab-pane active" id="home">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+         <div role="tabpanel" class="tab-pane" id="profile">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+         <div role="tabpanel" class="tab-pane" id="messages">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+         <div role="tabpanel" class="tab-pane" id="settings">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 </div>
