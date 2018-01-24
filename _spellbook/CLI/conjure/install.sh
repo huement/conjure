@@ -21,12 +21,12 @@ repoToGet=""
 
 # WP_Conjure Install / Update commands
 # ----------------------------------------------------------------------
-function RUNINSTALLER {
+function RUNINSTALLER() {
 
   echo ""
 
   if ask "Download latest Conjure repository? (initial setup / hard reset)" N; then
-    #
+
     #
     # Grab Main Git repository
     # Grab Spellbook Git repository
@@ -37,10 +37,8 @@ function RUNINSTALLER {
     # Setup Utilities Folder
     # Setup www
     #
-    #
+
     WHATEVS "Cloning Repositories"
-
-
 
     if [[ -d "~/Conjure" ]]; then
       WHATEVS "Updating Conjure..."
@@ -78,7 +76,7 @@ function RUNINSTALLER {
   fi
 }
 
-function conjureFileRoll {
+function conjureFileRoll() {
   if [ ! -f "./.conjure.json" ]; then
     #Roll a dice using bash
     for i in {1..5}; do
@@ -98,47 +96,44 @@ function conjureFileRoll {
     jsonData="{\"wizard_title\":\"${rsN}_${rsS}\",\"wizard_ip\":\"192.168.23.13\",\"wizard_host\":\"${hostName}.dash\",\"created_on\":\"${fileDate}\"}"
     fileName="./.conjure.json"
     echo $jsonData >$fileName
-
-    #sys_check
-
-    echo " "
-    echo -e "\t\t     NEW CONJURE SETUP  "
-    echo -e "\t\t         ---------      "
-    echo -e "\t\t   ID : ${rsN}_${rsS}"
-    echo -e "\t\t   IP : 192.168.23.13"
-    echo -e "\t\t  HOST: ${hostName}.dash"
-    echo " "
-    echo -e "\t\t   RUN: vagrant up --provision"
-    echo ""
-    setupalready
-    echo ""
-  else
-    setupalready
-    echo -e "            CONJURE CONFIGURED ALREADY "
-    echo -e "           see ${CYN}~/Conjure/.conjure.json${NORMAL} for details   "
-    echo " "
-    echo -e "          ------ADDITIONAL COMMANDS------"
-    echo -e "             ${GRN}SSH: ${NORMAL}vagrant ssh"
-    echo -e "           ${GRN}RESET: ${NORMAL}vagrant up --provision"
-    echo "     "
-    echo -e "            ${GRN}SYNC: ${NORMAL}vagrant box update"
-    echo -e "            ${GRN}TODO: ${NORMAL}conjure.sh update"
-    echo -e "            ${GRN}TODO: ${NORMAL}conjure.sh wordpress update"
-    echo -e "          -------------------------------"
-    echo ""
-
   fi
+
+  #results
+
+  echo " "
+  setupalready
+  echo "                    ${WHT}---------      "
+  echo -e "             ${GRN}ID :${BBLU} ${rsS}"
+  echo -e "             ${GRN}IP :${BBLU} 192.168.23.13"
+  echo -e "             ${GRN}URL:${BBLU} magic.app"
+  echo " "
+  echo -e "             ${GRN}RUN:${BBLU} vagrant up --provision"
+  echo "                    ${WHT}---------      "
+  echo " "
+  echo -e "            ${BCYN} ~/Conjure/.conjure.json   "
+  echo " "
+  echo -e "          ${WHT}------ VAGRANT  COMMANDS ------"
+  echo -e "             ${GRN}SSH: ${BBLU}vagrant ssh"
+  echo -e "           ${GRN}RESET: ${BBLU}vagrant up --provision"
+  echo -e "             ${GRN}NEW: ${BBLU}vagrant box update"
+  echo -e "          ${WHT}-------------------------------"
+  echo "${NORMAL}"
+  echo ""
+
 }
+
+#    echo -e "           ${GRN}@TODO: ${BBLU}conjure.sh update"
+#    echo -e "           ${GRN}@TODO: ${BBLU}conjure.sh wordpress update"
 
 # Grab git repos [ Remove .git dir ]
 # ----------------------------------------------------------------------
-function cleanLiftGit {
+function cleanLiftGit() {
   rm -R ./tmp_*/.git*
   cp -R ./tmp_* ./
   rm -R ./tmp_*
 }
 
-function downloadGit {
+function downloadGit() {
   repoToGet=$1
   tmpName=$($(randomString 3))
   # your real command here, instead of sleep
@@ -152,13 +147,13 @@ function downloadGit {
   done
 }
 
-function fetchURL {
+function fetchURL() {
   git clone -q -n $CONJUREBASE "tmp_${tmpName}"
 }
 
 # System Requirements [ brew, vagrant, virtualbox ]
 # ----------------------------------------------------------------------
-function insallRequirements {
+function insallRequirements() {
   echo ""
   rulemsg "Homebrew"
   if ! type "brew" >/dev/null; then
@@ -195,7 +190,7 @@ function insallRequirements {
     echo -e "\t VAGRANT:    http://www.vagrantup.com/ \n"
   fi
 }
-function sys_check {
+function sys_check() {
   if ! type "brew" >/dev/null; then
     WHATEVS "Installing Homebrew . . ."
     ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
@@ -240,7 +235,7 @@ function sys_check {
 
 # Setup Vagrant to manage Virtual Hosts
 # ----------------------------------------------------------------------
-function setupVagrant {
+function setupVagrant() {
   # Default to No if the user presses enter without giving an answer:
   echo ""
   rulemsg "Vagrant Recommended Plugins"
@@ -287,7 +282,7 @@ function setupVagrant {
   echo ""
 }
 
-function askBootVagrant {
+function askBootVagrant() {
 
   # Default to No if the user presses enter without giving an answer:
 

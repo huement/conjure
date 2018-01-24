@@ -4,8 +4,10 @@
 # You can find defaults.ini with all the defaults from the scripts root dir
 #
 
+CONJUREVERSION="0.9.5"
+
 echo
-echo "  ${CYN}============================================================[0.9.0]====="
+echo "  ${CYN}============================================================[${CONJUREVERSION}]====="
 echo -e "\t\t     ${BPUR}P R E S S C R A F T ${WHT}- ${BGRN}N E W  S I T E${NORMAL}"
 echo -e "           --| Add ${BBLUE}(new stack/existing repo) Wordpress Project |-- "
 echo "  ${CYN}========================================================================"

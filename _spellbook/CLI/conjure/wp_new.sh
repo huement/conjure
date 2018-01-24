@@ -5,13 +5,11 @@
 #           include Composer dependency management, and automated deployement.
 #
 
-
 WEBPRESSBASE="https://bitbucket.org/derekscott_mm/webpress"
 CONJUREBASE="https://bitbucket.org/derekscott_mm/book_of_spells"
 SPELLBOOKBASE="https://bitbucket.org/derekscott_mm/book_of_spells"
 BOXNAME="laravel/homestead"
 VPRESSZIP="https://bitbucket.org/derekscott_mm/wordpress-automatic/downloads/myriad_wp.zip"
-
 
 # Let's get this party started
 # ----------------------------------------------------------------------
@@ -21,11 +19,10 @@ DIRNAME=""
 INSTALLDIR=""
 repoToGet=""
 
-
 # Install helper functions
 # ----------------------------------------------------------------------
 SLUG=""
-function askSlug {
+function askSlug() {
   local prompt default reply
 
   echo ""
@@ -40,7 +37,7 @@ function askSlug {
 }
 
 RSVAR=""
-function randomSString {
+function randomSString() {
   command -v openssl >/dev/null 2>&1 || {
     echo "I require foo but it's not installed.  Aborting." >&2
     exit 1
@@ -50,7 +47,7 @@ function randomSString {
   RSVAR=$(echo "$VVAR" | tr '[:upper:]' '[:lower:]')
 }
 
-function updateWP {
+function updateWP() {
   cp $SCRIPT/config/wordpress-config/wp-config-default.php /home/vagrant/code/$1/wp-config.php
 
   #set database details with perl find and replace
@@ -69,22 +66,26 @@ function updateWP {
   ' wp-config.php
 }
 
-function wpdotenv {
+function wpdotenv() {
   echo -e 'Install wp-cli-dotenv-command...\nMore info available here: https://github.com/aaemnnosttv/wp-cli-dotenv-command\n'
   wp package install aaemnnosttv/wp-cli-dotenv-command
 }
 
-function newMoveFile {
+function newMoveFile() {
   cp $SCRIPT/config/wordpress-config/MOVEFILE.yaml /home/vagrant/code/$1
   echo "New MOVEFILE.yaml template now available!"
   #open /home/vagrant/code/$1/MOVEFILE.yaml
 }
 
-function join_by { local IFS="$1"; shift; echo "$*"; }
+function join_by() {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
 
-function defaultPlugins {
+function defaultPlugins() {
   STRINGPLUG=""
-  mapfile -t wpArray < "/home/vagrant/config/wordpress-config/default_packages.json"
+  mapfile -t wpArray <"/home/vagrant/config/wordpress-config/default_packages.json"
   # for i in "${wpArray[@]}"
   # do
   #    STRINGPLUG=" "
@@ -93,7 +94,7 @@ function defaultPlugins {
 
 # Install new Wordpress Site from Stack
 # ----------------------------------------------------------------------
-function new_bedrock {
+function new_bedrock() {
   echo ''
   askSlug
   echo ''
@@ -124,7 +125,7 @@ function new_bedrock {
   echo ''
 }
 
-function new_plate {
+function new_plate() {
   echo ''
   askSlug
   echo ''
@@ -146,7 +147,7 @@ function new_plate {
   echo ''
 }
 
-function new_webpress {
+function new_webpress() {
   echo ''
   askSlug
   echo ''
@@ -168,7 +169,7 @@ function new_webpress {
   echo ''
 }
 
-function new_vanilla {
+function new_vanilla() {
   #clear
 
   #rulemsg "A totally chill WordPress Install Script."
@@ -217,7 +218,7 @@ function new_vanilla {
   echo ''
 }
 
-function new_cubi {
+function new_cubi() {
   echo ''
   askSlug
   echo ''

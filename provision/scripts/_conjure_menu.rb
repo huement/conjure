@@ -22,7 +22,7 @@ if @show_logo then
 #{@BLU}     /  |#{@WHT}∨#{@BLU}| \\_#{@BRN}|   #{@CYN}|   ----|  _  |      |  |   |  |   _|  -__|
 #{@BLU}     \\ \\| |\\_(#{@SKN}/ #{@CYN}  |_______|_____|___|__|  |______|__| |_____|
 #{@BLU}     /#{@SKN}(`#{@GRY}______#{@BRN}|#{@GRY}_  #{@CYN}                 |______|
-#{@BLU}    /#{@DGY} o(-- #{@YLW},#{@DGY}- --)o                                 #{@GRN}ver #{@verCONJURE}
+#{@BLU}    /#{@DGY} o(-- #{@YLW},#{@DGY}- --)o                                 #{@GRN}ver #{@conjureVERSION}
 #{@BLU} _.'_v,#{@DGY} \\#{@RED} .  #{@RED}, #{@DGY}/
 #{@GRY}------#{@BRN}_#{@YLW}//#{@RED}^^--^#{@YLW}\\\\#{@BRN}__#{@GRY} -------------------------------------------
 #{@CYN}    REPO: #{@CLR}#{@branch}                 #{@CYN}DASH: #{@CLR}https://magic.app

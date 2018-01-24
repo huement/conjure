@@ -4,29 +4,21 @@
 # WP_Conjure | Installer
 # ------------------ ---------  ------   ----    ---     --      -
 #%
-#% DESCRIPTION
-#% ===========
-#%    Magical Wordpress development environment, Based on Laravel Homestead!
-#%    Modified to include plenty of Wordpress tools and optimizations
 #%
-#+
-#+ GENERAL CMDS
+#%    Security reporting | Dev toolbox & templates | Performance optimizations
+#%         -------------------------------------------------------
+#%            Based on Laravel Homestead. Built by MyriadMobile
+#+ SETUP
 #+ ===========
 #+    setup     . . . . . . . .  Installs WP_Conjure core system files
 #+    wordmove  . . . . . . . .  Create a new MOVEFILE for a wordpress deployement. Smarter than wordmove init
 #+
-#+
-#+ SITE CMDS
+#+ DEV TOOLS
 #+ ===========
-#+    wpnew     . . . . . . . .  Installs new Wordpress site + reloads vagrant environment
-#+                                 <stack name> Required. Use supported WordPress stack for the new install
-#+    wpver     . . . . . . . .  Create basic WordPress install from a specific version.
-#+                                 <version> Required. IE conjure.sh wpver 3.4.1
-#+    wpgit     . . . . . . . .  Use a Git repo for your new site install
-#+                                 <git url> Required. IE: conjure.sh wpgit https://github.com/me/site.git
+#+    wpnew     . . . . . . . .  Installs new Wordpress site + reloads vagrant. Only ONE option at a go.
+#+                                   [Optional] Options | -s <stack> -w <wp_ver> -g <git_url>
 #+    stacks    . . . . . . . .  Display a list of alternative Wordpress stacks to try out
 #+    update    . . . . . . . .  Requires <site slug> for whatever you want updated. IE conjure.sh update mydevsite
-#+
 #+
 #% INFO
 #% ===========
@@ -37,16 +29,13 @@
 ## TITLE:    conjure.sh
 ## DETAILS:  WP_Conjure main CLI script
 ## AUTHOR:   dscott@myriadmobile.com
-## VERSION:  0.9.0
-## DATE:     12.21.2017
+## VERSION:  0.9.5
+## DATE:     01.24.2017
 # ------------------ ---------  ------   ----    ---     --      -
-
-
-
 
 #   BASE VARIABLES
 # ----------------------------------------------------------------
-CONJUREVersion="0.9.0"
+CONJUREVersion="0.9.5"
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # PATH
 SCRIPTNAME=$(basename $0)
 SCRIPTBASENAME="$(basename ${SCRIPTNAME} .sh)"
@@ -65,13 +54,12 @@ wp_newScript="${SCRIPT}/_spellbook/CLI/conjure/library.sh"
 if [[ ! -f "${libraryScript}" ]]; then
   echo ""
   echo "${libraryScript} not found. Cannot start."
-  echo ""
+  echo " "
   exit 1
 fi
 source $libraryScript
 source $installScript
 source $wp_newScript
-
 
 # Core Functions
 # ----------------------------------------------------------------
@@ -81,19 +69,21 @@ source $wp_newScript
 function installhs() {
   WHATEVS "Running Install script..."
 
-  cd /home/vagrant/code
+  #cd /home/vagrant/code
 
-  if [ -f "./.conjure.json" ]; then
-    mv ./.conjure.json ./conjure-old.json
-  fi
-
-  if [ -f "./.env" ]; then
-    mv ./.env ./env-old.txt
+  if [ -f "${SCRIPT}/.conjure.json" ]; then
+    echo "${BRED}"
+    echo "  ALERT: ${RED}setup cmd would RESET exisintg .conjure.json file."
+    echo "  ${NORMAL}Manually Remove${CYN} ${SCRIPT}/.conjure.json"
+    echo "  ${NORMAL}and then you can rerun this setup command."
+    echo " "
+    safeExit
   fi
 
   #rm -R ./cache
-  if [ -f "./log/*.log" ]; then
-    rm -R ./log/*.log
+  if [ -f "${SCRIPT}/log/*.log" ]; then
+    echo "CLEARING OLD LOG FILES"
+    rm -R $SCRIPT/log/*.log
   fi
 
   conjureFileRoll

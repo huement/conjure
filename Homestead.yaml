@@ -1,3 +1,17 @@
+#
+# @ALERT WP_Conjure has a Wordpress auto updated dev site. It requires the following 3 options. If you remove them it will break
+#        the Wordpress dev site installer and updater functions. So don't remove these entries from this file.
+#
+#        1. 'wpdev' option from databases,
+#        2. 'wpdev.app' section from sites
+#        3. 'www/wpdev' from folders
+#
+# @ALERT If you are adding a Wordpress Site. Declare the type as wordpress and make sure that there is NO TRAILING SLASH.
+#
+# @INFO  You can declare a site as being a "Wordpress" install if you add these options to your normal site block.
+#               type: "wordpress"
+#               wpup: "https://myriadmobile.com"
+#
 ---
 ip: "192.168.23.13"
 memory: 2048
@@ -5,41 +19,38 @@ cpus: 1
 provider: virtualbox
 mariadb: false
 
+
 authorize: ~/.ssh/id_rsa.pub
+
 
 keys:
     - ~/.ssh/id_rsa
 
+
 folders:
-    - map: ~/Conjure/www/wp_dev
-      to: /home/vagrant/code/wp_dev
+    - map: ~/Conjure/www/wpdev
+      to: /home/vagrant/code/wpdev
     - map: ~/Conjure/www/myriad
       to: /home/vagrant/code/myriad
 
+
 sites:
     - map: wpdev.app
-      to: /home/vagrant/code/wp_dev
+      to: /home/vagrant/code/wpdev
       php: "7.1"
     - map: myriad.app
       to: /home/vagrant/code/myriad
       php: "7.1"
+      type: "wordpress"
+      wpup: "https://myriadmobile.com"
+
 
 databases:
     - wpdev
     - wordpress
     - myriadmobile
 
+
 variables:
     - key: APP_ENV
       value: local
-
-#
-#
-# @ALERT WP_Conjure has a Wordpress auto updated dev site. It requires the following 3 options. If you remove them it will break
-#        the Wordpress dev site installer and updater functions. So don't remove these entries from this file.
-#
-#        1. 'wpdev' option from databases,
-#        2. 'wpdev.app' section from sites
-#        3. 'www/wp_dev' from folders
-#
-#

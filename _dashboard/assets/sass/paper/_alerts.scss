@@ -1,0 +1,66 @@
+.alert{
+    border: 2px 10px 2px 10px solid transparent;
+    border-radius: 2px;
+    color: $black-bg;
+    background-color: $pale-bg;
+    padding: 10px;
+    font-size: 14px;
+
+    .navbar &{
+        border-radius: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 85px;
+        width: 100%;
+        z-index: 3;
+    }
+    .navbar:not(.navbar-transparent) &{
+        top: 70px;
+    }
+
+    span[data-notify="icon"]{
+        font-size: 30px;
+        display: block;
+        left: 15px;
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+    }
+
+    .close ~ span{
+        display: block;
+        max-width: 89%;
+        color:#ffffff;
+    }
+
+    &[data-notify="container"]{
+        padding: 10px 10px 10px 20px;
+        border-radius: $border-radius-base;
+    }
+
+    &.alert-with-icon{
+        padding-left: 65px;
+    }
+}
+
+.alert-info{
+    border-color: $blue;
+    color: $white-color;
+}
+.alert-success {
+    border-color: $green;
+    color: $white-color;
+}
+.alert-warning {
+    border-color: $yellow;
+    color: $white-color;
+}
+.alert-danger {
+    border-color: $red;
+    color: $white-color;
+}
+.alert-secondary {
+    border-color: #F1EAE0;
+    color:#3f3f3f;
+}

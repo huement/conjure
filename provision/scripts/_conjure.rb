@@ -110,7 +110,7 @@ class Homestead
 
         # Configure The Public Key For SSH Access
         if settings.include? 'authorize'
-            if File.exists? File.expand_path(settings["authorize"])
+            if File.exist? File.expand_path(settings["authorize"])
                 config.vm.provision "shell" do |s|
                     s.inline = "echo $1 | grep -xq \"$1\" /home/vagrant/.ssh/authorized_keys || echo \"\n$1\" | tee -a /home/vagrant/.ssh/authorized_keys"
                     s.args = [File.read(File.expand_path(settings["authorize"]))]
@@ -125,7 +125,7 @@ class Homestead
                 exit
             end
             settings["keys"].each do |key|
-                if File.exists? File.expand_path(key)
+                if File.exist? File.expand_path(key)
                     config.vm.provision "shell" do |s|
                         s.privileged = false
                         s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
@@ -151,7 +151,7 @@ class Homestead
         # Register All Of The Configured Shared Folders
         if settings.include? 'folders'
             settings["folders"].each do |folder|
-                if File.exists? File.expand_path(folder["map"])
+                if File.exist? File.expand_path(folder["map"])
                     mount_opts = []
 
                     if (folder["type"] == "nfs")
@@ -201,8 +201,14 @@ class Homestead
                     type = "symfony2"
                 end
 
+
+                #
+                # Special Consideration given to Wordpress Sites.
+                #
+                # @TODO Simplify this down.
+                #
                 config.vm.provision "shell" do |s|
-                    s.name = "Creating Site: " + site["map"]
+                    s.name = "SITE | " + site["map"] + "  TYPE | #{type}"
                     if site.include? 'params'
                         params = "("
                         site["params"].each do |param|
@@ -210,9 +216,13 @@ class Homestead
                         end
                         params += " )"
                     end
+                    if site.include? 'wpup'
+                        params = site["wpup"]
+                    end
                     s.path = scriptDir + "/serve-#{type}.sh"
-                    s.args = [site["map"], site["to"], site["port"] ||= "80", site["ssl"] ||= "443", site["php"] ||= "7.2", params ||= ""]
+                    s.args = [site["map"], site["to"], site["port"] ||= "80", site["ssl"] ||= "443", site["php"] ||= "7.0", params ||= ""]
                 end
+
 
                 # Configure The Cron Schedule
                 if (site.has_key?("schedule"))

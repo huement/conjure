@@ -20,7 +20,7 @@ function GETTHISPARTYSTARTED() {
   ${GRAY}  _________     ${BGRN} |   ${BYLW}----${BGRN}|  ${BYLW}_${BGRN}  |      |  |   ${BYLW}|${BGRN}  |   _|  ${BYLW}-${BGRN}__|
   ${GRAY}c(${WHT}\` ${GRAY}    ${BGRN}'${GRAY} )o    ${BGRN} |_______|_____|___${BYLW}|${BGRN}__|  |______|__| |_____|
   ${GRAY}  \ ${BYLW}  \` ,${GRAY}/         ${PUR}---------------${BGRN}|______|${PUR}----------------
-  ${YLW} _//${BRED}^${RED}---${BRED}^${YLW}\\\\_    ${BGRN}    ${CYN}ver${WHT} ${CONJUREVersion}                 ${CYN}git${WHT} ${GITDEETS}${NORMAL}"
+  ${YLW} _//${BRED}^${RED}-  ${BRED}^${YLW}\\\\_    ${BGRN}    ${CYN}ver${WHT} ${CONJUREVersion}                 ${CYN}git${WHT} ${GITDEETS}${NORMAL}"
 }
 
 function mageHatLogo() {

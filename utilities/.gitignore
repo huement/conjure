@@ -1,9 +1,0 @@
-#
-# Morgan Le Fay Approved
-#
-
-# Dashboard
-dashboard/node_modules
-dashboard/vendor
-dashboard/armory
-dashboard/.sass-cache

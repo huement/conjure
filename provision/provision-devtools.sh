@@ -8,7 +8,7 @@ sudo -s
 
 echo ""
 echo "---------------------------------------------------------------------------------"
-echo "|| STAGE 3 | Developer Tools + Wordpress Optimizations                         ||"
+echo "|| STAGE 2 | Developer Tools + Wordpress Optimizations                         ||"
 echo "---------------------------------------------------------------------------------"
 echo ""
 
@@ -25,88 +25,29 @@ apt_package_install_list=()
 # virtual machine. We'll then loop through each of these and check individual
 # status before adding them to the apt_package_install_list array.
 apt_package_check_list=(
-	# Please avoid apostrophes in these comments - they break vim syntax
-	# highlighting.
 
-	# PHP7
-	#
-	# Our base packages for php7.0. As long as php7.0-fpm and php7.0-cli are
-	# installed, there is no need to install the general php7.0 package, which
-	# can sometimes install apache as a requirement.
-	php7.0-fpm
-	php7.0-cli
-	php7.1-fpm
-	php7.1-cli
-	php7.2-fpm
-	php7.2-cli
-
-	# Common and dev packages for php
-	php7.0-common
-	php7.0-dev
-	php7.1-common
-	php7.1-dev
-  php7.2-common
-	php7.2-dev
-
-
-	libpcre3
-
-	# Extra PHP modules that we find useful
-	#php-pear
+	# Extra PHP modules
 	php-imagick
 	php-ssh2
 	#php-xdebug
-
-	php7.0-bcmath
-	php7.0-gd
 	php7.0-mcrypt
-	php7.0-zip
-
-	php7.1-bcmath
-	php7.1-gd
 	php7.1-mcrypt
-	php7.1-zip
-
-	php7.2-bcmath
-	php7.2-gd
-	php7.2-zip
 
 	zip
 	ngrep
-	curl
-	make
-	vim
+
 	colordiff
-	python-pip
-
-	# ntp service to keep clock current
-	ntp
-
-	# Required for i18n tools
-	gettext
-
 	# Required for Webgrind
 	graphviz
 
-	# dos2unix
-	# Allows conversion of DOS style line endings to something less troublesome
-	# in Linux.
-	dos2unix
-
-	# nodejs for use by grunt
-	g++
-	#nodejs
-
-	# Mailcatcher requirement
-	libsqlite3-dev
-  libssl-dev
+  pkg-config
   libxslt1-dev
   libxml2-dev
 
   # deployment tools
   sshpass
   gpgv2
-  ftp
+  gnupg2
 )
 
 ### FUNCTIONS
@@ -209,7 +150,7 @@ package_install() {
 
 		# Install required packages
 		echo "Installing apt-get packages..."
-		apt-get -y install ${apt_package_install_list[@]}
+		sudo apt-get -y --no-upgrade --no-install-recommends install ${apt_package_install_list[@]}
 
 	fi
 }
@@ -219,35 +160,67 @@ tools_install() {
 	# Disable xdebug before any composer provisioning.
 	#sh /home/vagrant/bin/xdebug_off
 
-  echo "Prepping Ruby!"
-  sudo chmod -R 777 /usr/local/rvm/archives
-
-  echo "Prepping Ruby Keys!"
-  command curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
-
-
-	# nvm
-	if [[ ! -d "/home/vagrant/config/nvm" ]]; then
-		echo -e "\nDownloading nvm, see https://github.com/creationix/nvm"
-		git clone "https://github.com/creationix/nvm.git" "/home/vagrant/config/nvm"
-		cd /home/vagrant/config/nvm
-		git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`
-	else
-		echo -e "\nUpdating nvm..."
-		cd /home/vagrant/config/nvm
-		git fetch origin
-		git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin` -q
-	fi
-	# Activate nvm
-	source /home/vagrant/config/nvm/nvm.sh
-
-	# npm
+  #
+	# Node Version Manager [nvm]
+	#      - automated migration for npm packages
+	#      - triggered if NodeJS updates between provisions.
 	#
-	# Make sure we have the latest npm version and the update checker module
-	echo "Installing/updating npm..."
-	npm install -g npm
-	echo "Installing/updating npm-check-updates..."
-	npm install -g npm-check-updates
+
+	export NVM_DIR="/home/vagrant/.nvm"
+  if [ ! -d "$NVM_DIR" ]; then
+
+    npm uninstall -g bower
+    npm uninstall -g grunt-cli
+    npm uninstall -g gulp
+    npm uninstall -g yarn
+
+    sudo mkdir -p $NVM_DIR
+    sudo cp /home/vagrant/config/default-packages $NVM_DIR/default-packages
+
+    export USER="vagrant"
+    export HOME="/home/vagrant"
+
+		echo "Node Version Manager [NVM] installing....."
+		curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | NVM_DIR=$NVM_DIR bash >> /home/vagrant/log/install.log
+
+
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    source /home/vagrant/.bash_profile
+		nvm install node
+    nvm use node
+
+    TRIMVER="$(node --version | tr -d '[:space:]')"
+    echo $TRIMVER > "/home/vagrant/config/nodelast.txt"
+
+	else
+    echo "Compare NVM previous to current build......"
+
+    if [ -f "/home/vagrant/config/nodelast.txt" ]; then
+        while IFS= read -r line; do
+          echo $line
+        done < nvmfile
+        checkver=$(<nvmfile)
+        TRIMVER="$(node --version | tr -d '[:space:]')"
+
+        if [ "$checkver" == $TRIMVER ]; then
+          echo "NVM migration not needed. Idential NVMs"
+        else
+          echo "Starting Automated NVM Migration from ${checkver} to $TRIMVER"
+          nvm install node --reinstall-packages-from=$checkver
+        fi
+    fi
+
+	fi
+
+  echo "Installing YARN the offial way..........." 
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt-get update && sudo apt-get -y install yarn
+
+  echo "Setting up the Conjure Dashboard........."
+  cd /home/vagrant/dashboard
+  yarn install
 
 	# ack-grep
 	#
@@ -269,40 +242,46 @@ tools_install() {
 }
 
 phpfpm_setup() {
+  local pseven="/home/vagrant/config/php-config/php7."
 	# Copy php-fpm configuration from local
-	cp "/home/vagrant/config/php-config/php7.0-fpm.conf" "/etc/php/7.0/fpm/php-fpm.conf"
-	cp "/home/vagrant/config/php-config/php7.0-www.conf" "/etc/php/7.0/fpm/pool.d/www.conf"
-	cp "/home/vagrant/config/php-config/php7.0-custom.ini" "/etc/php/7.0/fpm/conf.d/php-custom.ini"
+	cp "${pseven}0-fpm.conf" "/etc/php/7.0/fpm/php-fpm.conf"
+	cp "${pseven}0-www.conf" "/etc/php/7.0/fpm/pool.d/www.conf"
+	cp "${pseven}0-custom.ini" "/etc/php/7.0/fpm/conf.d/php-custom.ini"
 
-	cp "/home/vagrant/config/php-config/php7.1-fpm.conf" "/etc/php/7.1/fpm/php-fpm.conf"
-	cp "/home/vagrant/config/php-config/php7.1-www.conf" "/etc/php/7.1/fpm/pool.d/www.conf"
-	cp "/home/vagrant/config/php-config/php7.1-custom.ini" "/etc/php/7.1/fpm/conf.d/php-custom.ini"
+	cp "${pseven}1-fpm.conf" "/etc/php/7.1/fpm/php-fpm.conf"
+	cp "${pseven}1-www.conf" "/etc/php/7.1/fpm/pool.d/www.conf"
+	cp "${pseven}1-custom.ini" "/etc/php/7.1/fpm/conf.d/php-custom.ini"
 
-	cp "/home/vagrant/config/php-config/php7.2-fpm.conf" "/etc/php/7.2/fpm/php-fpm.conf"
-	cp "/home/vagrant/config/php-config/php7.2-www.conf" "/etc/php/7.2/fpm/pool.d/www.conf"
-	cp "/home/vagrant/config/php-config/php7.2-custom.ini" "/etc/php/7.2/fpm/conf.d/php-custom.ini"
+	cp "${pseven}2-fpm.conf" "/etc/php/7.2/fpm/php-fpm.conf"
+	cp "${pseven}2-www.conf" "/etc/php/7.2/fpm/pool.d/www.conf"
+	cp "${pseven}2-custom.ini" "/etc/php/7.2/fpm/conf.d/php-custom.ini"
 
 	cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.0/fpm/conf.d/opcache.ini"
-	#cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.0/mods-available/xdebug.ini"
+	cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.0/mods-available/xdebug.ini"
 
 	cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.1/fpm/conf.d/opcache.ini"
-	#cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.1/mods-available/xdebug.ini"
+	cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.1/mods-available/xdebug.ini"
 
 	cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.2/fpm/conf.d/opcache.ini"
-	#cp "/home/vagrant/config/php-config/xdebug.ini" "/etc/php/7.2/mods-available/xdebug.ini"
 
-	echo " * PHP 7 [ 7.0 , 7.1 , 7.2 ] Configurations ---------------------------------------------------------"
-	echo " * Copied /home/vagrant/config/php-config/php7.X-fpm.conf   to /etc/php/7.X/fpm/php-fpm.conf"
-	echo " * Copied /home/vagrant/config/php-config/php7.X-www.conf   to /etc/php/7.X/fpm/pool.d/www.conf"
-	echo " * Copied /home/vagrant/config/php-config/php7.X-custom.ini to /etc/php/7.X/fpm/conf.d/php-custom.ini"
-	echo " * Copied /home/vagrant/config/php-config/opcache.ini       to /etc/php/7.X/fpm/conf.d/opcache.ini"
-	#echo " * Copied /home/vagrant/config/php-config/xdebug.ini        to /etc/php/7.X/mods-available/xdebug.ini"
+	echo "---------------* PHP 7 [ 7.0 , 7.1 , 7.2 ] Configurations ---------------"
+  echo " "
+  echo " PHP v[7.0, 7.1, 7.2] loaded and configured!"
+	echo "  * /etc/php/7.X/fpm/php-fpm.conf"
+	echo "  * /etc/php/7.X/fpm/pool.d/www.conf"
+	echo "  * /etc/php/7.X/fpm/conf.d/php-custom.ini"
+	echo "  * /etc/php/7.X/fpm/conf.d/opcache.ini"
+	echo "  * /etc/php/7.[1,2]/mods-available/xdebug.ini"
+  echo " "
+
+  # @TODO something with xdebug. Shit is dead in PHP 7.2
+	#echo " * Copied /home/vagrant/config/php-config/xdebug.ini to /etc/php/7.X/mods-available/xdebug.ini"
 
 	# Copy memcached configuration from local
 	cp "/home/vagrant/config/memcached-config/memcached.conf" "/etc/memcached.conf"
 	cp "/home/vagrant/config/memcached-config/memcached.conf" "/etc/memcached_default.conf"
 
-	echo " * Copied /home/vagrant/config/memcached-config/memcached.conf to /etc/memcached.conf and /etc/memcached_default.conf"
+	echo "Configs set for Memcached here: /etc/memcached.conf and /etc/memcached_default.conf"
 }
 
 mysql_setup() {
@@ -381,33 +360,28 @@ services_restart() {
 ### SCRIPT
 #set -xv
 
-network_check
 # Profile_setup
 echo " "
-echo " ------ [ BASH SETUP ] ------ "
+echo " -------------* [ BASH SETUP ] *------------- "
 profile_setup
 
 # Package and Tools Install
 echo " "
-echo " ------ [ EXTRA PACKAGES ] ------ "
+echo " -----------* [ EXTRA PACKAGES ] *----------- "
 package_install
 
 echo " "
-echo " ------ [ NODE VERSION MANAGER ] ------ "
+echo " --------* [ NODE VERSION MANAGER ] *-------- "
 tools_install
 
 echo " "
-echo " ------ [ PHP EXTRAS ] ------ "
+echo " -* [ PHP 7.0 , 7.1 , 7.2 ] Configurations ] *-"
 phpfpm_setup
-
-echo " "
-echo " ------ [ RESTART SERVICES ] ------ "
-services_restart
 
 end_seconds="$(date +%s)"
 echo " "
 echo "---------------------------------------------------------------------------------"
-echo "   STAGE 3 / 4 "
+echo "   STAGE 2 / 4 "
 echo "   Completed in $(( end_seconds - start_seconds )) seconds "
 echo "---------------------------------------------------------------------------------"
 echo " "

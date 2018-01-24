@@ -96,5 +96,5 @@
         │
         +-- www/                                          
             +-- webpress/                                  
-            +-- wp_dev/
+            +-- wpdev/
 ```

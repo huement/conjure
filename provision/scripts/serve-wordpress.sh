@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-declare -A params=$6     # Create an associative array
-paramsTXT=""
-if [ -n "$6" ]; then
-   for element in "${!params[@]}"
-   do
-      paramsTXT="${paramsTXT}
-      fastcgi_param ${element} ${params[$element]};"
-   done
-fi
-
 block="server {
     listen ${3:-80};
     listen ${4:-443} ssl http2;
@@ -25,16 +15,14 @@ block="server {
     }
 
     location ~ ^/wp-content/uploads/(.*) {
-      if (!-f $request_filename) {
-        rewrite ^/wp-content/uploads/(.*)$ https://myriadmobile.com/wp-content/uploads/$1 redirect;
-      }
+      rewrite ^/wp-content/uploads/(.*)$ $6/wp-content/uploads/\$1 redirect;
     }
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
 
     access_log off;
-    error_log  /home/vagrant/log/nginx-laravel-$1-error.log error;
+    error_log  /home/vagrant/log/$1-nginx_error.log error;
 
     sendfile off;
 
@@ -46,7 +34,6 @@ block="server {
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-        $paramsTXT
 
         fastcgi_intercept_errors off;
         fastcgi_buffer_size 16k;

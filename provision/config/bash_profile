@@ -12,12 +12,12 @@ fi
 
 # if running bash
 # include .bashrc if it exists
-if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
+if [ -f "/home/vagrant/.bashrc" ]; then
+    . "/home/vagrant/.bashrc"
 fi
 # include .bash_prompt if it exists
-if [ -f "$HOME/.bash_prompt" ]; then
-    . "$HOME/.bash_prompt"
+if [ -f "/home/vagrant/.bash_prompt" ]; then
+    . "/home/vagrant/.bash_prompt"
 fi
 
 # Ruby
@@ -27,24 +27,21 @@ fi
 if [ -f "/usr/local/rvm/scripts/rvm" ]; then
   source /usr/local/rvm/scripts/rvm
 fi
-if [ -f "/home/vagrant/.rvm/scripts/rvm" ]; then
-  source /home/vagrant/.rvm/scripts/rvm
-fi
 
-export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
+export GEM_HOME=/home/vagrant/.gem
+export GEM_PATH=/home/vagrant/.gem
 
 
 CSPATH=""
 #PHPCS 2.x
 if [ -f "/home/vagrant/phpcs/scripts/phpcs" ]; then
-  CSPATH="#"
+  CSPATH="/home/vagrant/phpcs/scripts/phpcs:"
 fi
 
 #PHPCS 3.x
 if [ -f "/home/vagrant/phpcs/bin/phpcs" ]; then
-  CSPATH="#
-4
+  CSPATH="/home/vagrant/phpcs/bin/phpcs:"
+fi
 
 
 # Set the WP_TESTS_DIR path directory so that we can use phpunit inside
@@ -54,14 +51,14 @@ export WP_TESTS_DIR=/home/vagrant/code/wordpress-default/public_html/tests/phpun
 export WP_CORE_DIR=/home/vagrant/code/wordpress-default/public_html/src/
 
 # add autocomplete for grunt
-eval "$(grunt --completion=bash)"
+# eval "$(grunt --completion=bash)"
 
 # add autocomplete for wp-cli
 if [ -f "/home/vagrant/.wp-cli/wp-completion.bash" ]; then
   source /home/vagrant/.wp-cli/wp-completion.bash
 fi
 # PHPCS path
-export PATH="/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:$HOME/.composer/vendor/bin:$HOME/scripts:/home/vagrant/bin:$CSPATH:$PATH"
+export PATH="/home/vagrant/.gem/bin:./node_modules/.bin:/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:/home/vagrant/.composer/vendor/bin:/home/vagrant/scripts:/home/vagrant/bin:${CSPATH}${PATH}"
 
 # nvm path
 export NVM_DIR="/home/vagrant/config/nvm"

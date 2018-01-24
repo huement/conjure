@@ -2,6 +2,21 @@
 
 declare -A params=$6     # Create an associative array
 paramsTXT=""
+
+#
+# @TODO make this more clear by putting in docs!
+#
+# Most of these params are values found in the Homestead.yml
+# Such as map: myurl.com to: /home/app
+#
+# @param1  =  Site URL
+# @param2  =  Site DIR
+# @param3  =  Port NUM
+# @param4  =  SSL CERT
+# @param5  =  PHP VERS
+# @param6  =  + PARAMS
+#
+
 if [ -n "$6" ]; then
    for element in "${!params[@]}"
    do
@@ -28,7 +43,7 @@ block="server {
     location = /robots.txt  { access_log off; log_not_found off; }
 
     access_log off;
-    error_log  /home/vagrant/log/nginx-lara-$1-error.log error;
+    error_log  /home/vagrant/log/$1-error.log error;
 
     sendfile off;
 

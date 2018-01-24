@@ -48,4 +48,4 @@ Iconr
 utilities/**/*/bower_components
 *bower_components
 /**/*/bower_components
-utilities/dashboard/widgets/pa11y-dashboard/test
+_dashboard/widgets/pa11y-dashboard/test

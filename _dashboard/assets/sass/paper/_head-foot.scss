@@ -1,0 +1,88 @@
+.footer{
+    background-attachment: fixed;
+    position: relative;
+    line-height: 20px;
+    nav {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          font-weight: normal;
+            li{
+                    display: inline-block;
+                    padding: 10px 15px;
+                    margin: 15px 3px;
+                    line-height: 20px;
+                    text-align: center;
+            }
+            a:not(.btn){
+                color: $font-color;
+                display: block;
+                margin-bottom: 3px;
+
+                &:focus,
+                &:hover{
+                    color: $default-states-color;
+                }
+            }
+        }
+    }
+    .copyright{
+        color: $font-color;
+        padding: 10px 15px;
+        font-size: 14px;
+        white-space: nowrap;
+        margin: 15px 3px;
+        line-height: 20px;
+        text-align: center;
+    }
+    .heart{
+        color: $danger-color;
+    }
+}
+
+
+/** JUMBO */
+
+.jumbotron.jumbo-sex {
+  padding:10px 20px 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  margin-top:-10px;
+  color:#FFFFFF;
+}
+
+.jumbo-sex .title,
+.jumbo-sex .summary,
+.jumbo-sex p {
+  color:#FFFFFF;
+}
+
+.jumbo-sex .title.center,
+.jumbo-sex .summary.center {
+  text-align:center;
+}
+
+.jumbo-sex .title {
+  font-size:40px;
+  line-height:1.3;
+  font-weight:bold;
+  margin:0;
+  padding:0;
+}
+
+.jumbo-sex .summary {
+  font-size:22px;
+  line-height:1.5;
+  margin:0;
+  font-weight:400;
+  padding:0;
+}
+
+.jumbotron.jumbo-sex .title a,
+.jumbotron.jumbo-sex .title strong,
+.jumbotron.jumbo-sex .summary a,
+.jumbotron.jumbo-sex .summary strong {
+  color:#EEE;
+  text-transform: uppercase;
+}

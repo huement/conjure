@@ -1,6 +1,6 @@
 {
   "name": "myriadmobile/wp_conjure",
-  "version": "0.9.0",
+  "version": "0.9.5",
   "description": "Wordpress build a box",
   "type": "project",
   "require": {
@@ -59,18 +59,18 @@
   "secure-http": true,
   "extra": {
     "wordpress-install-dir": {
-  		"johnpbloch/wordpress-core": "www/wp_dev"
+  		"johnpbloch/wordpress-core": "www/wpdev"
   	},
     "installer-paths": {
-      "www/wp_dev/wp-content/themes/{$name}": ["type:wordpress-theme"],
-      "www/wp_dev/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
-      "www/wp_dev/wp-content/mu-plugins/{$name}": ["type:wordpress-muplugin"]
+      "www/wpdev/wp-content/themes/{$name}": ["type:wordpress-theme"],
+      "www/wpdev/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
+      "www/wpdev/wp-content/mu-plugins/{$name}": ["type:wordpress-muplugin"]
     },
     "preserve-paths": [
-      "www/wp_dev/wp-content/mu-plugins/",
-      "www/wp_dev/wp-content/plugins/",
-      "www/wp_dev/wp-content/themes/",
-      "www/wp_dev/wp-config.php"
+      "www/wpdev/wp-content/mu-plugins/",
+      "www/wpdev/wp-content/plugins/",
+      "www/wpdev/wp-content/themes/",
+      "www/wpdev/wp-config.php"
     ]
   }
 }

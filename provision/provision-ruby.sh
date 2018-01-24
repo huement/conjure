@@ -1,118 +1,93 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#sh /home/vagrant/bin/xdebug_off
 start_seconds="$(date +%s)"
-sudo -s
 
 echo ""
 echo "---------------------------------------------------------------------------------"
-echo "|| STAGE 2 | RUBY and the GEMS                                                 ||"
+echo "|| STAGE 3 | RUBY [RVM] + GEMS + WORDMOVE                                      ||"
 echo "---------------------------------------------------------------------------------"
 echo ""
+echo ""
+echo ""
 
-# Update all of the package references before installing anything
-echo "Running apt-get update..."
-sudo apt-get -y update &>/dev/null
+if ! type rvm >/dev/null 2>&1; then
+  echo 'rvm not installed - installing'
+  mkdir -p /home/vagrant/.gnupg
+  curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+  curl -L https://get.rvm.io | bash -s stable
+  source /etc/profile.d/rvm.sh
+  sudo cp -R /root/.gnupg/* /home/vagrant/.gnupg
+else
+  echo 'rvm already installed'
+fi
 
-# VVoyage | https://github.com/aprivette/vvoyage
-# - `vvoyage env:create` - Creates a new Wordmove environment in the site's Movefile.
-# - `vvoyage env:delete` - Deletes a Wordmove enviroment
-# - `vvoyage site:create` - Adds a new site config to vvv-custom.yml
-# - `vvoyage site:delete` - Deletes a site config from vvv-custom.yml, deletes the site's folder, and drops the database
-# - `vvoyage site:migrate` - Pushes or pulls a site from a specified environment
+rvm install 2.5.0
 
+echo 'trying to use ruby-2.5.0'
+rvm --default use 2.5.0
 
-print_pkg_info() {
-	local pkg="$1"
-	local pkg_version="$2"
-	local space_count
-	local pack_space_count
-	local real_space
+if [ $(gem -v | grep '^2.') ]; then
 
-	space_count="$(( 20 - ${#pkg} ))" #11
-	pack_space_count="$(( 30 - ${#pkg_version} ))"
-	real_space="$(( space_count + pack_space_count + ${#pkg_version} ))"
-	printf " * $pkg %${real_space}.${#pkg_version}s ${pkg_version}\n"
-}
+  echo "ruby-gem installed"
 
+else
 
-echo " ------ [ RUBY + GEMS ] ------ "
+  echo "ruby-gem not installed - installing"
 
-# Ruby
+  gemdir 2.0.0
 
+  gem install rubygems-update --no-rdoc --no-ri
 
-function check_rvm() {
-	local result=$(type rvm >/dev/null 2>&1 || echo 'nope');
+  update_rubygems
 
-	printf "Checking %s...\n" "RVM";
+  echo 'gem: --no-rdoc --no-ri' >~/.gemrc
 
-	if [[ ${result} = 'nope' ]]; then
-		printf "\n";
-		install_rvm;
-	else
-		printf " * RVM is installed\n";
-	fi
-
-	if [ -f "/etc/profile.d/rvm.sh" ]; then
-		source /etc/profile.d/rvm.sh
-	fi
-	if [ -f "/usr/local/rvm/scripts/rvm" ]; then
-		source /usr/local/rvm/scripts/rvm
-	fi
-	if [ -f "/home/vagrant/.rvm/scripts/rvm" ]; then
-		source /home/vagrant/.rvm/scripts/rvm
-	fi
-}
-
-function install_rvm() {
-	# @url https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma
-	# @url https://rvm.io/rvm/install
-
-	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3;
-
-	curl -sSL https://get.rvm.io | bash -s stable --ruby;
-
-	source /home/vagrant/.rvm/scripts/rvm;
-
-	rvm requirements;
-}
-
-check_rvm
+fi
 
 # wordmove install
 echo "Installing Ruby Gems................."
-gem install bundler
+sudo -u vagrant gem install bundler
 #gem install mailcatcher
-gem install compass
-gem install sass
-gem install rake
-gem install serverspec
-gem install gemcutter
-gem install compass-wordpress
-gem install wordpress_tools
+sudo -u vagrant gem install compass
+sudo -u vagrant gem install sass
+sudo -u vagrant gem install rake
+sudo -u vagrant gem install serverspec
+sudo -u vagrant gem install gemcutter
+sudo -u vagrant gem install compass-wordpress
+sudo -u vagrant gem install wordpress_tools
+sudo -u vagrant gem install wordmove
 
 
-echo "W O R D  M O V E....................."
-wordmove_install="$(gem list wordmove -i)"
-if [ "$wordmove_install" = true ]; then
-	echo "Wordmove already installed"
+
+if [ "$wordmove_install" == true ]; then
+
+  echo "Wordmove GTG!"
+
 else
-	echo "Installing Wordmove"
-	gem install wordmove --pre
-	wordmove_path="$(gem which wordmove | sed -s 's/.rb/\/deployer\/base.rb/')"
-	if [  "$(grep yaml $wordmove_path)" ]; then
-		echo "gtg on require yaml"
-	else
-		sed -i "7i require\ \'yaml\'" $wordmove_path
-		echo "can now require yaml"
-	fi
+
+  echo "Configuring WORDMOVE................"
+
+  # once photocopier goes 1.0 we can just install base wordmove
+  #gem install wordmove --pre
+
+  wordmove_path="$(gem which wordmove | sed -s 's/.rb/\/deployer\/base.rb/')"
+
+  if [ "$(grep yaml $wordmove_path)" ]; then
+    echo "WORDMOVE YAML GTG!"
+  else
+    sed -i "7i require\ \'YAML\'" $wordmove_path
+    echo "SETUP WORDMOVE YAML"
+  fi
 fi
 
+echo "Finished Ruby Gems install..........."
+echo " "
+echo " "
 
 end_seconds="$(date +%s)"
 echo " "
 echo "---------------------------------------------------------------------------------"
-echo "   STAGE 2 / 4 "
-echo "   Completed in $(( end_seconds - start_seconds )) seconds "
+echo "   STAGE 3 / 4 "
+echo "   Completed in $((end_seconds - start_seconds)) seconds "
 echo "---------------------------------------------------------------------------------"
 echo " "

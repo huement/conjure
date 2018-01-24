@@ -12,7 +12,7 @@ vagrant_dir = File.expand_path(File.dirname(__FILE__))
 @branch     = `git log --pretty=format:'%h' -n 1`
 @show_logo  = false
 @skipBackup = false
-@verCONJURE = "0.9.0"
+@conjureVERSION = "0.9.5"
 
 # whitelist when we show the logo, else it'll show on global Vagrant commands
 if [ 'up', 'resume', 'suspend', 'status', 'provision' ].include? ARGV[0] then
@@ -47,11 +47,11 @@ if File.exist? client_vagrantfile then
          @birthDay = conjure_settings['created_on']
 else
   puts " "
-  puts "  ------------------[FAILURE]-------------------  "
+  puts "  ------------------------[FAILURE]-------------------------  "
   puts " "
-  puts "    Initial setup missing. Run conjure.sh first.  "
+  puts "      Conjure config missing.  Try this: conjure.sh setup     "
   puts " "
-  puts "  ------------------[ ABORT ]-------------------  "
+  puts "  ------------------------[ ABORT ]-------------------------  "
   puts " "
   abort " "
 end
@@ -79,15 +79,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     #
-    # Require files
+    # > You sort of start thinking anything’s possible if you’ve got enough nerve.
+    # >    - Ginny Weasley
     #
     config.vm.provision "file", source: "provision/config", destination: "/home/vagrant/config"
+    config.vm.provision "file", source: "provision/scripts", destination: "/home/vagrant/scripts"
+    config.vm.provision "file", source: "provision/vagrant_bin", destination: "/home/vagrant/bin"
     config.vm.synced_folder "provision/config/wp-cli", "/home/vagrant/.wp-cli", :mount_options => [ "dmode=777", "fmode=777" ]
     config.vm.synced_folder "database/", "/home/vagrant/database", :mount_options => [ "dmode=777", "fmode=777" ]
     config.vm.synced_folder "_spellbook", "/home/vagrant/_spells", :mount_options => [ "dmode=777", "fmode=777" ]
 
 
-    if File.exists?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then
+    if File.exist?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then
       if vagrant_version >= "1.3.0"
         config.vm.synced_folder "database/backups/", "/var/lib/mysql", :mount_options => [ "dmode=777", "fmode=777" ]
       else
@@ -96,10 +99,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
 
-    # /home/vagrant/log/
     #
-    # If a log directory exists in the same directory as your Vagrantfile, a mapped
-    # directory inside the VM will be created for some generated log files.
+    # LOG JAM  |  /home/vagrant/log/
+    # Sync a single log directory from Vagrant to our local dev. No more searching for error files!
+    #
     config.vm.synced_folder "log/", "/home/vagrant/log", :owner => "www-data"
 
 
@@ -119,28 +122,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     settings['sites'].concat utilities['sites']
     settings['folders'].concat utilities['folders']
     settings['databases'].concat utilities['databases']
-
-    # If you set additional ports, use concat. If no ports. just assign.
-    #settings['ports'].concat utilities['ports']
+    ## NOTE: If you set additional ports, use concat. If no ports. just assign.
+    ## settings['ports'].concat utilities['ports']
     settings['ports'] = utilities['ports']
 
-    if File.exists?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then
-      if vagrant_version >= "1.3.0"
-        config.vm.synced_folder "database/data/", "/var/lib/mysql", :mount_options => [ "dmode=777", "fmode=777" ]
-      else
-        config.vm.synced_folder "database/data/", "/var/lib/mysql", :extra => 'dmode=777,fmode=777'
-      end
-
-      # The Parallels Provider does not understand "dmode"/"fmode" in the "mount_options" as
-      # those are specific to Virtualbox. The folder is therefore overridden with one that
-      # uses corresponding Parallels mount options.
-      config.vm.provider :parallels do |v, override|
-        override.vm.synced_folder "database/data/", "/var/lib/mysql", :mount_options => []
-      end
-    end
 
     #
-    # RUN HOMESTEAD
+    # HOMESTEAD
+    # The main Laravel Provisioning process.
     #
     Homestead.configure(config, settings, wizardHash)
 
@@ -156,22 +145,44 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
 
-    if File.exists?(File.join(vagrant_dir,'provision','provision-devtools.sh')) then
-      #config.vm.provision :shell, :privileged => true, :path => File.join( "provision", "provision-devtools.sh" )
+    #
+    # CONJURE PROVISIONING
+    # Now that homestead has completed its initial setup, we can add in some magic...
+    #
+    if File.exist?(File.join(vagrant_dir,'provision','provision-devtools.sh')) then
       config.vm.provision "default", type: "shell", path: File.join( "provision", "provision-devtools.sh" ), privileged: true, keep_color: true
     end
 
-    # RUN ANY PROVISIONING SCRIPTS
-    if File.exists?(File.join(vagrant_dir,'provision','provision-ruby.sh')) then
-      #config.vm.provision :shell, :privileged => true, :path => File.join( "provision", "provision-ruby.sh" )
+    if File.exist?(File.join(vagrant_dir,'provision','provision-ruby.sh')) then
       config.vm.provision "pre", type: "shell", path: File.join( "provision", "provision-ruby.sh" ), privileged: true, keep_color: true
     end
 
-    if File.exists?(File.join(vagrant_dir,'provision','provision-utilities.sh')) then
-      #config.vm.provision :shell, :privileged => true, :path => File.join( "provision", "provision-utilities.sh" )
+    if File.exist?(File.join(vagrant_dir,'provision','provision-utilities.sh')) then
       config.vm.provision "post", type: "shell", path: File.join( "provision", "provision-utilities.sh" ), privileged: true, keep_color: true
     end
 
+
+    #
+    # RESTORE SAVED DATABASE
+    # If you want to start out with same SQL everytime, or restory save created via Vagrant Trigger.
+    #
+    if File.exist?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then
+      if vagrant_version >= "1.3.0"
+        config.vm.synced_folder "database/data/", "/var/lib/mysql", :mount_options => [ "dmode=777", "fmode=777" ]
+      else
+        config.vm.synced_folder "database/data/", "/var/lib/mysql", :extra => 'dmode=777,fmode=777'
+      end
+
+      # The Parallels Provider does not understand "dmode"/"fmode" in the "mount_options" as
+      # those are specific to Virtualbox. The folder is therefore overridden with one that
+      # uses corresponding Parallels mount options.
+      config.vm.provider :parallels do |v, override|
+        override.vm.synced_folder "database/data/", "/var/lib/mysql", :mount_options => []
+      end
+    end
+
+
+    #
     # Vagrant Triggers
     #
     # If the vagrant-triggers plugin is installed, we can run various scripts on Vagrant

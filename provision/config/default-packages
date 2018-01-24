@@ -1,0 +1,15 @@
+# $NVM_DIR/default-packages
+eslint
+chalk
+grunt
+grunt-cli
+node-sass
+sass-loader
+css-loader
+svg-react-loader
+webpack
+webpack-simple-progress-plugin
+chai-nightwatch
+mocha-nightwatch
+yarn
+figlet-cli
