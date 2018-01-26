@@ -49,3 +49,4 @@ utilities/**/*/bower_components
 *bower_components
 /**/*/bower_components
 _dashboard/widgets/pa11y-dashboard/test
+utilities/dashboard/.sass-cache
