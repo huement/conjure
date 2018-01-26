@@ -1,4 +1,36 @@
 /**
+ * T O D O W I D G E T
+ */
+
+.todo-input-group {
+  padding:0;
+  margin:0;
+  display:block;
+  width:100%;
+  position: relative;
+}
+
+.input-group .form-control.todo-input {
+  width:83%;
+  float:left;
+}
+
+.input-group .form-control.todo-input-btn {
+width:5%;
+}
+
+.todo-table.table tbody tr > td {
+  font-size:13px;
+}
+
+.todo-table.table tbody tr > td {
+  font-size:13px;
+  line-height:1.2;
+  font-family: 'Open Sans'
+}
+
+
+/**
  * FEEDBACK WIDGET
  */
 

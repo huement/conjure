@@ -5,6 +5,8 @@
 start_seconds="$(date +%s)"
 #sh /home/vagrant/bin/xdebug_off
 sudo -s
+sudo mkdir -p /home/vagrant/.cache
+sudo chmod -R 777 /home/vagrant/.cache
 
 echo ""
 echo "---------------------------------------------------------------------------------"
@@ -213,14 +215,18 @@ tools_install() {
 
 	fi
 
-  echo "Installing YARN the offial way..........." 
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  sudo apt-get update && sudo apt-get -y install yarn
+  YDIR=$(which yarn)
 
-  echo "Setting up the Conjure Dashboard........."
-  cd /home/vagrant/dashboard
-  yarn install
+  if [ "$YDIR" == "" ]; then
+    echo "Installing YARN the offial way..........."
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt-get update && sudo apt-get -y install yarn
+
+    echo "Setting up the Conjure Dashboard........."
+    cd /home/vagrant/dashboard
+    yarn install
+  fi
 
 	# ack-grep
 	#
@@ -264,14 +270,10 @@ phpfpm_setup() {
 
 	cp "/home/vagrant/config/php-config/opcache.ini" "/etc/php/7.2/fpm/conf.d/opcache.ini"
 
-	echo "---------------* PHP 7 [ 7.0 , 7.1 , 7.2 ] Configurations ---------------"
+
+  echo "  ----------------------* PHP [7.0, 7.1, 7.2] *----------------------"
   echo " "
-  echo " PHP v[7.0, 7.1, 7.2] loaded and configured!"
-	echo "  * /etc/php/7.X/fpm/php-fpm.conf"
-	echo "  * /etc/php/7.X/fpm/pool.d/www.conf"
-	echo "  * /etc/php/7.X/fpm/conf.d/php-custom.ini"
-	echo "  * /etc/php/7.X/fpm/conf.d/opcache.ini"
-	echo "  * /etc/php/7.[1,2]/mods-available/xdebug.ini"
+	echo "  php-fpm.conf | www.conf | php-custom.ini | opcache.ini | xdebug.ini"
   echo " "
 
   # @TODO something with xdebug. Shit is dead in PHP 7.2

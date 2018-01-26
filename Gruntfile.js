@@ -44,13 +44,32 @@ module.exports = function(grunt) {
 		// data passed into config. Can use with <%= test %>
 		data       : CFGDATA,
 		pkg        : PKDATA,
-		jitGrunt   : { staticMappings: PKDATA.staticMappings },
+		jitGrunt   : {
+      staticMappings : {
+        asciify               : 'grunt-asciify-color',
+        availabletasks        : 'grunt-available-tasks',
+        browserSync           : 'grunt-browser-sync',
+        connect               : 'grunt-contrib-connect',
+        usebanner             : 'grunt-banner',
+        watch                 : 'grunt-contrib-watch',
+        changelogcustomizable : 'grunt-changelog-customizable',
+        concat                : 'grunt-contrib-concat',
+        copy                  : 'grunt-contrib-copy',
+        postcss               : 'grunt-postcss',
+        sass                  : 'grunt-contrib-sass',
+        webpack               : 'grunt-webpack',
+        md2html               : 'grunt-md2html',
+        twigRender            : 'grunt-twig-render',
+        markdownit            : 'grunt-markdown-it',
+        handlebars            : 'grunt-compile-handlebars'
+      }
+    },
 		// optionall add another task dir:
 		//customTasksDir : PKDATA.questDir
 	});
 
   // // Actually load this plugin's task(s).
-  // grunt.loadTasks('tasks');
+  //grunt.loadTasks('tasks');
   //
   // // These plugins provide necessary tasks.
   // grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -64,5 +83,6 @@ module.exports = function(grunt) {
   // By default, lint and run all tests.
   grunt.registerTask('default', ['asciify:banner']);
   grunt.registerTask('docs', ['md2html']);
+  grunt.registerTask('mddoc', ['asciify:banner','markdownit']);
 
 };

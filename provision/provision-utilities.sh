@@ -5,7 +5,6 @@
 #
 #sh /home/vagrant/bin/xdebug_off
 start_seconds="$(date +%s)"
-sudo -s
 
 echo ""
 echo "---------------------------------------------------------------------------------"
@@ -17,8 +16,8 @@ echo ""
 # sudo a2enmod proxy_fcgi setenvif
 # sudo a2enconf php7.0-fpm
 # sudo a2enconf php7.1-fpm
-sudo phpenmod mcrypt
-sudo service nginx restart
+# sudo phpenmod mcrypt
+# sudo service nginx restart
 
 # set up global gitignore
 if [ -f /home/vagrant/.gitignore_global ]; then
@@ -31,11 +30,8 @@ fi
 
 echo " ------ [   COMPOSER   ] ------ "
 
-sudo mkdir -p /usr/local/bin/composer/cache
-sudo chmod -R 777 /usr/local/bin/composer/cache
-
 # @TODO Grab the readmes from these and put in the docs.
-export COMPOSER_HOME=/usr/local/bin/composer
+export COMPOSER_HOME=/home/vagrant/.cache/composer
 composer --no-ansi global require --no-update --no-progress --no-interaction "pyrech/composer-changelogs:*"
 composer --no-ansi global require --no-update --no-progress --no-interaction "phpunit/phpunit:6.*"
 composer --no-ansi global require --no-update --no-progress --no-interaction "phpunit/php-invoker:1.1.*"

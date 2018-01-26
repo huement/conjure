@@ -82,7 +82,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # > You sort of start thinking anything’s possible if you’ve got enough nerve.
     # >    - Ginny Weasley
     #
-    config.vm.provision "file", source: "provision/config", destination: "/home/vagrant/config"
+    #config.vm.provision "file", source: "provision/config", destination: "/home/vagrant/config"
     config.vm.provision "file", source: "provision/scripts", destination: "/home/vagrant/scripts"
     config.vm.provision "file", source: "provision/vagrant_bin", destination: "/home/vagrant/bin"
     config.vm.synced_folder "provision/config/wp-cli", "/home/vagrant/.wp-cli", :mount_options => [ "dmode=777", "fmode=777" ]

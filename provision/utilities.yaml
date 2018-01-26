@@ -8,6 +8,8 @@
 #
 
 folders:
+    - map: ~/Conjure/provision/config
+      to: /home/vagrant/config
     - map: ~/Conjure/_dashboard
       to: /home/vagrant/dashboard
     - map: ~/Conjure/provision/files

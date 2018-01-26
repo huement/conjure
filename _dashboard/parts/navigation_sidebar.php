@@ -45,7 +45,7 @@ Tip 2: you can change the color of the active button using the data-active-color
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="?docs" id="docs-nav" aria-controls="v-pills-docs" aria-selected="false">
+                <a class="nav-link" href="https://magic.app/docs/wp" id="docs-nav" aria-controls="v-pills-docs" aria-selected="false">
                     <i class="fa fa-bookmark"></i>
                     <p>Documentation</p>
                 </a>

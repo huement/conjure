@@ -79,32 +79,32 @@
 
           <ul class="dropdown-menu dropdown-menu-right dropdown-menu-links">
             <li class="dropdown-item">
-              <a name="phpMyAdmin" href="/database-admin/">
+              <a name="phpMyAdmin" href="https://magic.app/apps/database-admin/">
               phpMyAdmin <i class="fa fa-external-link-square"></i>
               </a>
             </li>
             <li class="dropdown-item">
-                <a name="phpMemcachedAdmin" href="/memcached-admin/">
+                <a name="phpMemcachedAdmin" href="https://magic.app/apps/memcached-admin/">
                 phpMemcachedAdmin <i class="fa fa-cubes"></i>
                 </a>
             </li>
             <li class="dropdown-item">
-                <a name="Opcache Status" href="/opcache-status/opcache.php">
+                <a name="Opcache Status" href="https://magic.app/apps/opcache-status/opcache.php">
                 Opcache Status <i class="fa fa-pie-chart"></i>
                 </a>
             </li>
             <li class="dropdown-item">
-                <a name="Webgrind" href="/webgrind/">
+                <a name="Webgrind" href="https://magic.app/apps/webgrind/">
                 Webgrind <i class="fa fa-cog"></i>
                 </a>
             </li>
             <li class="dropdown-item">
-                <a name="PHP Info" href="/phpinfo/">
+                <a name="PHP Info" href="https://magic.app/apps/phpinfo/">
                 PHP <i class="fa fa-info-circle"></i>
                 </a>
             </li>
             <li class="dropdown-item">
-                <a name="Mailcatcher" href="http://vvv.dev:1080/">
+                <a name="Mailcatcher" href="http://magic.app:1080/">
                 Mailcatcher <i class="fa fa-external-link-square"></i>
                 </a>
             </li>

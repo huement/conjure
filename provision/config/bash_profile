@@ -58,7 +58,7 @@ if [ -f "/home/vagrant/.wp-cli/wp-completion.bash" ]; then
   source /home/vagrant/.wp-cli/wp-completion.bash
 fi
 # PHPCS path
-export PATH="/home/vagrant/.gem/bin:./node_modules/.bin:/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:/home/vagrant/.composer/vendor/bin:/home/vagrant/scripts:/home/vagrant/bin:${CSPATH}${PATH}"
+export PATH="/usr/local/rvm/rubies/ruby-2.5.0/bin:./node_modules/.bin:/home/vagrant/.wp-cli/node_modules/.bin:vendor/bin:/home/vagrant/.composer/vendor/bin:/home/vagrant/scripts:/home/vagrant/bin:${CSPATH}${PATH}"
 
 # nvm path
 export NVM_DIR="/home/vagrant/config/nvm"

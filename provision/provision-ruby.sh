@@ -10,6 +10,8 @@ echo ""
 echo ""
 echo ""
 
+echo "  -------------* [ RUBY ] *-------------"
+echo " "
 if ! type rvm >/dev/null 2>&1; then
   echo 'rvm not installed - installing'
   mkdir -p /home/vagrant/.gnupg
@@ -17,16 +19,19 @@ if ! type rvm >/dev/null 2>&1; then
   curl -L https://get.rvm.io | bash -s stable
   source /etc/profile.d/rvm.sh
   sudo cp -R /root/.gnupg/* /home/vagrant/.gnupg
+
+  echo 'RVM Requesting use of ruby-2.5.0'
+  rvm install 2.5.0
+  rvm --default use 2.5.0
+  source /etc/profile.d/rvm.sh
+
 else
   echo 'rvm already installed'
 fi
 
-rvm install 2.5.0
+GEMDIR=$(which gem);
 
-echo 'trying to use ruby-2.5.0'
-rvm --default use 2.5.0
-
-if [ $(gem -v | grep '^2.') ]; then
+if [ "$GEMDIR" != "" ]; then
 
   echo "ruby-gem installed"
 
@@ -36,7 +41,7 @@ else
 
   gemdir 2.0.0
 
-  gem install rubygems-update --no-rdoc --no-ri
+  sudo gem install rubygems-update --no-rdoc --no-ri
 
   update_rubygems
 
@@ -45,30 +50,36 @@ else
 fi
 
 # wordmove install
-echo "Installing Ruby Gems................."
-sudo -u vagrant gem install bundler
+echo " "
+echo "  RUBY | INSTALLING DEFAULT GEMS"
+echo "  -------------------------------"
+echo "  ${GEMDIR}"
+echo " "
+
+$GEMDIR install bundler
 #gem install mailcatcher
-sudo -u vagrant gem install compass
-sudo -u vagrant gem install sass
-sudo -u vagrant gem install rake
-sudo -u vagrant gem install serverspec
-sudo -u vagrant gem install gemcutter
-sudo -u vagrant gem install compass-wordpress
-sudo -u vagrant gem install wordpress_tools
-sudo -u vagrant gem install wordmove
+$GEMDIR install compass
+$GEMDIR install sass
+$GEMDIR install rake
+$GEMDIR install serverspec
+$GEMDIR install gemcutter
+$GEMDIR install compass-wordpress
+$GEMDIR install wordpress_tools
+#sudo gem install wordmove
 
 
+WMDIR=$(which wordmove);
 
-if [ "$wordmove_install" == true ]; then
+if [ "$WMDIR" != "" ]; then
 
-  echo "Wordmove GTG!"
+  echo "WORDMOVE GTG!"
 
 else
 
   echo "Configuring WORDMOVE................"
 
   # once photocopier goes 1.0 we can just install base wordmove
-  #gem install wordmove --pre
+  $GEMDIR install wordmove --pre
 
   wordmove_path="$(gem which wordmove | sed -s 's/.rb/\/deployer\/base.rb/')"
 
@@ -80,8 +91,8 @@ else
   fi
 fi
 
-echo "Finished Ruby Gems install..........."
 echo " "
+echo "  RUBY | Initialzed, Installed, and ready to get down................"
 echo " "
 
 end_seconds="$(date +%s)"
