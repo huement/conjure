@@ -134,18 +134,32 @@
         </ul>
       </div>
 
-      <div class="content" style="padding-top:0px;">
+      <div class="content" style="padding:0px;">
         <div class="tab-content" id="couponTabContent">
-
           <div class="tab-pane fade show active" id="home" role="tabpanel">
-            <div class="input-group todo-input-group">
-              <textarea class="form-control todo-input" aria-label="With textarea"></textarea>
-              <div class="input-group-append todo-btn-box">
-                <button class="btn btn-success todo-btn" type="button" style="padding-top:18px;padding-bottom:18px;">&nbsp;<i class="fa fa-plus"></i>&nbsp;</button>
+            <div style="padding:12px">
+              <div class="input-group to1do-input-group">
+                <input type="text" class="form-control to1do-input" placeholder="Search for...">
+                <span class="input-group-btn to1do-btn-box">
+                  <button class="btn btn-primary to1do-btn" type="button">Go!</button>
+                </span>
               </div>
             </div>
-            <div class="table-full-width">
-              <table class="table todo-table">
+            <hr style="margin-top:0px;">
+            <div class="row">
+
+              <div class="col-12">
+                <ul class="list-group">
+                <?php for($i=0; $i<5; $i++): ?>
+                  <li class="list-group-item justify-content-between" style="border-left:none;border-right:none;">
+                    Cras justo odio
+                    <span class="badge badge-default badge-pill">02/1<?php echo $i; ?>/18</span>
+                  </li>
+                <?php endfor; ?>
+                </ul>
+              </div>
+
+              <!-- <table class="table todo-table">
                 <tbody>
                   <tr>
                     <td>
@@ -251,35 +265,26 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
+
             </div>
 
           </div>
 
           <div class="tab-pane fade" id="offer" role="tabpanel">
-            <div class="table-full-width">
-              <table class="table todo-table">
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox1" type="checkbox">
-                        <label for="checkbox1"></label>
-                      </div>
-                    </td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
+            <div class="row" style="margin-top:15px;">
 
-                </tbody>
-              </table>
+              <div class="col-12">
+                <ul class="list-group">
+                <?php for($i=0; $i<5; $i++): ?>
+                  <li class="list-group-item justify-content-between" style="border-left:none;border-right:none;">
+                    Cras justo odio
+                    <span class="badge badge-default badge-pill">02/1<?php echo $i; ?>/18</span>
+                  </li>
+                <?php endfor; ?>
+                </ul>
+              </div>
+
             </div>
 
           </div>
@@ -289,7 +294,7 @@
         <div class="footer">
           <hr>
           <div class="stats">
-            <i class="fa fa-history"></i> Updated 3 minutes ago
+            Updated 3 minutes ago &nbsp;&nbsp;<i class="fa fa-history"></i>
           </div>
         </div>
       </div>

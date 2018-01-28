@@ -8,7 +8,7 @@ Tip 2: you can change the color of the active button using the data-active-color
   <div class="sidebar-wrapper">
 
         <div class="logo cosmic_fusion">
-            <img src="assets/img/PressCraft_Light.png" class="logo_logo" />
+            <img src="https://magic.app/assets/img/PressCraft_Light.png" class="logo_logo" />
             <a href="http://www.creative-tim.com" class="simple-text">
                 Conjure
             </a>

@@ -15,7 +15,7 @@
 </div>
 
 
-<section class="row text-centers circle_stat_rows" style="margin-top:10px;">
+<section class="row text-centers circle_stat_rows">
 
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
@@ -31,7 +31,7 @@
                               <i class="ti-pulse" style="color:#f83600"></i>
                           </span>
 
-                        <p>CPU AVG LOAD</p>
+                        <p>CPU LOAD</p>
                         <p class="stats"><a href="#">More Info</a></p>
                     </div>
                 </div>

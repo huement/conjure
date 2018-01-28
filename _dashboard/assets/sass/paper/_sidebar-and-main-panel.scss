@@ -63,7 +63,7 @@
 
     .nav{
         margin-top: -1px;
-
+        background: $black-background-color;
         li{
             > a{
                 margin: 0px 0px;
@@ -175,7 +175,7 @@
 }
 
 .main-panel{
-    background-color: $pale-bg;
+    background-color: $paper;
     position: relative;
     z-index: 2;
     float: right;

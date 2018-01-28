@@ -13252,7 +13252,8 @@ width:5%;
 }
 
 .circle_stat_rows {
-	margin-bottom: 10px;
+  margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 .circle_stat_rows .col-xs-5 {
@@ -13316,18 +13317,6 @@ width:5%;
 
 .description {
 	padding: 10px;
-}
-
-.paper-list-heading {
-	background: #f1eae0;
-	border-bottom: none;
-	border-radius: 0px!important;
-	color: #3f3f3f;
-}
-
-.paper-list-heading.bh {
-  background:$medium-dark-gray;
-  border: 1px solid rgba(0, 0, 0, 0.125)!important
 }
 
 .push {

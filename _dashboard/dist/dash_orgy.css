@@ -316,7 +316,8 @@ hr {
       font-family: 'Fira Mono'; }
   .sidebar .nav,
   .off-canvas-sidebar .nav {
-    margin-top: -1px; }
+    margin-top: -1px;
+    background: #292b2c; }
     .sidebar .nav li > a,
     .off-canvas-sidebar .nav li > a {
       margin: 0px 0px;
@@ -395,7 +396,7 @@ hr {
   .sidebar[data-background-color="black"]:after, .sidebar[data-background-color="black"]:before,
   .off-canvas-sidebar[data-background-color="black"]:after,
   .off-canvas-sidebar[data-background-color="black"]:before {
-    background-color: #212120; }
+    background-color: #292b2c; }
   .sidebar[data-background-color="black"] .logo,
   .off-canvas-sidebar[data-background-color="black"] .logo {
     border-bottom: 1px solid rgba(30, 30, 30, 0.97); }
@@ -454,7 +455,7 @@ hr {
   text-indent: -5px; }
 
 .main-panel {
-  background-color: #FFFCF5;
+  background-color: #f1eae0;
   position: relative;
   z-index: 2;
   float: right;
@@ -2496,6 +2497,18 @@ hr {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+/** CARD RELATED */
+.list-group-item.paper-list-heading {
+  background: #f1eae0;
+  border-bottom: none;
+  border-radius: 0px !important;
+  color: #3f3f3f; }
+
+.paper-list-heading.bh {
+  background: #AAAAAA;
+  border: 1px solid rgba(0, 0, 0, 0.125) !important; }
+
+/** CARD STYLINGS */
 .card {
   border-radius: 6px;
   box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
@@ -2694,12 +2707,16 @@ hr {
     .card-light .footer .legend {
       padding: 5px 0; }
     .card-light .footer hr {
-      margin-top: 5px;
+      margin-top: 15px;
       margin-bottom: 5px; }
   .card-light .stats {
-    color: #a9a9a9; }
+    color: #a9a9a9;
+    padding: 0 0 10px 10px;
+    text-align: right; }
   .card-light .footer div {
-    display: inline-block; }
+    display: inline-block;
+    width: 96%;
+    padding-top: 3px; }
   .card-light .author {
     font-size: 12px;
     font-weight: 600;
