@@ -4,9 +4,6 @@
    * @details  Automatically generated from _spellbook/docs markdown files.
    */
 ?>
-<div class="push" style="height:20px;"></div>
-
-
 <div class="color-swatch-row">
 
   <div class="row">

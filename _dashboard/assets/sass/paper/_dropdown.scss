@@ -96,3 +96,39 @@
 .btn-group.select.open{
     overflow: visible;
 }
+
+
+.minimal-lines-list li:first-of-type {
+  padding-top: 17px;
+}
+
+.minimal-lines-list li {
+  border-top:none;
+}
+
+.minimal-lines-list li:hover {
+  background:#E0E0E0;
+}
+
+.minimal-lines-list li p {
+  margin-bottom: 5px;
+}
+
+ul.list-group.minimal-lines-list li.list-group-item,
+.minimal-lines-left .list-group-item {
+  border-top:none!important;
+}
+
+ul.list-group.minimal-lines-list li.list-group-item.breaker,
+.minimal-lines-left .list-group-item.breaker {
+  border-top:2px solid #EEE!important;
+}
+
+.minimal-lines-list .lgi-divider  {
+  padding:0 20px 0 20px;
+  margin:1px auto 0 auto;
+  height:5px;
+  border-top:none;
+  border-bottom:none;
+
+}

@@ -4,17 +4,31 @@
  * Paper Dashboard - v1.1.2
  =========================================================
 
- * Product Page: http://www.creative-tim.com/product/paper-dashboard
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard/blob/master/LICENSE.md)
+ * Product Page: https://bitbucket.org/derekscott_mm/WP_Conjure
+ * Copyright 2017 MyriadMobile (https://myriadmobile.com)
+ * Licensed under MIT (https://bitbucket.org/derekscott_mm/WP_Conjure/overview)
 
  =========================================================
 
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
  */
 
+/* Function to animate height: auto */
+function autoHeightAnimate(element, time){
+  	var curHeight = element.height(), // Get Default Height
+        autoHeight = element.css('height', 'auto').height(); // Get Auto Height
+    	  element.height(curHeight); // Reset to Default Height
+    	  element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
+}
 
+function iframeTerminalSetup() {
+  if(iframeSetup === false){
+    iframeSetup=true;
+    var iframeURL = $('iframe#terminal_frame').data("src");
+    $('iframe#terminal_frame').attr('src', iframeURL);
+  }
+}
+
+var iframeSetup = false;
 var fixedTop = false;
 var transparent = true;
 var navbar_initialized = false;
@@ -27,9 +41,68 @@ $(document).ready(function(){
         pd.initRightMenu();
     }
 
-    //  Activate the tooltips
-    //  $('[rel="tooltip"]').tooltip();
+    $(".dashboard-list .collapse-item .nav-link").on("click",function(eve){
+      //eve.preventDefault();
+      $(".nav-item.linked-page.active").toggleClass("active_collapse");
+      $(this).toggleClass("active_collapse");
+    });
 
+    $(".dashboard-list .linked-page .nav-link").on("click",function(eve){
+      eve.preventDefault();
+      var gotourl= $(this).attr("href");
+      var baseURL = $("#base_url").text();
+      window.location.href = baseURL + "/?" + gotourl;
+    });
+
+
+    var aNav = $("#act_nav").text();
+    aNav += "-nav";
+    var activeNav = "#" + aNav;
+    var activeNavString = $(activeNav).children(".nav-item p").text();
+
+    $(activeNav).addClass("active").parent("li").addClass("active");
+
+    $.each($(".sub-menu .linked-page.active"),function(index){
+      $(this).parent(".sub-menu").removeClass("hide").addClass("show");
+      $(this).parent("ul").parent(".collapse-item").addClass("active_submenu");
+      var makeActiveLink = $(this).parent("ul").attr("id");
+      console.log(makeActiveLink);
+      $(".nav-link[href=\"#"+makeActiveLink+"\"]").addClass("active");
+    });
+
+    $("#dynpagename").html("<span class='red'>" + activeNavString + "</span>");
+
+    var newTitle = "Conjure | " + activeNavString;
+
+    $(document).prop('title', newTitle);
+
+    $('.nav-link.dropdown-toggle').on('click',function(e){
+       var dropdown=$(e.target).closest('.nav-link.dropdown-toggle');
+       dropdown.toggleClass('show');
+    });
+
+    if($(".sub-menu .linked-page.active").html() !== undefined){
+      $(activeNav).removeClass("active").addClass("active_submenu").parent("li").addClass("active");
+    }
+
+    //setTimeout("iframeTerminalSetup()",1000);
+
+    var iframeOpts = {autoResize:true, checkOrigin:false, interval:100, maxHeight:1000, minHeight:750, scrolling:true, bodyMargin:10};
+    $('iframe#terminal_frame').iFrameResize(iframeOpts);
+
+    var nav = $('#terminal_frame_box'),
+        animateTime = 500,
+        navLink = $('#terminal_toogle');
+    navLink.click(function(){
+      if(nav.height() === 0){
+        autoHeightAnimate(nav, animateTime);
+        $("#terminal_frame_box").addClass("bottomMargin");
+        if(iframeSetup === false){ iframeTerminalSetup(); }
+      } else {
+        nav.stop().animate({ height: '0' }, animateTime);
+        $("#terminal_frame_box").removeClass("bottomMargin");
+      }
+    });
 });
 
 // activate collapse right menu when the windows is resized

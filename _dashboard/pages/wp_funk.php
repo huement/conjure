@@ -5,35 +5,35 @@
  */
 
 $SpellBook = "/home/vagrant/_spells";
-$files1 = scandir($SpellBook);
+$files = scandir($SpellBook);
 
 // echo "<pre>
 // <code>";
-print_r($files1);
+//print_r($files1);
 // echo "</code>
 // </pre>";
 
 $funky_cat = array();
-$funky_cat[] = array(
-  "name"=>"Example",
-  "desc"=>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-  "plug"=>array("one","two","three")
-);
+foreach($files as $file){
+  $funky_cat[] = array(
+    "name"=>"Example",
+    "desc"=>"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    "plug"=>array("one","two","three")
+  );
+}
 
 ?>
 
-<div class="push" style="height:20px;"></div>
+<?php
+  /* JUMBOTRON */
+  $wpfunk_title   = "Wordpress Functions";
+  $wpfunk_details = "This is a collection and loading dock for a number of Wordpress enhancements. These plugins cover the entire lifecycle of a project.";
+  $wpfunk_desc    = "Starting with design and mockup helpers, all the way to high traffic performance testing, such ass critical CSS flows and lazy loading images.";
+  $wpfunk_theme   = "ibiza_sun";
+  $JumboHTML      = $buildify->jumbotron($wpfunk_title,$wpfunk_desc,$wpfunk_details,$wpfunk_theme);
 
-<div class="jumbotron jumbo-sex ibiza_sun" style="padding:10px 20px 10px 20px;margin-top:-10px;">
-  <div class="container-fluid">
-    <h2 class="display-4" style="margin-top:10px;">Wordpress Functions</h2>
-    <p>This is a collection and loading dock for a number of Wordpress enhancements. These plugins cover the entire lifecycle of a project.</p>
-    <p>
-      Starting with design and mockup helpers, all the way to high traffic performance testing, such ass critical CSS flows and lazy loading images.
-    </p>
-  </div>
-</div>
-
+  print_r($JumboHTML);
+?>
 
 <div id="accordion" role="tablist" aria-multiselectable="true">
 

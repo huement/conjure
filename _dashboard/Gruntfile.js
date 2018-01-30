@@ -16,10 +16,10 @@ module.exports = function (grunt) {
           },
           dash: {
             files: {
-              'dist/dash_orgy.js': ['assets/js/dashboard_core.js', 'assets/js/dashboard_widgets.js'],
-              'dist/bs4_orgy.js': ['assets/js/chartist.min.js', 'assets/js/tether.js', 'assets/js/bootstrap-checkbox-radio.js', 'assets/js/bootstrap-notify.js'],
-              'dist/ui_ux.css': ["assets/css/bootstrap.css" , "assets/css/animate.min.css" , "assets/css/themify-icons.css" , "assets/css/font-awesome.css" , "assets/css/widgets.css" , "assets/css/paper-dash-extras.css"],
-            } 
+              'dist/js_orgy.js': ['assets/js/chartist.min.js', 'assets/js/tether.js', 'assets/js/bootstrap-checkbox-radio.js', 'assets/js/bootstrap-notify.js', 'assets/js/dashboard_core.js'],
+              'dist/bs4_tweaked.css': ["assets/css/bootstrap.css" , "assets/css/animate.min.css" , "assets/css/themify-icons.css" , "assets/css/font-awesome.css"],
+              'dist/ui_ux.css': ["assets/css/widgets.css" , "assets/css/paper-dash-extras.css"],
+            }
           }
         },
         jshint: {
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
                 src: 'Gruntfile.js'
             },
             lib_test: {
-                src: ['assets/js/chart_data.js', 'assets/js/dashboard-widgets.js']
+                src: ['assets/js/chart_data.js', 'assets/js/dashboard_core.js']
             }
         },
         sass: {                              // Task
@@ -84,8 +84,8 @@ module.exports = function (grunt) {
           },
           dash: {
              files: {
-               "dist/bs4.min.js": ["dist/bs4_orgy.js"],
-               "dist/dash.min.js": ["dist/dash_orgy.js"]
+               "dist/js_orgy.min.js": ["dist/js_orgy.js"],
+               "dist/dashboard_widgets.min.js": ["assets/js/dashboard_widgets.js"]
              }
           }
         }

@@ -3,82 +3,87 @@
    * @brief    Dashboard Main Page
    * @details  Stats and general summary.
    */
+  $widgetData = $dashData->getStorage();
+  $siteURL = $dashData->getBaseURL();
 ?>
 
-<!-- CIRCLE STATS ROW -->
-<div class="row">
+<!-- SQUARE BOX WIDGET GRID -->
+<div class="row" style="padding-top:6px;">
   <div class="col-sm-12 col-md-6">
       <div class="card ">
           <div class="card-header primary-color white-text">
-              <p class="category pull-right">/home/vagrant/code/..</p>
-              <h4 class="title">Wordpress</h4>
+              <p class="category pull-right"><?php if(strlen($widgetData["wp"]) > 15){ echo substr($widgetData["wp"],-15); } else { echo $widgetData["wp"]; } ?></p>
+              <h4 class="title">Vagrant Sites</h4>
           </div>
           <div class="content">
               <div class="panel-body">
 
+                <ul class="list-group" style="margin-bottom:8px;">
+                  <li class="list-group-item list-group-body list-heading" style="background-color:#f7f7f9;">
+                      <div class="container">
 
-                <div id="psuedo-accordion">
-
-                  <ul class="list-group list-group-header bordered-header">
-                    <li class="list-group-item paper-list-heading bh btn btn-white btn-light" data-toggle="collapse" data-target="#collapseOne" style="background:#FFF" >
-                      <h6 class="shakey-header"><span class="fa fa-plus-square text-success"></span> Build Wordpress Site</h6>
-                    </li>
-                  </ul>
-                  <div class="collapsed collapse" data-parent="#psuedo-accordion" id="collapseOne">
-                    <ul class="list-group list-group-body">
-                      <li data-slug="wordpress" data-cat="stack" class="list-group-item d-flex justify-content-between align-items-center">Standard
-                        <div class="action-buttons">
-                          <a href="http://www.jquery2dotnet.com"><span class="fa fa-lg fa-copy"></span></a>
-                          <a href="http://www.jquery2dotnet.com" class="trash"><span class="fa fa-lg fa-plus-square"></span></a>
-                          <a href="http://www.jquery2dotnet.com" class="flag"><i class="fa fa-lg fa-bolt"></i></a>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 text-left">Name</div>
+                            <div class="col-sm-6 col-md-4 text-right">Modified</div>
+                            <div class="col-sm-6 col-md-2 text-right">Reports</div>
+                            <div class="col-sm-6 col-md-2 text-right">Status</div>
                         </div>
-                      </li>
-                      <li data-slug="wordplate" data-cat="stack" class="list-group-item">Wordplate <span style="text-align:right;float:right"><i class="fa fa-car"></i></span></li>
-                      <li data-slug="bedrock" data-cat="stack" class="list-group-item">Bedrock   <span style="text-align:right;float:right"><i class="fa fa-fighter-jet"></i></span></li>
-                      <li data-slug="webpress" data-cat="stack" class="list-group-item">Webpress  <span style="text-align:right;float:right"><i class="fa fa-rocket"></i></span></li>
-                      <li data-slug="cubi" data-cat="stack" class="list-group-item">WP Cubi   <span style="text-align:right;float:right"><i class="fa fa-question-circle"></i></span></li>
-                    </ul>
-                  </div>
 
-
-                </div>
-
-                <div class="push"></div>
-
-                <ul class="list-group list-group-header" >
-                    <li class="list-group-item list-group-body paper-list-heading">
-                        <div class="container">
-
-                          <div class="row">
-                              <div class="col-sm-6 col-md-4 text-left">Name</div>
-                              <div class="col-sm-6 col-md-4 text-right">Modified</div>
-                              <div class="col-sm-6 col-md-2 text-right">Reports</div>
-                              <div class="col-sm-6 col-md-2 text-right">Status</div>
-                          </div>
-
-                        </div>
-                    </li>
-                </ul>
-                <ul class="list-group list-group-body" style="margin-bottom:8px;">
+                      </div>
+                  </li>
                 <?php
-                  $www_dir = "/home/vagrant/code";
-                  $files = array_slice(scandir($www_dir), 2);
+                  $fileraw = array_slice(scandir($widgetData["wp"]), 2);
+                  $files = array();
+                  foreach($fileraw as $key=>$file){
+                    if($file !== ".DS_Store" && $file !== "." && $file !== ".."){
+                      $files[] = $file;
+                    }
+                  }
                   foreach($files as $key=>$file): ?>
-                    <?php if(is_file("/home/vagrant/dashboard/data/stylestats_".$file.".json")){ $report = true; } else { $report = false; } ?>
+                    <?php if(is_file($siteURL."/data/stylestats_".$file.".json")){ $report = true; } else { $report = false; } ?>
                     <li class="list-group-item site-list-item" <?php if($report){ echo 'data-slug="'.$file.'"'; } ?> data-wpsite="true">
 
                         <div class="container">
                           <div class="row">
                               <div class="col-sm-6 col-md-4 text-left" style=" "><span class="fa fa-wordpress text-primary" aria-hidden="true"></span><?php echo $file; ?></div>
-                              <div class="col-sm-6 col-md-4 text-right" style=""><span class="text-info">01/01/01 2018</span></div>
+                              <div class="col-sm-6 col-md-4 text-right" style=""><span class="text-info">01/01/2018</span></div>
                               <div class="col-sm-6 col-md-2 text-right" style=""><?php if($report){ echo '<span class="fa fa-file text-primary"></span>'; } ?></div>
-                              <div class="col-sm-6 col-md-2 text-right" style=""><span class="fa fa-check-circle text-success" aria-hidden="true"></span></div>
+                              <div class="col-sm-6 col-md-2 text-right" style=""><span class="fa fa-pie-chart text-success" aria-hidden="true"></span></div>
                           </div>
                         </div>
 
                     </li>
                 <?php endforeach; ?>
                 </ul>
+
+                <div class="btn-group icon-top-group d-flex" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-secondary w-100" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus-circle fa-lg icon-success icon-top"></i>Fresh Start</button>
+                  <button type="button" class="btn btn-secondary w-100"><i class="fa fa-refresh fa-lg icon-success icon-top"></i>Reset Site</button>
+                  <button type="button" class="btn btn-secondary w-100"><i class="fa fa-plus-circle fa-lg icon-success icon-top"></i>Reports</button>
+                </div>
+
+                <div id="psuedo-accordion">
+
+                  <ul class="list-group minimal-lines-list">
+                    <div class="collapsed collapse" data-parent="#psuedo-accordion" id="collapseOne">
+                    <?php
+                      $wsb = array();
+                      $wsb[] = array("name"=>"Standard","icon"=>"car","stars"=>0,"iden"=>"stand");
+                      $wsb[] = array("name"=>"Wordplate","icon"=>"plane","stars"=>3,"iden"=>"plate");
+                      $wsb[] = array("name"=>"Bedrock","icon"=>"fighter-jet","stars"=>3,"iden"=>"brock");
+                      $wsb[] = array("name"=>"Webpress","icon"=>"rocket","stars"=>4,"iden"=>"spidr");
+                      $wsb[] = array("name"=>"WP Cubi","icon"=>"question-circle","stars"=>3,"iden"=>"cubi", "break"=>true);
+                    ?>
+                      <?php foreach($wsb as $wb): ?>
+                        <li data-slug="wordpress" data-cat="stack" data-iden="<?php echo $wb['iden']; ?>" class="list-group-item d-flex justify-content-between align-items-center <?php if(isset($wb["break"])){ echo "breaker"; }?>">
+                          <p class="pull-left"><i class="fa fa-circle <?php if(isset($wb["break"])){ echo "icon-warning"; } else { echo "icon-success"; } ?>"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $wb["name"]; ?></p>
+                          <p class="action-buttons"><i class="fa fa-<?php echo $wb['icon']; ?> fa-lg"></i></p>
+                        </li>
+                      <?php endforeach; ?>
+                      </div>
+                  </ul>
+
+                </div>
 
               </div>
           </div>
@@ -87,35 +92,91 @@
 
       <div class="card">
           <div class="card-header primary-color white-text">
-              <p class="category pull-right">/home/vagrant/logs</p>
+              <p class="category pull-right"><?php if(strlen($widgetData["lf"]) > 15){ echo substr($widgetData["lf"],-15); } else { echo $widgetData["lf"]; } ?></p>
               <h4 class="title">Server Details</h4>
           </div>
           <div class="content">
-              <p>
-                <small>Note: To profile, <code>xdebug_on</code> must be set.</small>
-              </p>
-              <p>
-                <?php
-                $xdebug = ( extension_loaded( 'xdebug' ) ? true : false );
-                if ( $xdebug ) {
-                  ?>
-                  <span class="text-success">xDebug is currently <span class="badge badge-success">on</span></span>
+              <div style="display:none" id="systemStatURL"><?php echo $siteURL."/apps/status_sys/xml.php?plugin=vitals&json"; ?></div>
+              <div class="table-responsive" id="vitals_table">
+                  <table id="vitals" class="table table-hover table-condensed noborderattop">
+                      <tbody>
+                          <tr>
+                              <th><span id="lang_003">Canonical Hostname</span></th>
+                              <td><span id="Hostname"></span></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_004">Listening IP</span></th>
+                              <td><span id="IPAddr"></span></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_005">Kernel Version</span></th>
+                              <td><span id="Kernel"></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_006">Distro Name</span></th>
+                              <td><span id="Distro"></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_007">Uptime</span></th>
+                              <td><span id="Uptime"></span></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_095">Last boot</span></th>
+                              <td><span id="LastBoot"></span></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_008">Current Users</span></th>
+                              <td><span id="Users">0</span></td>
+                          </tr>
+                          <tr>
+                              <th><span id="lang_009">Load Averages</span></th>
+                              <td><span id="LoadAvg"></span></td>
+                          </tr>
+                          <tr id="tr_SysLang" style="display: none;">
+                              <th><span id="lang_097">System Language</span></th>
+                              <td><span id="SysLang"></span></td>
+                          </tr>
+                          <tr id="tr_CodePage" style="display: none;">
+                              <th><span id="lang_098">Code Page</span></th>
+                              <td><span id="CodePage"></span></td>
+                          </tr>
+                          <tr id="tr_Processes">
+                              <th><span id="lang_110">Processes</span></th>
+                              <td><span id="Processes"></span></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+
+              <div style="padding:5px 10px;background:#F0F0F0;margin:10px auto;width:100%:">
+                <p>
+                  XDEBUG DETAILS
+                </p>
+                <p>
+                  <small>Note: To profile, <code>xdebug_on</code> must be set.</small>
+                  <small>Note: XDebug has been depricated and will no longer function in PHP 7.2.</small>
+                </p>
+                <p>
                   <?php
-                } else {
+                  $xdebug = ( extension_loaded( 'xdebug' ) ? true : false );
+                  if ( $xdebug ) {
+                    ?>
+                    <span class="text-success">xDebug is currently <span class="badge badge-success">on</span></span>
+                    <?php
+                  } else {
+                    ?>
+                    <span class="text-danger">xDebug is currently <span class="badge badge-danger">off</span></span>
+                    <?php
+                  }
                   ?>
-                  <span class="text-danger">xDebug is currently <span class="badge badge-danger">off</span></span>
-                  <?php
-                }
-                ?>
-              </p>
+                </p>
+              </div>
 
               <div class="footer">
-                  <div class="chart-legend">
-
-                  </div>
                   <hr>
                   <div class="stats">
-                      <i class="ti-timer"></i> XDEBUG is [DEPRICATED]
+                      <i class="fa fa-heartbeat"></i> Full System Status
                   </div>
               </div>
           </div>
@@ -139,9 +200,9 @@
           <div class="tab-pane fade show active" id="home" role="tabpanel">
             <div style="padding:12px">
               <div class="input-group to1do-input-group">
-                <input type="text" class="form-control to1do-input" placeholder="Search for...">
+                <input type="text" class="form-control to1do-input" placeholder="Don't forget...">
                 <span class="input-group-btn to1do-btn-box">
-                  <button class="btn btn-primary to1do-btn" type="button">Go!</button>
+                  <button class="btn btn-primary to1do-btn" type="button"><i class="fa fa-plus"></i> ADD</button>
                 </span>
               </div>
             </div>
@@ -158,114 +219,6 @@
                 <?php endfor; ?>
                 </ul>
               </div>
-
-              <!-- <table class="table todo-table">
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox1" type="checkbox">
-                        <label for="checkbox1"></label>
-                      </div>
-                    </td>
-                    <td>Sign contract for "What are conference organizers afraid of?"</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox2" type="checkbox" checked>
-                        <label for="checkbox2"></label>
-                      </div>
-                    </td>
-                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox3" type="checkbox">
-                        <label for="checkbox3"></label>
-                      </div>
-                    </td>
-                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                    </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox4" type="checkbox" checked>
-                        <label for="checkbox4"></label>
-                      </div>
-                    </td>
-                    <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox5" type="checkbox">
-                        <label for="checkbox5"></label>
-                      </div>
-                    </td>
-                    <td>Read "Following makes Medium better"</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="checkbox">
-                        <input id="checkbox6" type="checkbox" checked>
-                        <label for="checkbox6"></label>
-                      </div>
-                    </td>
-                    <td>Unfollow 5 enemies from twitter</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-sm">
-                        <i class="fa fa-edit"></i>
-                      </button>
-                      <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-sm">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table> -->
 
             </div>
 

@@ -1,9 +1,10 @@
 .alert{
-    border: 2px 10px 2px 10px solid transparent;
+    border:none;
+    border-left: 10px solid $primary-color;
     border-radius: 2px;
     color: $black-bg;
     background-color: $pale-bg;
-    padding: 10px;
+    padding: 5px 5px 5px 10px;
     font-size: 14px;
 
     .navbar &{
@@ -44,23 +45,38 @@
     }
 }
 
-.alert-info{
+.alert-info {
     border-color: $blue;
-    color: $white-color;
+    color: $black-color;
+    hr {
+      border-color: $blue;
+    }
 }
 .alert-success {
     border-color: $green;
-    color: $white-color;
+    color: $black-color;
+    hr {
+      border-color: $green;
+    }
 }
 .alert-warning {
     border-color: $yellow;
-    color: $white-color;
+    color: $black-color;
+    hr {
+      border-color: $yellow;
+    }
 }
 .alert-danger {
     border-color: $red;
-    color: $white-color;
+    color: $black-color;
+    hr {
+      border-color: $red;
+    }
 }
 .alert-secondary {
-    border-color: #F1EAE0;
-    color:#3f3f3f;
+    border-color: $teal;
+    color:$black-color;
+    hr {
+      border-color: $teal;
+    }
 }

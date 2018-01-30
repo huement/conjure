@@ -15,7 +15,10 @@
     "wp-cli/package-command": "dev-master",
     "wp-cli/widget-command": "dev-master",
     "aaemnnosttv/wp-cli-dotenv-command": "dev-master",
-    "whatthejeff/nyancat-phpunit-resultprinter": "^2.0@dev"
+    "whatthejeff/nyancat-phpunit-resultprinter": "^2.0@dev",
+    "wp-cli/wp-cli" : "~0.22",
+    "psy/psysh" : "~0.6",
+    "wecodemore/wp-cli-composer" : "~2.0"
   },
   "require-dev": {
     "johnpbloch/wordpress"            : ">=3.9",
@@ -55,6 +58,14 @@
       "email": "dscott@myriadmobile.com"
     }
   ],
+  "scripts": {
+    "post-install-cmd" : [
+      "[[ -f /usr/bin/wp ]] || sudo ln -s /var/www/vendor/wp-cli/wp-cli/bin/wp /usr/bin/wp",
+        "source /var/www/vendor/wp-cli/wp-cli/utils/wp-completion.bash",
+      "[[ -f ~/.bash_profile ]] || touch ~/.bash_profile",
+        "source ~/.bash_profile"
+    ]
+  },
   "minimum-stability": "dev",
   "secure-http": true,
   "extra": {

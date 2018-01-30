@@ -1,4 +1,4 @@
-
+<!-- CIRCLE STATS ROW -->
 <div class="container-fluid">
   <div class="row">
     <div class="alert alert-info alert-dismissible fade show dtopalert" role="alert" style="width:100%;">
@@ -21,14 +21,14 @@
     <div class="card">
         <div class="container-edge">
             <div class="row no-gutters stat_card">
-                <div class="col-5" style="background-color:#f83600">
+                <div class="col-5 back_red">
                   <h2 class="stat-amount" id="cpu_target">...</h2>
                 </div>
                 <div class="col-7">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
-                              <i class="ti-pulse" style="color:#f83600"></i>
+                              <i class="ti-pulse icon-danger"></i>
                           </span>
 
                         <p>CPU LOAD</p>
@@ -43,14 +43,14 @@
     <div class="card">
         <div class="container-edge">
             <div class="row no-gutters stat_card">
-                <div class="col-5" style="background-color:#E1BA46">
+                <div class="col-5 back_yellow">
                   <h2 class="stat-amount" id="mem_free">...</h2>
                 </div>
                 <div class="col-7">
                     <div class="numbers">
 
                           <span class="icon stat-icon icon-warning text-center">
-                              <i class="ti-dashboard" style="color:#E1BA46"></i>
+                              <i class="ti-dashboard icon-warning"></i>
                           </span>
 
                         <p>USED RAM</p>
@@ -66,14 +66,14 @@
     <div class="card">
         <div class="container-edge">
             <div class="row no-gutters stat_card">
-                <div class="col-5" style="background-color:#94C859">
+                <div class="col-5 back_green" >
                   <h2 class="stat-amount" id="hdd_used">...</h2>
                 </div>
                 <div class="col-7" style="padding-left:0;padding-right:0;">
                     <div class="numbers">
 
-                          <span class="icon stat-icon icon-warning text-center">
-                              <i class="ti-layout-grid2-alt" style="color:#94C859"></i>
+                          <span class="icon stat-icon icon-success text-center">
+                              <i class="ti-layout-grid2-alt icon-success"></i>
                           </span>
 
                         <p>HDD USAGE</p>
@@ -101,7 +101,7 @@
                   <div class="numbers">
 
                       <div class="icon stat-icon text-center" id="weather_icon_wrapper">
-                          <div id="weather_icon"></div>
+                          <div id="weather_icon icon-primary"></div>
                       </div>
                       <p id="weather_cond">...</p>
                       <p class="stats"><a href="#" id="weather_city">...</a></p>

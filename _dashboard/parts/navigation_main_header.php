@@ -118,7 +118,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link btn-dark">&nbsp;<i class="fa fa-question-circle fa-lg" title="Utility Links"></i>&nbsp;&nbsp;HELP</a>
+        <a href="#" id="terminal_toogle" class="nav-link btn-dark">&nbsp;<i class="fa fa-tasks fa-lg" title="Utility Links"></i>&nbsp;&nbsp;TERMINAL</a>
       </li>
 
       <!-- FEEDBACK MODAL -->

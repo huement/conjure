@@ -1,79 +1,30 @@
 <?php
-
 /**
  *  Conjure Dashboard
  *  -- -- -- -- -- --
  */
 
- // Suppress DateTime warnings
- date_default_timezone_set( @date_default_timezone_get() );
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . "/parts/PageBuildify.php";
+require __DIR__ . "/parts/DashWizard.php";
 
- /**
-  * @brief  Super quick and dirty page loader.
-  * @return HTML string of the requested (or default) layout.
-  */
+use conjure_dash\PageBuildify;
+use conjure_dash\DashWizard;
 
- function curPageURL() {
+date_default_timezone_set( @date_default_timezone_get() );
 
-   if ($_SERVER["HTTPS"] == "on") { $pageURL = "http://"; } else { $pageURL = "https://"; }
+$buildify = new PageBuildify();
+$dashData = new DashWizard();
 
-   if ($_SERVER["SERVER_PORT"] != "80") {
-     $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-   } else {
-     $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-   }
 
-   return $pageURL;
- }
+$dashData->setupPaths(__DIR__);
+$page_data   = $buildify->currentPage();
 
- function contains($str, array $arr) {
-   foreach($arr as $a) {
-       if (stripos($str,$a) !== false) return $a;
-   }
-   return false;
- }
+// Potentially this contains page specific javascript (if file exists)
+$jsPage = "./pages/scripts/".$page_data["current_nav"].".php";
 
- $url           = parse_url(curPageURL());
- $defaultPage   = "./pages/dashboard.php";
- $files1        = scandir("./pages");
- $pages         = array();
- $result        = false;
- $page_active   = "dashboard";
-
- $ignoreList    = array("dashboard", "dashboard_general", "dashboard_circlestats", ".DS_Store", ".", "..", "Icon");
-
- foreach( $files1 as $k=>$f )
- {
-   if( ! in_array($f, $ignoreList) )
-   {
-     // Not ignored. so lets add to our page array
-     $pages[] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $f);
-   }
- }
-
- if( isset($url["fragment"]) )
-   $result = contains($url["fragment"], $pages);
- else if(isset($url["query"]))
-   $result = contains($url["query"], $pages);
-
- if( $result ) {
-   $pageString = "./pages/".$result.".php";
-
-   if ( file_exists($pageString) ){
-     $dashboardPage = $pageString;
-     $page_active   = $result;
-   }
-
- } else if( $page_active == "dashboard" ) {
-   // Load Default Page
-   $dashboardPage = $defaultPage;
- }
-
- // Potentially this contains page specific javascript (if file exists)
- $jsPage = "./pages/scripts/".$page_active.".php";
-
- // The identifier PHP echos out to JS for Nav highlights, page title etc.
- $jsPageHTML = "<div id='act_nav' style='display:none'>".$page_active."</div>";
+// The identifier PHP echos out to JS for Nav highlights, page title etc.
+$jsPageHTML = "<div id='act_nav' style='display:none'>".$page_data["current_nav"]."</div>";
 
 ?>
 <!doctype html>
@@ -89,13 +40,14 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <meta name="viewport" content="width=device-width" />
 
+  <link href="dist/bs4_tweaked.css" rel="stylesheet" />
   <link href="dist/dash_orgy.css" rel="stylesheet"/>
   <link href="dist/ui_ux.css" rel="stylesheet" />
 
   <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Open+Sans:300,400" rel="stylesheet">
 </head>
 <body>
-
+<div id="base_url" style="display:none!important;"><?php echo trim($dashData->getBaseURL()); ?></div>
 <div class="wrapper">
 
     <!-- SIDEBAR -->
@@ -109,6 +61,18 @@
 
         <!-- MAIN CONTENT -->
         <div class="content">
+          <div class="container-terminal">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <div id="terminal_frame_box">
+                    <iframe src="about:blank" frameBorder="0" data-src="http://eve.huement.com:2222/ssh/host/127.0.0.1" id="terminal_frame" width="100%" height="0"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-core">
             <div class="container-fluid">
               <?php
 
@@ -116,11 +80,12 @@
                  * Important! This loads the individual page content.
                  * @var String of HTML
                  */
-                include $dashboardPage;
+                 include $page_data["template"];
+                 //echo $page_data["template"];
 
               ?>
             </div>
-
+          </div>
             <!-- FOOTER -->
             <footer class="footer">
                 <div class="container-fluid">
@@ -169,98 +134,20 @@
 
 <!-- Used for Feedback Reporter -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
-<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="node_modules/chart.js/dist/Chart.min.js" type="text/javascript"></script>
+<script src="dist/libs/iframeResizer.min.js" type="text/javascript"></script>
 
-
-<!--   Bootstrap4   -->
-<script src="dist/bs4.min.js" type="text/javascript"></script>
-
-<!-- PressCraft Dashboard Core -->
-<script src="dist/dash.min.js" type="text/javascript"></script>
-
-
-<script type="text/javascript">
-  /**
-   *  @brief   Core Dashboard UI Functions. Updates Active Name, Page Title etc.
-   */
-  $(document).ready(function(){
-
-      var aNav = $("#act_nav").text();
-      aNav += "-nav";
-      var activeNav = "#" + aNav;
-      var activeNavString = $(activeNav).children(".nav-item p").text();
-
-      $(activeNav).addClass("active").parent("li").addClass("active");
-
-      $("#dynpagename").html("<span class='red'>" + activeNavString + "</span>");
-
-      var newTitle = "Conjure | " + activeNavString;
-
-      $(document).prop('title', newTitle);
-
-      $('.nav-link.dropdown-toggle').on('click',function(e){
-         let dropdown=$(e.target).closest('.nav-link.dropdown-toggle');
-         dropdown.toggleClass('show');
-      });
-
-  /**
-   *  @BRIEF  NAVBAR HIGHLIGHT FUNCTION
-   *  @TODO   MAKE THE TOPNAV NOT DROPDOWNS
-   */
-
-  //$(function() {
-  //  var $el,
-  //    leftPos,
-  //    newWidth,
-  //    $mainNav = $(".navbar-nav");
-  //
-  //  $mainNav.append("<li id='magic-line'></li>");
-  //  var $magicLine = $("#magic-line");
-  //
-  //  $magicLine
-  //    .width($(".active").width())
-  //    .css("left", $(".active a").position().left)
-  //    .data("origLeft", $magicLine.position().left)
-  //    .data("origWidth", $magicLine.width());
-  //
-  //  $(".navbar-nav li a").hover(
-  //    function() {
-  //      $el = $(this);
-  //      leftPos = $el.position().left;
-  //      newWidth = $el.parent().width();
-  //      $magicLine.stop().animate({
-  //        left: leftPos,
-  //        width: newWidth
-  //      });
-  //    },
-  //    function() {
-  //      $magicLine.stop().animate({
-  //        left: $magicLine.data("origLeft"),
-  //        width: $magicLine.data("origWidth")
-  //      });
-  //    }
-  //  );
-  //});
-
-  });
-</script>
+<!-- Dashboard Core -->
+<script src="dist/js_orgy.min.js" type="text/javascript"></script>
 
 <?php
-
-  /**
-   * Allow for individual pages to load their own JS library and functions AFTER all required JS.
-   * @var [type]
-   */
+  // Each pages can load their own JS AFTER all required JS.
   if (file_exists($jsPage)) {
     include $jsPage;
   }
 
-  /**
-   * @brief active page indicator [ PHP to JS ]
-   */
+  // Active page indicator [ PHP to JS ]
   echo $jsPageHTML;
-
 ?>
-
 </body>
 </html>

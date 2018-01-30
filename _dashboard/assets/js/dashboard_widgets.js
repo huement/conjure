@@ -1,3 +1,8 @@
+/**
+ * Main Homepage for the Dashboard has a number of widgets.
+ * This file contains the JS functionality for those widgets.
+ */
+
 var failCount = 0;
 function grabStats(){
   $.ajax({
@@ -50,6 +55,84 @@ function stylestatus(site_slug){
     }
   });
 
+}
+
+function weatherReport(){
+  var tempColor, tempClass = '';
+  //console.log("fetching weather");
+  $.simpleWeather({
+    woeid: '2402292', //2357536
+    location: '',
+    unit: 'f',
+    success: function(weather) {
+      //console.log(weather);
+
+      if(weather.temp > 70) {
+        tempColor='#F7AC57';
+        tempClass='icon-danger'
+      } else {
+        tempColor='#0091c2'
+        tempClass='icon-info'
+      }
+
+      $("#weather_icon_wrapper").addClass(tempClass);
+      $("#weather_icon").addClass("icon-"+weather.code).addClass(tempClass);
+      $("#weather_city").text(weather.city+', '+weather.region);
+      $("#weather_color").css("backgroundColor",tempColor);
+      $("#weather_temp").html(weather.temp+'<sup><small style="color:#FEFEFE">°F</small></sup>');
+      $("#weather_cond").text(weather.currently);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+}
+
+function systemReport(){
+
+  var systemStatURL = $.trim($("#systemStatURL").text());
+  console.log(systemStatURL);
+
+  $.ajax({
+    url: systemStatURL,
+    dataType:"json",
+    success: function(data){
+      //console.log(data);
+      var vd = data.Vitals;
+      $.each(vd,function(name,value){
+        console.log(value);
+        $("#Hostname").text(value["Hostname"]);
+        $("#IPAddr").text(value["IPAddr"]);
+        $("#Kernel").text(value["Kernel"]);
+        $("#Distro").text(value["Distro"]);
+        $("#Uptime").text(value["Uptime"]);
+        $("#LastBoot").text(value["LastBoot"]);
+        $("#LoadAvg").text(value["LoadAvg"]);
+        $("#Processes").text(value["Processes"]);
+        $("#SysLang").text(value["SysLang"]);
+      });
+      //
+    },
+    error: function (data){
+      console.log("Report Error!");
+      console.log(data);
+    }
+  });
+}
+
+function unitTestReport(){
+  $.ajax({
+    dataType:"html",
+    url: "unit_tests/unit_test_results/index.html",
+    success: function(data){
+      var theTable = $(data).find("table.table-bordered");
+      theTable.addClass("table-responsive table-striped table-sm");
+      $("#unitTestActivity").html(theTable);
+    },
+    error: function (data){
+      $("#unitTestActivity").html("<h3>Unit test error!</h3><p>You Unit Tests results could not be loaded.<br/>Please check your configured path or rerun your tests</p>");
+    }
+  });
 }
 
 function statGraph(){
@@ -181,56 +264,25 @@ function statGraph(){
 
 // Docs at http://simpleweatherjs.com
 $(document).ready(function() {
-  var tempColor, tempClass = '';
-  //console.log("fetching weather");
-  $.simpleWeather({
-    woeid: '2402292', //2357536
-    location: '',
-    unit: 'f',
-    success: function(weather) {
-      //console.log(weather);
 
-      if(weather.temp > 70) {
-        tempColor='#F7AC57';
-        tempClass='icon-danger'
-      } else {
-        tempColor='#0091c2'
-        tempClass='icon-info'
-      }
+  weatherReport();
 
-      $("#weather_icon_wrapper").addClass(tempClass);
-      $("#weather_icon").addClass("icon-"+weather.code).addClass(tempClass);
-      $("#weather_city").text(weather.city+', '+weather.region);
-      $("#weather_color").css("backgroundColor",tempColor);
-      $("#weather_temp").html(weather.temp+'<sup><small style="color:#FEFEFE">°F</small></sup>');
-      $("#weather_cond").text(weather.currently);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
+  systemReport();
 
   if($("#unitTestActivity").html() !== undefined){
-    $.ajax({
-      dataType:"html",
-      url: "unit_tests/unit_test_results/index.html",
-      success: function(data){
-        var theTable = $(data).find("table.table-bordered");
-        theTable.addClass("table-responsive table-striped table-sm");
-        $("#unitTestActivity").html(theTable);
-      },
-      error: function (data){
-        $("#unitTestActivity").html("<h3>Unit test error!</h3><p>You Unit Tests results could not be loaded.<br/>Please check your configured path or rerun your tests</p>");
-      }
-    });
+    unitTestReport();
   }
 
-  setTimeout("grabStats()",500);
+  grabStats();
 
   if( $(".site-list-item").length > 0 ){
     $.each($(".site-list-item"), function(index){
         var the_slug = $(this).data("slug");
-        stylestatus(the_slug);
+        if(the_slug !== undefined){
+          stylestatus(the_slug);
+        } else {
+          console.log("WP Site w/o a slug error");
+        }
     });
   }
 

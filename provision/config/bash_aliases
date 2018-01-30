@@ -5,34 +5,19 @@
 # provisioning is finished. This allows for various scripts and configurations to
 # be available to us.
 #
-alias ls='ls -aG'
-alias ll='ls -lh'
-alias nano='nano -wc'
-alias less='less -SN'
-alias df='df -h'
-alias du='du -h'
-alias grep='grep -i'
-alias rm='rm -i'
-alias diff='diff -u'
-alias tar='tar --exclude-vcs'
-	# todo --exclude-vcs doesn't work on osx
-alias locate='locate -i'
-# todo works but throws usage notice - alias tail='tail -n40'
-alias watch='watch -d'
-alias ..="cd .."
-alias ...="cd .. && cd .."
-alias ....="cd .. && cd .. && cd .."
-alias h="cd ~"
-alias c="clear"
-alias art=artisan
+#
 
-alias phpspec="./vendor/bin/phpspec"
-alias phpunit="./vendor/bin/phpunit"
-alias serve="$(serve-laravel)"
+function nginxredo() {
+  sudo /etc/init.d/nginx restart
+}
 
-alias xoff="sudo phpdismod -s cli xdebug"
-alias xon="sudo phpenmod -s cli xdebug"
+function nginxon() {
+  sudo /etc/init.d/nginx start
+}
 
+function nginxoff() {
+  sudo /etc/init.d/nginx stop
+}
 
 function artisan() {
   php artisan "$@"
@@ -66,8 +51,8 @@ function php72() {
 
 function serve-hhvm() {
   if [[ "$1" && "$2" ]]; then
-    sudo dos2unix /vagrant/scripts/serve-hhvm.sh
-    sudo bash /vagrant/scripts/serve-hhvm.sh "$1" "$2" 80
+    sudo dos2unix /home/vagrant/scripts/serve-hhvm.sh
+    sudo bash /home/vagrant/scripts/serve-hhvm.sh "$1" "$2" 80
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -77,9 +62,9 @@ function serve-hhvm() {
 
 function serve-apache() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-apache.sh
-    sudo bash /vagrant/scripts/serve-apache.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-apache.sh
+    sudo bash /home/vagrant/scripts/serve-apache.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -89,9 +74,9 @@ function serve-apache() {
 
 function serve-laravel() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-laravel.sh
-    sudo bash /vagrant/scripts/serve-laravel.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-laravel.sh
+    sudo bash /home/vagrant/scripts/serve-laravel.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -101,8 +86,8 @@ function serve-laravel() {
 
 function serve-proxy() {
   if [[ "$1" && "$2" ]]; then
-    sudo dos2unix /vagrant/scripts/serve-proxy.sh
-    sudo bash /vagrant/scripts/serve-proxy.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo dos2unix /home/vagrant/scripts/serve-proxy.sh
+    sudo bash /home/vagrant/scripts/serve-proxy.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -112,9 +97,9 @@ function serve-proxy() {
 
 function serve-silverstripe() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-silverstripe.sh
-    sudo bash /vagrant/scripts/serve-silverstripe.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-silverstripe.sh
+    sudo bash /home/vagrant/scripts/serve-silverstripe.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -124,9 +109,9 @@ function serve-silverstripe() {
 
 function serve-spa() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-spa.sh
-    sudo bash /vagrant/scripts/serve-spa.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-spa.sh
+    sudo bash /home/vagrant/scripts/serve-spa.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -136,9 +121,9 @@ function serve-spa() {
 
 function serve-statamic() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-statamic.sh
-    sudo bash /vagrant/scripts/serve-statamic.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-statamic.sh
+    sudo bash /home/vagrant/scripts/serve-statamic.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -148,9 +133,9 @@ function serve-statamic() {
 
 function serve-symfony2() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-symfony2.sh
-    sudo bash /vagrant/scripts/serve-symfony2.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-symfony2.sh
+    sudo bash /home/vagrant/scripts/serve-symfony2.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -160,9 +145,9 @@ function serve-symfony2() {
 
 function serve-symfony4() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-symfony4.sh
-    sudo bash /vagrant/scripts/serve-symfony4.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-symfony4.sh
+    sudo bash /home/vagrant/scripts/serve-symfony4.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -172,9 +157,9 @@ function serve-symfony4() {
 
 function serve-pimcore() {
   if [[ "$1" && "$2" ]]; then
-    sudo bash /vagrant/scripts/create-certificate.sh "$1"
-    sudo dos2unix /vagrant/scripts/serve-pimcore.sh
-    sudo bash /vagrant/scripts/serve-pimcore.sh "$1" "$2" 80 443 "${3:-7.1}"
+    sudo bash /home/vagrant/scripts/create-certificate.sh "$1"
+    sudo dos2unix /home/vagrant/scripts/serve-pimcore.sh
+    sudo bash /home/vagrant/scripts/serve-pimcore.sh "$1" "$2" 80 443 "${3:-7.1}"
   else
     echo "Error: missing required parameters."
     echo "Usage: "
@@ -195,7 +180,7 @@ function share() {
 }
 
 function flip() {
-  sudo bash /vagrant/scripts/flip-webserver.sh
+  sudo bash /home/vagrant/scripts/flip-webserver.sh
 }
 
 function __has_pv() {
@@ -271,3 +256,42 @@ function xphp() {
     xoff
   fi
 }
+
+
+###- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -###
+ #                           _______ __ __                                                             #
+ #                          |   _   |  |__|.---.-.-----.-----.-----.                                   #
+ #                          |       |  |  ||  _  |__ --|  -__|__ --|                                   #
+ #                          |___|___|__|__||___._|_____|_____|_____|                                   #
+ #                                                                                                     #
+###- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -###
+
+alias ls='ls -aG'
+alias ll='ls -lh'
+alias nano='nano -wc'
+alias less='less -SN'
+alias df='df -h'
+alias du='du -h'
+alias grep='grep -i'
+alias rm='rm -i'
+alias diff='diff -u'
+alias tar='tar --exclude-vcs'
+alias locate='locate -i'
+alias watch='watch -d'
+alias ..="cd .."
+alias ...="cd .. && cd .."
+alias ....="cd .. && cd .. && cd .."
+alias h="cd ~"
+alias c="clear"
+alias art=artisan
+
+alias phpspec="./vendor/bin/phpspec"
+alias phpunit="./vendor/bin/phpunit"
+alias serve="$(serve-laravel)"
+
+alias xoff="sudo phpdismod -s cli xdebug"
+alias xon="sudo phpenmod -s cli xdebug"
+
+alias wplocalinstall="/home/vagrant/dashboard/shell/wp_local_install.sh"
+alias wpmigratetoserver="/home/vagrant/dashboard/shell/wp_migrate_to_server.sh"
+alias wpupdateserver="/home/vagrant/dashboard/shell/wp_update_server.sh"

@@ -6,10 +6,12 @@
 
 namespace conjure_dash;
 
+use Dotenv\Dotenv;
+
 class SysInfo {
 
 	private $debug_mode = true;
-	private $php_version = '5.2.4';
+	private $php_version = '';
 	private $mysqli_version = '5.0';
 
 	private $db_infos = array();
@@ -41,7 +43,11 @@ class SysInfo {
 			die( 'Self-destruction OK !' );
 		}
 
-		$this->_check_request_mysql();
+    $un = getenv('DB_USERNAME');
+    $pw = getenv('DB_PASSWORD');
+    $ha = getenv('DB_HOST');
+
+		$this->_check_request_mysql($un,$pw,$ha);
 		$this->_check_request_adminer();
 		$this->_check_request_phpsecinfo();
 		$this->_check_request_wordpress();
@@ -524,39 +530,32 @@ class SysInfo {
 	}
 
 	public function action_block() {
-		echo "<div class='container-fluid'>
+		echo "<div class='sysblock'>
       <div class='row'>
         ";
         echo "
         <div class='col-sm-12 col-md-7'>
           ";
-          echo '<div class="card">
+          echo '<div class="card" style="margin-bottom:40px;">
               <div class="card-header primary-color white-text">
                   <p class="category pull-right">/home/vagrant/logs</p>
                   <h4 class="title">Email Tester</h4>
               </div>
-              <div class="content">
+              <div class="content"><p style="margin-bottom:-5px;margin-top:10px;margin-left:6px;">
+              Send a test email to check that server is doing its job
+              </p>';
 
-
-                  <div class="footer">
-                      <div class="chart-legend">
-
-                      </div>
-                      <hr>
-                      <div class="stats">
-                          <i class="ti-timer"></i> XDEBUG is [DEPRICATED]
-                      </div>
-                  </div>
-              </div>
-          </div>';
-
-
-    $this->html_table_open( 'Email Configuration', '', '', '' );
     $this->html_form_email();
-    $this->html_table_close();
 
-    $g = "";
-    echo "</div>";
+    echo '      <div class="footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="ti-timer"></i> Email Configuration
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>';
 
     echo '<div class="col-sm-12 col-md-5">
         <div class="card">
@@ -580,9 +579,9 @@ class SysInfo {
     echo '</div>
 
                 <div class="footer">
-                    <hr>
+                    <hr style="border:1px solid #E0E0E0;margin-top:25px;">
                     <div class="stats">
-                    Send a test email to check that server is doing its job
+                      <i class="fa fa-server"></i> Server Stats
 
                     </div>
                 </div>
@@ -733,8 +732,8 @@ class SysInfo {
 	 */
 	public function html_form_email() {
 		$output = '';
-		$output .= '<tr>' . "\n";
-		$output .= '<td colspan="3">' . "\n";
+		$output .= '' . "\n";
+		$output .= '' . "\n";
 
 		if ( isset( $_POST['test-email'] ) && isset( $_POST['mail'] ) ) {
 			if ( ! filter_var( $_POST['mail'], FILTER_VALIDATE_EMAIL ) ) {// Invalid
@@ -748,13 +747,10 @@ class SysInfo {
 			}
 		}
 
-		$output .= '<div style="padding:20px 20px 0 20px;"><form id="form-email" method="post" action="#form-email"><div class="form-group row"><div class="col-7">' . "\n";
-		$output .= '<div class="input-group mb-2"><div class="input-group-prepend"><div class="input-group-addon form-control-lg"><i class="fa fa-envelope"></i></div></div> <input type="email" class="form-control form-control-lg" name="mail" placeholder="test@sample.com" value=""></div></div>' . "\n";
-		$output .= '<div class="col-5"><button name="test-email" type="submit" class="btn btn-primary btn-lg" style="height:50px;">Send mail</button></div>' . "\n";
+		$output .= '<div style="padding:20px 20px 0 20px;"><form id="form-email" method="post" action="#form-email"><div class="form-group row"><div class="">' . "\n";
+		$output .= '<div class="input-group mb-2"><div class="input-group-prepend"><div class="input-group-addon form-control-lg"><i class="fa fa-envelope"></i></div></div> <input type="email" class="form-control form-control-lg" name="mail" placeholder="test@sample.com" value="" style="width:320px;"></div></div>' . "\n";
+		$output .= '<div style="margin-left:10px;"><button name="test-email" type="submit" class="btn btn-primary btn-lg" style="height:50px;">Send mail</button></div>' . "\n";
 		$output .= '</div></form></div>' . "\n";
-    $output .= '<span class="help-inline" style="padding: 0 10px 20px 20px;">Send a test email to check that server is doing its job</span>' . "\n";
-		$output .= '</td>' . "\n";
-		$output .= '</tr>' . "\n";
 
 		echo $output;
 	}
@@ -921,12 +917,12 @@ class SysInfo {
 		}
 	}
 
-	private function _check_request_mysql() {
+	private function _check_request_mysql($user,$pass,$host) {
 
     if ( ( isset( $_SESSION ) && isset( $_SESSION['credentials'] ) ) ) {
       $this->db_infos = $_SESSION['credentials'];
     } else {
-      $this->db_infos = array("host" => "localhost","user" => "homestead","password" => "secret");
+      $this->db_infos = array("host" => $host,"user" => $user,"password" => $pass);
       $_SESSION['credentials'] = $this->db_infos;
     }
 

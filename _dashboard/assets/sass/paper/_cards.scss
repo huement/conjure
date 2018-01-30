@@ -24,6 +24,14 @@
     position: relative;
     z-index: 1;
 
+    .back_red { background-color:$red }
+    .back_yellow { background-color:$yellow }
+    .back_green { background-color:$green }
+    .back_blue { background-color:$blue }
+    .back_orange { background-color:$orange }
+    .back_purple { background-color:$purple }
+    .back_teal { background-color:$teal }
+
     .image{
         width: 100%;
         overflow: hidden;

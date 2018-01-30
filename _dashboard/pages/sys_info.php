@@ -26,9 +26,12 @@ function phpwpinfo() {
 	$info = new SysInfo();
 	$info->init_all_tests();
 }
-?>
 
-<div class="push" style="height:20px;"></div>
+$DBDATA = $dashData->getDBData();
+$DBPASS = $DBDATA["pass"];
+$DBUSER = $DBDATA["user"];
+
+?>
 
 <div class="jumbotron jumbo-sex purpink">
   <div class="container-fluid">

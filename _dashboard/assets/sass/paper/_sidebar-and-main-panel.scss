@@ -169,6 +169,39 @@
 	transition: all 0.3s ease-in-out;
 }
 
+.sidebar-wrapper .nav-pills .nav-link.active_collapse {
+  background-color: $purple_light;
+	color: $pale-bg!important;
+}
+
+.sidebar-wrapper .nav-pills .active_collapse .nav-link.active {
+  background-color: transparent;
+  color: $darker-gray!important;
+}
+
+
+.sidebar-wrapper .nav-item.linked-page.active .active_submenu {
+  background: $green;
+  background-color: $green;
+	color: $black-bg!important;
+	opacity: 1;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.sidebar-wrapper .nav-item.linked-page.active .active_submenu:hover {
+  background: $success-bg;
+  background-color: $success-bg;
+}
+
+.sidebar .nav.show,
+.sidebar .nav.collapse
+.sidebar .nav.collapsing {
+  background:$black!important;
+  background-color:$black!important;
+}
+
 .sidebar-wrapper .nav-pills .nav-link.active:hover {
 	background-color: $purple;
 	text-indent: -5px;

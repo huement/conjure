@@ -18,6 +18,10 @@
     border-radius: 100%;
     color: #fff;
     transition: all ease-in-out .3s;
+
+    .fa.fa-3x {
+      width: 45px;
+    }
 }
 
 /* -- Background Helper Classes */
@@ -25,69 +29,69 @@
 /* Use these to cuztomize the background color of a div. These are used along with tiles, or any other div you want to customize. */
 
  .dark-blue {
-    background-color: #34495e;
+    background-color: $teal;
 }
 
 .green {
-    background-color: #16a085;
+    background-color: $green;
 }
 
 .blue {
-    background-color: #2980b9;
+    background-color: $blue;
 }
 
 .orange {
-    background-color: #f39c12;
+    background-color: $orange;
 }
 
 .red {
-    background-color: #e74c3c;
+    background-color: $red;
 }
 
 .purple {
-    background-color: #8e44ad;
+    background-color: $purple;
 }
 
 .dark-gray {
-    background-color: #7f8c8d;
+    background-color: $darker-gray;
 }
 
 .gray {
-    background-color: #95a5a6;
+    background-color: $dark-gray;
 }
 
 .light-gray {
-    background-color: #bdc3c7;
+    background-color: $light-gray;
 }
 
 .yellow {
-    background-color: #f1c40f;
+    background-color: $yellow;
 }
 
 /* -- Text Color Helper Classes */
 
  .text-dark-blue {
-    color: #34495e;
+    color: $info-states-color;
 }
 
 .text-green {
-    color: #16a085;
+    color: $success-bg;
 }
 
 .text-blue {
-    color: #2980b9;
+    color: $info-bg;
 }
 
 .text-orange {
-    color: #f39c12;
+    color: $orange;
 }
 
 .text-red {
-    color: #e74c3c;
+    color: $danger-states-color;
 }
 
 .text-purple {
-    color: #8e44ad;
+    color: $purple;
 }
 
 .text-faded {

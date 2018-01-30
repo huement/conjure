@@ -5,8 +5,6 @@
    */
 ?>
 
-<div class="push" style="height:20px;"></div>
-
 <div class="jumbotron jumbo-sex outrun_red" style="padding:10px 20px 10px 20px;margin-top:-10px;">
   <div class="container-fluid">
     <h2 class="display-4" style="margin-top:10px;">Website Performance</h2>

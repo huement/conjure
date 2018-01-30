@@ -4,6 +4,14 @@ $color-border: #ddd;
 $color-link: #0275d8;
 $border-radius: .25rem;
 
+.back_red { background-color:$red!important; }
+.back_yellow { background-color:$yellow!important; }
+.back_green { background-color:$green!important; }
+.back_blue { background-color:$blue!important; }
+.back_orange { background-color:$orange!important; }
+.back_purple { background-color:$purple!important; }
+.back_teal { background-color:$teal!important; }
+
 .nav-tabs {
 	&--vertical {
 		border-bottom: none;
@@ -41,7 +49,7 @@ $border-radius: .25rem;
 				border-color: $color-link $color-body $color-link $color-link;
 			}
 		}
-	} 
+	}
 }
 
 .accordion_base{

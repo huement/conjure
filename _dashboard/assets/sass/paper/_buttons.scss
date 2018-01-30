@@ -35,6 +35,14 @@
     margin-left: -2px;
 }
 
+.btn-group .icon-top {
+  width:100%;
+  display:block;
+  clear:both;
+  margin: 0 auto;
+  text-align:center;  
+}
+
 // Apply the mixin to the buttons
 //.btn-default { @include btn-styles($default-color, $default-states-color); }
 .navbar .navbar-nav > li > a.btn-primary, .btn-primary { @include btn-styles($primary-color, $primary-states-color); }
