@@ -541,13 +541,11 @@ class SysInfo {
                   <p class="category pull-right">/home/vagrant/logs</p>
                   <h4 class="title">Email Tester</h4>
               </div>
-              <div class="content"><p style="margin-bottom:-5px;margin-top:10px;margin-left:6px;">
-              Send a test email to check that server is doing its job
-              </p>';
+              <div class="content">';
 
-    $this->html_form_email();
+                  $this->html_form_email();
 
-    echo '      <div class="footer">
+    echo '    <div class="footer">
                     <hr>
                     <div class="stats">
                         <i class="ti-timer"></i> Email Configuration
@@ -555,10 +553,9 @@ class SysInfo {
                 </div>
             </div>
             </div>
-            </div>';
-
-    echo '<div class="col-sm-12 col-md-5">
-        <div class="card">
+            </div>
+        <div class="col-sm-12 col-md-5">
+          <div class="card">
             <div class="card-header primary-color white-text">
                 <p class="category pull-right">/home/vagrant/logs</p>
                 <h4 class="title">Server Details</h4>
@@ -567,7 +564,7 @@ class SysInfo {
                 <p>
                   <small>Note: To profile, <code>xdebug_on</code> must be set.</small>
                 </p>
-                <div>';
+                <div style="padding-bottom:10px;">';
 
                   $xdebug = ( extension_loaded("xdebug") ? true : false );
                   if ( $xdebug ) {
@@ -579,7 +576,7 @@ class SysInfo {
     echo '</div>
 
                 <div class="footer">
-                    <hr style="border:1px solid #E0E0E0;margin-top:25px;">
+                    <hr/>
                     <div class="stats">
                       <i class="fa fa-server"></i> Server Stats
 
@@ -735,21 +732,36 @@ class SysInfo {
 		$output .= '' . "\n";
 		$output .= '' . "\n";
 
+    $alertclose = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+    $alerticon = '<i class="fa fa-envelope"></i>';
+
+    $output = '<div style="padding:0px 20px 0 20px;margin-bottom:30px;margin-top:5px;">';
 		if ( isset( $_POST['test-email'] ) && isset( $_POST['mail'] ) ) {
-			if ( ! filter_var( $_POST['mail'], FILTER_VALIDATE_EMAIL ) ) {// Invalid
-				$output .= '<div class="alert alert-error">Email invalid.</div>' . "\n";
-			} else {// Valid mail
-				if ( mail( $_POST['mail'], 'Email test with PHP WP Info', "Line 1\nLine 2\nLine 3\nGreat !" ) ) {// Valid send
-					$output .= '<div class="alert alert-success">Mail sent with success.</div>' . "\n";
-				} else {// Error send
-					$output .= '<div class="alert alert-error">An error occured during mail sending.</div>' . "\n";
+
+			if ( ! filter_var( $_POST['mail'], FILTER_VALIDATE_EMAIL ) ) {
+        // Invalid
+				$output .= '<div class="alert alert-error alert-with-icon">'.$alerticon.'Email invalid.'.$alertclose.'</div>' . "\n";
+			} else {
+        // Valid mail
+				if ( mail( $_POST['mail'], 'Email test with PHP WP Info', "Line 1\nLine 2\nLine 3\nGreat !" ) ) {
+          // Valid send
+					$output .= '<div class="alert alert-success alert-with-icon">'.$alerticon.'Mail sent with success.'.$alertclose.'</div>' . "\n";
+				} else {
+          // Error send
+					$output .= '<div class="alert alert-error alert-with-icon">'.$alerticon.'An error occured during mail sending.'.$alertclose.'</div>' . "\n";
 				}
 			}
-		}
 
-		$output .= '<div style="padding:20px 20px 0 20px;"><form id="form-email" method="post" action="#form-email"><div class="form-group row"><div class="">' . "\n";
-		$output .= '<div class="input-group mb-2"><div class="input-group-prepend"><div class="input-group-addon form-control-lg"><i class="fa fa-envelope"></i></div></div> <input type="email" class="form-control form-control-lg" name="mail" placeholder="test@sample.com" value="" style="width:320px;"></div></div>' . "\n";
-		$output .= '<div style="margin-left:10px;"><button name="test-email" type="submit" class="btn btn-primary btn-lg" style="height:50px;">Send mail</button></div>' . "\n";
+		} else {
+
+      $output .= '<p style="font-size:18px;">Send <strong>TEST EMAIL</strong> to check that server is doing its job!</p>';
+
+    }
+    $output .= '</div>' . "\n";
+
+		$output .= '<div style="padding:0px 20px 20px 20px;"><form id="form-email" method="post" action="#form-email" class="form-inline"><div class="form-group" style="width:100%;">' . "\n";
+		$output .= '<div class="input-group mb-2" style="width:75%;"><div class="input-group-prepend"><div class="input-group-addon form-control-lg"><i class="fa fa-envelope"></i></div></div> <input type="email" class="form-control form-control-lg" name="mail" placeholder="test@sample.com" value=""></div>' . "\n";
+		$output .= '<div style="width:25%;margin-top: -8px;"><button name="test-email" type="submit" class="btn btn-secondary btn-lg btn-block">Send mail</button></div>' . "\n";
 		$output .= '</div></form></div>' . "\n";
 
 		echo $output;

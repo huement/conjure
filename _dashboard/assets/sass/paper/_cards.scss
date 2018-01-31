@@ -107,6 +107,9 @@
     .stats{
         color: #5e5e5e;
         font-weight: 400;
+        text-align:right;
+        width: 100%;
+        padding: 5px 10px 0 0;
         i{
             min-width: 15px;
             display: inline-block;
@@ -153,15 +156,6 @@
         tbody td:last-child,
         thead th:last-child{
             padding-right: 15px;
-        }
-    }
-
-    .alert{
-        border-radius: $border-radius-base;
-        position: relative;
-
-        &.alert-with-icon{
-            padding-left: 65px;
         }
     }
     .icon-big{

@@ -852,13 +852,20 @@ hr {
   border-bottom-right-radius: 0px; }
 
 .alert {
-  border: none;
+  border: 1px solid #DDDDDD;
   border-left: 10px solid #333399;
-  border-radius: 2px;
+  border-radius: 0px !important;
   color: #1e1e1e;
-  background-color: #FFFCF5;
-  padding: 5px 5px 5px 10px;
-  font-size: 14px; }
+  background-color: #E6E6E6;
+  padding: 10px 5px 10px 10px;
+  margin: 10px auto;
+  font-size: 18px;
+  -webkit-border-top-right-radius: 4px !important;
+  -webkit-border-bottom-right-radius: 4px !important;
+  -moz-border-radius-topright: 4px !important;
+  -moz-border-radius-bottomright: 4px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important; }
   .navbar .alert {
     border-radius: 0;
     left: 0;
@@ -869,52 +876,79 @@ hr {
     z-index: 3; }
   .navbar:not(.navbar-transparent) .alert {
     top: 70px; }
+  .alert .fa,
   .alert span[data-notify="icon"] {
     font-size: 30px;
-    display: block;
-    left: 15px;
-    position: absolute;
-    top: 50%;
-    margin-top: -15px; }
+    float: left;
+    display: inline-block;
+    margin-left: -43px;
+    margin-top: -5px; }
+  .alert .close {
+    margin-right: 6px;
+    margin-top: 2px; }
   .alert .close ~ span {
     display: block;
     max-width: 89%;
-    color: #ffffff; }
+    color: #ffffff;
+    margin-right: 5px; }
   .alert[data-notify="container"] {
     padding: 10px 10px 10px 20px;
     border-radius: 4px; }
   .alert.alert-with-icon {
-    padding-left: 65px; }
+    padding-left: 55px; }
+  .alert .lead {
+    line-height: 1;
+    font-size: 18px;
+    margin: 0;
+    padding: 0; }
 
 .alert-info {
-  border-color: #2A7BA6;
+  border-left-color: #2A7BA6;
   color: #202020; }
   .alert-info hr {
     border-color: #2A7BA6; }
+  .alert-info .fa {
+    color: #2A7BA6; }
 
 .alert-success {
-  border-color: #00AF51;
+  border-left-color: #00AF51;
   color: #202020; }
   .alert-success hr {
     border-color: #00AF51; }
+  .alert-success .fa {
+    color: #00AF51; }
 
 .alert-warning {
-  border-color: #F0B710;
+  border-left-color: #F0B710;
   color: #202020; }
   .alert-warning hr {
     border-color: #F0B710; }
+  .alert-warning .fa {
+    color: #F0B710; }
 
 .alert-danger {
-  border-color: #D80050;
+  border-left-color: #D80050;
   color: #202020; }
   .alert-danger hr {
     border-color: #D80050; }
+  .alert-danger .fa {
+    color: #D80050; }
 
 .alert-secondary {
-  border-color: #1F556E;
+  border-left-color: #1F556E;
   color: #202020; }
   .alert-secondary hr {
     border-color: #1F556E; }
+  .alert-secondary .fa {
+    color: #1F556E; }
+
+.alert-primary {
+  border-left-color: #333399;
+  color: #202020; }
+  .alert-primary hr {
+    border-color: #333399; }
+  .alert-primary .fa {
+    color: #333399; }
 
 .table thead,
 .table tbody,
@@ -990,7 +1024,7 @@ hr {
 .table-striped tbody > tr:nth-of-type(2n+1) {
   background-color: #fff; }
 .table-striped tbody > tr:nth-of-type(2n) {
-  background-color: #FFFCF5; }
+  background-color: #E3E3E3; }
 .table-striped > thead > tr > th,
 .table-striped > tbody > tr > th,
 .table-striped > tfoot > tr > th,
@@ -2659,7 +2693,10 @@ ul.list-group.minimal-lines-list li.list-group-item.breaker,
       margin-bottom: 5px; }
   .card .stats {
     color: #5e5e5e;
-    font-weight: 400; }
+    font-weight: 400;
+    text-align: right;
+    width: 100%;
+    padding: 5px 10px 0 0; }
     .card .stats i {
       min-width: 15px;
       display: inline-block; }
@@ -2691,11 +2728,6 @@ ul.list-group.minimal-lines-list li.list-group-item.breaker,
   .card .table tbody td:last-child,
   .card .table thead th:last-child {
     padding-right: 15px; }
-  .card .alert {
-    border-radius: 4px;
-    position: relative; }
-    .card .alert.alert-with-icon {
-      padding-left: 65px; }
   .card .icon-big {
     font-size: 3em;
     min-height: 64px; }
@@ -2864,7 +2896,7 @@ ul.list-group.minimal-lines-list li.list-group-item.breaker,
 /* -- Background Helper Classes */
 /* Use these to cuztomize the background color of a div. These are used along with tiles, or any other div you want to customize. */
 .dark-blue {
-  background-color: #1F556E; }
+  background-color: #5214b0; }
 
 .green {
   background-color: #00AF51; }
@@ -2887,8 +2919,8 @@ ul.list-group.minimal-lines-list li.list-group-item.breaker,
 .gray {
   background-color: #9A9A9A; }
 
-.light-gray {
-  background-color: #E3E3E3; }
+.teal {
+  background-color: #1F556E; }
 
 .yellow {
   background-color: #F0B710; }

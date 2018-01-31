@@ -1,11 +1,18 @@
 .alert{
-    border:none;
+    border: 1px solid $medium-gray;
     border-left: 10px solid $primary-color;
-    border-radius: 2px;
+    border-radius: 0px!important;
     color: $black-bg;
-    background-color: $pale-bg;
-    padding: 5px 5px 5px 10px;
-    font-size: 14px;
+    background-color: $medium-pale-bg;
+    padding: 10px 5px 10px 10px;
+    margin:10px auto;
+    font-size: 18px;
+    -webkit-border-top-right-radius: 4px!important;
+    -webkit-border-bottom-right-radius: 4px!important;
+    -moz-border-radius-topright: 4px!important;
+    -moz-border-radius-bottomright: 4px!important;
+    border-top-right-radius: 4px!important;
+    border-bottom-right-radius: 4px!important;
 
     .navbar &{
         border-radius: 0;
@@ -16,23 +23,30 @@
         width: 100%;
         z-index: 3;
     }
+
     .navbar:not(.navbar-transparent) &{
         top: 70px;
     }
 
+    .fa,
     span[data-notify="icon"]{
         font-size: 30px;
-        display: block;
-        left: 15px;
-        position: absolute;
-        top: 50%;
-        margin-top: -15px;
+        float:left;
+        display: inline-block;
+        margin-left: -43px;
+        margin-top: -5px;
+    }
+
+    .close {
+      margin-right: 6px;
+      margin-top: 2px;
     }
 
     .close ~ span{
         display: block;
         max-width: 89%;
         color:#ffffff;
+        margin-right:5px;
     }
 
     &[data-notify="container"]{
@@ -41,42 +55,74 @@
     }
 
     &.alert-with-icon{
-        padding-left: 65px;
+        padding-left: 55px;
+    }
+
+    .lead {
+      line-height:1;
+      font-size:18px;
+      margin:0;
+      padding:0;
     }
 }
 
 .alert-info {
-    border-color: $blue;
+    border-left-color: $blue;
     color: $black-color;
     hr {
       border-color: $blue;
     }
+    .fa {
+      color: $blue;
+    }
 }
 .alert-success {
-    border-color: $green;
+    border-left-color: $green;
     color: $black-color;
     hr {
       border-color: $green;
     }
+    .fa {
+      color: $green;
+    }
 }
 .alert-warning {
-    border-color: $yellow;
+    border-left-color: $yellow;
     color: $black-color;
     hr {
       border-color: $yellow;
     }
+    .fa {
+      color: $yellow;
+    }
 }
 .alert-danger {
-    border-color: $red;
+    border-left-color: $red;
     color: $black-color;
     hr {
       border-color: $red;
     }
+    .fa {
+      color: $red;
+    }
 }
 .alert-secondary {
-    border-color: $teal;
+    border-left-color: $teal;
     color:$black-color;
     hr {
       border-color: $teal;
+    }
+    .fa {
+      color: $teal;
+    }
+}
+.alert-primary {
+    border-left-color: $primary;
+    color:$black-color;
+    hr {
+      border-color: $primary;
+    }
+    .fa {
+      color: $primary;
     }
 }

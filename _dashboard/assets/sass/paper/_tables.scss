@@ -94,7 +94,7 @@
         background-color: #fff;
     }
     tbody > tr:nth-of-type(2n) {
-        background-color: $pale-bg;
+        background-color: $light-gray;
     }
     > thead > tr > th,
     > tbody > tr > th,
@@ -106,7 +106,7 @@
     }
 }
 
-.table thead.table-dark {
+.table thead.table-dark { 
   background-color: $black;
   color: $white-color;
 }

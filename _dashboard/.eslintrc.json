@@ -1,0 +1,15 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "eqeqeq": "off",
+        "curly": "error",
+        "quotes": [
+            "error", "double",
+        ],
+        "no-alert": true,
+        "no-extra-semi":false
+    }
+}

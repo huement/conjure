@@ -121,7 +121,7 @@ function systemReport(){
 }
 
 function unitTestReport(){
-  $.ajax({
+  $.ajax({ 
     dataType:"html",
     url: "unit_tests/unit_test_results/index.html",
     success: function(data){
