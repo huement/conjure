@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "grunt watch:dashboard"
   },
-  "dependencies": {},
+  "dependencies": {
+    "open-color": "^1.6.2"
+  },
   "devDependencies": {
     "chart.js": "^2.7.1",
     "eslint": "^4.15.0",
@@ -32,6 +34,6 @@
     "grunt-wp-css": "^0.2.1",
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "node-sass": "^4.7.2",
-    "stylestats": "^7.0.1" 
+    "stylestats": "^7.0.1"
   }
 }

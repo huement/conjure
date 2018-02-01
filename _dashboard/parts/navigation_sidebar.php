@@ -8,7 +8,7 @@ Tip 2: you can change the color of the active button using the data-active-color
   <div class="sidebar-wrapper">
 
         <div class="logo cosmic_fusion">
-            <img src="assets/img/ConjureLogo.png" class="logo_logo" />
+            <img src="assets/img/Conjure_Light.png" class="logo_logo" />
             <a href="#" id="conjure_logo" class="simple-text">
                 Conjure
             </a>

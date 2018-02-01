@@ -302,3 +302,22 @@ function askBootVagrant() {
   echo ""
   exit 0
 }
+
+
+# Setup .env environemnt files
+# ----------------------------------------------------------------------
+function setupENV() {
+  
+  if is_file "./.env"; then
+    echo ".env file exisits."
+    echo "can not continue."
+    return;
+  fi
+  
+  envFile="env.example.txt"
+  if is_file "${envFile}"; then
+    mv $envFile ./.env
+    sed -i -e 's/abc/XYZ/g' $envFile
+  fi
+  
+}

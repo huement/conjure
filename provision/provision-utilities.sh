@@ -28,6 +28,15 @@ else
   echo ".DS_Store" > /home/vagrant/.gitignore_global
 fi
 
+MICRO="/usr/local/bin/micro"
+if [ ! -f "$MICRO"]; then
+  echo " ----- [ MICRO EDITOR ] ----- "
+  cd /home/vagrant
+  curl https://getmic.ro | bash
+  sudo mv ./micro /usr/local/bin/
+fi;
+
+
 echo " ------ [   COMPOSER   ] ------ "
 
 # @TODO Grab the readmes from these and put in the docs.

@@ -2940,6 +2940,10 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+open-color@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/open-color/-/open-color-1.6.2.tgz#44ffb356ac7e124dcf0524230b8430f7d6875330"
+
 openurl@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/openurl/-/openurl-1.1.1.tgz#3875b4b0ef7a52c156f0db41d4609dbb0f94b387"

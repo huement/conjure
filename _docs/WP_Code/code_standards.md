@@ -1,6 +1,0 @@
-# Run. Jump. Blog.
-
-```
-$> php php-cs-fixer.phar fix /path/to/dir --rules=@PSR2 --format=json  --rules=--blank_line_before_statement,strict_comparison --show-progress=estimating-max --header_comment=PHPDoc --line_ending --lowercase_constants --no_empty_comment --no_empty_statement --no_extra_consecutive_blank_lines --no_mixed_echo_print=print --no_multiline_whitespace_around_double_arrow --no_multiline_whitespace_before_semicolons --no_short_echo_tag --no_trailing_whitespace_in_comment --phpdoc_align --phpdoc_indent --linebreak_after_opening_tag --align_multiline_comment=all_multiline --position_after_functions_and_oop_constructs=next, --combine_consecutive_issets --elseif --explicit_string_variable --full_opening_tag --single_line_comment_style --function_declaration
-```
-**Explination** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
