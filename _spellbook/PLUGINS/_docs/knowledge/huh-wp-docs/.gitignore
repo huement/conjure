@@ -1,0 +1,8 @@
+*.log
+logs
+npm-debug.log*
+.sass-cache/
+.grunt
+node_modules/
+vendor/
+composer.lock

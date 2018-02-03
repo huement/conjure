@@ -1,0 +1,72 @@
+<!--
+/*
+ * jAnsiVT php shell Example
+ *
+ * Author: R3n Pi2 <r3npi2@gmail.com> https://github.com/R3nPi2/
+ *
+ * IMPORTANT NOTE: Take care where you place that scripts.
+ *   If public, it opens a remote shell with NO SECURITY to your computer.
+ */
+-->
+<html>
+<head>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type='text/javascript' src='./jansivt.js'></script>
+    <link type="text/css" href="./jansivt.css" rel="stylesheet"></link>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700|Open+Sans:300,400" rel="stylesheet">
+	</head>
+	<body>
+    <div id="terminal">Loading terminal...</div>
+    
+		<script type='text/javascript'>
+      
+      var terminal_prompt = "\x1b[30m\x1b[42m Morgan \x1b[45m <•> \x1b[46m LeFay \x1b[0m \x1b[33m\$\x1b[0m ";
+      var command,terminal = "";
+      var charcode = 0;
+      
+      function funGoStart(){
+        terminal_prompt = "\x1b[30m\x1b[42m Morgan \x1b[45m <•> \x1b[46m LeFay \x1b[0m \x1b[33m\$\x1b[0m ";
+        charcode = 0;
+        command = "";
+        terminal = jQuery('#terminal').jAnsiVT({
+          cols: 80,
+          rows: 25,
+          scrollLines: 30,
+          title: "SAVAGE SESSIONS",
+          colorScheme: 'greyOnBlack',
+          getKeyboard: true,
+          ignoreBold: true,
+          changeWidthOnScroll: true,
+          onChangeTitle: function(title) {
+          },
+          onKeyboardInput: function(k) {
+            if (k.charCodeAt(0) == 10) {
+              charcode = 10;
+            } else if ((charcode == 10) && (k.charCodeAt(0) == 13)) {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                  terminal.write(xhttp.responseText);
+				          terminal.write(terminal_prompt);
+                }
+              };
+              xhttp.open("GET", "https://magic.app/apps/web_xt/_shell.php?c="+command+"\n", true);
+              xhttp.send("DUMMY");
+              charcode = 0;
+              command = "";
+            } else if (k.charCodeAt(0) < 128) {
+              command += k;
+            }
+            return;
+          },
+        });
+				terminal.write(terminal_prompt);
+      }
+      
+			$(document).ready(function() {
+        funGoStart();
+			});
+      
+		</script>
+	</body>
+</html>

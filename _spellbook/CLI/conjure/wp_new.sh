@@ -48,7 +48,7 @@ function randomSString() {
 }
 
 function updateWP() {
-  cp $SCRIPT/config/wordpress-config/wp-config-default.php /home/vagrant/code/$1/wp-config.php
+  cp $SCRIPT/provision/config/wordpress-config/wp-config-default.php /home/vagrant/code/$1/wp-config.php
 
   #set database details with perl find and replace
   perl -pi -e "s/database_name_here/$dbname/g" wp-config.php
@@ -85,11 +85,20 @@ function join_by() {
 
 function defaultPlugins() {
   STRINGPLUG=""
-  mapfile -t wpArray <"/home/vagrant/config/wordpress-config/default_packages.json"
-  # for i in "${wpArray[@]}"
-  # do
-  #    STRINGPLUG=" "
-  # done
+  mapfile -t wpArray <"/home/vagrant/config/wordpress-config/default_plugins.txt"
+  for i in "${wpArray[@]}"
+  do
+     wp plugin install $i
+  done
+}
+
+function defaultPackages() {
+  STRINGPLUG=""
+  mapfile -t wpArray <"/home/vagrant/config/wordpress-config/default_packages.txt"
+  for i in "${wpArray[@]}"
+  do
+     wp package install $i
+  done
 }
 
 # Install new Wordpress Site from Stack

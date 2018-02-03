@@ -1,0 +1,26 @@
+.guide-desc {
+  margin-bottom: 3em; }
+
+.style-section {
+  margin-bottom: 3em;
+  padding-bottom: 3em;
+  border-bottom: 1px solid; }
+
+.section-title {
+  display: inline-block; }
+
+.backtotoplink {
+  display: inline-block;
+  float: right; }
+
+.style-item {
+  margin-bottom: 3em; }
+
+.item-example {
+  padding: 1.5em;
+  border: dotted;
+  display: block;
+  overflow: hidden; }
+
+.top-spacer {
+  padding-top: 35px; }

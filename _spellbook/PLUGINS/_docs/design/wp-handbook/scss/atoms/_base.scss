@@ -1,0 +1,108 @@
+// ==========================================================================
+//  Base styles: opinionated defaults
+// ==========================================================================
+
+html,
+button,
+input,
+select,
+textarea {
+	color: $gray-dark;
+}
+html,
+body {
+	background: $gray-light;
+}
+
+// (highlight color, text color)
+::selection {
+	background: $blue-medium;
+	color: #fff;
+	text-shadow: none;
+}
+
+
+
+// ==========================================================================
+// Links
+// ==========================================================================
+
+a {
+	color: $blue-medium;
+	text-decoration: none;
+
+	&:visited {
+		color: $blue-medium;
+	}
+	&:hover {
+		color: $blue-wordpress;
+	}
+	&:focus {
+		outline: thin dotted;
+	}
+}
+
+// ==========================================================================
+// Basic block-level elements
+// ==========================================================================
+
+address {
+	margin: 0 0 1.5em;
+}
+
+// ==========================================================================
+// Text-level markup
+// ==========================================================================
+
+abbr[title],
+acronym {
+	cursor: help;
+}
+
+ins {
+	background: #eee;
+	text-decoration: none;
+}
+
+// ==========================================================================
+// Media elements
+// ==========================================================================
+
+// Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+img {
+	vertical-align: middle;
+}
+
+// ==========================================================================
+// Lists
+// ==========================================================================
+
+dt {
+	font-weight: $bold;
+}
+
+// ==========================================================================
+// Forms
+// ==========================================================================
+
+// Remove default fieldset styles.
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+// Allow only vertical resizing of textareas.
+textarea {
+	resize: vertical;
+}
+
+// A better looking default horizontal rule
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}

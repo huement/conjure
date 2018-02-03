@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Typography | WordPress.com Design Handbook</title>
+		<meta name="description" content="WordPress.com Design Handbook">
+		<meta name="viewport" content="width=device-width">
+		<link rel='stylesheet' href='../css/style.css'>
+		<script src='../js/vendor/modernizr-2.6.2.min.js'></script>
+		<link rel="icon" type="image/x-icon" href="https://s2.wp.com/i/favicon.ico" sizes="16x16" />
+		<link href='https://s1.wp.com/i/fonts/merriweather/merriweather.css?v=20160210' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-branding">
+				<h1 class="site-title"><a href="../index.html" rel="home">WordPress.com <span class="design-handbook">Design Handbook</span></a></h1>
+			</div>
+		</header><!-- #masthead -->
+
+		<div id="content" class="site-content">
+
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+				<button class="menu-toggle">Navigation</button>
+				<ul>
+					<li><a href="../index.html">Introduction</a></li>
+					<li><a href="../logotype/">Logotype</a></li>
+					<li><a href="../colors/">Colors</a></li>
+					<li class="current"><a href="../typography/">Typography</a></li>
+					<li><a href="../iconography/">Iconography</a></li>
+					<li><a href="../metrics/">Metrics</a></li>
+					<li><a href="../patterns/">Patterns</a></li>
+				</ul>
+			</nav><!-- #site-navigation -->
+
+			<main id="main" class="site-main" role="main">
+				<article id="handbook-typography" class="page">
+
+					<header class="page-header">
+						<h1>Typography</h1>
+						<p>Expressive and utilitarian, serif and sans, our typefaces serve distinct roles: Merriweather is for content, system fonts are for interface.</p>
+					</header>
+
+					<section id="typography-typefaces" class="typography-typefaces article-section">
+						<h2>Typefaces</h2>
+						<p>WordPress.com defines the separation between content and user interface with typography. Our user interface is set in system fonts, and our content is set in a custom web font, Merriweather.</p>
+
+						<h3>Merriweather</h3>
+						<p>Designed by Eben Sorkin, <a href="https://www.google.com/fonts/specimen/Merriweather">Merriweather</a> is a graceful, modern serif typeface. We use Merriweather only for content. This includes content created by our users, as well as pages and posts that we publish in our news blog, on our support site, and elsewhere. Merriweather is also used for headlines on our landing pages and marketing material. Merriweather is published under the <a href="https://s1.wp.com/i/fonts/merriweather/OFL.txt">SIL Open Font License</a> and served by the WP.com CDN.</p>
+
+						<h3>Merriweather Sans</h3>
+						<p>Designed by Eben Sorkin, <a href="https://fonts.google.com/specimen/Merriweather+Sans">Merriweather Sans</a> is the sans-serif pair to Merriweather. We use Merriweather Sans only for secondary brand content. This includes subheadlines and body copy used in marketing material and landing pages. Merriweather Sans is not intended for use in UI elements. Merriweather Sans is published under the <a href="https://s1.wp.com/i/fonts/merriweathersans/OFL.txt">SIL Open Font License</a> and served by the WP.com CDN.</p>
+
+						<h3>System Fonts</h3>
+						<p>For our user interface, we use the best available system font on every platform. On OS X 10.11 and iOS 9, we use San Francisco. On Android 4 and higher, we use Roboto. On Windows 7 and higher, we use Segoe UI. We also include the standard system UI font for various flavors of Linux.</p>
+					</section><!-- #typography-typefaces -->
+
+					<section id="typography-weights" class="typography-weights article-section">
+						<h2>Weights and Styles</h2>
+
+						<p>We use the regular (400) and bold (700) weights of Merriweather and Merriweather Sans. Use the regular weight in most contexts, and the bold weight when added contrast is needed.</p>
+
+						<p>We use the light (300), normal (400), and semibold (600) weights of system fonts.</p>
+
+						<p>When specifying a font-weight in CSS, always use the numeric value instead of keywords ("400" rather than "normal") to ensure that the correct weights are being loaded.</p>
+
+						<p>For text set in Merriweather, set the CSS font-smoothing property to antialiased/grayscale. For text set in system fonts, always use the browser&rsquo;s default antialiasing.</p>
+					</section><!-- #typography-weights -->
+
+					<section id="typography-modularscale" class="typography-modularscale article-section">
+						<h2>Typographic Modular Scale</h2>
+
+						<figure class="blockquote">
+							<blockquote cite="http://www.amazon.com/Elements-Typographic-Style-Version-Anniversary/dp/088179211X">
+								<p>&ldquo;A modular scale, like a musical scale, is a prearranged set of harmonious&nbsp;proportions.&rdquo;</p>
+							</blockquote>
+							<figcaption>&mdash; <cite class="author"><small><a href="http://www.amazon.com/Elements-Typographic-Style-Version-Anniversary/dp/088179211X">Robert Bringhurst</a></small></cite></figcaption>
+						</figure>
+
+						<p>A harmonic ratio helps in creating a more harmonious design. If we use the same scale across WordPress.com, things feel more cohesive&thinsp;&mdash;&thinsp;it&rsquo;s as much about consistency as it is about harmony. Instead of using arbitrary numbers, we conform to a harmonic&nbsp;scale.</p>
+
+						<p>We use a double-stranded Perfect Fifth scale, based on the ideal text size of 16px and a secondary important number of 14px. We round the values to the nearest pixel for sanity. That gives us the following&nbsp;scale:</p>
+
+						<table>
+							<tr>
+								<th>Pixels</th>
+								<th>Ems</th>
+							</tr>
+							<tr>
+								<td>54</td>
+								<td>3.375</td>
+							</tr>
+							<tr>
+								<td>47</td>
+								<td>2.953</td>
+							</tr>
+							<tr>
+								<td>36</td>
+								<td>2.25</td>
+							</tr>
+							<tr>
+								<td>32</td>
+								<td>1.969</td>
+							</tr>
+							<tr>
+								<td>24</td>
+								<td>1.5</td>
+							</tr>
+							<tr>
+								<td>21</td>
+								<td>1.313</td>
+							</tr>
+							<tr>
+								<td>16</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>14</td>
+								<td>0.875</td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td>0.667</td>
+							</tr>
+						</table>
+					</section><!-- #typography-modularscale -->
+
+					<section id="typography-typesetting" class="typography-typesetting article-section">
+						<h2>Resources</h2>
+
+						<ul class="download-list">
+							<li><a href="http://vimeo.com/17079380">More Perfect Typography (Video)</a> by Tim Brown (Highly recommended)</li>
+							<li><a href="http://alistapart.com/article/more-meaningful-typography">More Meaningful Typography</a> by Tim Brown for <cite>A List Apart</cite></li>
+							<li><a href="http://blog.8thlight.com/billy-whited/2011/10/28/r-a-ela-tional-design.html">R(a|ela)tional Design</a> by Billy Whited</li>
+							<li><a href="">Using System UI Fonts In Web Design: A Quick Practical Guide</a> by Marcin Wichary</li>
+						</ul>
+					</section><!-- #typography-typesetting -->
+
+				</article>
+				<nav id="page-navigation" class="page-links">
+					<ul>
+						<li class="page-links-previous"><a href="../colors/">Colors</a></li>
+						<li class="page-links-next"><a href="../iconography/">Iconography</a></li>
+					</ul>
+				</nav><!-- #page-navigation -->
+			</main><!-- #main -->
+
+		</div><!-- #content -->
+
+	</body>
+</html>

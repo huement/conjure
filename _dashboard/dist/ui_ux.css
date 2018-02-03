@@ -1,4 +1,4 @@
-/*! PressCraft-Dashboard - v1.0.0 - 2018-01-31
+/*! PressCraft-Dashboard - v1.0.0 - 2018-02-01
 * https://bitbucket.org/derekscott_mm/PressCraft-Dashboard
 * Copyright (c) 2018 Derek Scott; Licensed MIT */
 .todo-input-group {
@@ -463,7 +463,6 @@ width:5%;
 }
 
 .container-core {
-  padding-top:10px!important;
   padding-bottom:20px;
 }
 

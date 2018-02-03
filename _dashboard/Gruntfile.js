@@ -17,11 +17,11 @@ module.exports = function (grunt) {
       dash: {
         files: {
           'dist/js_orgy.js': ['assets/js/chartist.min.js', 'assets/js/tether.js', 'assets/js/bootstrap-checkbox-radio.js', 'assets/js/bootstrap-notify.js', 'assets/js/dashboard_core.js'],
-          'dist/bs4_tweaked.css': ['assets/css/bootstrap.css', 'assets/css/animate.min.css', 'assets/css/themify-icons.css', 'assets/css/font-awesome.css'],
+          'dist/bs4_tweaked.css': ['assets/css/bootstrap.css', 'assets/css/animate.min.css', 'assets/css/fontawesome-all.min.css',],
           'dist/ui_ux.css': ['assets/css/widgets.css', 'assets/css/paper-dash-extras.css']
         }
       }
-    },
+    },  
     jshint: {
       options: {
         node: true,

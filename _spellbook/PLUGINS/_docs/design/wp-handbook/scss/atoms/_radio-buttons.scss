@@ -1,0 +1,54 @@
+// ==========================================================================
+// RADIO BUTTONS!
+// ==========================================================================
+
+
+input[type=radio] {
+	display: inline-block;
+	margin: -3px 0 0 15px;
+	padding: 0;
+	width: 16px;
+	height: 16px;
+	color: #555;
+	line-height: 0;
+	text-align: center;
+	border: 1px solid #bbb;
+	border-radius: 50%;
+	background: #fff;
+	outline: 0;
+	cursor: pointer;
+	vertical-align: middle;
+	-webkit-appearance: none;
+
+	&:checked:before {
+		float: left;
+		display: inline-block;
+		content: '\2022';
+		margin: 3px;
+		width: 8px;
+		height: 8px;
+		text-indent: -9999px;
+		background: $blue-light;
+		vertical-align: middle;
+		border-radius: 50%;
+		animation: grow .2s ease-in-out;
+	}
+	+ label {
+		margin-right: 15px;
+		padding-left: 4px;
+		font-size: em(14);
+		cursor: pointer;
+	}
+}
+
+@keyframes grow { // Needs to be rewritten if used
+	0% {
+		transform: scale(.3);
+	}
+	60% {
+		transform: scale(1.15);
+	}
+	100% {
+		transform: scale(1);
+	}
+};

@@ -1,0 +1,229 @@
+// ==========================================================================
+// WordPress.com Header Navigation (non-WP theme)
+//
+// So blue. So good.
+// ==========================================================================
+
+
+// Let's try this BEM thing. Initially, I tried block_element-modifier, but I
+// like the ability to hyphen separate words in an element.
+//
+// syntax == block__element--modifier
+// Example: .wpcom-header__site-title--gigantor
+//
+// Why two underscores?
+// Readability. It's easier to scan through BEM with the extra gap.
+
+.wpcom-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 46px;
+	background: #1e8cbe;
+	box-shadow:
+		inset 0 -1px 0 rgba(0, 86, 132, 0.8),
+		0 1px 3px rgba(0, 86, 132, 0.4)
+	;
+	z-index: 9999;
+
+	ul {
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
+	a {
+		color: #fff;
+		font-size: em(14); // see functions.scss
+		font-weight: 400;
+		text-decoration: none;
+		transition: all 0.15s ease-in-out;
+	}
+	.wpcom-logo {
+		top: 7px;
+	}
+}
+.wpcom-header__site-title {
+	float: left;
+}
+.wpcom-nav {
+	h3 {
+		display: none;
+	}
+	> ul { // Top-level menu
+		display: inline-block;
+		height: 46px;
+		line-height: 46px;
+		margin: 0;
+		outline: 0;
+
+		ul { // Dropdown menu
+			display: none;
+			position: absolute;
+			top: 45px;
+			left: 0;
+			width: auto;
+			min-width: 220px;
+			line-height: 46px;
+			background: #fff;
+			background: rgba(255,255,255,0.99);
+			box-shadow:
+				0 0 2px rgba(0, 0, 0, 0.15),
+				0 3px 8px rgba(0, 0, 0, 0.1)
+			;
+			z-index: 9999; // Maybe change this?
+
+			ul { // Level 3+ menu
+				top: 0;
+				left: 100%;
+			}
+			li {
+				float: none;
+				display: block;
+				margin: 0;
+				height: auto;
+				color: #1e8cbe;
+
+				&:hover {
+					> a {
+						// Don't care for this hover
+						// Will change
+						color: #fff;
+						background: $blue-light;
+					}
+				}
+			}
+			a {
+				float: none;
+				display: block;
+				margin: 0;
+				padding: 0 14px;
+				height: auto;
+				color: #1e8cbe;
+				text-decoration: none;
+				overflow: hidden;
+				border-bottom: 1px solid #dfdfdf;
+				border-color: rgba(0,0,0,0.1);
+			}
+		}
+		> li {
+			> ul {
+				&:after {
+					content: '';
+					position: absolute;
+					bottom: 100%;
+					left: 20px;
+					width: 0;
+					height: 0;
+					border: 6px solid transparent;
+					border-bottom-color: #fff;
+				}
+			}
+		}
+	}
+	li {
+		float: left;
+		position: relative;
+		display: inline-block;
+		margin: 0;
+		height: 46px;
+		line-height: 46px;
+		outline: 0;
+
+		&:hover {
+			> a {
+				color: #78c8e6;
+			}
+			> ul {
+				display: block;
+			}
+		}
+	}
+	a {
+		display: inline-block;
+		margin: 0;
+		padding: 0 12px;
+		height: 46px;
+		color: #fff;
+		line-height: 46px;
+		text-decoration: none;
+		border: none;
+		overflow: hidden;
+		outline: 0;
+	}
+	.current {
+		a {
+			background: #36a3ca;
+			color: #fff;
+			box-shadow: inset 0 -1px 0 rgba(0, 86, 132, 0.5);
+			cursor: default;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	// A bit sloppy and could be refactored a bit.
+	.wpcom-header {
+		position: fixed;
+		z-index: 10000;
+	}
+	.wpcom-header__site-title {
+		margin-left: 6px;
+	}
+	.wpcom-nav {
+		background: #fafafa;
+		border-left: 1px solid #e7e7e7;
+		box-shadow:
+			inset 0 2px 2px -2px rgba(0, 0, 0, 0.15),
+			inset 0 11px 8px -8px rgba(0, 0, 0, 0.1)
+		;
+
+		a {
+			display: block;
+			color: #278dbc;
+			line-height: 44px;
+			border-bottom: 1px solid #f0f0f0;
+			overflow: visible;
+
+			&:hover {
+				color: #78c8e6;
+			}
+		}
+		.current {
+			a {
+				box-shadow: none;
+			}
+		}
+		li {
+			> ul {
+				position: static;
+				display: block;
+				width: 100%;
+				border-left: 5px solid #e7e7e7;
+				background: transparent;
+				box-shadow: none;
+
+				a {
+					border-bottom: 1px solid #f0f0f0;
+				}
+				&:after {
+					display: none;
+				}
+				ul {
+					border-left: 5px solid #e7e7e7;
+				}
+				li {
+					&:hover {
+						a {
+							color: #78c8e6;
+							background: transparent;
+						}
+					}
+				}
+			}
+		}
+		&:after {
+			display: none;
+		}
+	}
+}

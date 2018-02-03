@@ -49,7 +49,7 @@ args=()
 
 installScript="${SCRIPT}/_spellbook/CLI/conjure/install.sh"
 libraryScript="${SCRIPT}/_spellbook/CLI/conjure/library.sh"
-wp_newScript="${SCRIPT}/_spellbook/CLI/conjure/library.sh"
+wp_newScript="${SCRIPT}/_spellbook/CLI/conjure/wp_new.sh"
 
 if [[ ! -f "${libraryScript}" ]]; then
   echo ""

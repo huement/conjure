@@ -1,0 +1,70 @@
+.setbox {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 98%;
+  overflow:hidden;
+}
+
+.my-2 {
+  text-transform: uppercase;
+  margin-top:20px;
+}
+
+.my-3 {
+  width:220px;
+  position: relative;
+  margin: 0;
+  float:right;
+}
+
+.row-break {
+  margin-bottom: 20px;
+}
+
+.row-first {
+  margin-top: 10px;
+}
+
+.big_p {
+  font-size:18px;
+  padding: 2px 0 2px 0;
+}
+
+.big_p .label {
+  float:right;
+  margin-top:5px;
+  padding-top:6px;
+}
+
+.sb .submit {
+  padding: 1.5em 0;
+  margin: 5px 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: none;
+}
+
+.wp-core-ui .sb .button,
+.wp-core-ui .sb .button-primary,
+.wp-core-ui .sb .button-secondary
+{
+  font-size:18px!important;
+  padding:5px 40px 2px 40px!important;
+  height:50px;
+}
+
+.help-modal p {
+  font-size:18px;
+  line-height: 24px;
+  margin-bottom:13px;
+}
+
+.hm.modal-dialog {
+  margin-top:60px;
+}
+
+.card {
+  max-width:900px;
+}
