@@ -13,13 +13,17 @@
             |____|/ \|____|                       \|_____|                 |___|/                       |___|/   
 ```
 
-## Magical Wordpress development environment
+## Call forth a mystical Wordpress dev box
 
-> I hate good wizards in fairy tales — they always turn out to be _him_.
->     -- River Song
+>  Klaatu Barada Nikto. I got it, I got it! I know your damn words, alright?
+>     -- Ashley J. Williams
 
 
-### Table Of Contents
+### Double double toil and trouble...
+===============================
+
+
+### Double double toil and trouble...
 ===============================
 
 #### _docs
