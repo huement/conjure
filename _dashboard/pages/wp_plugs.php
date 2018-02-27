@@ -6,12 +6,12 @@
 
 $widgetData = $dashData->getStorage();
 $sitePATH   = getenv('STORAGE_PATH');
-$pluginPATH = getenv('STORAGE_SB');
-$wpPlugins  = $sitePATH.$pluginPATH."/PLUGINS/*";
+$spellbkPath = getenv('STORAGE_SB');
+$wpPlugins  = $sitePATH.$spellbkPath."/PLUGINS/*";
 
-$pluginDataFile = $sitePATH.$pluginPATH."/PLUGINS/_docs/category_data.json";
+$pluginDataFile = $sitePATH.$spellbkPath."/PLUGINS/_docs/category_data.json";
 if(file_exists($pluginDataFile)){
-  $pluginData = json_decode(file_get_contents ($pluginDataFile),true);
+  $pluginData = json_decode( file_get_contents($pluginDataFile), true );
 } else {
   echo "$pluginDataFile NOT Found :(";
   exit;
@@ -69,7 +69,7 @@ $plugins = loadPlugins($wpPlugins,$pluginData);
 
 <div class="alert alert-with-icon alert-secondary" style="margin:0px auto 20px auto;">
   <p class="lead" style="">
-    <i class="fab fa-wordpress"></i>Loading Wordpress Plugins from: <code><?php echo $wpPlugins; ?></code>
+    <i class="fab fa-wordpress"></i> Wordpress Plugins: <code><?php echo $wpPlugins; ?></code>
   </p>
 </div>
 
