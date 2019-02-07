@@ -1,30 +1,25 @@
 ```    
-                                                                                                         _____   
-            _____        ____   _____    _____            _____ ______   _____   ___________        _____\    \  
-       _____\    \_  ____\_  \_|\    \   \    \          |\    \\     \  \    \  \          \      /    / |    | 
-      /     /|     |/     /     \\    \   |    |         \ \     \    |  |    |   \    /\    \    /    /  /___/| 
-     /     / /____//     /\      \\    \  |    |          \|      |   |  |    |    |   \_\    |  |    |__ |___|/ 
-    |     | |____||     |  |     |\|    \ |    |           |      |    \_/   /|    |      ___/   |       \       
-    |     |  _____|     |  |     | |     \|    |   ______  |      |\         \|    |      \  ____|     __/ __    
-    |\     \|\    |     | /     /|/     /\      \ /     / /      /| \         \__ /     /\ \/    |\    \  /  \   
-    | \_____\|    |\     \_____/ /_____/ /______/|      |/______/ |\ \_____/\    /_____/ |\______| \____\/    |  
-    | |     /____/| \_____\   | |      | |     | |\_____\      | /  \ |    |/___/|     | | |     | |    |____/|  
-     \|_____|    ||\ |    |___|/|______|/|_____|/| |     |_____|/    \|____|   | |_____|/ \|_____|\|____|   | |  
-            |____|/ \|____|                       \|_____|                 |___|/                       |___|/   
-```
 
-## Call forth a mystical Wordpress dev box
+              o         _______              __
+          o   .        |       |-----.-----.|__|.--.--.----.-----.
+        ________       |   ----|  _  |      |  |   |  |   _|  -__|
+      c(` |   ' )o     |_______|_____|___|__|  |______|__| |_____|
+        \   ` ,/         ---------------|______|----------------
+       _//^-^ ^\\_            Wondrous Wordpress Wizardry
+      
+```
 
 >  Klaatu Barada Nikto. I got it, I got it! I know your damn words, alright?
 >     -- Ashley J. Williams
 
+# Magic Wordpress Box
+This README file covers the basics for setting up and using Conjure. For further details download the reposity and you can view full documentation as well as play around with some sample code to get you familiar with how things are done. 
 
-### Double double toil and trouble...
-===============================
+If you have setup a Wordpress site, you should be plenty familiar with whats going on. If you have ever tried to locally develop a Wordpress site and later deploy that site to staging and production, you will appreciate exactly how much work has been put into making developing and deploying multiple sites easy to do.
 
-
-### Double double toil and trouble...
-===============================
+## Directory Details
+Here is a quick overview of the main Conjure directories. If you start making any changes to the heirarchy, expect things to break. 
+Otherwise this layout is fairly robust and should adapt itself easily to any user environment. 
 
 #### _docs
 The projects documentation, as well as, any info regarding specific plugins, functions, or other relevant wordpress details.
@@ -52,8 +47,15 @@ This is a folder full of helper websites and the main **Conjure** Dashboard. Ver
 This is a very important folder, and should be where you put all your development sites, cloned customer sites, etc. Basically anything you want to work on.
 
 
-### Conjure Tools
-===============================
+## Conjure Commands
+There area a few general commands and functions that you will need to familiarize yourself with to take full advantage of this codebase. They generally revolve around either setting up a new Wordpress site, or optimizing an exsisting site. Conjure does not actually touch your Wordpress site, or alter its file structure in any way. It is more of a wrapper around the Wordpress codebase. Allowing you to find problem areas, test out updates, and of course, provide a straightforward way to develop locally. 
+
+
+
+
+
+
+====================
 
 #### Homeshed
 A small CLI application for updating your Laravel Homestead configuration file, allows you to quickly update your Homestead.yaml file using simple commands. The tool is especially useful for creating development shortcuts and workflows.

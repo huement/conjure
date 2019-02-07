@@ -242,6 +242,13 @@ while (($#)); do
 done
 set -- "${options[@]}"
 
+
+function grabStyles {
+	while IFS='' read -r line || [[ -n "$line" ]]; do
+	    echo "Text read from file: $line"
+	done < "$1"
+}
+
 # Store the remaining part as arguments.
 args+=("$@")
 

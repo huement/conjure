@@ -88,7 +88,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder "provision/config/wp-cli", "/home/vagrant/.wp-cli", :mount_options => [ "dmode=777", "fmode=777" ]
     config.vm.synced_folder "database/", "/home/vagrant/database", :mount_options => [ "dmode=777", "fmode=777" ]
     config.vm.synced_folder "_spellbook", "/home/vagrant/_spells", :mount_options => [ "dmode=777", "fmode=777" ]
-
+    config.vm.synced_folder "www/myriad", "/home/vagrant/myriad", :mount_options => [ "dmode=777", "fmode=777" ]
+    config.vm.synced_folder "www/myriad", "/home/vagrant/myriad", :owner=> 'www-data', :group=>'www-data'
+    
 
     if File.exist?(File.join(vagrant_dir,'database/data/mysql_upgrade_info')) then
       if vagrant_version >= "1.3.0"
@@ -181,7 +183,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
     end
 
-
+    #config.vm.synced_folder "www/myriad", "/home/vagrant/code/myriad", :owner=> 'www-data', :group=>'www-data'
+    
     #
     # Vagrant Triggers
     #

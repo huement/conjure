@@ -7,6 +7,7 @@
 node_modules
 vendor
 .vagrant
+_SORT
 
 # Vagrant log files
 log/*.log
@@ -38,6 +39,7 @@ www
 _spellbook/SORT
 testcomp.json
 
+# Taskrunner
 _taskrunner/node_modules
 _taskrunner/
 _taskrunner/config/Iconr
@@ -46,7 +48,10 @@ Iconr
 
 /utilities/*bower_components/**/*
 utilities/**/*/bower_components
+
 *bower_components
 /**/*/bower_components
+
 _dashboard/widgets/pa11y-dashboard/test
 utilities/dashboard/.sass-cache
+
