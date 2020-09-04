@@ -33,7 +33,7 @@
     "grunt-stylestats": "^0.1.3",
     "grunt-wp-css": "^0.2.1",
     "grunt-wp-readme-to-markdown": "^2.0.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "stylestats": "^7.0.1"
   }
 }
